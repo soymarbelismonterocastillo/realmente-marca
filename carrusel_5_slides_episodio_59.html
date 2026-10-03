@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualizador interactivo de Carrusel de 5 Slides para Instagram - Episodio 59 de RealMente Podcast con Marbelis Montero">
+  <title>Carrusel 5 Slides — Episodio 59 | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0410;
+      --bg-gradient: linear-gradient(145deg, #12091c 0%, #1e0d32 50%, #150824 100%);
+      --card-bg: rgba(28, 14, 46, 0.75);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-hover: #38bdf8;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.3);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --accent-alert: #fb7185;
+      --accent-success: #34d399;
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 35px rgba(0, 242, 254, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      width: 100%;
+      max-width: 1040px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-pill {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(192, 132, 252, 0.2));
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: var(--accent-turquoise);
+      color: #0a0410;
+      border-color: var(--accent-turquoise);
+      box-shadow: 0 0 15px var(--accent-turquoise-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: linear-gradient(135deg, #00f2fe 0%, #14b8a6 100%);
+      color: #080310;
+      border: none;
+      box-shadow: 0 4px 15px var(--accent-turquoise-glow);
+    }
+
+    .btn-action.primary:hover {
+      background: #38bdf8;
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.45);
+    }
+
+    /* Main Layout */
+    .app-container {
+      width: 100%;
+      max-width: 1040px;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* Carousel Simulator (Instagram 4:5 Aspect Ratio) */
+    .simulator-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .instagram-card {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border-radius: 28px;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-soft), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 34px 28px;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Ambient glow inside slide */
+    .ambient-glow-top {
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, var(--accent-turquoise-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-bottom {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, var(--accent-lilac-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Slide Elements */
+    .slide-content-pane {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-turquoise);
+    }
+
+    .slide-badge {
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .slide-num-pill {
+      background: rgba(192, 132, 252, 0.14);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      color: var(--accent-lilac);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px 0;
+    }
+
+    /* Slide 1 Custom */
+    .slide-1-hook {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.28;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+
+    .slide-1-hook span.highlight {
+      color: var(--accent-turquoise);
+      position: relative;
+      display: inline-block;
+    }
+
+    .slide-1-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Common Titles */
+    .slide-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .slide-description {
+      font-size: 0.94rem;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    /* Quote Box */
+    .quote-card {
+      background: rgba(0, 242, 254, 0.08);
+      border-left: 3.5px solid var(--accent-turquoise);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #e0f2fe;
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .gold-quote {
+      background: linear-gradient(135deg, rgba(192, 132, 252, 0.15), rgba(0, 242, 254, 0.12));
+      border: 1px solid rgba(192, 132, 252, 0.4);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.45;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* Comparison Cards Slide 4 */
+    .compare-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .compare-box {
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .compare-box.bad {
+      background: rgba(251, 113, 133, 0.1);
+      border-left: 3.5px solid var(--accent-alert);
+      border-top: 1px solid rgba(251, 113, 133, 0.2);
+    }
+
+    .compare-box.good {
+      background: rgba(0, 242, 254, 0.1);
+      border-left: 3.5px solid var(--accent-turquoise);
+      border-top: 1px solid rgba(0, 242, 254, 0.2);
+    }
+
+    .compare-title {
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .compare-box.bad .compare-title { color: #f43f5e; }
+    .compare-box.good .compare-title { color: var(--accent-turquoise); }
+
+    /* Steps Slide 5 */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .step-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(192, 132, 252, 0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.83rem;
+      line-height: 1.35;
+    }
+
+    .step-icon {
+      font-size: 1.1rem;
+      min-width: 22px;
+    }
+
+    .step-title {
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(192, 132, 252, 0.25));
+      border: 1px solid var(--accent-turquoise);
+      border-radius: 14px;
+      padding: 12px 14px;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .slide-footer-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--accent-lilac);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+      font-weight: 500;
+    }
+
+    /* Carousel Nav Bar */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 16px;
+      padding: 0 4px;
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      border-radius: 10px;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 10px var(--accent-turquoise-glow);
+    }
+
+    /* Sidebar / Right Panel */
+    .sidebar-panel {
+      background: rgba(20, 10, 32, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .thumb-btn {
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border: 1.5px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-turquoise-glow);
+    }
+
+    .thumb-btn span {
+      font-size: 0.65rem;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    /* Slide Text Copy Box */
+    .text-copy-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    /* Caption Box */
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      background: var(--accent-turquoise);
+      color: #06020a;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(0, 242, 254, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="brand-tag">
+      <span class="brand-pill">Episodio 59</span>
+      <span class="brand-title">RealMente • Marbelis Montero</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn-action" onclick="copyCurrentSlideText()">📋 Copiar Slide</button>
+      <button class="btn-action primary" onclick="copyInstagramCaption()">🚀 Copiar Caption IG</button>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <div class="app-container">
+
+    <!-- Simulator Column -->
+    <div class="simulator-wrapper">
+      
+      <!-- Instagram Card (4:5) -->
+      <div class="instagram-card" id="cardViewport">
+        <div class="ambient-glow-top"></div>
+        <div class="ambient-glow-bottom"></div>
+
+        <!-- Dynamic Slide Content Panes -->
+        <div class="slide-content-pane" id="slidePane">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Navigation Arrows & Dots -->
+      <div class="carousel-nav">
+        <button class="btn-action" onclick="prevSlide()" id="prevBtn">◀ Anterior</button>
+        <div class="slide-dots" id="dotsContainer">
+          <div class="dot active" onclick="goToSlide(0)"></div>
+          <div class="dot" onclick="goToSlide(1)"></div>
+          <div class="dot" onclick="goToSlide(2)"></div>
+          <div class="dot" onclick="goToSlide(3)"></div>
+          <div class="dot" onclick="goToSlide(4)"></div>
+        </div>
+        <button class="btn-action" onclick="nextSlide()" id="nextBtn">Siguiente ▶</button>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar Panel -->
+    <div class="sidebar-panel">
+
+      <div>
+        <h3 class="panel-section-title">🎠 Selección de Slide</h3>
+        <div class="thumbnails-grid">
+          <button class="thumb-btn active" onclick="goToSlide(0)">#1<span>Portada</span></button>
+          <button class="thumb-btn" onclick="goToSlide(1)">#2<span>Freno</span></button>
+          <button class="thumb-btn" onclick="goToSlide(2)">#3<span>Maslow</span></button>
+          <button class="thumb-btn" onclick="goToSlide(3)">#4<span>Contraste</span></button>
+          <button class="thumb-btn" onclick="goToSlide(4)">#5<span>Pasos+CTA</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">📝 Texto de esta Lámina</h3>
+          <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="copyCurrentSlideText()">Copiar Texto</button>
+        </div>
+        <div class="text-copy-box" id="slideTextRaw">
+          Cargando contenido...
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">💬 Caption para Instagram</h3>
+          <button class="btn-action primary" style="padding:4px 10px; font-size:0.75rem;" onclick="copyInstagramCaption()">Copiar Caption</button>
+        </div>
+        <div class="caption-box" id="captionText">
+Puedes matarte trabajando 12 horas al día, enviar la propuesta perfecta o hacer 10 llamadas... pero si por dentro estás operando desde la angustia o la urgencia de "llegar a fin de mes", el entorno no responde a tu acción física: responde a tu tensión. 🧠🛑
+
+Intentar avanzar desde la necesidad es como pedalear una bicicleta con el freno pegado a la rueda: te desgastas el triple, quemas tu energía y avanzas la mitad.
+
+En el Episodio 59 de RealMente desmontamos esta trampa desde la Jerarquía de Maslow y la neuroalineación:
+👉 Actuar desde la necesidad NO es un fallo tuyo ni falta de disciplina: es una respuesta biológica a un eslabón no atendido.
+👉 No necesitas tener toda tu vida resuelta para operar desde tu poder; tu poder se enciende en el instante en que decides accionar en paz.
+
+Desliza el carrusel para ver los 3 pasos exactos para quitarte el freno de mano hoy. ⚡
+
+🎙️ Episodio 59 ya disponible en YouTube y Spotify (enlace directo en mi perfil).
+
+💬 Comenta la palabra PODER y te envío la guía de neuroalineación y el test a tu DM.
+
+#RealMentePodcast #MarbelisMontero #PNL #PiramideDeMaslow #EstadoDePoder #Neuroalineacion #MentalidadDeExito #DesarrolloPersonal #LiderazgoFemenino</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">¡Copiado al portapapeles!</div>
+
+  <script>
+    const slidesData = [
+      {
+        tag: "REALMENTE PODCAST • EP. 59",
+        num: "SLIDE 1 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-turquoise); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;">
+              ⚡ DESVELANDO EL FRENO INVISIBLE
+            </div>
+            <h1 class="slide-1-hook">
+              Te estás esforzando el doble y avanzando la mitad... <br>
+              <span class="highlight">y el problema NO es tu falta de disciplina.</span> 🧠🛑
+            </h1>
+            <p class="slide-1-sub">
+              Desmontando la trampa de accionar desde la necesidad vs. operar desde tu verdadero estado de poder.
+            </p>
+          </div>
+        `,
+        footerLeft: "Marbelis Montero",
+        footerRight: "Desliza para entender qué te frena ➔",
+        rawText: `[SLIDE 1 - PORTADA]
+REALMENTE PODCAST • EP. 59
+Te estás esforzando el doble y avanzando la mitad... y el problema NO es tu falta de disciplina. 🧠🛑
+
+El freno de mano inconsciente: accionar desde la necesidad vs. accionar desde tu estado de poder.
+
+Desliza para entender qué está frenando tu energía ➔`
+      },
+      {
+        tag: "01 / LA PARADOJA DEL ESFUERZO",
+        num: "SLIDE 2 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline">Acelerar con el freno de mano puesto</h2>
+            <p class="slide-description">
+              Puedes redactar la propuesta perfecta, hacer 10 llamadas o publicar todos los días...
+            </p>
+            <p class="slide-description">
+              Pero si por dentro estás en <strong>angustia, prisa económica o terror a fallar</strong>, tu cerebro interpreta que estás en peligro y activa el <strong>modo supervivencia</strong>.
+            </p>
+            <div class="quote-card" style="margin-bottom: 12px;">
+              🚲 <strong>La metáfora de la bicicleta:</strong> Es como pedalear con el freno pegado a la llanta: sudas, te agotas, quemas el mecanismo... y apenas te mueves unos metros.
+            </div>
+            <div class="quote-card" style="border-left-color: var(--accent-lilac); background: rgba(192, 132, 252, 0.08); color: #f5f3ff;">
+              💡 <em>El entorno no responde a tu esfuerzo físico; responde a la tensión o a la paz con la que transmites ese esfuerzo.</em>
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Podcast Ep. 59",
+        footerRight: "Continúa deslizando ➔",
+        rawText: `[SLIDE 2 - LA PARADOJA DEL ESFUERZO]
+01 / LA PARADOJA DEL ESFUERZO
+Acelerar con el freno de mano puesto
+
+Puedes redactar la propuesta perfecta, hacer 10 llamadas o publicar todos los días... pero si por dentro estás en angustia, prisa económica o terror a fallar, tu cerebro activa el modo supervivencia.
+
+Es exactamente igual que pedalear una bicicleta con el freno pegado a la llanta: sudas, te agotas, quemas el mecanismo... y apenas te mueves unos metros.
+
+💡 El entorno no responde a tu esfuerzo físico; responde a la tensión o a la paz con la que transmites ese esfuerzo.`
+      },
+      {
+        tag: "02 / EL SUSTENTO BIOLÓGICO",
+        num: "SLIDE 3 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline">No es falta de voluntad: es tu biología protegiéndote</h2>
+            <p class="slide-description">
+              La <strong>Jerarquía de Maslow</strong> demuestra que el cerebro es puramente instintivo:
+            </p>
+            <p class="slide-description">
+              Si tu <strong>Fisiología</strong> (salud, descanso) o tu <strong>Seguridad</strong> (dinero, estabilidad, techo) tambalean, tu mente apaga la visión creativa y el propósito. Su prioridad instintiva es <strong>mantenerte con vida</strong>.
+            </p>
+            <div class="gold-quote">
+              ⚠️ «Actuar desde la necesidad NO es un fallo personal ni una debilidad: es una respuesta biológica a un escalón no atendido.»
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Podcast Ep. 59",
+        footerRight: "Continúa deslizando ➔",
+        rawText: `[SLIDE 3 - EL DIAGNÓSTICO BIOLÓGICO]
+02 / EL SUSTENTO BIOLÓGICO
+No es falta de voluntad: es tu biología protegiéndote
+
+La Jerarquía de Abraham Maslow explica por qué te bloqueas:
+Si tu Fisiología (salud, sueño) o tu Seguridad (dinero, estabilidad, techo) tambalean, tu cerebro entra en pánico y apaga la creatividad y el propósito superior. Su prioridad absoluta es mantenerte viva.
+
+⚠️ «Actuar desde la necesidad NO es un defecto personal ni una debilidad: es una respuesta biológica instintiva a un eslabón no atendido.»`
+      },
+      {
+        tag: "03 / EL PODER DE LA INTENCIÓN",
+        num: "SLIDE 4 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline" style="font-size: 1.45rem;">La acción es neutra. La intención lo cambia todo.</h2>
+            <div class="compare-container">
+              <div class="compare-box bad">
+                <div class="compare-title">🔴 DESDE LA NECESIDAD (TENSIÓN)</div>
+                <div style="font-style: italic; margin-bottom: 3px;">«Tengo que sacar esto ya o algo malo va a pasar, no llego a fin de mes, me voy a quedar atrás.»</div>
+                <div style="color: #cbd5e1; font-size: 0.76rem;">Efecto: Transmites urgencia y desesperación. El entorno se cierra.</div>
+              </div>
+              <div class="compare-box good">
+                <div class="compare-title">🟢 DESDE EL ESTADO DE PODER (CERTEZA)</div>
+                <div style="font-style: italic; margin-bottom: 3px;">«Elijo ejecutar esta acción con calma y presencia. Confío en mi capacidad y decido accionar en paz.»</div>
+                <div style="color: #cbd5e1; font-size: 0.76rem;">Efecto: Transmites solidez y claridad. La acción fluye sin resistencia.</div>
+              </div>
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Podcast Ep. 59",
+        footerRight: "Continúa deslizando ➔",
+        rawText: `[SLIDE 4 - EL CONTRASTE]
+03 / EL PODER DE LA INTENCIÓN
+La acción es neutra. Tu diálogo interno define el resultado.
+
+🔴 OPERAR DESDE LA NECESIDAD (Tensión & Resistencia):
+• Diálogo: «Tengo que sacar esto ya o algo malo va a pasar, no llego a fin de mes, me voy a quedar atrás.»
+• Efecto: Transmites urgencia, desesperación y contracción. El entorno percibe la presión y se cierra.
+
+🟢 OPERAR DESDE EL ESTADO DE PODER (Certeza & Paz):
+• Diálogo: «Elijo ejecutar esta acción con calma y presencia. Confío en mi capacidad y decido transitar mi proceso en paz.»
+• Efecto: Transmites solidez, claridad y magnetismo. La acción fluye sin resistencia.`
+      },
+      {
+        tag: "04 / NEUROALINEACIÓN EN ACCIÓN",
+        num: "SLIDE 5 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline" style="font-size: 1.4rem;">3 pasos para soltar el freno de mano hoy:</h2>
+            <div class="steps-list">
+              <div class="step-item">
+                <span class="step-icon">🔍</span>
+                <div>
+                  <span class="step-title">1. Identifica el eslabón</span>
+                  Nombra la amenaza: <em>«Siento prisa porque percibo riesgo en mi seguridad»</em>. Nombrarlo le quita poder al pánico.
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-icon">🎯</span>
+                <div>
+                  <span class="step-title">2. Separa la intención</span>
+                  Pregúntate: <em>«Si le quito el miedo a este paso, ¿cuál es la acción más limpia y sabia?»</em>.
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-icon">🧘</span>
+                <div>
+                  <span class="step-title">3. Autorregúlate y ejecuta</span>
+                  Respira hondo, suelta los hombros y acciona desde el presente, en lo pequeño.
+                </div>
+              </div>
+            </div>
+            <div class="cta-banner">
+              🎙️ <strong>Ep. 59 YA en YouTube y Spotify</strong><br>
+              💬 Comenta <span style="color:var(--accent-turquoise); text-decoration: underline;">PODER</span> y te envío la guía por DM
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Club",
+        footerRight: "Guarda y Comparte 💬",
+        rawText: `[SLIDE 5 - 3 PASOS Y LLAMADO A LA ACCIÓN]
+04 / HERRAMIENTA PRÁCTICA
+3 pasos para soltar el freno de mano hoy:
+
+1. 🔍 Identifica el eslabón: Nombra en voz alta lo que sientes: «Siento prisa porque percibo amenaza en mi seguridad». Nombrarlo le quita poder al pánico.
+2. 🎯 Separa la intención: Pregúntate: «Si le quito el miedo a esta decisión, ¿cuál es el paso más sabio y neutro?».
+3. 🧘 Autorregúlate y ejecuta: Respira hondo, suelta los hombros y acciona desde el presente, en lo simple y pequeño.
+
+«No necesitas tener toda tu pirámide resuelta para operar en poder; tu poder despierta cuando decides accionar en paz.»
+
+🎙️ Episodio 59 YA DISPONIBLE en Spotify y YouTube.
+💬 Comenta la palabra PODER y te envío la guía de neuroalineación directo a tu DM.`
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function renderSlide(index) {
+      const data = slidesData[index];
+      const pane = document.getElementById('slidePane');
+      
+      pane.innerHTML = `
+        <div class="slide-top-meta">
+          <span class="slide-badge">${data.tag}</span>
+          <span class="slide-num-pill">${data.num}</span>
+        </div>
+        ${data.html}
+        <div class="slide-footer-meta">
+          <span>${data.footerLeft}</span>
+          <span>${data.footerRight}</span>
+        </div>
+      `;
+
+      // Update Dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === index);
+      });
+
+      // Update Thumbnails
+      const thumbs = document.querySelectorAll('.thumb-btn');
+      thumbs.forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === index);
+      });
+
+      // Update text box
+      document.getElementById('slideTextRaw').textContent = data.rawText;
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      renderSlide(currentSlide);
+    }
+
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMessage');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function copyCurrentSlideText() {
+      const text = slidesData[currentSlide].rawText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`¡Texto del Slide ${currentSlide + 1} copiado!`);
+      });
+    }
+
+    function copyInstagramCaption() {
+      const caption = document.getElementById('captionText').textContent.trim();
+      navigator.clipboard.writeText(caption).then(() => {
+        showToast("¡Caption de Instagram copiado!");
+      });
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // Initial render
+    renderSlide(0);
+  </script>
+</body>
+</html>
