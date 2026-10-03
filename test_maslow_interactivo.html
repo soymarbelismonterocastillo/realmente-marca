@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test de Diagnóstico Maslow | RealMente Club</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f0718 0%, #1a0b2e 50%, #110620 100%);
+      --card-bg: rgba(26, 13, 42, 0.92);
+      --card-border: rgba(192, 132, 252, 0.35);
+      --text-main: #f5f3ff;
+      --text-muted: #c084fc;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.25);
+      --accent-lilac: #d8b4fe;
+      --accent-gold: #fbbf24;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 80px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    /* Print Controls */
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, var(--accent-turquoise), #0284c7);
+      color: #09030f;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--accent-turquoise-glow);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: var(--accent-turquoise);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .header-subtitle {
+      font-size: 1.1rem;
+      color: var(--accent-lilac);
+      font-weight: 500;
+    }
+
+    /* Intro Card */
+    .intro-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1.5px solid var(--card-border);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
+      line-height: 1.6;
+    }
+
+    .quote-box {
+      background: rgba(0, 242, 254, 0.06);
+      border-left: 4px solid var(--accent-turquoise);
+      padding: 18px 22px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+    }
+
+    .instructions-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 22px;
+      margin-top: 22px;
+    }
+
+    .instructions-title {
+      font-weight: 800;
+      color: var(--accent-turquoise);
+      margin-bottom: 12px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .instructions-box ul {
+      list-style: none;
+    }
+
+    .instructions-box li {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    /* Section Header */
+    .section-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent-turquoise);
+      margin: 45px 0 25px;
+      text-align: center;
+    }
+
+    /* Question Cards */
+    .q-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1.5px solid var(--card-border);
+      border-radius: 22px;
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .q-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent-turquoise);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .q-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .opt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .opt-row {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .opt-badge {
+      background: rgba(192, 132, 252, 0.2);
+      color: var(--accent-turquoise);
+      font-weight: 800;
+      font-size: 0.9rem;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      flex-shrink: 0;
+    }
+
+    .opt-text {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      padding-top: 3px;
+    }
+
+    /* Results Section */
+    .results-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 2px solid var(--accent-turquoise);
+      border-radius: 24px;
+      padding: 35px;
+      margin-top: 45px;
+      box-shadow: var(--shadow);
+    }
+
+    .level-block {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+
+    .level-badge-tag {
+      display: inline-block;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 4px 14px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .b-a { background: rgba(0, 242, 254, 0.2); color: #00f2fe; border: 1px solid #00f2fe; }
+    .b-b { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; }
+    .b-c { background: rgba(129, 140, 248, 0.2); color: #818cf8; border: 1px solid #818cf8; }
+    .b-d { background: rgba(168, 85, 247, 0.2); color: #a855f7; border: 1px solid #a855f7; }
+    .b-e { background: rgba(192, 132, 252, 0.2); color: #c084fc; border: 1px solid #c084fc; }
+
+    .level-block-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .level-detail-item {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .level-detail-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .level-detail-item strong {
+      color: var(--accent-turquoise);
+    }
+
+    .footer-quote {
+      text-align: center;
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px solid var(--card-border);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--accent-lilac);
+    }
+
+    @media print {
+      body { background: #fff; color: #000; padding: 0; }
+      .btn-print { display: none; }
+      .intro-card, .q-card, .results-card { background: #fff; color: #000; border: 1px solid #ddd; box-shadow: none; }
+      .header-title, .section-header, .q-title, .level-block-title { color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Top Action -->
+    <div class="top-actions">
+      <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <span class="badge">RealMente Club | Neuroalineación</span>
+      <h1 class="header-title">¿Dónde está tu energía hoy?</h1>
+      <p class="header-subtitle">Test de Diagnóstico Inconsciente — Episodio 59 con Marbelis Montero</p>
+    </header>
+
+    <!-- Intro Card -->
+    <div class="intro-card">
+      <p style="font-size: 1.05rem;">
+        ¡Bienvenida al instrumento de neuroalineación del <strong>RealMente Club</strong>! ✨  
+        Este test te permitirá identificar en menos de 2 minutos cuál es el eslabón de la Pirámide de Maslow que concentra tu atención y energía vital en este momento.
+      </p>
+
+      <div class="quote-box">
+        «Actuar desde la necesidad o la urgencia no es un fallo personal, es una respuesta biológica de tu cerebro priorizando un escalón no resuelto.»
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-turquoise); margin-top: 6px; font-style: normal;">— Marbelis Montero (Episodio 59)</div>
+      </div>
+
+      <div class="instructions-box">
+        <div class="instructions-title">⏱️ INSTRUCCIONES (Responde en 2 minutos — Cero matemáticas):</div>
+        <ul>
+          <li><span>⏱️</span> <strong>Responde en menos de 2 minutos:</strong> Confía en lo primero que resuene en ti al leer cada opción.</li>
+          <li><span>🧠</span> <strong>Respuesta espontánea:</strong> Selecciona la opción que mejor describa tu realidad actual, sin juzgarte ni buscar la respuesta "ideal".</li>
+          <li><span>📊</span> <strong>Conteo simple:</strong> Anota las letras de tus respuestas (A, B, C, D o E). La letra que más repitas te revelará tu eslabón dominante al mirar la guía de resultados al final.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section Header -->
+    <h2 class="section-header">❓ LAS 10 PREGUNTAS DE DIAGNÓSTICO</h2>
+
+    <!-- Q1 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 1 de 10</div>
+      <h3 class="q-title">1. Si observas la mayor parte de tus pensamientos en un día normal, ¿hacia dónde se fuga tu atención de manera involuntaria?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">Hacia mi cansancio físico: la falta de sueño reparador, el agotamiento acumulado o sentir que termino el día sin energía.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">Hacia mis recursos: la estabilidad económica, mi vivienda, el trabajo o cómo reducir la incertidumbre del futuro.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">Hacia mis lazos: mi pareja, la familia, mis amistades o la necesidad de sentirme acompañada e integrada en mi entorno.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">Hacia mi desempeño: si lo que hago es suficiente, cómo me perciben los demás o si estoy a la altura de lo que se espera de mí.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">Hacia mi propósito: si estoy viviendo la vida que realmente quiero, expresando mis talentos o creando algo con sentido.</div></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 2 de 10</div>
+      <h3 class="q-title">2. Imagina que surge una situación de mucha presión o un imprevisto. ¿Cómo se manifiesta tu primera señal de alerta física o emocional?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">Mi cuerpo somatiza de inmediato: contracturas musculares, dolor de cabeza, gastritis o un malestar físico puntual.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">Entro en modo control: reviso cuentas, presupuesto o busco proteger mi vivienda y mi estabilidad laboral.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">Busco a alguien cercano para desahogarme o me aíslo por miedo a distanciarme o molestar a mi entorno.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">Me juzgo duro: empiezo a dudar de mi capacidad, me comparo con otros o siento que cometí un error.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">Hago una pausa reflexiva: busco el aprendizaje de la situación y reoriento mis metas sin perder mi centro.</div></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 3 de 10</div>
+      <h3 class="q-title">3. Si analizas tu bienestar biológico cotidiano, ¿en cuál de estos aspectos sientes que tu cuerpo te pide más atención?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">En mi salud digestiva y visceral: regularizar mi tránsito intestinal, evitar la inflamación abdominal y sentirme liviana al comer.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">En mi entorno de vida: habitar un espacio seguro, sin caos doméstico, con certidumbre económica y paz en la pareja.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">En mis afectos: compartir momentos de calidad, risas y conversaciones francas con gente querida.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">En mi autoconfianza: reconocer lo que he logrado, dejar de buscar aprobación fuera y validar mi propio criterio.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">En mi crecimiento: dedicar tiempo a mis pasiones, aprender cosas fascinantes y expandir mi potencial.</div></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 4 de 10</div>
+      <h3 class="q-title">4. Al momento de tomar una decisión importante en tu vida, ¿cuál es el filtro principal que pesa en tu balanza?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">¿Tengo la vitalidad física, la nutrición y la resistencia para asumir este compromiso sin descuidar mi salud?</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">¿Es una opción segura? ¿Protege mi vivienda, mis ingresos y la estabilidad de los míos?</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">¿Cómo afectará esto a mis relaciones cercanas? ¿Me mantendrá conectada con la gente que amo?</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">¿Esta decisión demuestra mi capacidad y me ayuda a consolidar mi autonomía y valor propio?</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">¿Esta decisión me permite ser fiel a quien realmente soy y desarrollar mis talentos únicos?</div></div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 5 de 10</div>
+      <h3 class="q-title">5. Si pudieras regalarte un «estado de tranquilidad absoluta» para este momento de tu vida, ¿cuál elegirías?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">Un cuerpo que funciona en armonía: sueño profundo, buena digestión, sin dolores ni diagnósticos médicos pendientes.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">Un entorno estable, con resguardo económico, vivienda segura y libertad de amenazas o incertidumbre.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">Relaciones nutricias en pareja, familia y amigos, donde me sienta aceptada, amada y parte de algo hermoso.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">Una autoestima inquebrantable, donde reconozca mis logros y deje de depender de cómo me perciben fuera.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">Sentido de vida pleno, donde cree libremente, aprenda y viva en coherencia con mis verdaderos valores.</div></div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 6 de 10</div>
+      <h3 class="q-title">6. Si observas la causa principal del «freno de mano» que a veces estanca tus proyectos o tu avance, ¿dónde se ubica?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">En que postergo mi autocuidado: vivo ignorando señales de cansancio, malestares recurrentes o temas de salud por seguir cumpliendo.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">En la constante amenaza o incertidumbre sobre el futuro laboral, económico o habitacional.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">En la frialdad de la desconexión, la soledad o conflictos no resueltos con personas importantes para mí.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">En que me exijo demasiado para demostrar mi valor, cayendo en la comparación o la búsqueda de validación.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">En que estoy cumpliendo expectativas ajenas o viviendo en automático en lugar de desarrollar mi potencial.</div></div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 7 de 10</div>
+      <h3 class="q-title">7. Cuando decides hacer una pausa en tu rutina o dedicar tiempo para ti, ¿qué busca tu mente por necesidad?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">Descanso y desconexión: soltar el esfuerzo físico, dormir sin alarmas y dejar que el cuerpo se recargue.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">Orden y previsibilidad: dejar la casa organizada, planificar presupuestos y asegurar que el entorno esté protegido.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">Nutrición afectiva: compartir una charla profunda, una comida compartida o un abrazo con gente que quiero.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">Crecimiento personal: estudiar un tema nuevo, leer o realizar actividades que refuercen mi autoconfianza.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">Expresión y creatividad: hacer arte, escribir, conectar con la naturaleza o planear proyectos con propósito.</div></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 8 de 10</div>
+      <h3 class="q-title">8. Si le preguntas a tu círculo más cercano qué es lo que más te observan en esta etapa, ¿qué te dirían?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">«Necesitas parar un poco: te ves agotada o con achaques físicos que necesitas atender de una vez.»</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">«Estás muy enfocada en resolver la estabilidad, el dinero, el contrato o el orden de la vivienda.»</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">«Estás buscando momentos de calidad para compartir, conectar y estar cerca de tu familia o pareja.»</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">«Te cuesta festejar tus propios logros y a veces dudas demasiado de tu enorme capacidad.»</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">«Te ves buscando un sentido más profundo, con ganas de crear y transformar tu vida.»</div></div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 9 de 10</div>
+      <h3 class="q-title">9. Al mirar el uso que le das a tus inversiones personales (tiempo, dinero o energía), ¿cuál es la prioridad que predomina?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">Tratamientos de salud, masajes, buena alimentación, suplementos o terapias para recuperar el cuerpo.</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">Reforzar la seguridad del hogar, crear un ahorro de reserva o asegurar la estabilidad de la familia.</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">Vivir experiencias compartidas: viajes con mi pareja o familia, festejos o actividades sociales.</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">Cursos de crecimiento personal, certificaciones, mentorías o herramientas para fortalecer mi autoestima profesional.</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">Financiar mi propio proyecto de vida, emprendimiento con propósito o iniciativas que trasciendan.</div></div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-card">
+      <div class="q-tag">Pregunta 10 de 10</div>
+      <h3 class="q-title">10. De las siguientes 5 preguntas de diagnóstico, ¿cuál es la que toca la fibra más sensible de tu momento presente?</h3>
+      <div class="opt-list">
+        <div class="opt-row"><div class="opt-badge">A</div><div class="opt-text">«¿Mi cuerpo está recibiendo la salud, el descanso y la vitalidad que necesita, o estoy simplemente sobreviviendo?»</div></div>
+        <div class="opt-row"><div class="opt-badge">B</div><div class="opt-text">«¿Siento que tengo una base estable, segura y protegida en mi vivienda y mis recursos para poder vivir en paz?»</div></div>
+        <div class="opt-row"><div class="opt-badge">C</div><div class="opt-text">«¿Me siento conectada y parte de una familia/entorno afín, o estoy viviendo aislada o desconectada de los demás?»</div></div>
+        <div class="opt-row"><div class="opt-badge">D</div><div class="opt-text">«¿Mi valor depende de mis logros y de la aprobación ajena, o reconozco mi propio valor con seguridad?»</div></div>
+        <div class="opt-row"><div class="opt-badge">E</div><div class="opt-text">«¿Estoy viviendo desde quien realmente soy y desarrollando el máximo de mi potencial de vida?»</div></div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <h2 class="section-header">📊 RESULTADOS Y GUÍA COMPLETA DE LOS 5 ESLABONES</h2>
+
+    <div class="results-card">
+      
+      <p style="text-align: center; margin-bottom: 25px; font-size: 1.05rem;">
+        Suma la cantidad de respuestas <strong>A, B, C, D o E</strong> que elegiste. La letra dominante determina tu eslabón de enfoque actual:
+      </p>
+
+      <!-- LEVEL A -->
+      <div class="level-block">
+        <span class="level-badge-tag b-a">Mayoría de A</span>
+        <h3 class="level-block-title">Nivel 1: Fisiología y Salud (Sobrevivir / Reconstrucción Biológica)</h3>
+        <div class="level-detail-item">
+          <strong>🧠 Diagnóstico Neurológico:</strong> Tu sistema nervioso autónomo está operando con elevada carga de estrés o fatiga acumulada. Tu biología te está pidiendo atención real (sueño reparador, salud digestiva, aliviar somatizaciones).
+        </div>
+        <div class="level-detail-item">
+          <strong>🚨 El Freno de Mano Inconsciente:</strong> Exigirte claridad mental o metas altas cuando no tienes energía física disponible es un acto de autoexigencia tóxica.
+        </div>
+      </div>
+
+      <!-- LEVEL B -->
+      <div class="level-block">
+        <span class="level-badge-tag b-b">Mayoría de B</span>
+        <h3 class="level-block-title">Nivel 2: Seguridad y Certeza (Piso Firme / Estabilidad)</h3>
+        <div class="level-detail-item">
+          <strong>🧠 Diagnóstico Neurológico:</strong> Tu mente percibe inestabilidad económica, laboral o falta de previsibilidad en tu entorno de vida. Estás operando en hipervigilancia buscando certezas.
+        </div>
+        <div class="level-detail-item">
+          <strong>🚨 El Freno de Mano Inconsciente:</strong> Confundir la prisa con la efectividad. Accionar desde la angustia material transmite necesidad y traba los resultados.
+        </div>
+      </div>
+
+      <!-- LEVEL C -->
+      <div class="level-block">
+        <span class="level-badge-tag b-c">Mayoría de C</span>
+        <h3 class="level-block-title">Nivel 3: Pertenencia y Afecto (Conexión Social / Vínculos)</h3>
+        <div class="level-detail-item">
+          <strong>🧠 Diagnóstico Neurológico:</strong> Tu energía pide nutrir vínculos afectivos reales (pareja, familia, amistades). Tu cerebro busca calidez humana y cercanía.
+        </div>
+        <div class="level-detail-item">
+          <strong>🚨 El Freno de Mano Inconsciente:</strong> Aislarte por miedo a molestar o sobredimensionar la desconexión afectiva.
+        </div>
+      </div>
+
+      <!-- LEVEL D -->
+      <div class="level-block">
+        <span class="level-badge-tag b-d">Mayoría de D</span>
+        <h3 class="level-block-title">Nivel 4: Estima y Valor Propio (Autonomía y Valía Personal)</h3>
+        <div class="level-detail-item">
+          <strong>🧠 Diagnóstico Neurológico:</strong> Tienes la base resuelta, pero tu diálogo interno busca afianzar tu autoconfianza y validar tu propio criterio sin depender de la mirada ajena.
+        </div>
+        <div class="level-detail-item">
+          <strong>🚨 El Freno de Mano Inconsciente:</strong> Dudar de tu capacidad antes de dar un paso o buscar aprobación externa para validar lo que ya sabes hacer.
+        </div>
+      </div>
+
+      <!-- LEVEL E -->
+      <div class="level-block">
+        <span class="level-badge-tag b-e">Mayoría de E</span>
+        <h3 class="level-block-title">Nivel 5: Autorrealización y Propósito (Completitud y Potencial)</h3>
+        <div class="level-detail-item">
+          <strong>🧠 Diagnóstico Neurológico:</strong> Tu base está estable y resuelta. Tu energía busca libertad creativa, aprendizaje continuo, trascendencia e impacto genuino.
+        </div>
+        <div class="level-detail-item">
+          <strong>🚨 El Freno de Mano Inconsciente:</strong> Postergar tu visión de vida por distraerte en la operatividad del día a día.
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        «Recuerda: No necesitas tener resuelta toda la Pirámide de Maslow para activar tu Estado de Poder. Tu Estado de Poder se activa en el instante en que eliges quitar el freno del miedo y actuar con presencia soberana.»<br>
+        <strong style="font-style: normal; color: var(--accent-turquoise); font-size: 0.9rem;">— Marbelis Montero (Master Trainer en PNL / RealMente Podcast)</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
