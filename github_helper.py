@@ -18,8 +18,8 @@ if sys.stdout.encoding != 'utf-8':
         pass
 
 # Files and extensions to ignore during project sync
-IGNORED_DIRS = {".git", "__pycache__", ".vscode", ".idea"}
-IGNORED_FILES = {".env", ".github_config.json", "desktop.ini", "Thumbs.db"}
+IGNORED_DIRS = {".git", "__pycache__", ".vscode", ".idea", ".vercel"}
+IGNORED_FILES = {".env", ".github_config.json", ".vercel_config.json", "desktop.ini", "Thumbs.db"}
 IGNORED_EXTS = {".pyc", ".log", ".tmp"}
 
 def load_credentials():
