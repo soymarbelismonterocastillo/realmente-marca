@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Mental Actualizado - Mentalidad de Expansión | Marvelis Montero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b131e;
+      --card-bg: rgba(21, 34, 50, 0.9);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-gold: #e2b857;
+      --accent-teal: #14b8a6;
+      --border: rgba(226, 184, 87, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--accent-gold);
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .badge-new {
+      display: inline-block;
+      background: rgba(20, 184, 166, 0.2);
+      border: 1px solid var(--accent-teal);
+      color: var(--accent-teal);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .outline-box {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .outline-box h2 {
+      font-size: 1.3rem;
+      color: var(--accent-teal);
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .item {
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      padding: 14px;
+      border-left: 4px solid var(--accent-gold);
+    }
+
+    .item h3 {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .highlight-tag {
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    .btn-bar {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      background: var(--accent-gold);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(226, 184, 87, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="badge-new">✨ VERSIÓN ACTUALIZADA CON PALABRAS CLAVE</span>
+    <h1>Mentalidad de Expansión</h1>
+    <p class="subtitle">Mapa Mental de Pizarra & Esquema de la Charla | Marvelis Montero</p>
+  </header>
+
+  <div class="container">
+    <div class="image-wrapper">
+      <img src="mapa_mental_expansion.png?v=2" alt="Mapa Mental Actualizado - Mentalidad de Expansión">
+    </div>
+
+    <div class="btn-bar">
+      <a class="btn" href="mapa_mental_expansion.png" target="_blank">🔍 Ver Imagen Completa</a>
+      <button class="btn" onclick="window.print()">🖨️ Imprimir Guía</button>
+    </div>
+
+    <div class="outline-box">
+      <h2>📋 Puntos Clave & Palabras de Poder Agregadas</h2>
+      <div class="grid">
+        <div class="item">
+          <h3>1. Realidad Mental vs. Real</h3>
+          <p>La realidad es neutra. <span class="highlight-tag">💡 FEEDBACK:</span> No hay fracaso, solo aprendizaje para reajustar.</p>
+        </div>
+        <div class="item">
+          <h3>2. El Diálogo Interno</h3>
+          <p>Voz Crítica vs Voz Aliada. <span class="highlight-tag">💡 FISIOLOGÍA:</span> La postura del cuerpo expande la mente.</p>
+        </div>
+        <div class="item">
+          <h3>3. Espacio-Tiempo y Punto de Poder</h3>
+          <p>Pasado y Futuro. <span class="highlight-tag">⚡ PRESENTE & ACEPTACIÓN:</span> Aceptar el presente es activar tu poder.</p>
+        </div>
+        <div class="item">
+          <h3>4. La Brújula: El Objetivo</h3>
+          <p>Le da dirección y foco a la energía del Presente.</p>
+        </div>
+        <div class="item">
+          <h3>5. Ejercicio Práctico</h3>
+          <p>Transición al papel donde se integra todo la toma de conciencia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
