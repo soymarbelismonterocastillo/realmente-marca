@@ -206,6 +206,21 @@ def sync_project(repo_name="realmente-marca"):
 
     print(f"\n[✓] Sincronización completa finalizada: {success_count}/{len(files_to_upload)} archivos subidos a https://github.com/{username}/{repo_name}")
 
+def add_collaborator(repo_name, collaborator_user, permission="push"):
+    username, token = load_credentials()
+    print(f"[*] Enviando invitación de colaborador a @{collaborator_user} para el repositorio '{repo_name}'...")
+    url = f"https://api.github.com/repos/{username}/{repo_name}/collaborators/{collaborator_user}"
+    payload = {"permission": permission}
+    res = github_request(url, method="PUT", data=payload, token=token)
+    if res is not None:
+        print(f"[✓] Invitación enviada exitosamente a @{collaborator_user}!")
+        if "html_url" in res:
+            print(f"    Enlace de invitación: {res['html_url']}")
+        return True
+    else:
+        print(f"[X] No se pudo enviar la invitación a @{collaborator_user}.")
+        return False
+
 def main():
     parser = argparse.ArgumentParser(description="Asistente de la Skill de GitHub para RealMente")
     subparsers = parser.add_subparsers(dest="command")
@@ -226,6 +241,12 @@ def main():
     upload_parser.add_argument("--target", help="Ruta de destino en el repo")
     upload_parser.add_argument("--message", help="Mensaje de commit (semántico)")
     
+    # Add Collaborator
+    collab_parser = subparsers.add_parser("add-collaborator", help="Invitar a un colaborador al repositorio")
+    collab_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio")
+    collab_parser.add_argument("--user", required=True, help="Nombre de usuario del colaborador en GitHub")
+    collab_parser.add_argument("--permission", default="push", choices=["pull", "push", "admin", "maintain", "triage"], help="Permisos (push = escritura)")
+
     # Sync Project (All workspace files)
     sync_proj_parser = subparsers.add_parser("sync-project", help="Sincronizar todo el espacio de trabajo con el repositorio de marca")
     sync_proj_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio de destino")
@@ -242,6 +263,8 @@ def main():
         create_repository(args.name, description=args.desc, private=args.private)
     elif args.command == "upload":
         upload_file(args.repo, args.file, target_rel_path=args.target, message=args.message)
+    elif args.command == "add-collaborator":
+        add_collaborator(args.repo, args.user, permission=args.permission)
     elif args.command in ["sync-project", "sync-all"]:
         sync_project(args.repo)
     else:
