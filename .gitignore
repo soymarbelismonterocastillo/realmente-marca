@@ -1,0 +1,15 @@
+# GitHub & Credentials Security
+.env
+.github_config.json
+.vercel_config.json
+.vercel/
+
+# Windows & OS Files
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# Python & Environment
+__pycache__/
+*.pyc
+*.log
