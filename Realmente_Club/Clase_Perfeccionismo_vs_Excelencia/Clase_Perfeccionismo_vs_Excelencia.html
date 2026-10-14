@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realmente Club • Clase Perfeccionismo vs Excelencia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --violeta-pro: #4C078C;
+      --lila-vivo: #A669DA;
+      --lila-suave: #F5EEFC;
+      --lila-glow: rgba(166, 105, 218, 0.25);
+      --dark-text: #0F0F0F;
+      --body-text: #282832;
+      --white: #FFFFFF;
+      --teal: #14B8A6;
+      --teal-bg: #F0FDF4;
+      --green: #10B981;
+      --yellow: #F59E0B;
+      --orange: #F97316;
+      --red: #E11D48;
+      --red-bg: #FFF5F5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Mulish', sans-serif;
+      background: #0B0614;
+      color: var(--dark-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* Presentation Container */
+    .deck-container {
+      width: 100%;
+      max-width: 1100px;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      background: linear-gradient(135deg, #18092B 0%, #0D041A 100%);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(166, 105, 218, 0.2);
+      border: 1px solid rgba(166, 105, 218, 0.3);
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 40px 50px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(10px);
+      background: var(--white);
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Top Header Bar */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--lila-suave);
+    }
+    .brand-tag {
+      font-family: 'Jost', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--violeta-pro);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-tag::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: var(--lila-vivo);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .speaker-tag {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Title Styling */
+    .slide-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 800;
+      font-size: 34px;
+      color: var(--violeta-pro);
+      line-height: 1.25;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    /* Slide Content Area */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* Cards Grid */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 2px solid var(--lila-suave);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: var(--lila-vivo);
+      box-shadow: 0 8px 25px var(--lila-glow);
+    }
+    .card-purple {
+      background: var(--lila-suave);
+      border-color: var(--lila-vivo);
+    }
+    .card-red {
+      background: var(--red-bg);
+      border-color: var(--red);
+    }
+    .card-teal {
+      background: var(--teal-bg);
+      border-color: var(--teal);
+    }
+
+    .card-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--violeta-pro);
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--body-text);
+      line-height: 1.45;
+    }
+
+    /* Quote Boxes */
+    .big-quote-box {
+      background: var(--lila-suave);
+      border: 3px solid var(--violeta-pro);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(76, 7, 140, 0.1);
+    }
+    .quote-text {
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      color: var(--violeta-pro);
+      line-height: 1.35;
+    }
+    .quote-author {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--dark-text);
+      margin-top: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* Cover Slide Specifics */
+    .slide-cover {
+      background: linear-gradient(135deg, #F9F5FE 0%, #EDDFFA 100%);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px;
+    }
+    .cover-badge {
+      background: var(--violeta-pro);
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      letter-spacing: 2px;
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+    .cover-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 800;
+      font-size: 48px;
+      color: var(--violeta-pro);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .cover-subtitle {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--dark-text);
+      max-width: 800px;
+      margin-bottom: 35px;
+    }
+    .cover-speaker {
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--lila-vivo);
+    }
+
+    /* Footer Controls */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1.5px solid var(--lila-suave);
+    }
+    .footer-left {
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--violeta-pro);
+      letter-spacing: 1px;
+    }
+    .slide-counter {
+      font-weight: 800;
+      font-size: 14px;
+      color: #777;
+    }
+
+    /* External Controls Bar */
+    .controls-bar {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .btn-nav {
+      background: var(--violeta-pro);
+      color: var(--white);
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(76, 7, 140, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-nav:hover {
+      background: var(--lila-vivo);
+      transform: translateY(-2px);
+    }
+    .counter-display {
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="deck-container">
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide slide-cover active">
+      <div class="cover-badge">REALMENTE CLUB • ENCUENTRO EN VIVO</div>
+      <h1 class="cover-title">De la Perfección a la Excelencia</h1>
+      <p class="cover-subtitle">La base del progreso y la proyección de tu cambio a 6 meses</p>
+      <div class="cover-speaker">Marbelis Montero Castillo</div>
+    </div>
+
+    <!-- SLIDE 2: DINAMICA -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">La Dinámica de Nuestra Clase</h2>
+      <div class="slide-body">
+        <div class="grid-2x2">
+          <div class="card card-purple">
+            <div class="card-title">1. El Tema del Podcast</div>
+            <div class="card-desc">Profundizamos la Perfección vs. Excelencia y analizamos los 4 resultados del Test.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">2. La Base del Progreso</div>
+            <div class="card-desc">Conectamos con la clave del avance real: Estar en el Presente (pensamiento y acción al unísono).</div>
+          </div>
+          <div class="card">
+            <div class="card-title">3. Tu Visión a 6 Meses</div>
+            <div class="card-desc">Estructuramos el cambio concreto que vas a traer listo a tu Sesión de Diagnóstico.</div>
+          </div>
+          <div class="card card-purple">
+            <div class="card-title">4. Espacio Privado Q&A</div>
+            <div class="card-desc">Cerramos la grabación oficial y abrimos micrófonos para mentoría e interacción en vivo.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 2 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: PODCAST TITLE -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <div class="slide-body">
+        <div class="card card-purple" style="text-align: center; padding: 25px;">
+          <h2 style="font-family: 'Jost', sans-serif; font-size: 26px; color: var(--violeta-pro); font-weight: 800;">
+            ¿Realmente tu perfeccionismo es amor al detalle? Es miedo a ser juzgada
+          </h2>
+        </div>
+        <div class="card" style="text-align: center; padding: 35px;">
+          <p class="card-desc" style="font-size: 21px; margin-bottom: 25px;">
+            En el podcast hablamos sobre el perfeccionismo. Hoy en el Club venimos a calibrar en caliente dónde está parada tu mente.
+          </p>
+          <div class="card card-purple" style="padding: 25px;">
+            <p style="font-family: 'Jost', sans-serif; font-size: 24px; color: var(--violeta-pro); font-weight: 700;">
+              "¿Cuántas cosas en tu vida hoy están pausadas o pesadas por culpa de un estándar invisible?"
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 3 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: TRAMPA DE LA INVISIBILIDAD -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">La Trampa de la Invisibilidad</h2>
+      <div class="slide-body">
+        <div class="grid-2x2">
+          <div class="card">
+            <div class="card-title">1. El Camuflaje Exterior</div>
+            <div class="card-desc">A simple vista, tanto la excelencia como la perfección entregan resultados impecables. La sociedad premia a ambas por igual porque ve el resultado, no el costo.</div>
+          </div>
+          <div class="card card-purple">
+            <div class="card-title">2. El Costo Interno Real</div>
+            <div class="card-desc">La diferencia real no está en lo que los demás ven afuera, sino en el precio emocional que pagas en tu mente por lograr ese resultado.</div>
+          </div>
+          <div class="card card-red">
+            <div class="card-title" style="color: var(--red);">LA PERFECCIÓN</div>
+            <div class="card-desc">Se siente pesada, con tensión física, hipervigilancia constante y un agotamiento mental que no se quita descansando.</div>
+          </div>
+          <div class="card card-teal">
+            <div class="card-title" style="color: var(--teal);">LA EXCELENCIA</div>
+            <div class="card-desc">Se siente enfocada, serena, con sensación de avance real y paz profunda con lo entregado.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 4 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: ACCIONANDO -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">¿Desde dónde estás accionando?</h2>
+      <div class="slide-body">
+        <div class="grid-2x2">
+          <div class="card card-red">
+            <div class="card-title" style="color: var(--red);">PERFECCIÓN (Desde el Miedo)</div>
+            <div class="card-desc">
+              <strong>Frases reales en tu cabeza:</strong><br><br>
+              • "¿Y si sale mal?"<br>
+              • "¿Y si no les gusta a las personas?"<br>
+              • "¿Y si no les gusta, me critican y me muero de vergüenza?"
+            </div>
+          </div>
+          <div class="card card-teal">
+            <div class="card-title" style="color: var(--teal);">EXCELENCIA (Expansión Real)</div>
+            <div class="card-desc">
+              • <strong>Cero cuento Disney:</strong> Elegir la excelencia NO significa que andas volando de felicidad o que no cuesta nada.<br><br>
+              • <strong>La realidad humana:</strong> Hay esfuerzo, cansancio real y días donde preferirías estar durmiendo.<br><br>
+              • <strong>La diferencia:</strong> Haces el esfuerzo por compromiso con tu propósito y te sientes bien haciéndolo.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 5 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: SINTOMAS -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Los Síntomas del Perfeccionismo</h2>
+      <div class="slide-body">
+        <div class="grid-3col">
+          <div class="card">
+            <div class="card-title">1. Parálisis por Análisis</div>
+            <div class="card-desc">Postergar decisiones, lanzamientos o publicaciones esperando que esté 'perfecto'.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">2. Imposibilidad de Celebrar</div>
+            <div class="card-desc">Lograr una meta y buscar inmediatamente el error en lugar del triunfo.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">3. Pensamiento Todo o Nada</div>
+            <div class="card-desc">Sentir que si algo no salió al 100% como querías, es un fracaso total.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 6 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: TEST -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Respuestas de tu test</h2>
+      <div class="slide-body">
+        <div class="grid-2x2">
+          <div class="card" style="border-color: var(--green);">
+            <div class="card-title" style="color: var(--green);">Perfil A | Acción Expansiva</div>
+            <div class="card-desc">Accionas al 80%. Entiendes que el error es solo información para corregir. Tu paz proviene de no apegar tu valor al resultado.</div>
+          </div>
+          <div class="card" style="border-color: var(--yellow);">
+            <div class="card-title" style="color: var(--yellow);">Perfil B | Perfeccionismo Solapado</div>
+            <div class="card-desc">Te convences de que 'estás en paz', pero en la práctica retiraste tu vulnerabilidad para no arriesgarte a fallar.</div>
+          </div>
+          <div class="card" style="border-color: var(--orange);">
+            <div class="card-title" style="color: var(--orange);">Perfil C | Perfeccionismo Evidente</div>
+            <div class="card-desc">Operas desde el hiper-esfuerzo y sobre-control. Crees que revisando todo 20 veces estarás a salvo de las críticas.</div>
+          </div>
+          <div class="card" style="border-color: var(--red);">
+            <div class="card-title" style="color: var(--red);">Perfil D | Parálisis por Juicio</div>
+            <div class="card-desc">El miedo a la vergüenza es tan alto que prefieres dejar tus proyectos guardados en borrador antes que mostrarlos.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 7 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: EJERCICIO PERFECCIONISMO -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Para terminar con el perfeccionismo...</h2>
+      <div class="slide-body">
+        <div class="big-quote-box">
+          <h2 style="font-family: 'Jost', sans-serif; font-size: 40px; color: var(--violeta-pro); font-weight: 800;">
+            Ejercicio de Integración y Cierre
+          </h2>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 8 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: ARISTOTELES -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <div class="slide-body">
+        <div class="big-quote-box">
+          <div class="quote-text">
+            "La excelencia no es un acto, es un hábito. No busques la perfección, busca la maestría en el presente."
+          </div>
+          <div class="quote-author">- ARISTÓTELES</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 9 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: ESTAR EN EL PRESENTE -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Estar en el Presente</h2>
+      <div class="slide-body">
+        <div class="card card-purple" style="text-align: center; padding: 30px;">
+          <h3 style="font-family: 'Jost', sans-serif; font-size: 28px; color: var(--violeta-pro); font-weight: 800;">
+            "Estar en el presente es conectar pensamiento y acción al unísono."
+          </h3>
+        </div>
+        <div class="card card-teal" style="text-align: center; padding: 30px;">
+          <h4 style="font-family: 'Jost', sans-serif; font-size: 22px; color: var(--dark-text); font-weight: 700; margin-bottom: 12px;">
+            El Ancla del Presente: Los 5 Sentidos
+          </h4>
+          <p style="font-family: 'Jost', sans-serif; font-size: 26px; color: var(--violeta-pro); font-weight: 800;">
+            Vista  •  Oído  •  Olfato  •  Gusto  •  Tacto
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 10 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: EJERCICIOS PRESENTE -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Ejercicios para estar en el presente</h2>
+      <div class="slide-body">
+        <div class="card" style="text-align: center; padding: 60px; border-color: var(--lila-vivo);">
+          <h2 style="font-family: 'Jost', sans-serif; font-size: 40px; color: var(--violeta-pro); font-weight: 800;">
+            Ejercicios para estar en el presente
+          </h2>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 11 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: VISION 6 MESES -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Tu Visión a 6 Meses</h2>
+      <div class="slide-body">
+        <div class="big-quote-box">
+          <div class="quote-text">
+            "En 6 meses puedes cambiar tu vida completamente."
+          </div>
+          <p style="font-size: 22px; font-weight: 700; color: var(--dark-text); margin-top: 25px;">
+            En 6 meses de enfoque sostenido, tu mente, tus hábitos y tu realidad pueden ser totalmente irreconocibles.
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 12 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: ESTRUCTURANDO CAMBIO -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <h2 class="slide-title">Estructurando tu Cambio</h2>
+      <div class="slide-body">
+        <div class="grid-3col">
+          <div class="card">
+            <div class="card-title">1. ¿Quién quieres ser?</div>
+            <div class="card-desc">Tu nueva identidad, actitud, postura y energía mental a 6 meses.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">2. ¿Qué has logrado?</div>
+            <div class="card-desc">La visión clara de tus resultados tangibles a 6 meses.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">3. ¿Qué cambias HOY?</div>
+            <div class="card-desc">El patrón o hábito específico que se rompe ahora mismo.</div>
+          </div>
+        </div>
+        <div class="card card-purple" style="text-align: center; padding: 15px;">
+          <h4 style="font-family: 'Jost', sans-serif; font-size: 20px; color: var(--violeta-pro); font-weight: 800;">
+            Tu tarea: Traer estas 3 respuestas listas a tu Sesión de Diagnóstico.
+          </h4>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 13 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: SOCRATES -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <div class="slide-body">
+        <div class="big-quote-box">
+          <div class="quote-text">
+            "El secreto del cambio es enfocar toda tu energía no en luchar contra lo viejo, sino en construir lo nuevo."
+          </div>
+          <div class="quote-author">- SÓCRATES</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 14 de 15</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: Q&A / TRANSICION -->
+    <div class="slide">
+      <div class="slide-header">
+        <div class="brand-tag">REALMENTE CLUB</div>
+        <div class="speaker-tag">MARBELIS MONTERO</div>
+      </div>
+      <div class="slide-body">
+        <div class="big-quote-box" style="padding: 30px;">
+          <div class="cover-badge" style="margin-bottom: 15px;">FIN DE LA CLASE TEÓRICA</div>
+          <h2 style="font-family: 'Jost', sans-serif; font-size: 28px; color: var(--violeta-pro); font-weight: 800; margin-bottom: 15px;">
+            Entramos a la parte más potente: La Intervención en Vivo.
+          </h2>
+          <p style="font-size: 19px; font-weight: 700; color: var(--dark-text); margin-bottom: 20px; line-height: 1.5;">
+            Apagamos cámaras de grabación y abrimos micrófonos.<br>
+            Espacio de contención, preguntas y feedback directo (Exclusivo para las presentes).
+          </p>
+          <div style="font-family: 'Jost', sans-serif; font-size: 22px; color: var(--lila-vivo); font-weight: 800;">
+            No te pierdas el próximo en vivo. La magia real ocurre aquí.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div class="footer-left">REALMENTE CLUB • MARBELIS MONTERO</div>
+        <div class="slide-counter">Slide 15 de 15</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="controls-bar">
+    <button class="btn-nav" onclick="prevSlide()">❮ Anterior</button>
+    <span class="counter-display" id="slide-num">1 / 15</span>
+    <button class="btn-nav" onclick="nextSlide()">Siguiente ❯</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slideNum = document.getElementById('slide-num');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      slideNum.textContent = `${index + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>
