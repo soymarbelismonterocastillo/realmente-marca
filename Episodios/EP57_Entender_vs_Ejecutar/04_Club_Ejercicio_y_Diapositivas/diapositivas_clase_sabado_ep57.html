@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RealMente Club - Diapositivas Clase EP57</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #190633;
+      --bg-card: rgba(44, 12, 85, 0.85);
+      --border-card: rgba(212, 178, 230, 0.35);
+      --purple-primary: #2E0C59;
+      --purple-accent: #5416A0;
+      --teal-accent: #2AD2C5;
+      --pink-accent: #FF5A8D;
+      --text-main: #FFFFFF;
+      --text-muted: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      height: 60px;
+      background: rgba(15, 5, 36, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      z-index: 100;
+    }
+
+    .brand-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--teal-accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-indicator { font-size: 0.95rem; color: #FFFFFF; font-weight: 600; }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-card);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: radial-gradient(circle at 50% 30%, #380C6D 0%, #190633 80%);
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      max-width: 1240px;
+      height: 100%;
+      max-height: 690px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: scale(0.97);
+      background: rgba(30, 9, 66, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(166, 105, 218, 0.4);
+      border-radius: 24px;
+      padding: 45px 50px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .slide.active { opacity: 1; visibility: visible; transform: scale(1); }
+
+    .slide-header { margin-bottom: 15px; }
+
+    .tag-badge {
+      display: inline-block;
+      padding: 4px 0;
+      color: var(--teal-accent);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      border-bottom: 2px solid var(--teal-accent);
+    }
+
+    .slide-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.25;
+    }
+
+    .slide-subtitle {
+      font-size: 1.3rem;
+      color: #FFFFFF;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      margin: 10px 0;
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 12px;
+      font-size: 0.9rem;
+      color: #FFFFFF;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-card);
+      border-left: 6px solid var(--teal-accent);
+      border-radius: 16px;
+      padding: 24px 26px;
+    }
+
+    .info-card.pink-border { border-left-color: var(--pink-accent); }
+
+    .info-card h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 1.35rem;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .info-card p {
+      font-size: 1.15rem;
+      color: #FFFFFF;
+      line-height: 1.6;
+    }
+
+    .quote-box {
+      background: rgba(46, 9, 129, 0.6);
+      border: 2px solid var(--teal-accent);
+      border-radius: 20px;
+      padding: 40px 50px;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-family: 'Jost', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 500;
+      font-style: italic;
+      color: #FFFFFF;
+      line-height: 1.45;
+    }
+
+    .bottom-bar {
+      height: 70px;
+      background: rgba(15, 5, 36, 0.95);
+      border-top: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: var(--purple-primary);
+      border: 1px solid var(--border-card);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .dots-container { display: flex; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; }
+    .dot.active { background: var(--teal-accent); width: 28px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-title">
+      <span>✨ REALMENTE CLUB</span>
+      <span style="color: rgba(255,255,255,0.3)">|</span>
+      <span style="color: #fff; font-size: 0.95rem; font-weight: 500;">Episodio 57: De la Teoría a la Acción</span>
+    </div>
+    <div class="slide-indicator">
+      Diapositiva <span id="currentSlideNum">1</span> de <span id="totalSlidesNum">13</span>
+    </div>
+    <div class="top-controls">
+      <button class="btn" onclick="toggleFullscreen()">🖥️ Pantalla Completa</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="slide-wrapper">
+      <!-- SLIDE 1 -->
+      <section class="slide active" id="slide-1" style="justify-content: center; text-align: center;">
+        <div class="slide-body" style="align-items: center; justify-content: center; gap: 20px;">
+          <span class="tag-badge">REALMENTE CLUB · CLASE EN VIVO</span>
+          <h1 class="slide-title" style="font-size: 3.1rem; color: #FFFFFF;">Tu vida no cambia cuando lo entiendes, cambia cuando lo ejecutas</h1>
+          <p class="slide-subtitle" style="font-size: 1.5rem; color: var(--teal-accent); font-weight: 700;">De la teoría a la acción: Desmantelando los 4 patrones de saboteo</p>
+        </div>
+        <div class="slide-footer" style="justify-content: center;">
+          <span>Facilitadora: Marbelis Montero | Sábado 19 de Septiembre, 2026</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 -->
+      <section class="slide" id="slide-2" style="justify-content: center;">
+        <div class="slide-header" style="text-align: center;">
+          <span class="tag-badge">REFLEXIÓN DE APERTURA</span>
+          <h2 class="slide-title" style="font-size: 2.2rem;">Tu Verdadero Punto de Partida Hoy</h2>
+        </div>
+        <div class="slide-body" style="justify-content: center;">
+          <div class="quote-box">
+            <p class="quote-text">“Saber lo que tienes que hacer y no hacerlo es exactamente lo mismo que no saber nada. Tu vida no cambia con la teoría que entiendes en la cabeza, cambia con la imperfección que te atreves a ejecutar en el mundo real.”</p>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>RealMente Club · Marbelis Montero</span>
+          <span>Slide 2 de 13</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 -->
+      <section class="slide" id="slide-3">
+        <div class="slide-header">
+          <span class="tag-badge">CONCEPTO CLAVE</span>
+          <h2 class="slide-title">La Brecha Entre Entender y Ejecutar</h2>
+          <p class="slide-subtitle">Por qué saberlo todo no está cambiando tu vida</p>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card">
+              <h4>📚 Zona de Confort del Saber</h4>
+              <p>Creer que acumular información, libros y podcasts equivale a transformar tu vida real.</p>
+            </div>
+            <div class="info-card pink-border">
+              <h4>🧠 La Ilusión del Ego</h4>
+              <p>El ego te hace sentir que "estás trabajando en ti" al analizar, para evitar el riesgo de actuar.</p>
+            </div>
+            <div class="info-card">
+              <h4>⚡ La Verdad Incómoda</h4>
+              <p>Entender calma la culpa, pero solo la ejecución concreta reprograma tu mente real.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>RealMente Club · Marbelis Montero</span>
+          <span>Slide 3 de 13</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 -->
+      <section class="slide" id="slide-4">
+        <div class="slide-header">
+          <span class="tag-badge">MAPA MENTAL DE LA PARÁLISIS</span>
+          <h2 class="slide-title">Las 2 Grandes Trampas Invisibles del Ego</h2>
+          <p class="slide-subtitle">De dónde nace tu procrastinación sofisticada</p>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="info-card pink-border" style="padding: 30px;">
+              <h4 style="font-size: 1.6rem; color: var(--pink-accent);">🔴 La Trampa del Pasado</h4>
+              <p style="font-size: 1.3rem; font-weight: 700; color: #fff; margin: 10px 0;">Adicción al "Por Qué"</p>
+              <p style="font-size: 1.15rem; color: #FFFFFF;">Creer que necesitas resolver o entender hasta el último origen histórico de tu pasado antes de dar un solo paso en el presente.</p>
+            </div>
+            <div class="info-card" style="padding: 30px;">
+              <h4 style="font-size: 1.6rem; color: var(--teal-accent);">🟣 La Trampa del Futuro</h4>
+              <p style="font-size: 1.3rem; font-weight: 700; color: #fff; margin: 10px 0;">Ilusión del "Momento Perfecto"</p>
+              <p style="font-size: 1.15rem; color: #FFFFFF;">Creer que debes esperar a que tus emociones, tu seguridad, tu motivación y las circunstancias estén totalmente impecables.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <span>RealMente Club · Marbelis Montero</span>
+          <span>Slide 4 de 13</span>
+        </div>
+      </section>
+
+      <!-- SLIDES 5 TO 12 -->
+      <section class="slide" id="slide-5">
+        <div class="slide-header">
+          <span class="tag-badge">TRAMPA DEL PASADO · PATRÓN 1</span>
+          <h2 class="slide-title">La Analista del Pasado ("La Adicción al Por Qué")</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card pink-border">
+              <h4>🔍 El Mecanismo del Ego</h4>
+              <p>Creer que comprender la causa original o el trauma del pasado equivale automáticamente a haber resuelto el problema.</p>
+            </div>
+            <div class="info-card">
+              <h4>🔄 El Bucle de las Explicaciones</h4>
+              <p>Buscar infinitos justificativos en tu historia para darte la razón y quedarte en la zona conocida de comodidad.</p>
+            </div>
+            <div class="info-card">
+              <h4>💥 La Verdad Incómoda</h4>
+              <p>Entender a medias consuela la culpa del ego, pero no cambia tu comportamiento presente si no ejecutas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 5 de 13</span></div>
+      </section>
+
+      <section class="slide" id="slide-6">
+        <div class="slide-header">
+          <span class="tag-badge">TRAMPA DEL PASADO · PATRÓN 2</span>
+          <h2 class="slide-title">La Sanadora Eterna ("La Excusa del Trabajo Previo")</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card pink-border">
+              <h4>🛡️ El Escudo de la Sanación</h4>
+              <p>Usar la sanación como una coraza sofisticada para evitar la exposición, el rechazo y el riesgo de actuar.</p>
+            </div>
+            <div class="info-card">
+              <h4>🚫 La Premisa Limítrofe</h4>
+              <p>Creer firmemente: "Hasta que no sane esto del todo o termine este taller, no me puedo exigir avanzar".</p>
+            </div>
+            <div class="info-card">
+              <h4>✨ La Verdad Incómoda</h4>
+              <p>La acción concreta en el presente es la mejor herramienta de reprogramación y sanación, no el requisito previo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 6 de 13</span></div>
+      </section>
+
+      <section class="slide" id="slide-7">
+        <div class="slide-header">
+          <span class="tag-badge">TRAMPA DEL FUTURO · PATRÓN 3</span>
+          <h2 class="slide-title">La Esperadora del Momento Perfecto ("La Ilusión del Futuro")</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card">
+              <h4>⏳ El Mecanismo de Postergación</h4>
+              <p>Postergar decisiones esperando que las circunstancias o tu estado emocional estén mágicamente alineados.</p>
+            </div>
+            <div class="info-card pink-border">
+              <h4>🔮 El Mito de Sentirse Lista</h4>
+              <p>Fantasear con que un día te despertarás sintiéndote 100% segura, confiada, sin dudas y sin ningún tipo de miedo.</p>
+            </div>
+            <div class="info-card">
+              <h4>🎯 La Verdad Incómoda</h4>
+              <p>El momento perfecto no existe. Esperarlo es una defensa contra la incomodidad de aprender sobre la marcha.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 7 de 13</span></div>
+      </section>
+
+      <section class="slide" id="slide-8">
+        <div class="slide-header">
+          <span class="tag-badge">TRAMPA DEL FUTURO · PATRÓN 4</span>
+          <h2 class="slide-title">La Protectora del Potencial ("La Fantasía del Control")</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card">
+              <h4>💎 La Fantasía Idealizada</h4>
+              <p>Enamorarse de las ideas en la cabeza, donde todo es impecable porque nadie las juzga ni las pone a prueba.</p>
+            </div>
+            <div class="info-card pink-border">
+              <h4>🫣 El Miedo al Choque de Realidad</h4>
+              <p>Aterra chocar con la realidad concreta porque la realidad siempre es imperfecta, caótica e incontrolable.</p>
+            </div>
+            <div class="info-card">
+              <h4>🔨 La Verdad Incómoda</h4>
+              <p>Es mil veces preferible un primer intento imperfecto en el mundo real que conservar el estatus de "alguien con gran potencial no realizado".</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 8 de 13</span></div>
+      </section>
+
+      <section class="slide" id="slide-9">
+        <div class="slide-header">
+          <span class="tag-badge">APRENDIZAJE EN ACCIÓN</span>
+          <h2 class="slide-title">La Metáfora de Lanzarse al Agua</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card">
+              <h4>🏖️ Fuera del Agua (Teoría)</h4>
+              <p>En la orilla todo es planificación limpia y perfecta. Pero afuera NO estás aprendiendo a nadar.</p>
+            </div>
+            <div class="info-card pink-border">
+              <h4>🌊 Dentro del Agua (Acción)</h4>
+              <p>Para aprender a nadar hay que lanzarse, sentir la densidad del agua, patalear, perder la estabilidad y tragar agua.</p>
+            </div>
+            <div class="info-card">
+              <h4>🏊‍♀️ La Lección de Vida</h4>
+              <p>No se aprende a nadar mirando la piscina; la maestría se construye ejecutando adentro.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 9 de 13</span></div>
+      </section>
+
+      <section class="slide" id="slide-10">
+        <div class="slide-header">
+          <span class="tag-badge">DISCIPLINA vs. EMOCIÓN</span>
+          <h2 class="slide-title">La Acción es Fría: Desmitificando la Motivación</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid">
+            <div class="info-card pink-border">
+              <h4>📉 La Falacia de la Motivación</h4>
+              <p>Esperar "sentir ganas" te paraliza porque la emoción previa es voluble e inestable.</p>
+            </div>
+            <div class="info-card">
+              <h4>🧊 La Acción es Neutra y Fría</h4>
+              <p>Accionar no requiere emoción previa; requiere decisión en automático sin pedir permiso a tu estado de ánimo.</p>
+            </div>
+            <div class="info-card">
+              <h4>🏆 El Orden Real</h4>
+              <p>El orgullo, la satisfacción y la motivación vienen DESPUÉS de accionar, nunca antes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 10 de 13</span></div>
+      </section>
+
+      <section class="slide" id="slide-11" style="justify-content: center; text-align: center;">
+        <div class="slide-header"><span class="tag-badge">PNL & PRÁCTICA EN VIVO</span></div>
+        <div class="slide-body" style="align-items: center; justify-content: center;">
+          <div class="quote-box" style="max-width: 900px; padding: 45px;">
+            <h2 class="slide-title" style="font-size: 3.2rem; color: #FFFFFF; margin-bottom: 15px;">🧘‍♀️ Ejercicio Práctico: De la Teoría a la Acción</h2>
+            <p style="font-size: 1.4rem; color: var(--teal-accent); font-weight: 600;">Guiado en vivo por Marbelis Montero</p>
+          </div>
+        </div>
+        <div class="slide-footer" style="justify-content: center;"><span>RealMente Club · Marbelis Montero</span></div>
+      </section>
+
+      <section class="slide" id="slide-12">
+        <div class="slide-header">
+          <span class="tag-badge">TRANSFORMACIÓN DE IDENTIDAD</span>
+          <h2 class="slide-title">El Salto de Identidad y Compromiso</h2>
+        </div>
+        <div class="slide-body">
+          <div class="cards-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 15px;">
+            <div class="info-card">
+              <h4 style="color: var(--teal-accent);">👤 Cambio de Postura</h4>
+              <p>Dejar de identificarte como "la persona que analiza o sana" y encarnar a "la persona que ejecuta con lo que tiene hoy".</p>
+            </div>
+            <div class="info-card pink-border">
+              <h4>🤝 Compromiso de 24 Horas</h4>
+              <p>Ejecutar tu acción mínima hoy antes de irte a dormir, sin negociar con excusas, y compartirla en el Club.</p>
+            </div>
+          </div>
+          <div class="quote-box" style="padding: 25px 35px;">
+            <p class="quote-text" style="font-size: 1.35rem;">“No esperes a estar lista para lanzarte al agua; lánzate al agua para aprender a estar lista. Al final del día, tu potencial no se mide por lo impecable que es tu idea en la mente, sino por la valentía con la que encarnas tu nueva identidad en la realidad.”</p>
+          </div>
+        </div>
+        <div class="slide-footer"><span>RealMente Club · Marbelis Montero</span><span>Slide 12 de 13</span></div>
+      </section>
+
+      <!-- SLIDE 13: EXACT COPY OF PREVIOUS WEEK -->
+      <section class="slide" id="slide-13">
+        <div class="slide-header" style="text-align: center;">
+          <span class="tag-badge">COMUNIDAD EN VIVO</span>
+          <h2 class="slide-title" style="font-size: 3rem; margin-top: 10px;">Espacio de Preguntas & Reprogramación</h2>
+        </div>
+        <div class="slide-body" style="align-items: center; justify-content: center;">
+          <div style="background: rgba(42, 210, 197, 0.15); border: 2px solid var(--teal-accent); padding: 25px 45px; border-radius: 50px; display: inline-flex; align-items: center; gap: 15px;">
+            <span style="font-size: 2rem;">⏸️</span>
+            <span style="font-size: 1.5rem; font-weight: 800; color: var(--teal-accent);">Pausamos la grabación para conversar</span>
+          </div>
+          <p style="font-size: 1.3rem; color: #FFFFFF; text-align: center; max-width: 650px; margin-top: 25px;">
+            Un espacio seguro, íntimo y totalmente privado para nuestra comunidad del Club.
+          </p>
+        </div>
+        <div class="slide-footer">
+          <span>RealMente Club · Marbelis Montero</span>
+          <span>Slide 13 de 13</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="bottom-bar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+    <div class="dots-container" id="dotsContainer"></div>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 13;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const currentSlideNumEl = document.getElementById('currentSlideNum');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    for (let i = 1; i <= totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = `dot ${i === 1 ? 'active' : ''}`;
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlideUI() {
+      slides.forEach((slide, index) => {
+        if (index + 1 === currentSlide) slide.classList.add('active');
+        else slide.classList.remove('active');
+      });
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        if (index + 1 === currentSlide) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+      currentSlideNumEl.textContent = currentSlide;
+      prevBtn.disabled = currentSlide === 1;
+      nextBtn.disabled = currentSlide === totalSlides;
+    }
+
+    function changeSlide(direction) {
+      if (currentSlide + direction >= 1 && currentSlide + direction <= totalSlides) {
+        currentSlide += direction;
+        updateSlideUI();
+      }
+    }
+
+    function goToSlide(slideNum) {
+      currentSlide = slideNum;
+      updateSlideUI();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          alert(`Error al activar pantalla completa: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') changeSlide(1);
+      else if (e.key === 'ArrowLeft') changeSlide(-1);
+    });
+
+    updateSlideUI();
+  </script>
+</body>
+</html>
