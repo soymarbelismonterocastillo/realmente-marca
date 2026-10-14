@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episodio 60 – Guion de Locución Oficial | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #12091c 0%, #1e0d32 50%, #140824 100%);
+      --card-bg: rgba(26, 12, 42, 0.92);
+      --card-border: rgba(192, 132, 252, 0.25);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.35);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --pause-badge: rgba(0, 242, 254, 0.15);
+      --breath-badge: rgba(216, 180, 254, 0.18);
+      --quote-bg: rgba(36, 16, 58, 0.85);
+      --quote-border: #00f2fe;
+      --font-size-base: 19px;
+      --line-height-base: 1.85;
+    }
+
+    [data-theme="light"] {
+      --bg-gradient: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #ede9fe 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-border: rgba(168, 85, 247, 0.25);
+      --text-main: #240a4a;
+      --text-muted: #6b21a8;
+      --accent-turquoise: #0284c7;
+      --accent-turquoise-glow: rgba(2, 132, 199, 0.2);
+      --accent-lilac: #9333ea;
+      --accent-lilac-glow: rgba(147, 51, 234, 0.15);
+      --pause-badge: rgba(2, 132, 199, 0.12);
+      --breath-badge: rgba(147, 51, 234, 0.12);
+      --quote-bg: rgba(245, 243, 255, 0.95);
+      --quote-border: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      background: #09030f;
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* BARRA SUPERIOR FLOTANTE DE CONTROL / TELEPROMPTER */
+    .teleprompter-toolbar {
+      position: sticky;
+      top: 16px;
+      z-index: 1000;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      max-width: 900px;
+      padding: 12px 20px;
+      background: rgba(20, 9, 34, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 24px;
+    }
+
+    .badge-podcast {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-podcast span {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-turquoise);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 10px var(--accent-turquoise);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tool {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-tool:hover {
+      background: var(--accent-turquoise);
+      color: #0d0418;
+      border-color: var(--accent-turquoise);
+      box-shadow: 0 0 15px var(--accent-turquoise-glow);
+    }
+
+    .btn-tool.active {
+      background: var(--accent-turquoise);
+      color: #0d0418;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .guion-container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 56px 48px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-base);
+    }
+
+    @media (max-width: 768px) {
+      .guion-container {
+        padding: 32px 22px;
+      }
+      .teleprompter-toolbar {
+        border-radius: 20px;
+      }
+    }
+
+    /* CABECERA DEL GUION */
+    .header-block {
+      text-align: center;
+      padding-bottom: 36px;
+      border-bottom: 1px dashed var(--card-border);
+      margin-bottom: 40px;
+    }
+
+    .tag-meta {
+      display: inline-block;
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    h1.title-main {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 70%, #00f2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .meta-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .meta-details span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* SECCIONES Y ENCABEZADOS */
+    .section-block {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-turquoise);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      padding-bottom: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--accent-turquoise);
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    p {
+      margin-bottom: 22px;
+      color: var(--text-main);
+    }
+
+    strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    [data-theme="light"] strong {
+      color: #1e0938;
+    }
+
+    em {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* PAUSAS Y GUÍAS DE LOCUCIÓN */
+    .badge-pause {
+      display: inline-block;
+      background: var(--pause-badge);
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin: 10px 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .badge-breath {
+      display: inline-block;
+      background: var(--breath-badge);
+      border: 1px solid var(--accent-lilac);
+      color: #f3e8ff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin: 10px 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* PREGUNTAS DE PODER Y CITAS */
+    .power-box {
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent-turquoise);
+      border-radius: 0 16px 16px 0;
+      padding: 22px 26px;
+      margin: 26px 0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .power-box p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #ffffff;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    [data-theme="light"] .power-box p {
+      color: #240a4a;
+    }
+
+    /* HISTORIA DEL ESCALADOR */
+    .story-card {
+      background: linear-gradient(135deg, rgba(30, 12, 48, 0.95), rgba(15, 8, 28, 0.95));
+      border: 1px solid var(--accent-lilac);
+      border-radius: 20px;
+      padding: 30px 32px;
+      margin: 30px 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .story-card::before {
+      content: '🧗';
+      position: absolute;
+      top: -16px;
+      left: 28px;
+      font-size: 1.6rem;
+      background: #1e0d32;
+      border: 1px solid var(--accent-lilac);
+      padding: 2px 10px;
+      border-radius: 50px;
+    }
+
+    .story-card p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #f3e8ff;
+    }
+
+    /* SEMÁFORO BOX */
+    .traffic-box {
+      background: rgba(30, 15, 48, 0.8);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      border-radius: 18px;
+      padding: 26px 28px;
+      margin: 26px 0;
+    }
+
+    .traffic-box h4 {
+      color: #facc15;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* LISTAS */
+    ul {
+      margin: 16px 0 24px 28px;
+    }
+
+    li {
+      margin-bottom: 12px;
+    }
+
+    /* FOOTER */
+    .footer-guion {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* SCROLL SUAVE */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE TELEPROMPTER / CONTROLES -->
+  <div class="teleprompter-toolbar">
+    <div class="badge-podcast">
+      <span></span> REALMENTE PODCAST • EP #60
+    </div>
+    
+    <div class="toolbar-actions">
+      <button class="btn-tool" onclick="changeFontSize(-1)">A -</button>
+      <button class="btn-tool" onclick="changeFontSize(1)">A +</button>
+      <button class="btn-tool" id="btnScroll" onclick="toggleAutoScroll()">▶ Modo Prompter</button>
+      <button class="btn-tool" onclick="toggleTheme()">🌓 Tema</button>
+      <button class="btn-tool" onclick="window.print()">🖨️ Imprimir</button>
+    </div>
+  </div>
+
+  <!-- GUION MAESTRO -->
+  <main class="guion-container" id="guionDoc">
+
+    <!-- CABECERA -->
+    <header class="header-block">
+      <div class="tag-meta">Locución Oficial &bull; Grabación Maestra</div>
+      <h1 class="title-main">RealMente la decisión que llevas meses evadiendo es la puerta a tu siguiente nivel</h1>
+      <div class="meta-details">
+        <span>🎙️ <strong>Locutora:</strong> Marbelis Montero</span>
+        <span>⏱️ <strong>Duración estimada:</strong> 20 – 23 min</span>
+        <span>📝 <strong>Palabras:</strong> ~2.450 palabras</span>
+        <span>🧠 <strong>Enfoque:</strong> PNL & Neuroalineación</span>
+      </div>
+    </header>
+
+    <!-- [INTRO Y GANCHO] -->
+    <section class="section-block">
+      <div class="section-title">01. [Intro y Gancho]</div>
+
+      <p>¡Sean todas y todos bienvenidos a un nuevo episodio de tu podcast <strong>RealMente</strong>!</p>
+
+      <p>Recuerda darle <em>like</em>, compartir y suscribirte. Esta comunidad crece contigo. Y recuerda que si estás lista para ir a tu siguiente nivel, en <strong>RealMente Club</strong> te estamos esperando con herramientas prácticas y acompañamiento para que pases de la teoría a la acción.</p>
+
+      <p>Hoy tenemos un tema <strong>súper potente</strong>: vamos a hablar de cómo <strong>la decisión que llevas meses evadiendo es, exactamente, la puerta a tu siguiente nivel</strong>.</p>
+
+      <p>Muchas veces digo que las grandes oportunidades están en la punta de tu nariz y no te das cuenta. Hoy vamos a mirar de frente qué hay detrás de esa indecisión, de ese mar de dudas que te mantiene frenada.</p>
+
+      <p>Existe un síntoma muy común —y sé que quizás te ha pasado últimamente—: te sientes agotada, sin energía, estancada, y crees que es por exceso de trabajo. Pero la gran mayoría de las veces no es cansancio físico, amiga; <strong>es la pesadísima carga biológica y emocional de las decisiones que llevas meses posponiendo.</strong></p>
+
+      <div><span class="badge-pause">Pausa</span></div>
+
+      <p>Así que quiero que tomes una respiración profunda y te regales un momento para responder nuestra <strong>pregunta de poder</strong>:</p>
+
+      <div class="power-box">
+        <p>«¿Cuál es esa decisión que llevas semanas o meses evadiendo, y cuál es el verdadero costo de seguirla postergando seis meses más?»</p>
+      </div>
+
+      <div><span class="badge-pause">Pausa reflexiva</span></div>
+    </section>
+
+    <!-- [BLOQUE 1] -->
+    <section class="section-block">
+      <div class="section-title">02. [Bloque 1: El Costo Biológico y el Mito del "Placebo Mental"]</div>
+
+      <p>A veces caemos en una trampa muy sutil de la mente, un verdadero placebo mental: creemos que no decidir nos da tiempo, creemos que al no tomar una postura la situación se va a clarificar sola, o nos quedamos esperando a que pase algo mágico o que la vida decida por nosotras.</p>
+
+      <p>Pero el punto, mi querida amiga, es contundente: <strong>no decidir ya es una decisión.</strong></p>
+
+      <p>Es la decisión activa de seguir pagando el peaje del desgaste, de la incertidumbre y de la duda. No hay nada más desgastante a nivel emocional, mental y corporal que <strong>pender de un hilo</strong>. Estar suspendida en el aire, sin saber qué va a pasar, pero sin terminar de lanzarte. Y así se nos va la vida.</p>
+
+      <div><span class="badge-pause">Pausa</span></div>
+
+      <p>Tienes que entender esto: <strong>posponer una decisión nunca es una pausa inofensiva ni gratuita.</strong></p>
+
+      <p>¿Por qué? Porque tu cerebro detecta inmediatamente la situación inconclusa. Tu mente no descansa. En psicología y neurociencia sabemos que mientras exista un bucle abierto —un cabo suelto importante—, el cerebro sigue ronroneando y dándole vueltas en segundo plano las 24 horas del día. Nuestro cerebro es curioso y necesita certezas, necesita resolver y cerrar ciclos.</p>
+
+      <p>Cuando te quedas atrapada en la duda sin elegir un camino, tu biología entra en alerta. Esto genera en tu cuerpo:</p>
+      <ul>
+        <li>Una <strong>liberación silenciosa y constante de cortisol</strong> (la hormona del estrés).</li>
+        <li><strong>Sobrepensamiento nocturno</strong>, dificultando el descanso reparador.</li>
+        <li>Una <strong>tensión muscular crónica</strong>.</li>
+      </ul>
+
+      <p>Si tú eres de las personas que vive contracturada, con dolor en los hombros, en el cuello o apretando la mandíbula al dormir... ¡presta mucha atención! Esa pesadez en el cuerpo muy probablemente no es trabajo físico: <strong>es el peso de todo lo que no terminas de resolver y decidir, esperando que el cielo te mande una señal mágica.</strong></p>
+    </section>
+
+    <!-- [BLOQUE 2] -->
+    <section class="section-block">
+      <div class="section-title">03. [Bloque 2: El Duelo al Elegir y las Ganancias Secundarias]</div>
+
+      <p>Ahora bien, ¿cuál es el motivo real por el cual sigues dando vueltas sin dar el paso? Aquí suceden dos fenómenos profundos:</p>
+
+      <p><strong>1. El duelo sutil de elegir:</strong><br>
+      Toda decisión importante implica, al menos, dos caminos. Y cuando eliges una opción, <strong>tienes que hacer el duelo de la que dejas ir.</strong> Dependiendo de tu perfil y tu personalidad, el miedo se disfraza de apego: te quedas enganchada sufriendo por la puerta que se cierra y torturándote con la eterna pregunta: <em>«¿Y qué hubiese pasado si...?»</em>.</p>
+
+      <p><strong>2. Las ganancias secundarias (Intención positiva oculta):</strong><br>
+      En Programación Neurolingüística (PNL) tenemos un principio fundamental: <strong>todo comportamiento tiene una intención positiva oculta o ganancia secundaria.</strong> Ningún patrón de autosabotaje se sostiene durante meses si tu inconsciente no creyera que está ganando algo a cambio.</p>
+
+      <p>Si llevas semanas o meses sin decidir, no es solo por miedo; es porque, en el fondo, estás obteniendo beneficios invisibles. ¿Qué podrías estar ganando al no decidir?</p>
+
+      <ul>
+        <li><strong>Evasión de la responsabilidad:</strong> Si tú no decides y dejas que la vida, el tiempo o los demás decidan por ti, te libras de la culpa si las cosas salen mal. Puedes culpar a la economía, a tu pareja, a tu jefe, a la mala suerte o al destino. La indecisión es el escondite perfecto para seguir en el papel de víctima: <em>«Pobrecita yo, mira todo lo que me pasa»</em>.</li>
+        <li><strong>Evitar el fracaso real y proteger el ego:</strong> Si nunca lanzas ese proyecto, si nunca tienes esa conversación incómoda o si nunca pones ese límite, mantienes viva la fantasía en tu cabeza de que <em>«el día que lo haga, saldrá perfecto»</em>. La indecisión protege a tu ego de la realidad, porque en tus fantasías mentales todo sale impecable.</li>
+        <li><strong>Atención, validación y consuelo:</strong> Si te mantienes en el drama de la duda, siempre tienes un tema de conversación para que tus amigas te aconsejen, tu familia te contenga y la gente esté pendiente de ti. Pregúntate con honestidad: si resolvieras ese problema hoy mismo, ¿te quedarías sin historia que contar? ¿Perderías esa atención?</li>
+      </ul>
+
+      <div><span class="badge-pause">Pausa</span></div>
+
+      <p>Por supuesto que quedarte ahí te mantiene en una aparente "zona de confort" donde crees tener el control, pero es una completa ilusión. Es momento de dejar de poner afuera lo que te corresponde iniciar adentro.</p>
+
+      <p>Y esto va con un cariño especial para mis <strong>amigas emprendedoras</strong>: a veces nos obsesionamos con querer controlar todo el <em>«¿cómo lo voy a hacer?»</em>, abrumándonos con una lista interminable de tareas. Pero, ¿y si en lugar de desgastarte en el "cómo", te preguntaras <strong>«¿QUIÉN me puede ayudar a dar este salto?»</strong>? Puede ser un mentor, un inversor, una terapeuta, o una sesión donde desbloquees ese nudo y dejes de cargar el mundo tú sola.</p>
+    </section>
+
+    <!-- [BLOQUE 3] -->
+    <section class="section-block">
+      <div class="section-title">04. [Bloque 3: La Metáfora del Semáforo en Amarillo]</div>
+
+      <p>Para que comprendas con total nitidez el desgaste del que te estoy hablando, quiero que visualices esta metáfora:</p>
+
+      <div class="traffic-box">
+        <h4>🚦 La Metáfora del Semáforo</h4>
+        <p>Imagina que vas conduciendo tu automóvil y te detienes en una esquina frente a un <strong>semáforo con la luz amarilla titilando</strong>.</p>
+        <p>No te atreves a acelerar para cruzar la intersección por miedo a chocar o a que cambie la luz, pero tampoco te orillas, ni pones el auto en neutro, ni apagas el motor para descansar. ¿Qué haces? <strong>Te quedas pisando el pedal del acelerador a fondo y el freno de mano al mismo tiempo.</strong></p>
+      </div>
+
+      <div><span class="badge-pause">Pausa</span></div>
+
+      <p>Mira lo que ocurre dentro de ese vehículo:</p>
+      <ul>
+        <li>El auto <strong>no avanza ni un solo centímetro</strong> hacia adelante.</li>
+        <li>El motor ruge a su máxima capacidad y se <strong>sobrecalienta al punto de fundirse</strong>.</li>
+        <li>El tanque de nafta, de combustible, se <strong>agota por completo</strong>.</li>
+        <li>Y por el escape empieza a salir un humo denso, negro y tóxico que termina filtrándose por la ventilación y <strong>te asfixia a ti misma dentro de la cabina</strong>.</li>
+      </ul>
+
+      <p><strong>Eso es exactamente la evasión.</strong> Mantener tu vida en un semáforo en amarillo permanente:</p>
+
+      <ul>
+        <li><strong>En tus relaciones:</strong> Llevas meses postergando esa conversación honesta o ese límite por <em>"no crear un conflicto con el otro"</em>. ¿Y qué logras? Evitas una discusión afuera, pero desatas una guerra civil adentro de tu mente que destruye tu paz.</li>
+        <li><strong>En tus proyectos:</strong> Dices que estás <em>"puliendo detalles"</em> o esperando el momento ideal antes de lanzar. No estás perfeccionando nada, amiga; estás escondiendo tu propuesta detrás del miedo a la crítica y al rechazo.</li>
+      </ul>
+    </section>
+
+    <!-- [BLOQUE 4] -->
+    <section class="section-block">
+      <div class="section-title">05. [Bloque 4: El Tiempo que No Vuelve y la Parábola del Escalador]</div>
+
+      <p>Llegamos al núcleo de este episodio, y quiero que esto se te grabe en el alma. Te he explicado la neurobiología y las trampas de la mente, pero el costo más desgarrador de quedarte en la indecisión no es la incomodidad ni el miedo... <strong>el costo real es la pérdida irreversible de tu tiempo.</strong></p>
+
+      <p>El tiempo es finito. El tiempo es aquí y ahora, y jamás regresa.</p>
+
+      <p>Cuando caes en el bucle de dudar por miedo a equivocarte o por el recuerdo de decisiones pasadas, estás tirando tu recurso más valioso. Y perdóname si sueno un poco tosca o frontal con esto, pero mi compromiso contigo es que despiertes: <strong>puedes pasarte meses o años dando vueltas en círculos sobre el mismo punto mientras tu salud mental, tu cuerpo y tu espíritu se deterioran.</strong></p>
+
+      <p>Mientras tú estás paralizada sobrepensando, la vida sigue pasando sin ti. Te estás perdiendo de vivir la experiencia, de aprender, de crecer y de tomar oportunidades reales que se te están escurriendo entre los dedos. Quedarte en la duda es quedarte en un limbo donde no pasa absolutamente nada.</p>
+
+      <div><span class="badge-pause">Pausa</span></div>
+
+      <p>Y esto me recuerda una historia muy poderosa que seguramente has escuchado: la historia del escalador.</p>
+
+      <div class="story-card">
+        <p>Cuenta la historia de un escalador apasionado que llevaba años preparándose para conquistar una de las cimas más imponentes y desafiantes de su vida. Confiado en su entrenamiento y con un profundo deseo de superarse a sí mismo, emprendió el ascenso.</p>
+
+        <p>La subida fue dura y hermosa a la vez, pero a medida que se acercaba a la cumbre, las condiciones cambiaron de golpe y la noche cayó con una fuerza implacable. Una niebla espesísima y una ventisca helada cubrieron toda la montaña, al punto de que no se podía ver absolutamente nada; la visibilidad era cero.</p>
+
+        <p>En medio de esa oscuridad total, a escasos metros de la cima, el escalador resbaló en una roca congelada y comenzó a precipitarse al vacío a una velocidad aterradora. En esos segundos interminables, mientras caía en el abismo, sintió que su vida entera pasaba frente a sus ojos y que la muerte era inminente.</p>
+
+        <p>De repente, ¡un tirón violento y seco sacudió todo su cuerpo! La cuerda de seguridad que tenía atada a la cintura se tensó, dejándolo suspendido en medio de la nada.</p>
+
+        <p>El hombre quedó colgando en el vacío. No veía el fondo, no veía la pared de roca, no veía nada. Solo sentía el viento gélido congelándole la piel. En su desesperación y terror, con las pocas fuerzas que le quedaban, comenzó a gritar y a clamar al cielo: <em>«¡Dios mío, por favor ayúdame! ¡Sálvame, te lo ruego!»</em>.</p>
+
+        <p>De pronto, en medio de la tormenta y en lo más profundo de su ser, escuchó una voz firme y clara que le respondió:<br>
+        <strong>«¿Realmente confías en mí? Si de verdad confías... corta la cuerda».</strong></p>
+
+        <div style="text-align: center; margin: 12px 0;"><span class="badge-pause">Pausa reflexiva</span></div>
+
+        <p>El escalador entró en un pánico absoluto. Pensó: <em>«¿Cómo voy a cortar la cuerda? Si la corto, me estrello contra las rocas y muero. ¡Es lo único que me sostiene!»</em>. No se atrevió a confiar. El miedo a soltar lo conocido lo paralizó por completo, y decidió aferrarse a la cuerda con todas sus fuerzas, con las manos entumecidas por el hielo.</p>
+
+        <p>Al día siguiente, cuando salió el sol, el equipo de rescate llegó a la montaña. Allí encontraron el cuerpo del escalador, congelado sin vida, con sus manos aferradas rígidamente a la cuerda... <strong>colgando a tan solo un metro del suelo.</strong></p>
+      </div>
+
+      <div><span class="badge-breath">Inhala / Exhala</span></div>
+
+      <p>Amiga, ¿cuántas veces has estado tú exactamente en ese lugar?</p>
+
+      <p>¿A qué cuerda te estás aferrando hoy por miedo a soltar el control? ¿A un trabajo que te apaga, a una relación rota, a un proyecto guardado en un cajón, a una conversación que no te atreves a tener? Te aferras creyendo que esa cuerda te salva la vida, sin darte cuenta de que <strong>esa cuerda es lo único que te está congelando.</strong> Y tu siguiente nivel, el suelo firme, la solución y tu libertad están a solo un metro de distancia.</p>
+
+      <p>Te invito a mirar hacia atrás: ¿cuántas veces no tardaste meses en tomar una decisión, y el día que por fin te atreviste dijiste: <em>«Dios mío, ¿por qué no lo hice antes?»</em>? Ese darte cuenta tarde duele, porque el precio que pagaste en tiempo fue altísimo.</p>
+
+      <p>Hoy la vida te dice: <strong>corta la cuerda, confía y atrévete a vivir la experiencia.</strong></p>
+    </section>
+
+    <!-- [BLOQUE 5] -->
+    <section class="section-block">
+      <div class="section-title">06. [Bloque 5: La Decisión es un Acto Interno y el Vértigo del Salto]</div>
+
+      <p>Presta mucha atención a esto: <strong>la decisión no comienza con la acción física externa.</strong></p>
+
+      <p>La decisión es un acto <strong>cien por ciento interno</strong>. Ocurre primero en tu mente, en tu corazón y en tu espíritu. Es un pacto contigo misma. Una vez que decides adentro con absoluta determinación, la ejecución física surge de manera natural porque la certeza interna alinea toda tu energía.</p>
+
+      <p>Si estás atravesando una situación de indecisión en este momento, haz este ejercicio práctico hoy mismo:</p>
+      <ol style="margin: 16px 0 24px 28px;">
+        <li style="margin-bottom: 8px;">Tómate un minuto de silencio contigo misma.</li>
+        <li style="margin-bottom: 8px;">Cierra los ojos, colócate la mano en el centro del pecho.</li>
+        <li style="margin-bottom: 8px;">Y dite con convicción: <strong><em>«Ya está. Ya lo vi. Ya lo decidí»</em></strong>.</li>
+      </ol>
+
+      <p>Sé que tu mente racional está rogando por tener garantías, queriendo ver el mapa completo resuelto antes de dar el primer paso. Quieres saber exactamente cómo va a salir todo para sentirte segura. Pero la vida no funciona así. <strong>La realidad se destraba cuando tú te mueves.</strong></p>
+
+      <p>Y tampoco te voy a vender un cuento de Disney diciéndote que no vas a sentir miedo. ¡Claro que da vértigo! Claro que se siente un nudo en la garganta y un vacío en el estómago cuando te lanzas a lo desconocido, porque estás soltando el control de tu zona cómoda.</p>
+
+      <p>Pero te aseguro algo: <strong>en cuanto das el salto, se abre una dimensión completamente nueva.</strong> Aparecen perspectivas, opciones, personas y sincronías que desde la orilla de la duda eran completamente invisibles. El miedo y la pesadez solo existen mientras estás parada al borde del abismo rumiando la indecisión; del otro lado del salto lo que hay es aire fresco, movimiento y expansión.</p>
+    </section>
+
+    <!-- [CIERRE] -->
+    <section class="section-block">
+      <div class="section-title">07. [Cierre, Cita y Comunidad RealMente Club]</div>
+
+      <p>Así que hoy te pregunto: <strong>¿cuánto tiempo más vas a seguir perdiendo?</strong></p>
+
+      <p>La decisión se toma hoy, en tu mente y en tu corazón, y el camino irá cobrando sentido a medida que avances.</p>
+
+      <p>Quiero cerrar con esta frase emblemática de <strong>Johann Wolfgang von Goethe</strong>, que resume a la perfección este episodio:</p>
+
+      <div class="power-box">
+        <p>«En el momento en que te comprometes con una decisión, la providencia entera se mueve contigo. Comienzan a ocurrir cosas imprevistas y a aparecer personas que de otro modo jamás habrían llegado. Lo que sea que puedas hacer o soñar, empiézalo: la audacia tiene genio, poder y magia».</p>
+      </div>
+
+      <div><span class="badge-pause">Pausa</span></div>
+
+      <p>Así que como siempre te digo, mi querida amiga: <strong>¡cero excusas!</strong></p>
+
+      <p>Esto es justamente lo que vamos a estar trabajando esta semana en <strong>RealMente Club</strong>: te voy a entregar los recursos, las diapositivas y los ejercicios de evaluación para darte la estructura y el acompañamiento que necesitas para cortar la cuerda, dar el salto y abrir esa nueva dimensión en tu vida. Te dejo el enlace directo al Club aquí abajo en la descripción.</p>
+
+      <p>Toma la decisión internamente, alinea tu energía y empieza a caminar. Todo va a fluir y va a dar frutos extraordinarios para ti.</p>
+
+      <p>Recuerda darle <em>like</em>, suscribirte y compartir este episodio con esa persona especial que sabes que está atrapada en la duda y necesita este empujón para despertar.</p>
+
+      <p>Nos escuchamos en el próximo episodio de <strong>RealMente</strong>.</p>
+
+      <p style="font-size: 1.4rem; font-weight: 800; color: var(--accent-turquoise); text-align: center; margin-top: 30px;">
+        ¡Bye, bye! ✨
+      </p>
+    </section>
+
+    <footer class="footer-guion">
+      <p>RealMente Podcast &bull; Producción Oficial &bull; Marbelis Montero</p>
+    </footer>
+
+  </main>
+
+  <!-- SCRIPTS DE TELEPROMPTER Y CONTROL -->
+  <script>
+    let currentFontSize = 19;
+    let isScrolling = false;
+    let scrollInterval = null;
+    const scrollSpeed = 1.2; // Velocidad suave
+
+    function changeFontSize(delta) {
+      currentFontSize = Math.max(14, Math.min(32, currentFontSize + delta));
+      document.getElementById('guionDoc').style.setProperty('--font-size-base', currentFontSize + 'px');
+    }
+
+    function toggleTheme() {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+      }
+    }
+
+    function toggleAutoScroll() {
+      const btn = document.getElementById('btnScroll');
+      if (isScrolling) {
+        clearInterval(scrollInterval);
+        isScrolling = false;
+        btn.textContent = '▶ Modo Prompter';
+        btn.classList.remove('active');
+      } else {
+        isScrolling = true;
+        btn.textContent = '⏸ Pausar Prompter';
+        btn.classList.add('active');
+        scrollInterval = setInterval(() => {
+          window.scrollBy({ top: scrollSpeed, behavior: 'smooth' });
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+            clearInterval(scrollInterval);
+            isScrolling = false;
+            btn.textContent = '▶ Modo Prompter';
+            btn.classList.remove('active');
+          }
+        }, 30);
+      }
+    }
+  </script>
+
+</body>
+</html>
