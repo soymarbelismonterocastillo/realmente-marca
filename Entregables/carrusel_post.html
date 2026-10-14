@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Mente · Editor &amp; Exportador de Carruseles</title>
+  <meta name="description" content="Herramienta de previsualización y exportación de alta fidelidad para el carrusel de Instagram de Marbelis Montero.">
+  
+  <!-- Google Fonts: Jost (Display) y Mulish (Cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;1,300&family=Mulish:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- html2canvas para exportar a imagen PNG de alta fidelidad -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --violeta-loto: #4C078C;
+      --indigo-profundo: #2E0981;
+      --lila-vivo: #A669DA;
+      --lila-suave: #BA81C9;
+      --lavanda: #C9A9DB;
+      --turquesa: #2AD2C5;
+      --carbon: #2B2B2B;
+      --gris-loto: #808080;
+      --blanco-petalo: #FAFAF9;
+      
+      --bg-editor: #121214;
+      --bg-panel: #1A1A1E;
+      --border-panel: #2C2C35;
+      --text-panel: #E2E2E9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Mulish', sans-serif;
+      background-color: var(--bg-editor);
+      color: var(--text-panel);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cabecera del Panel */
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-panel);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title h1 {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blanco-petalo);
+    }
+    
+    .brand-title h1 span {
+      color: var(--lila-vivo);
+    }
+
+    .brand-title p {
+      font-size: 12px;
+      color: var(--gris-loto);
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+
+    /* Área Principal de Trabajo */
+    .editor-layout {
+      flex: 1;
+      display: flex;
+      padding: 30px;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Contenedor del Canvas del Slide */
+    .canvas-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Previsualización a Escala del Slide (1080x1080) */
+    .slide-wrapper {
+      width: 580px;
+      height: 580px;
+      border: 1px solid var(--border-panel);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* El slide real a 1080px transformado para encajar en el visor */
+    .slide-sandbox {
+      width: 1080px;
+      height: 1080px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+      transform: scale(0.537); /* escala exacta para 580px desde 1080px */
+      background-color: var(--blanco-petalo);
+      user-select: none;
+    }
+
+    /* Controles de Navegación */
+    .slide-controls {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background-color: var(--bg-panel);
+      padding: 12px 24px;
+      border-radius: 30px;
+      border: 1px solid var(--border-panel);
+    }
+
+    .btn-nav {
+      background: transparent;
+      border: none;
+      color: var(--text-panel);
+      cursor: pointer;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      background-color: var(--border-panel);
+      color: var(--lila-vivo);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .slide-indicator {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    /* Panel de Acciones Lateral */
+    .action-panel {
+      width: 360px;
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-panel);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .panel-section h3 {
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-panel);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      color: var(--blanco-petalo);
+    }
+
+    .btn-action {
+      width: 100%;
+      background-color: var(--violeta-loto);
+      color: var(--blanco-petalo);
+      border: none;
+      padding: 14px 20px;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(76,7,140,0.3);
+    }
+
+    .btn-action:hover {
+      background-color: #610cb3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(76,7,140,0.5);
+    }
+
+    .btn-action.secondary {
+      background-color: transparent;
+      border: 1px solid var(--lila-vivo);
+      color: var(--lila-vivo);
+      box-shadow: none;
+    }
+
+    .btn-action.secondary:hover {
+      background-color: rgba(166,105,218,0.1);
+      color: var(--blanco-petalo);
+      border-color: var(--blanco-petalo);
+    }
+
+    .instruction-note {
+      font-size: 13px;
+      color: var(--gris-loto);
+      line-height: 1.6;
+    }
+
+    .instruction-note b {
+      color: var(--turquesa);
+    }
+
+    /* ===== ESTILOS INTERNOS DE LOS SLIDES (1080x1080) ===== */
+    .slide-content {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      box-sizing: border-box;
+      padding: 90px 80px 100px; /* aire premium en los bordes */
+      flex-direction: column;
+      justify-content: space-between;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .slide-content.active {
+      display: flex;
+    }
+
+    /* Cabecera del slide */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .slide-kicker {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lila-vivo);
+      opacity: 0.9;
+    }
+
+    .slide-logo-text {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--carbon);
+      opacity: 0.8;
+    }
+
+    /* Cuerpo central del slide */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .slide-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.15;
+      color: var(--violeta-loto);
+      margin-bottom: 30px;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-desc {
+      font-family: 'Mulish', sans-serif;
+      font-size: 32px;
+      line-height: 1.6;
+      color: var(--carbon);
+      font-weight: 400;
+    }
+
+    .slide-desc strong {
+      font-weight: 700;
+      color: var(--indigo-profundo);
+    }
+
+    /* Pie del slide */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(43, 43, 43, 0.1);
+      padding-top: 30px;
+      z-index: 10;
+    }
+
+    .slide-podcast-tag {
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: var(--gris-loto);
+    }
+
+    .slide-swipe-indicator {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      color: var(--lila-vivo);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-swipe-indicator::after {
+      content: '→';
+      font-size: 20px;
+    }
+
+    /* ===== PERSONALIZACIONES POR SLIDE ===== */
+    
+    /* Slide 1 - Hook (Vivir con un fantasma) */
+    #slide-1 {
+      background-image: url('assets_carrusel/slide1.png');
+    }
+    #slide-1 .slide-title {
+      font-size: 72px;
+      color: var(--blanco-petalo);
+      text-shadow: 0 4px 12px rgba(46,9,129,0.3);
+    }
+    #slide-1 .slide-desc {
+      color: rgba(250, 250, 249, 0.9);
+      text-shadow: 0 2px 8px rgba(46,9,129,0.3);
+      max-width: 90%;
+    }
+    #slide-1 .slide-logo-text {
+      color: var(--blanco-petalo);
+    }
+    #slide-1 .slide-podcast-tag {
+      color: var(--lila-suave);
+    }
+    #slide-1 .slide-footer {
+      border-top-color: rgba(250, 250, 249, 0.2);
+    }
+
+    /* Slide 2 - Agitación (La trampa del "¿Y si...?") */
+    #slide-2 {
+      background-image: url('assets_carrusel/slide2.png');
+    }
+    #slide-2 .slide-title {
+      font-size: 58px;
+      color: var(--blanco-petalo);
+      text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    #slide-2 .slide-title span {
+      color: var(--turquesa);
+    }
+    #slide-2 .slide-desc {
+      color: rgba(250, 250, 249, 0.85);
+      font-weight: 300;
+      line-height: 1.5;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    #slide-2 .slide-logo-text {
+      color: var(--blanco-petalo);
+    }
+    #slide-2 .slide-kicker {
+      color: var(--turquesa);
+    }
+    #slide-2 .slide-podcast-tag {
+      color: var(--lila-suave);
+    }
+    #slide-2 .slide-footer {
+      border-top-color: rgba(250, 250, 249, 0.15);
+    }
+
+    /* Slide 3 - Reencuadre (Evolución, no error) */
+    #slide-3 {
+      background-image: url('assets_carrusel/slide3.png');
+    }
+    #slide-3 .slide-title {
+      color: var(--violeta-loto);
+    }
+    #slide-3 .slide-desc {
+      color: var(--carbon);
+      line-height: 1.55;
+    }
+    #slide-3 .slide-desc strong {
+      color: var(--violeta-loto);
+      display: block;
+      margin-top: 15px;
+      font-size: 34px;
+    }
+
+    /* Slide 4 - Alivio (Frase de poder en gigante) */
+    #slide-4 {
+      background-image: url('assets_carrusel/slide4.png');
+    }
+    #slide-4 .slide-kicker {
+      color: var(--lila-vivo);
+      font-size: 20px;
+    }
+    #slide-4 .slide-title-quote {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 78px;
+      line-height: 1.15;
+      color: var(--blanco-petalo);
+      text-align: center;
+      margin: 40px 0;
+      letter-spacing: -0.01em;
+      text-shadow: 0 10px 30px rgba(46,9,129,0.5);
+      font-style: italic;
+    }
+    #slide-4 .slide-desc {
+      color: rgba(250, 250, 249, 0.9);
+      text-align: center;
+      max-width: 85%;
+      margin: 0 auto;
+      font-size: 28px;
+      text-shadow: 0 2px 8px rgba(46,9,129,0.3);
+    }
+    #slide-4 .slide-logo-text {
+      color: var(--blanco-petalo);
+    }
+    #slide-4 .slide-podcast-tag {
+      color: var(--lila-suave);
+    }
+    #slide-4 .slide-footer {
+      border-top-color: rgba(250, 250, 249, 0.2);
+    }
+
+    /* Slide 5 - CTA / Cierre */
+    #slide-5 {
+      background-image: url('assets_carrusel/slide5.png');
+    }
+    #slide-5 .slide-title {
+      font-size: 58px;
+      color: var(--violeta-loto);
+      margin-bottom: 20px;
+    }
+    #slide-5 .slide-desc {
+      color: var(--carbon);
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    #slide-5 .slide-cta-box {
+      background-color: rgba(250, 250, 249, 0.8);
+      border-left: 6px solid var(--violeta-loto);
+      padding: 20px 24px;
+      border-radius: 0 12px 12px 0;
+      margin-top: 10px;
+    }
+    #slide-5 .slide-cta-box h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--indigo-profundo);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    #slide-5 .slide-cta-box p {
+      font-size: 18px;
+      color: var(--carbon);
+      line-height: 1.4;
+    }
+    #slide-5 .slide-profile-area {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    #slide-5 .slide-profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--violeta-loto);
+      object-fit: cover;
+    }
+    #slide-5 .slide-profile-text h5 {
+      font-family: 'Jost', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--violeta-loto);
+    }
+    #slide-5 .slide-profile-text p {
+      font-size: 14px;
+      color: var(--gris-loto);
+    }
+    #slide-5 .slide-swipe-indicator {
+      color: var(--violeta-loto);
+    }
+    #slide-5 .slide-swipe-indicator::after {
+      content: ' 🎧';
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-title">
+      <h1>Real Mente <span>Carrusel Studio</span></h1>
+      <p>Marbelis Montero · Coach &amp; Trainer en PNL</p>
+    </div>
+  </header>
+
+  <div class="editor-layout">
+    
+    <!-- Canvas del Slide -->
+    <div class="canvas-container">
+      <div class="slide-wrapper">
+        <div class="slide-sandbox" id="carousel-canvas">
+          
+          <!-- Slide 1 -->
+          <div class="slide-content active" id="slide-1">
+            <div class="slide-header">
+              <span class="slide-kicker">Real Mente Podcast</span>
+              <span class="slide-logo-text">Marbelis Montero</span>
+            </div>
+            <div class="slide-body">
+              <h2 class="slide-title">¿Llevas años viviendo con un fantasma?</h2>
+              <p class="slide-desc">Sí. Hablo de ese pasado que ya no existe, pero con el que sigues peleando todas las noches en tu mente.</p>
+            </div>
+            <div class="slide-footer">
+              <span class="slide-podcast-tag">Episodio: El dolor de aceptar</span>
+              <span class="slide-swipe-indicator">Desliza</span>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slide-content" id="slide-2">
+            <div class="slide-header">
+              <span class="slide-kicker">El desgaste</span>
+              <span class="slide-logo-text">Marbelis Montero</span>
+            </div>
+            <div class="slide-body">
+              <h2 class="slide-title">La trampa destructiva del: <br><span>"¿Y si hubiese...?"</span></h2>
+              <p class="slide-desc">Cada vez que te preguntas *"¿y si me hubiera quedado?"*, tu cerebro abre una dimensión de fantasía. Gastas toneladas de energía en un cálculo mental inútil mientras tu presente real se te escapa.</p>
+            </div>
+            <div class="slide-footer">
+              <span class="slide-podcast-tag">Episodio: El dolor de aceptar</span>
+              <span class="slide-swipe-indicator">Desliza</span>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slide-content" id="slide-3">
+            <div class="slide-header">
+              <span class="slide-kicker">Reprogramación</span>
+              <span class="slide-logo-text">Marbelis Montero</span>
+            </div>
+            <div class="slide-body">
+              <h2 class="slide-title">Ojo con esto: <br>No te equivocaste.</h2>
+              <p class="slide-desc">Estás juzgando a tu "yo" del pasado con la información que tienes hoy. Eso es sumamente injusto. Si hoy puedes ver tu error, no es un fracaso: 
+                <strong>Es la prueba matemática de que evolucionaste.</strong>
+              </p>
+            </div>
+            <div class="slide-footer">
+              <span class="slide-podcast-tag">Episodio: El dolor de aceptar</span>
+              <span class="slide-swipe-indicator">Desliza</span>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="slide-content" id="slide-4">
+            <div class="slide-header">
+              <span class="slide-kicker">Grábate esto en el alma:</span>
+              <span class="slide-logo-text">Marbelis Montero</span>
+            </div>
+            <div class="slide-body">
+              <div class="slide-title-quote">"Hice lo que pude, como pude, cuando pude."</div>
+              <p class="slide-desc">Repítelo. Deja que tu ego afloje y que baje el castigo. Tu yo del pasado hizo lo mejor que pudo con las herramientas que tenía. Suelta la culpa.</p>
+            </div>
+            <div class="slide-footer">
+              <span class="slide-podcast-tag">Episodio: El dolor de aceptar</span>
+              <span class="slide-swipe-indicator">Desliza</span>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="slide-content" id="slide-5">
+            <div class="slide-header">
+              <span class="slide-kicker">Transformación</span>
+              <span class="slide-logo-text">Real Mente</span>
+            </div>
+            <div class="slide-body">
+              <h2 class="slide-title">El pasado ya pasó. <br>Tu vida es ahora.</h2>
+              <p class="slide-desc">No dejes que lo que no sanas y lo que no cuestionas siga gobernando tu futuro. Es momento de reordenar tu experiencia interna.</p>
+              
+              <div class="slide-cta-box">
+                <h4>Comenta "YO"</h4>
+                <p><b>Si quieres que te envíe el link del podcast</b></p>
+              </div>
+
+              <div class="slide-profile-area">
+                <!-- Se intenta usar la imagen local del branding si existe, si no fallará con gracia -->
+                <img class="slide-profile-img" src="Imagenes - Branding - Marbelis Montero/MARBE REDONDA.jpg" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200&h=200'" alt="Marbelis Montero">
+                <div class="slide-profile-text">
+                  <h5>Marbelis Montero</h5>
+                  <p>Terapeuta y Trainer en PNL</p>
+                </div>
+              </div>
+            </div>
+            <div class="slide-footer">
+              <span class="slide-podcast-tag">Disponible en Spotify y YouTube</span>
+              <span class="slide-swipe-indicator">Comentar</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navegación de los Slides -->
+      <div class="slide-controls">
+        <button class="btn-nav" id="btn-prev" onclick="changeSlide(-1)" disabled>&larr;</button>
+        <span class="slide-indicator" id="slide-num">Slide 1 / 5</span>
+        <button class="btn-nav" id="btn-next" onclick="changeSlide(1)">&rarr;</button>
+      </div>
+    </div>
+
+    <!-- Panel de Acciones -->
+    <div class="action-panel">
+      <div class="panel-section">
+        <h3>Acciones de Exportación</h3>
+        <button class="btn-action" onclick="exportCurrentSlide()">
+          Descargar Slide Actual (PNG)
+        </button>
+        <button class="btn-action secondary" onclick="exportAllSlides()">
+          Descargar Todo el Lote
+        </button>
+      </div>
+
+      <div class="panel-section">
+        <h3>Instrucciones</h3>
+        <p class="instruction-note">
+          1. Navega usando las flechas de control. <br><br>
+          2. Haz clic en <b>Descargar Slide Actual</b> para exportar el slide que ves en pantalla en resolución ultra nítida de 1080x1080px.<br><br>
+          3. Haz clic en <b>Descargar Todo el Lote</b> para exportar automáticamente los 5 slides en secuencia en tu carpeta de descargas.<br><br>
+          4. Los textos respetan rigurosamente el manual de identidad verbal y están listos para Instagram.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 5;
+
+    function changeSlide(direction) {
+      // Ocultar slide actual
+      document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+      
+      // Calcular siguiente
+      currentSlide += direction;
+      
+      // Mostrar siguiente
+      document.getElementById(`slide-${currentSlide}`).classList.add('active');
+      
+      // Actualizar UI
+      document.getElementById('slide-num').textContent = `Slide ${currentSlide} / 5`;
+      document.getElementById('btn-prev').disabled = currentSlide === 1;
+      document.getElementById('btn-next').disabled = currentSlide === totalSlides;
+    }
+
+    // Exportar el slide activo como imagen PNG a 1080x1080px
+    function exportCurrentSlide(slideNumber = currentSlide) {
+      return new Promise((resolve) => {
+        // Aseguramos que el slide que queremos exportar esté activo temporalmente en el sandbox
+        const slides = document.querySelectorAll('.slide-content');
+        slides.forEach(s => s.classList.remove('active'));
+        
+        const targetSlide = document.getElementById(`slide-${slideNumber}`);
+        targetSlide.classList.add('active');
+        
+        const container = document.getElementById('carousel-canvas');
+        
+        // Ejecutar html2canvas con opciones de alta fidelidad y escala 2x para nitidez
+        html2canvas(container, {
+          width: 1080,
+          height: 1080,
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#FAFAF9'
+        }).then(canvas => {
+          // Restaurar el slide que estaba previamente activo en el visor interactivo
+          slides.forEach(s => s.classList.remove('active'));
+          document.getElementById(`slide-${currentSlide}`).classList.add('active');
+          
+          // Crear link de descarga
+          const imgData = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.download = `carrusel_mente_slide_${slideNumber}.png`;
+          link.href = imgData;
+          link.click();
+          resolve();
+        });
+      });
+    }
+
+    // Exportar todo el lote secuencialmente
+    async function exportAllSlides() {
+      for(let i = 1; i <= totalSlides; i++) {
+        await exportCurrentSlide(i);
+        // Espera de medio segundo para que el navegador procese la descarga de forma nativa
+        await new Promise(r => setTimeout(r, 600));
+      }
+    }
+  </script>
+</body>
+</html>
