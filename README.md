@@ -19,10 +19,16 @@ MARCA/
 │   ├── frase-inicio-semana-realmente/
 │   ├── github-realmente/
 │   └── historias-instagram-realmente/
+├── 🖼️ Imagenes - Branding - Marbelis Montero/ # Logos oficiales, paletas, fotos y branding
+├── 🎠 assets_carrusel/                 # Diapositivas e imágenes renderizadas de carruseles
+├── 📦 Entregables/                     # Copys de lanzamiento y posts
+├── 🛠️ skills/                         # Frameworks y plantillas de funnels y marketing
 ├── 🛡️ skill_github_realmente.md        # Skill y guía de sincronización en GitHub
 ├── 🎨 skill_carretes_instagram_realmente.md
 ├── 🎙️ skill_edicion_podcast_realmente.md
 ├── 📋 registro_episodios_realmente.md   # Catálogo maestro de episodios (59, 60, 61...)
+├── 📖 Brand Book - Marbelis Montero (Presentacion).html # Manual interactivo de marca
+├── 🗣️ Voz de la marca Marbelis Montero.md              # Tono, arquetipo y voz editorial
 ├── 🐍 github_helper.py                # Asistente de sincronización bidireccional en Python
 ├── 📂 Episodios/                       # Guiones, transcripciones y materiales por episodio
 │   ├── EP59_Necesidad_vs_Poder/
