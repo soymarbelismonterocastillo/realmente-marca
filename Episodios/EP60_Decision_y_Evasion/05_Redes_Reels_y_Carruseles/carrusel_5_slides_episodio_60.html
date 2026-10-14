@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualizador interactivo de Carrusel de 5 Slides para Instagram - Episodio 60 de RealMente Podcast con Marbelis Montero">
+  <title>Carrusel 5 Slides — Episodio 60 | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0410;
+      --bg-gradient: linear-gradient(145deg, #12091c 0%, #1e0d32 50%, #150824 100%);
+      --card-bg: rgba(28, 14, 46, 0.75);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-hover: #38bdf8;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.3);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --accent-alert: #fb7185;
+      --accent-amber: #f472b6; /* Sustituto lila-rosado seguro evitando amarillo */
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 35px rgba(0, 242, 254, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-pill {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(192, 132, 252, 0.2));
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: var(--accent-turquoise);
+      color: #0a0410;
+      border-color: var(--accent-turquoise);
+      box-shadow: 0 0 15px var(--accent-turquoise-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: linear-gradient(135deg, #00f2fe 0%, #14b8a6 100%);
+      color: #080310;
+      border: none;
+      box-shadow: 0 4px 15px var(--accent-turquoise-glow);
+    }
+
+    .btn-action.primary:hover {
+      background: #38bdf8;
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.45);
+    }
+
+    /* Main Layout */
+    .app-container {
+      width: 100%;
+      max-width: 1080px;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* Carousel Simulator (Instagram 4:5 Aspect Ratio) */
+    .simulator-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .instagram-card {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border-radius: 28px;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-soft), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 26px;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Ambient glow inside slide */
+    .ambient-glow-top {
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, var(--accent-turquoise-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-bottom {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, var(--accent-lilac-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Slide Elements */
+    .slide-content-pane {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-turquoise);
+    }
+
+    .slide-badge {
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .slide-num-pill {
+      background: rgba(192, 132, 252, 0.14);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      color: var(--accent-lilac);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px 0;
+    }
+
+    /* Slide 1 Custom */
+    .slide-1-hook {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.82rem;
+      font-weight: 700;
+      line-height: 1.28;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .slide-1-hook span.highlight {
+      color: var(--accent-turquoise);
+      position: relative;
+      display: inline-block;
+    }
+
+    .slide-1-sub {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+      font-weight: 400;
+    }
+
+    /* Common Titles */
+    .slide-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .slide-description {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.46;
+      margin-bottom: 10px;
+    }
+
+    /* Quote Box */
+    .quote-card {
+      background: rgba(0, 242, 254, 0.08);
+      border-left: 3.5px solid var(--accent-turquoise);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 0.85rem;
+      color: #e0f2fe;
+      line-height: 1.42;
+    }
+
+    .gold-quote {
+      background: linear-gradient(135deg, rgba(192, 132, 252, 0.16), rgba(0, 242, 254, 0.12));
+      border: 1px solid rgba(192, 132, 252, 0.45);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.45;
+      text-align: left;
+      margin-top: 8px;
+    }
+
+    /* Cards Slide 3 */
+    .gain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .gain-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(192, 132, 252, 0.22);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .gain-item strong {
+      color: var(--accent-turquoise);
+    }
+
+    /* Steps Slide 5 */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .step-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(192, 132, 252, 0.2);
+      border-radius: 12px;
+      padding: 9px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .step-icon {
+      font-size: 1.1rem;
+      min-width: 22px;
+    }
+
+    .step-title {
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(192, 132, 252, 0.25));
+      border: 1px solid var(--accent-turquoise);
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .slide-footer-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--accent-lilac);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+      font-weight: 500;
+    }
+
+    /* Carousel Nav Bar */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 16px;
+      padding: 0 4px;
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      border-radius: 10px;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 10px var(--accent-turquoise-glow);
+    }
+
+    /* Sidebar / Right Panel */
+    .sidebar-panel {
+      background: rgba(20, 10, 32, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .thumb-btn {
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border: 1.5px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-turquoise-glow);
+    }
+
+    .thumb-btn span {
+      font-size: 0.65rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* Slide Text Copy Box */
+    .text-copy-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    /* Caption Box */
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      background: var(--accent-turquoise);
+      color: #06020a;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(0, 242, 254, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="brand-tag">
+      <span class="brand-pill">Episodio 60</span>
+      <span class="brand-title">RealMente • Marbelis Montero</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn-action" onclick="copyCurrentSlideText()">📋 Copiar Slide</button>
+      <button class="btn-action primary" onclick="copyInstagramCaption()">🚀 Copiar Caption IG</button>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <div class="app-container">
+
+    <!-- Simulator Column -->
+    <div class="simulator-wrapper">
+      
+      <!-- Instagram Card (4:5) -->
+      <div class="instagram-card" id="cardViewport">
+        <div class="ambient-glow-top"></div>
+        <div class="ambient-glow-bottom"></div>
+
+        <!-- Dynamic Slide Content Panes -->
+        <div class="slide-content-pane" id="slidePane">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Navigation Arrows & Dots -->
+      <div class="carousel-nav">
+        <button class="btn-action" onclick="prevSlide()" id="prevBtn">◀ Anterior</button>
+        <div class="slide-dots" id="dotsContainer">
+          <div class="dot active" onclick="goToSlide(0)"></div>
+          <div class="dot" onclick="goToSlide(1)"></div>
+          <div class="dot" onclick="goToSlide(2)"></div>
+          <div class="dot" onclick="goToSlide(3)"></div>
+          <div class="dot" onclick="goToSlide(4)"></div>
+        </div>
+        <button class="btn-action" onclick="nextSlide()" id="nextBtn">Siguiente ▶</button>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar Panel -->
+    <div class="sidebar-panel">
+
+      <div>
+        <h3 class="panel-section-title">🎠 Selección de Slide</h3>
+        <div class="thumbnails-grid">
+          <button class="thumb-btn active" onclick="goToSlide(0)">#1<span>Portada</span></button>
+          <button class="thumb-btn" onclick="goToSlide(1)">#2<span>Bucle</span></button>
+          <button class="thumb-btn" onclick="goToSlide(2)">#3<span>PNL</span></button>
+          <button class="thumb-btn" onclick="goToSlide(3)">#4<span>Escalador</span></button>
+          <button class="thumb-btn" onclick="goToSlide(4)">#5<span>Salto+CTA</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">📝 Texto de esta Lámina</h3>
+          <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="copyCurrentSlideText()">Copiar Texto</button>
+        </div>
+        <div class="text-copy-box" id="slideTextRaw">
+          Cargando contenido...
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">💬 Caption para Instagram</h3>
+          <button class="btn-action primary" style="padding:4px 10px; font-size:0.75rem;" onclick="copyInstagramCaption()">Copiar Caption</button>
+        </div>
+        <div class="caption-box" id="captionText">
+Llevas semanas diciéndote que "lo estás pensando", que "estás esperando la señal correcta" o que "aún no es el momento perfecto". 🚪⚡
+
+Pero detente un segundo y sé completamente honesta contigo misma:
+No estás cansada por el trabajo ni por la rutina. Estás exhausta por la pesadísima carga biológica y mental de las decisiones que llevas meses evadiendo.
+
+En neurociencia sabemos que posponer una decisión nunca es una pausa neutral. Es un "bucle abierto" que mantiene a tu cerebro liberando cortisol las 24 horas del día. Es como pisar el acelerador y el freno de mano al mismo tiempo: el auto no avanza, el motor se funde y el humo te asfixia por dentro.
+
+En el nuevo Episodio 60 de RealMente Podcast desmontamos las trampas invisibles de la duda:
+👉 Por qué no decidir ya es una decisión (y la que más te drena).
+👉 Las 3 ganancias secundarias que tu inconsciente obtiene al quedarse en la indecisión.
+👉 La metáfora del escalador: ¿a qué cuerda te estás aferrando creyendo que te salva, cuando es lo único que te está congelando a un metro del suelo?
+
+Del otro lado de la incomodidad no está tu ruina: está la versión de ti que por fin se respalda a sí misma. 🔑✨
+
+Desliza el carrusel completo para integrar la herramienta de neuroalineación de esta semana. 🎠
+
+🎙️ EPISODIO 60 YA DISPONIBLE en Spotify y YouTube (enlace en mi biografía).
+
+💬 Comenta la palabra DECISIÓN aquí abajo y te envío de inmediato la meditación de alineación interna de 7 minutos a tu DM.
+
+¡Cero excusas!
+
+#RealMentePodcast #MarbelisMontero #TomaDeDecisiones #PNL #Neuroalineacion #SiguienteNivel #CrecimientoPersonal #LiderazgoFemenino #SaludMental #Mentalidad</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">¡Copiado al portapapeles!</div>
+
+  <script>
+    const slidesData = [
+      {
+        tag: "REALMENTE PODCAST • EPISODIO 60",
+        num: "SLIDE 1 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-turquoise); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">
+              ⚡ DESVELANDO EL VERDADERO AGOTAMIENTO
+            </div>
+            <h1 class="slide-1-hook">
+              No estás cansada por trabajar de más... <br>
+              <span class="highlight">estás agotada por las decisiones que llevas meses evadiendo.</span> 🚪⚡
+            </h1>
+            <p class="slide-1-sub">
+              El costo biológico de la indecisión: por qué postergar no es una pausa neutral, sino una fuga activa de tu energía vital.
+            </p>
+          </div>
+        `,
+        footerLeft: "Marbelis Montero",
+        footerRight: "Desliza para ver la verdad ➔",
+        rawText: `[SLIDE 1 - PORTADA]
+REALMENTE PODCAST • EPISODIO 60
+No estás cansada por trabajar de más... estás agotada por las decisiones que llevas meses evadiendo. 🚪⚡
+
+El costo biológico de la indecisión: por qué postergar no es una pausa neutral, sino una fuga activa de tu energía vital.
+
+Desliza para descubrir qué hay del otro lado de la duda ➔`
+      },
+      {
+        tag: "01 / LA TRAMPA BIOLÓGICA",
+        num: "SLIDE 2 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline">No decidir ya es una decisión (y la más costosa)</h2>
+            <p class="slide-description">
+              Creemos que posponer nos da tiempo. Pero en neurociencia, un asunto inconcluso es un <strong>bucle abierto</strong> que tu cerebro sigue rumiando 24/7.
+            </p>
+            <div class="quote-card" style="margin-bottom: 10px;">
+              🚦 <strong>El semáforo en amarillo:</strong> Es como pisar el pedal del acelerador y el freno de mano al mismo tiempo. El auto no avanza, el motor se funde, el combustible se agota y el humo tóxico te asfixia por dentro.
+            </div>
+            <div class="quote-card" style="border-left-color: var(--accent-lilac); background: rgba(192, 132, 252, 0.08); color: #f5f3ff;">
+              ⚠️ <em>Tu tensión en hombros, mandíbula apretada o insomnio no son trabajo físico: son el peso de lo que no terminas de decidir.</em>
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Podcast Ep. 60",
+        footerRight: "Continúa deslizando ➔",
+        rawText: `[SLIDE 2 - LA TRAMPA BIOLÓGICA]
+01 / LA TRAMPA DEL "PLACEBO MENTAL"
+No decidir ya es una decisión (y la más costosa de todas)
+
+Creemos que posponer nos da tiempo o que la situación se resolverá sola. Pero en neurociencia, un asunto inconcluso es un bucle abierto que tu cerebro sigue rumiando en segundo plano las 24 horas del día.
+
+Es como llegar a un semáforo en amarillo y pisar el pedal del acelerador y el freno de mano al mismo tiempo:
+* El auto no avanza un solo centímetro.
+* El motor se recalienta hasta fundirse.
+* El tanque de combustible se agota... y el humo tóxico te asfixia por dentro.
+
+⚠️ Tu dolor en los hombros, el cuello rígido, la mandíbula apretada o el insomnio no son cansancio físico: son el peso biológico de lo que no terminas de decidir.`
+      },
+      {
+        tag: "02 / DESCODIFICACIÓN EN PNL",
+        num: "SLIDE 3 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline" style="font-size: 1.45rem;">¿Qué gana tu mente al quedarse en la duda?</h2>
+            <p class="slide-description" style="font-size: 0.85rem; margin-bottom: 6px;">
+              En PNL, <strong>todo autosabotaje oculta una ganancia secundaria</strong>. Si llevas meses sin elegir, tu mente está cobrando estos 3 beneficios:
+            </p>
+            <div class="gain-list">
+              <div class="gain-item">
+                <strong>1. Evasión de responsabilidad:</strong> Si no decides, culpas al destino, a tu pareja o a la economía. Te salvas del error en el rol de víctima.
+              </div>
+              <div class="gain-item">
+                <strong>2. Proteger al ego del fracaso:</strong> En tu fantasía mental todo sale impecable. Postergar evita que la realidad roce tu ego.
+              </div>
+              <div class="gain-item">
+                <strong>3. La moneda del consuelo:</strong> Mantener la duda te garantiza atención, contención y consejos constantes de tu entorno.
+              </div>
+            </div>
+            <div class="gold-quote" style="padding: 9px 12px; font-size: 0.82rem; margin-top: 8px;">
+              💡 <em>La indecisión no es falta de opciones: es el escondite favorito del miedo.</em>
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Podcast Ep. 60",
+        footerRight: "Continúa deslizando ➔",
+        rawText: `[SLIDE 3 - LA RAÍZ INCONSCIENTE]
+02 / DESCODIFICACIÓN EN PNL
+¿Qué gana tu mente al quedarse atrapada en la duda?
+
+En Programación Neurolingüística existe una ley: todo autosabotaje se sostiene porque tu inconsciente cree que obtiene un beneficio invisible.
+Cuando llevas meses postergando, tu mente está cobrando estas 3 ganancias secundarias:
+
+1. Evasión de responsabilidad: Si dejas que el tiempo o los demás decidan por ti, te libras de la culpa si falla. Te refugias en el papel de víctima.
+2. Protección del ego: En tu fantasía mental todo sale impecable. Postergar protege a tu ego de la imperfección de la vida real.
+3. La moneda del consuelo: Mantenerte en la duda te da un drama diario para recibir atención, consejos y validación de tu entorno.
+
+💡 La indecisión no es falta de opciones: es el escondite favorito del miedo.`
+      },
+      {
+        tag: "03 / EL VERDADERO COSTO",
+        num: "SLIDE 4 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline" style="font-size: 1.45rem;">¿A qué cuerda te aferras creyendo que te salva?</h2>
+            <p class="slide-description">
+              En la ventisca, colgado de una cuerda en el abismo, una voz le dijo al escalador: <em>«Si confías, corta la cuerda»</em>.
+            </p>
+            <p class="slide-description">
+              Por terror a caer, se aferró con todas sus fuerzas. Al amanecer lo encontraron congelado... <strong>a tan solo un metro del suelo firme.</strong>
+            </p>
+            <div class="gold-quote" style="margin-top: 10px;">
+              🔑 <strong>«Esa cuerda conocida —el trabajo que te apaga, la relación rota o la conversación que evitas— crees que te protege, pero es lo único que te está congelando. Tu siguiente nivel está a un metro.»</strong>
+            </div>
+          </div>
+        `,
+        footerLeft: "RealMente Podcast Ep. 60",
+        footerRight: "Continúa deslizando ➔",
+        rawText: `[SLIDE 4 - EL CHOQUE DE PERSPECTIVA]
+03 / EL VERDADERO COSTO
+¿A qué cuerda te estás aferrando creyendo que te salva la vida?
+
+Recuerda la historia del escalador atrapado en la ventisca:
+Colgado de su cuerda en la oscuridad absoluta, una voz le dijo: «Si de verdad confías... corta la cuerda».
+
+Por terror a caer al vacío, no se atrevió a soltarse y se aferró con todas sus fuerzas.
+Al amanecer lo encontraron congelado... a tan solo un metro del suelo firme.
+
+🔑 «Esa cuerda conocida a la que te aferras —ese trabajo que te apaga, esa relación desgastada o esa conversación que evitas— crees que te protege, pero es lo único que te está congelando. Tu siguiente nivel está a un metro de distancia.»`
+      },
+      {
+        tag: "04 / INTEGRACIÓN Y PODER",
+        num: "SLIDE 5 / 5",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-headline" style="font-size: 1.45rem;">La decisión se toma adentro antes de que ocurra afuera</h2>
+            <div class="steps-list">
+              <div class="step-item">
+                <div class="step-icon">🫀</div>
+                <div><strong class="step-title">Mano al pecho:</strong> Respira hondo y declara: <em>«Ya está. Ya lo vi. Ya lo decidí»</em>. La certeza interna alinea tu energía.</div>
+              </div>
+              <div class="step-item">
+                <div class="step-icon">🤝</div>
+                <div><strong class="step-title">Cambia el '¿Cómo?' por '¿QUIÉN?':</strong> No cargues el mundo sola; apóyate en mentores y red de respaldo.</div>
+              </div>
+              <div class="step-item">
+                <div class="step-icon">🚀</div>
+                <div><strong class="step-title">Acepta el vértigo:</strong> La claridad no llega antes de dar el paso; se construye después de saltar.</div>
+              </div>
+            </div>
+            <div class="cta-banner">
+              🎙️ Ep. 60 YA EN SPOTIFY Y YOUTUBE<br>
+              <span style="color: var(--accent-turquoise); font-size: 0.78rem;">Comenta «DECISIÓN» y recibe la meditación de alineación al DM</span>
+            </div>
+          </div>
+        `,
+        footerLeft: "Marbelis Montero • RealMente Club",
+        footerRight: "Guarda y comparte ➔",
+        rawText: `[SLIDE 5 - LA HERRAMIENTA PRÁCTICA Y CTA]
+04 / INTEGRACIÓN Y PODER
+La decisión se toma adentro antes de que ocurra afuera.
+
+La decisión no empieza con la acción física; es un pacto interno contigo misma.
+Haz esto hoy:
+1. 🫀 Mano al pecho: Respira hondo y declara con certeza: «Ya está. Ya lo vi. Ya lo decidí».
+2. 🤝 Deja el '¿Cómo?' y pregúntate '¿QUIÉN?': No cargues todo sola. Busca mentores y red de respaldo.
+3. 🚀 Acepta el vértigo: La claridad no llega antes de dar el paso; se construye después de saltar.
+
+«En el momento en que te comprometes con una decisión, la providencia entera se mueve contigo... La audacia tiene genio, poder y magia.» — Goethe
+
+🎙️ Episodio 60 de RealMente YA DISPONIBLE en Spotify y YouTube.
+💬 Comenta la palabra DECISIÓN y te envío la meditación de alineación interna directo a tu DM.`
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function renderSlide(index) {
+      const data = slidesData[index];
+      const pane = document.getElementById("slidePane");
+
+      pane.innerHTML = `
+        <div class="slide-top-meta">
+          <span class="slide-badge">${data.tag}</span>
+          <span class="slide-num-pill">${data.num}</span>
+        </div>
+        ${data.html}
+        <div class="slide-footer-meta">
+          <span>${data.footerLeft}</span>
+          <span>${data.footerRight}</span>
+        </div>
+      `;
+
+      // Update dots
+      const dots = document.querySelectorAll(".dot");
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === index);
+      });
+
+      // Update thumbnails
+      const thumbs = document.querySelectorAll(".thumb-btn");
+      thumbs.forEach((thumb, idx) => {
+        thumb.classList.toggle("active", idx === index);
+      });
+
+      // Update raw text box
+      document.getElementById("slideTextRaw").textContent = data.rawText;
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < slidesData.length) {
+        currentSlide = index;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+        renderSlide(currentSlide);
+      } else {
+        goToSlide(0); // loop
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        renderSlide(currentSlide);
+      } else {
+        goToSlide(slidesData.length - 1); // loop
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastMessage");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
+    function copyCurrentSlideText() {
+      const text = slidesData[currentSlide].rawText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("¡Texto de la Lámina #" + (currentSlide + 1) + " copiado!");
+      }).catch(err => {
+        showToast("Error al copiar texto.");
+      });
+    }
+
+    function copyInstagramCaption() {
+      const caption = document.getElementById("captionText").innerText.trim();
+      navigator.clipboard.writeText(caption).then(() => {
+        showToast("¡Caption de Instagram copiado con éxito!");
+      }).catch(err => {
+        showToast("Error al copiar caption.");
+      });
+    }
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    });
+
+    // Touch swipe gestures
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const card = document.getElementById("cardViewport");
+
+    card.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    card.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) nextSlide();
+      if (touchEndX > touchStartX + 50) prevSlide();
+    }
+
+    // Initialize
+    renderSlide(0);
+  </script>
+</body>
+</html>
