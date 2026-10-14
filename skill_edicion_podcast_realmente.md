@@ -1,53 +1,44 @@
 # SKILL Y GUÍA MAESTRA DE EDICIÓN DE PODCAST - REALMENTE
-**Creadora y Locutora:** Marvelis Montero (Master Trainer en PNL)
+**Creadora y Locutora:** Marbelis Montero (Master Trainer en PNL)
 
-> **ESTE DOCUMENTO ES LA REFERENCIA OBLIGATORIA Y SKILL DE EDICIÓN PARA TODOS LOS EPISODIOS DEL PODCAST REALMENTE.**
-
----
-
-## 🎙️ 1. FILOSOFÍA Y VOZ DE LA MARCA
-* **Tono de Voz:** Cálido, cercano, empático, reflexivo, acogedor y a la vez de liderazgo ("hablar de tú a tú").
-* **Identidad Lingüística:** Usar lenguaje cotidiano con toques personales (*"amiga"*, *"súper potente"*, *"cero excusas"*, *"echar todo este cuento"*, *"freno de mano"*, *"hacer clic"*).
-* **Propósito del Podcast:** Desmontar trampas mentales con PNL y neuroalineación, transformando la autoconciencia en acción consciente y soberana.
-* **Integridad del Mensaje:** NUNCA alterar la intención original ni cambiar las ideas de la autora. La edición busca potenciar la fluidez oral, no reescribir la esencia.
+> **ESTE DOCUMENTO ES LA REFERENCIA OBLIGATORIA Y GUÍA DE EDICIÓN PARA TODOS LOS EPISODIOS DEL PODCAST REALMENTE.**  
+> *(Sincronizado con la skill del sistema: `.agents/skills/edicion-podcast-realmente/SKILL.md`)*
 
 ---
 
-## ✂️ 2. PROTOCOLO DE EDICIÓN Y LIMPIEZA DE TRANSCRIPCIONES
-Cualquier borrador o transcripción automática (Whisper / Speech-to-Text) debe pasar por el siguiente proceso de 5 pasos:
-
-### Paso 1: Limpieza de Muletillas y Fórmulas de Transcripción
-* Eliminar tartamudeos, repeticiones accidentales (*"en esta en esta"*, *"muchas muchas"*) y errores de reconocimiento de voz (ej. *"marbeles"* -> *Marbelle*, *"a lola a lo largo"* -> *a lo largo*, *"y si Miguel"* -> *y recuerda que*).
-* Preservar las muletillas con intención comunicativa y cercanía (ej. *"amiga"*, *"¿me explico?"*, *"¡bueno!"*).
-
-### Paso 2: Puntuación para Ritmo y Respiración
-* Estructurar el texto con comas y puntos adecuados para evitar oraciones interminables que ahoguen la locución.
-* Insertar indicación explícita de pausas reflexivas `(Pausa)` y guías corporales `(Inhala / Exhala)` donde la carga emocional lo requiera.
-
-### Paso 3: Resaltado Visual para Lectura en Micrófono (Teleprompter / Guion)
-* Utilizar **negritas** en las preguntas de poder, frases clave y conceptos principales.
-* Utilizar *cursivas* para diálogos internos o ejemplos en voz alta.
-* Usar bloques de citas `> ` para frases célebres o axiomas centrales.
-
-### Paso 4: Estructura por Bloques Narrativos
-Organizar el episodio en secciones claras de grabación:
-1. **[INTRO Y GANCHO]:** Bienvenida cálida + Pregunta de poder + CTA inicial (like, suscribirte, compartir) + Anuncio del tema "súper potente".
-2. **[BLOQUE 1: CONFLICTO / LUGAR INTERNO]:** Presentación del freno de mano, el sistema o la trampa mental.
-3. **[BLOQUE 2: MARCO TEÓRICO / HERRAMIENTA]:** Sustento en PNL, psicología (ej. Maslow) o neuroalineación sin caer en academicismo denso.
-4. **[BLOQUE 3: ANÁLISIS / MODO SUPERVIVENCIA]:** Explicación de cómo actúa el cerebro y la biología.
-5. **[BLOQUE 4: LA CLAVE Y EL CAMBIO]:** Presentación del estado de poder, la intención y metáforas visuales (auto, bici, etc.).
-6. **[BLOQUE 5: PASOS PRÁCTICOS]:** 3 a 5 pasos accionables, simples y concretos para aplicar de inmediato.
-7. **[CIERRE Y COMUNIDAD]:** Frase icónica (*"cero excusas"*), llamado a la acción + mención a **Realmente Club** + despedida emblemática (*"¡Bye, bye!"*).
-
-### Paso 5: Sección de Sugerencias Opcionales Separadas
-* Si hay propuestas para mejorar la atribución de una cita, afinar una transición o enriquecer el cierre, presentarlas SIEMPRE en una sección independiente al final del guion.
-* **REGLA DE ORO:** No modificar el texto principal con sugerencias sin la autorización explícita de Marvelis.
+## 🎙️ 1. FILOSOFÍA, VOZ Y REGLAS DE ORO
+* **Regla de Oro de Integridad:** NUNCA alterar la intención original ni agregar contenido nuevo sin sugerir primero y recibir autorización explícita de Marbelis.
+* **Tono de Voz:** Cálido, cercano, empático, reflexivo, acogedor y a la vez de liderazgo ("hablar de tú a tú", al oído de la oyente).
+* **Identidad Lingüística:** Usar lenguaje cotidiano con toques personales (*«amiga»*, *«freno de mano»*, *«hacer clic»*, *«sacar a pasear a tu niña herida»*, *«la verdad que te va a doler»*, *«cero excusas»*, *«¡Bye, bye!»*).
+* **Separación Editorial:**
+  * **Podcast:** Abierto, reflexivo, cuestionador e inspirador (sin tareas densas ni talleres rígidos).
+  * **RealMente Club:** El espacio para ejercicios prácticos estructurados, auditorías y clases de los sábados.
 
 ---
 
-## 📌 3. CHECKLIST FINAL DE VERIFICACIÓN ANTES DE ENTREGAR
-- [ ] ¿El texto suena a Marvelis hablándome al oído de forma cercana y cálida?
-- [ ] ¿Se eliminaron los errores de transcripción automática?
-- [ ] ¿El guion se puede leer fluido sin perder el aire?
-- [ ] ¿Las negritas y pausas marcan los momentos de mayor impacto emocional?
-- [ ] ¿Está presente el llamado a la acción y la mención a *Realmente Club*?
+## ⏱️ 2. CONTROL MÉTRICO DE DURACIÓN Y RITMO
+* **Ritmo de Locución:** 125 a 135 palabras por minuto (ppm) con pausas de respiración y reflexión.
+* **Meta Estándar:** **18 a 22 minutos** por episodio (~2.350 a 2.800 palabras).
+* **Protocolo de Expansión Colaborativa:** Si un borrador queda corto (< 18 min):
+  1. Diagnosticar el déficit en palabras y minutos.
+  2. Entregar el guion base pulido sin alterar palabras.
+  3. Ofrecer un **Menú de Expansión** con preguntas y sugerencias puntuales (anécdotas de vida, PNL o metáforas).
+  4. Recibir el desarrollo dictado por Marbelis y ensamblar el guion maestro final.
+
+---
+
+## ✂️ 3. PROTOCOLO DE EDICIÓN Y FORMATO PARA MICRÓFONO
+1. **Limpieza Fonética:** Corregir errores de transcripción de voz (Whisper / dictado), tartamudeos y falsos inicios, preservando las muletillas con intención (*«amiga»*, *«fíjate en esto»*).
+2. **Puntuación y Respiración:** Marcar explícitamente `(Pausa)`, `(Inhala / Exhala)` y `(Sonrisa / Tono conversacional)`.
+3. **Jerarquía Visual:** **Negritas** en preguntas de poder y axiomas; *cursivas* para pensamientos del diálogo interno y citas.
+
+---
+
+## 📐 4. ARQUITECTURA NARRATIVA EN 7 BLOQUES
+1. **[INTRO Y GANCHO]:** Bienvenida cálida + Pregunta detonante + CTA inicial (like, suscribirte, Club) + Tesis central innegociable.
+2. **[BLOQUE 1: LA ILUSIÓN DE LA ESENCIA Y EL CICLO NATURAL]:** Desmontar "cambiar es traicionarte" + Diferencia entre Identidad (ego/traje) y Esencia (luz/alma).
+3. **[BLOQUE 2: ORIGEN PSICOLÓGICO Y METÁFORA DEL TRAJE]:** La niña herida, complacer o protegerse + Metáfora del abrigo según el clima.
+4. **[BLOQUE 3: EL DUELO QUE NADIE TE CUENTA]:** Muerte simbólica necesaria + Fin del papel de víctima, amistades y dinámicas familiares + "La soledad es el puente".
+5. **[BLOQUE 4: LA NEUROBIOLOGÍA Y LA TRAMPA DEL LENGUAJE]:** Lista del «yo soy» y «yo necesito» + Sistema de Activación Reticular (SAR) + Eliminar absolutismos.
+6. **[BLOQUE 5: CASO REAL O ANÉCDOTA PERSONAL Y AUDITORÍA]:** Historia de vida (ej. abogada puntual vs. vida personal) o caso 1 a 1 + Confrontación del precio a pagar.
+7. **[CIERRE Y COMUNIDAD]:** Elección soberana ("quédate ahí pero no te quejes") + Pregunta ancla para la libreta + CTA RealMente Club + "¡Bye, bye!".
