@@ -42,9 +42,31 @@
 ## 🎙️ EPISODIO 60 DE PODCAST
 * **Título Oficial:** *RealMente la decisión que llevas meses evadiendo es la puerta a tu siguiente nivel*
 * **Carpeta Oficial:** [EP60_Decision_y_Evasion](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP60_Decision_y_Evasion)
+* **Transcripciones:** [Transcripción Editada](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP60_Decision_y_Evasion/03_Transcripcion_Final/transcripcion_final_editada_ep60.md) | [Transcripción Cruda](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP60_Decision_y_Evasion/03_Transcripcion_Final/transcripcion_cruda_ep60.md)
+* **Redes y Carrete de Choque:** [Carrete de 6 Slides (MD)](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/carrete_episodio_60.md) | [Visor Interactivo HTML](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/carrete_6_slides_episodio_60.html) | [Carrusel Teórico 5 Slides](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/carrusel_episodio_60.md)
 * **Mensaje y Frase de Inicio:** [mensaje_apertura_club_ep60.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP60_Decision_y_Evasion/01_Frase_Inicio_Semana/mensaje_apertura_club_ep60.md)
 * **Pregunta de Poder:** ¿Cuál es esa decisión que llevas semanas evadiendo, y cuál es el verdadero costo de seguirla postergando 6 meses más?
+* **Clase del Club (Presentación Oficial):** [Visor HTML Interactivo](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/presentacion_episodio_60.html) | [Archivo en Carpeta](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP60_Decision_y_Evasion/04_Club_Ejercicio_y_Diapositivas/presentacion_episodio_60.html)
+* **Skill Oficial Aplicado:** [skill_clases_sabados_realmente.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/skill_clases_sabados_realmente.md) | [skill_carretes_instagram_realmente.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/skill_carretes_instagram_realmente.md)
 * **Pilares y Conceptos Clave:**
   1. **El Costo Biológico de la Evasión:** No decidir no es una pausa neutral; es una decisión activa de agotar tu energía en rumiación mental y cortisol.
   2. **La Trampa de la "Certeza Total":** Creer que necesitas estar 100% segura antes de decidir es la excusa perfecta del inconsciente para no arriesgarse. La claridad se construye *después* de dar el paso.
   3. **Mutación de Identidad:** Del otro lado de la incomodidad no está solo un resultado, sino la versión tuya que se respalda a sí misma.
+
+---
+
+## 🎙️ EPISODIO 61 DE PODCAST
+* **Título Oficial:** *RealMente de nada sirve esforzarte tanto si tu identidad no está alineada con lo que quieres*
+* **Video Oficial en YouTube:** [Ver Episodio en YouTube](https://www.youtube.com/watch?v=NRIkxLGeAq4) (ID: `NRIkxLGeAq4` | Duración: 24:10 | Publicado: 14-Oct-2026)
+* **Carpeta Oficial:** [EP61_Esfuerzo_e_Identidad](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad)
+* **Transcripciones:** [Transcripción Editada](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad/03_Transcripcion_Final/transcripcion_final_editada_ep61.md) | [Transcripción Cruda](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad/03_Transcripcion_Final/transcripcion_cruda_youtube_ep61.md)
+* **Mensaje y Frase de Inicio:** [mensaje_apertura_club_ep61.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad/01_Frase_Inicio_Semana/mensaje_apertura_club_ep61.md)
+* **Escaleta / Esquema de Grabación:** [escaleta_ep61_esfuerzo_e_identidad.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad/02_Podcast_Guion_y_Grabacion/escaleta_ep61_esfuerzo_e_identidad.md)
+* **Tipo:** Diagnóstico del Bloqueo & Reprogramación de Autoconcepto (PNL)
+* **Pregunta de Poder:** Si de verdad quieres alcanzar esa meta, ¿estás dispuesta a pagar el precio de dejar de ser la persona que eres hoy?
+* **Pilares y Conceptos Clave (Semana Realmente Club):**
+  1. **Para Lograrlo Tienes que Dejar de Ser Tú:** La persona que eres hoy tocó su techo; a esa meta no vas a llegar tú, va a llegar la mujer en la que estés dispuesta a convertirte.
+  2. **El Duelo de la Identidad:** La armadura infantil aprendida para sobrevivir ya te queda chica; crecer exige enterrar tu personaje de víctima, dinámicas familiares y quejas conocidas.
+  3. **La Trampa del «Yo Soy» y «Yo Necesito»:** Cómo el constante *"soy desordenada, soy lenta, soy enfermiza, necesito más tiempo"* te distrae, te desconecta y boicotea la meta.
+  4. **Auditoría de Coherencia y el Precio a Pagar:** El freno no está afuera ni en el dinero; está en lo que crees y reafirmas de ti. Confrontar qué requiere el objetivo de ti y decidir si asumes el costo de transformarte.
+
