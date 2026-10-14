@@ -4,6 +4,7 @@ import json
 import base64
 import urllib.request
 import urllib.error
+import urllib.parse
 import ssl
 import argparse
 import hashlib
@@ -180,12 +181,13 @@ def upload_file(repo_name, file_path, target_rel_path=None, message=None, branch
         target_rel_path = os.path.basename(file_path)
         
     target_rel_path = target_rel_path.replace("\\", "/")
+    quoted_path = urllib.parse.quote(target_rel_path, safe="/")
     
     with open(file_path, "rb") as f:
         content_bytes = f.read()
     content_b64 = base64.b64encode(content_bytes).decode("utf-8")
     
-    url = f"https://api.github.com/repos/{username}/{repo_name}/contents/{target_rel_path}"
+    url = f"https://api.github.com/repos/{username}/{repo_name}/contents/{quoted_path}"
     
     if sha is None:
         existing = github_request(f"{url}?ref={branch}", token=token, silent_404=True)
@@ -234,7 +236,8 @@ def download_file(repo_name, rel_path, sha=None, branch="main", base_dir=None):
             data_bytes = base64.b64decode(res["content"])
             
     if data_bytes is None:
-        content_url = f"https://api.github.com/repos/{username}/{repo_name}/contents/{rel_path}?ref={branch}"
+        quoted_rel = urllib.parse.quote(rel_path, safe="/")
+        content_url = f"https://api.github.com/repos/{username}/{repo_name}/contents/{quoted_rel}?ref={branch}"
         res = github_request(content_url, token=token, silent_404=True)
         if res and "content" in res:
             data_bytes = base64.b64decode(res["content"])
@@ -277,8 +280,9 @@ def pull_project(repo_name="realmente-marca", branch="main"):
         else:
             if local_files[rel_path]["sha"] != remote_sha:
                 # Comprobar fecha de commit remoto vs mtime local
+                quoted_rel = urllib.parse.quote(rel_path, safe="")
                 commit_info = github_request(
-                    f"https://api.github.com/repos/{username}/{repo_name}/commits?path={rel_path}&page=1&per_page=1",
+                    f"https://api.github.com/repos/{username}/{repo_name}/commits?path={quoted_rel}&page=1&per_page=1",
                     token=token, silent_404=True
                 )
                 remote_is_newer = False
