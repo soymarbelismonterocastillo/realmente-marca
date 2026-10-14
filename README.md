@@ -8,6 +8,19 @@ Bienvenido al repositorio oficial del ecosistema **RealMente**. Aquí se almacen
 
 ---
 
+## 🎙️ Último Episodio Publicado: EP61 (14 de Octubre de 2026)
+> **"RealMente de nada sirve esforzarte tanto si tu identidad no está alineada con lo que quieres"**
+
+* 📺 **Video Oficial en YouTube:** [Ver Episodio en YouTube (ID: NRIkxLGeAq4)](https://www.youtube.com/watch?v=NRIkxLGeAq4) (Duración: 24:10)
+* 📁 **Carpeta Completa del Episodio:** [`Episodios/EP61_Esfuerzo_e_Identidad/`](https://github.com/soymarbelismonterocastillo/realmente-marca/tree/main/Episodios/EP61_Esfuerzo_e_Identidad)
+* 📝 **Guion Oficial de Grabación:** [`guion_episodio_61.md`](https://github.com/soymarbelismonterocastillo/realmente-marca/blob/main/guion_episodio_61.md)
+* ✍️ **Transcripción Oficial Editada:** [`transcripcion_episodio_61.md`](https://github.com/soymarbelismonterocastillo/realmente-marca/blob/main/transcripcion_episodio_61.md)
+* 📱 **Secuencia de Stories (Instagram):** [`stories_episodio_61.md`](https://github.com/soymarbelismonterocastillo/realmente-marca/blob/main/stories_episodio_61.md)
+* 💬 **Mensaje de Apertura RealMente Club:** [`mensaje_apertura_club_ep61.md`](https://github.com/soymarbelismonterocastillo/realmente-marca/blob/main/Episodios/EP61_Esfuerzo_e_Identidad/01_Frase_Inicio_Semana/mensaje_apertura_club_ep61.md)
+* 📋 **Descripción Oficial para YouTube & Spotify:** [`descripcion_youtube_spotify_ep61.md`](https://github.com/soymarbelismonterocastillo/realmente-marca/blob/main/Episodios/EP61_Esfuerzo_e_Identidad/02_Podcast_Guion_y_Grabacion/descripcion_youtube_spotify_ep61.md)
+
+---
+
 ## 📚 Estructura del Ecosistema
 
 ```
