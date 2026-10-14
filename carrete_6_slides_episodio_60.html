@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualizador interactivo de Carrete de 6 Slides para Instagram - Episodio 60 de RealMente Podcast con Marbelis Montero">
+  <title>Carrete 6 Slides — Episodio 60 | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0410;
+      --bg-gradient: linear-gradient(145deg, #12091c 0%, #1e0d32 50%, #150824 100%);
+      --card-bg: rgba(28, 14, 46, 0.75);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-hover: #38bdf8;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.3);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --accent-red: #fb7185;
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 35px rgba(0, 242, 254, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      width: 100%;
+      max-width: 1120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-pill {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(192, 132, 252, 0.2));
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: var(--accent-turquoise);
+      color: #0c0414;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--accent-turquoise-glow);
+    }
+
+    .btn-action.primary:hover {
+      background: var(--accent-turquoise-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--accent-turquoise-glow);
+    }
+
+    /* Layout Container */
+    .workspace-container {
+      width: 100%;
+      max-width: 1120px;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .workspace-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* Carousel Mockup Stage (Proportion 4:5) */
+    .carousel-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .slide-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border-radius: 28px;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-soft), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Background Ambient Elements */
+    .ambient-glow-top {
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .ambient-glow-bottom {
+      position: absolute;
+      bottom: -100px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Carousel Nav Arrows */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 18px;
+      padding: 0 4px;
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 26px;
+      border-radius: 10px;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 10px var(--accent-turquoise-glow);
+    }
+
+    /* Slide Elements */
+    .slide-content-pane {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-turquoise);
+    }
+
+    .slide-badge {
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .slide-num-pill {
+      background: rgba(192, 132, 252, 0.14);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      color: var(--accent-lilac);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px 0;
+    }
+
+    /* Typography inside slides */
+    .slide-hook-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.05rem;
+      font-weight: 700;
+      line-height: 1.24;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
+
+    .slide-hook-main span.highlight {
+      color: var(--accent-turquoise);
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+    }
+
+    .slide-sub-body {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .slide-statement {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--accent-turquoise);
+      margin-bottom: 18px;
+    }
+
+    .quote-card {
+      background: rgba(0, 242, 254, 0.08);
+      border-left: 3.5px solid var(--accent-turquoise);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.96rem;
+      color: #e0f2fe;
+      line-height: 1.48;
+      margin-top: 14px;
+    }
+
+    .knife-quote {
+      background: linear-gradient(135deg, rgba(192, 132, 252, 0.16), rgba(0, 242, 254, 0.12));
+      border: 1.5px solid rgba(192, 132, 252, 0.45);
+      border-radius: 16px;
+      padding: 18px 18px;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      line-height: 1.48;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .slide-footer-hint {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: rgba(216, 180, 254, 0.85);
+      letter-spacing: 1px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Sidebar / Right Panel */
+    .sidebar-panel {
+      background: rgba(20, 10, 32, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .thumb-btn {
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border: 1.5px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-turquoise-glow);
+    }
+
+    .thumb-btn span {
+      font-size: 0.62rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* Slide Text Copy Box */
+    .text-copy-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    /* Caption Box */
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      background: var(--accent-turquoise);
+      color: #0c0414;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand-tag">
+      <span class="brand-pill">RealMente • EP. 60</span>
+      <span class="brand-title">Carrete de 6 Slides: El Costo de Esperar Señales</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn-action primary" onclick="copyInstagramCaption()">📋 Copiar Caption</button>
+      <button class="btn-action" onclick="window.print()">🖨️ Imprimir / PDF</button>
+    </div>
+  </header>
+
+  <!-- Workspace -->
+  <div class="workspace-container">
+
+    <!-- Carousel Stage (4:5 Mobile Frame) -->
+    <div class="carousel-stage">
+      
+      <div class="slide-frame" id="slideFrame">
+        <div class="ambient-glow-top"></div>
+        <div class="ambient-glow-bottom"></div>
+
+        <!-- Dynamic Slide Content -->
+        <div class="slide-content-pane" id="slidePane">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Navigation Arrows & Dots -->
+      <div class="carousel-nav">
+        <button class="btn-action" onclick="prevSlide()" id="prevBtn">◀ Anterior</button>
+        <div class="slide-dots" id="dotsContainer">
+          <div class="dot active" onclick="goToSlide(0)"></div>
+          <div class="dot" onclick="goToSlide(1)"></div>
+          <div class="dot" onclick="goToSlide(2)"></div>
+          <div class="dot" onclick="goToSlide(3)"></div>
+          <div class="dot" onclick="goToSlide(4)"></div>
+          <div class="dot" onclick="goToSlide(5)"></div>
+        </div>
+        <button class="btn-action" onclick="nextSlide()" id="nextBtn">Siguiente ▶</button>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar Panel -->
+    <div class="sidebar-panel">
+
+      <div>
+        <h3 class="panel-section-title">🎠 Selección de Slide</h3>
+        <div class="thumbnails-grid">
+          <button class="thumb-btn active" onclick="goToSlide(0)">#1<span>WhatsApp</span></button>
+          <button class="thumb-btn" onclick="goToSlide(1)">#2<span>Impacto</span></button>
+          <button class="thumb-btn" onclick="goToSlide(2)">#3<span>Incienso</span></button>
+          <button class="thumb-btn" onclick="goToSlide(3)">#4<span>Cuchillo</span></button>
+          <button class="thumb-btn" onclick="goToSlide(4)">#5<span>Realidad</span></button>
+          <button class="thumb-btn" onclick="goToSlide(5)">#6<span>Acción</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">📝 Texto de esta Lámina</h3>
+          <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="copyCurrentSlideText()">Copiar Texto</button>
+        </div>
+        <div class="text-copy-box" id="slideTextRaw">
+          Cargando contenido...
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">💬 Caption para Instagram</h3>
+          <button class="btn-action primary" style="padding:4px 10px; font-size:0.75rem;" onclick="copyInstagramCaption()">Copiar Caption</button>
+        </div>
+        <div class="caption-box" id="captionText">
+El universo no te va a mandar un WhatsApp. 🚪⚡
+
+Y Mercurio retrógrado no tiene la culpa de que lleves meses congelada frente a una decisión que ya sabes que tienes que tomar.
+
+Nos encanta disfrazar el miedo con falsa espiritualidad: decimos que "estamos esperando que los planetas se alineen", que "el horóscopo no da luz verde" o que "aún no llega la señal correcta". 
+
+Pero seamos completamente honestas:
+Eso no es paciencia. Es cobardía con aroma a incienso.
+
+No decidir ya es una decisión: es la decisión cobarde de quedarte suspendida en el limbo para no tener que hacerte cargo de tu vida ni de tu libertad. 
+
+¿Cuántos años más vas a regalar esperando una señal mágica? 
+Mientras tú dudas y buscas pretextos en internet, la vida real se te está yendo. Te estás haciendo vieja en la indecisión.
+
+El día que por fin te atrevas a dar el paso te vas a decir con rabia: "¿Por qué carajos perdí tanto tiempo?".
+
+La vida no se destraba pidiendo permiso afuera. Se destraba cuando tú te plantas firme adentro: Ya está. Ya lo vi. Ya lo decidí. 🔑✨
+
+🎙️ EPISODIO 60 YA DISPONIBLE en Spotify y YouTube.
+
+💬 Comenta la palabra DECISIÓN aquí abajo y te envío de inmediato el enlace directo al episodio a tu DM.
+
+¡Cero excusas!
+
+#RealMentePodcast #MarbelisMontero #TomaDeDecisiones #PNL #Mentalidad #DesarrolloPersonal #LiderazgoFemenino #Autoestima #CrecimientoPersonal</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">¡Copiado al portapapeles!</div>
+
+  <script>
+    const slidesData = [
+      {
+        tag: "REALMENTE PODCAST • EPISODIO 60",
+        num: "SLIDE 1 / 6",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-turquoise); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;">
+              ⚡ DESMONTANDO LA EXCUSA MÍSTICA
+            </div>
+            <h1 class="slide-hook-main">
+              El universo no te va a mandar <br>
+              <span class="highlight">un WhatsApp.</span>
+            </h1>
+            <p class="slide-sub-body" style="font-size: 1.15rem; color: var(--text-main);">
+              Y Mercurio retrógrado <strong>NO</strong> tiene la culpa de que te dé pavor tomar una decisión. ⚡🚪
+            </p>
+          </div>
+        `,
+        rawText: `El universo no te va a mandar un WhatsApp.\n\nY Mercurio retrógrado no tiene la culpa de que te dé pavor tomar una decisión. ⚡🚪\n\nDesliza para ver la verdad que estás evadiendo ➔`
+      },
+      {
+        tag: "01 / EL PRIMER IMPACTO",
+        num: "SLIDE 2 / 6",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <h2 class="slide-statement">
+              No decidir <br>
+              <span style="color: var(--text-main);">ya es una decisión.</span>
+            </h2>
+            <div class="knife-quote">
+              Es la <strong>decisión cobarde</strong> de quedarte en el limbo esperando que la vida o alguien más elija por ti.
+            </div>
+          </div>
+        `,
+        rawText: `01 / EL PRIMER IMPACTO\n\nNo decidir ya es una decisión.\n\nEs la decisión cobarde de quedarte en el limbo esperando que la vida o alguien más elija por ti.`
+      },
+      {
+        tag: "02 / LA MÁSCARA AL DESCUBIERTO",
+        num: "SLIDE 3 / 6",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <p style="font-size: 1.08rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">
+              Lees el horóscopo, buscas señales, pides opiniones a medio mundo...
+            </p>
+            <p style="font-size: 1.08rem; color: var(--text-main); line-height: 1.5; margin-bottom: 18px;">
+              Haces cualquier cosa con tal de no tener esa conversación incómoda, renunciar a ese lugar o cortar esa relación que te apaga.
+            </p>
+            <div class="quote-card" style="border-left-color: var(--accent-turquoise); font-size: 1.12rem; font-weight: 700; color: var(--accent-turquoise);">
+              💬 Eso no es paciencia: es cobardía con aroma a incienso.
+            </div>
+          </div>
+        `,
+        rawText: `02 / LA MÁSCARA AL DESCUBIERTO\n\nLees el horóscopo, buscas señales, pides opiniones a medio mundo...\n\nHaces cualquier cosa con tal de no tener esa conversación incómoda, renunciar a ese lugar o cortar esa relación que te apaga.\n\nEso no es paciencia: es cobardía con aroma a incienso.`
+      },
+      {
+        tag: "03 / EL VERDADERO COSTO",
+        num: "SLIDE 4 / 6",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <div style="font-size: 0.95rem; font-weight: 600; color: var(--accent-lilac); margin-bottom: 12px;">
+              Mírate al espejo con total honestidad:
+            </div>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.55rem; line-height: 1.35; color: var(--accent-turquoise); margin-bottom: 16px;">
+              ¿Cuántos años más de tu vida vas a tirar a la basura esperando una «señal divina»?
+            </h2>
+            <div style="font-size: 1.05rem; color: var(--text-main); line-height: 1.5;">
+              Mientras tú dudas y te escondes detrás de excusas... la vida real se te está yendo. <br><br>
+              <span style="color: var(--accent-red); font-weight: 700; font-size: 1.12rem;">Te estás haciendo vieja en la indecisión.</span>
+            </div>
+          </div>
+        `,
+        rawText: `03 / EL VERDADERO COSTO\n\nMírate al espejo con total honestidad:\n\n¿Cuántos años más de tu vida vas a tirar a la basura esperando una «señal divina»?\n\nMientras tú dudas y te escondes detrás de excusas... la vida real se te está yendo.\n\nTe estás haciendo vieja en la indecisión.`
+      },
+      {
+        tag: "04 / EL GOLPE DE REALIDAD",
+        num: "SLIDE 5 / 6",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600;">
+              ¿Sabes qué es lo que más te va a doler?
+            </p>
+            <p style="font-size: 1rem; color: var(--text-main); margin-bottom: 16px;">
+              El día que por fin te atrevas a dar el paso, te vas a decir con rabia y lágrimas en los ojos:
+            </p>
+            <div class="knife-quote" style="border-color: var(--accent-turquoise); font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--accent-turquoise); line-height: 1.35;">
+              «¿Por qué carajos regalé tantos años de mi vida esperando señales en lugar de decidir?»
+            </div>
+          </div>
+        `,
+        rawText: `04 / EL GOLPE DE REALIDAD\n\n¿Sabes qué es lo que más te va a doler?\n\nEl día que por fin te atrevas a dar el paso, te vas a decir con rabia y lágrimas en los ojos:\n\n«¿Por qué carajos regalé tantos años de mi vida esperando señales en lugar de decidir?»`
+      },
+      {
+        tag: "05 / PASA A LA ACCIÓN",
+        num: "SLIDE 6 / 6",
+        html: `
+          <div class="slide-body" style="text-align: left;">
+            <div style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 10px;">
+              La vida no se destraba pidiendo permiso afuera. Se destraba cuando te paras firme adentro:
+            </div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--accent-turquoise); margin-bottom: 18px;">
+              «Ya está. Ya lo vi. Ya lo decidí.»
+            </div>
+            <div style="background: rgba(0, 242, 254, 0.1); border: 1px solid var(--accent-turquoise); border-radius: 14px; padding: 14px; margin-bottom: 14px;">
+              <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-turquoise); letter-spacing: 1px;">🎙️ EPISODIO 60 • REALMENTE PODCAST</div>
+              <div style="font-size: 0.9rem; color: var(--text-main); margin-top: 4px;">La decisión que estás evadiendo es la puerta a tu siguiente nivel.</div>
+            </div>
+            <div style="font-size: 0.98rem; font-weight: 700; color: var(--text-main);">
+              💬 Comenta <span style="color: var(--accent-turquoise); text-decoration: underline;">DECISIÓN</span> y te envío el episodio directo a tu DM.
+            </div>
+          </div>
+        `,
+        rawText: `05 / PASA A LA ACCIÓN\n\nLa vida no se destraba pidiendo permiso afuera. Se destraba cuando te paras firme adentro:\n\n«Ya está. Ya lo vi. Ya lo decidí.»\n\n🎙️ Episodio 60 de RealMente: La decisión que estás evadiendo es la puerta a tu siguiente nivel.\n\n💬 Comenta la palabra DECISIÓN y te envío el episodio directo a tu DM.`
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function renderSlide(index) {
+      const slide = slidesData[index];
+      const pane = document.getElementById("slidePane");
+      
+      pane.innerHTML = `
+        <div class="slide-top-meta">
+          <span class="slide-badge">${slide.tag}</span>
+          <span class="slide-num-pill">${slide.num}</span>
+        </div>
+        ${slide.html}
+        <div class="slide-footer-hint">
+          <span>REALMENTE PODCAST</span>
+          <span>${index === 5 ? 'COMENTA DECISIÓN 💬' : 'DESLIZA ➔'}</span>
+        </div>
+      `;
+
+      // Update Dots
+      const dots = document.querySelectorAll(".dot");
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === index);
+      });
+
+      // Update Thumbnails
+      const thumbs = document.querySelectorAll(".thumb-btn");
+      thumbs.forEach((thumb, idx) => {
+        thumb.classList.toggle("active", idx === index);
+      });
+
+      // Update Raw Text box
+      document.getElementById("slideTextRaw").innerText = slide.rawText;
+
+      // Update Prev / Next Buttons
+      document.getElementById("prevBtn").disabled = index === 0;
+      document.getElementById("nextBtn").disabled = index === slidesData.length - 1;
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < slidesData.length) {
+        currentSlide = index;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        renderSlide(currentSlide);
+      }
+    }
+
+    // Keyboard Navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    });
+
+    // Copy Utilities
+    function showToast(msg) {
+      const toast = document.getElementById("toastMessage");
+      toast.innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function copyCurrentSlideText() {
+      const text = slidesData[currentSlide].rawText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("¡Texto de la lámina copiado!");
+      });
+    }
+
+    function copyInstagramCaption() {
+      const caption = document.getElementById("captionText").innerText.trim();
+      navigator.clipboard.writeText(caption).then(() => {
+        showToast("¡Caption de Instagram copiado!");
+      });
+    }
+
+    // Initial render
+    renderSlide(0);
+  </script>
+</body>
+</html>
