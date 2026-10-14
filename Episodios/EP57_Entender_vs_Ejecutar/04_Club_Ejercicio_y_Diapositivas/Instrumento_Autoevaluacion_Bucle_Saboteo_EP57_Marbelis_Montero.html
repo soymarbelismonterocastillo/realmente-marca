@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrumento de Autoevaluación · Marbelis Montero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Mulish:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --violeta: #4C078C;
+    --indigo: #2E0981;
+    --lila-vivo: #A669DA;
+    --lila-suave: #BA81C9;
+    --turquesa: #2AD2C5;
+    --carbon: #2B2B2B;
+    --gris-loto: #808080;
+    --blanco-petalo: #FAFAF9;
+    --sombra: 0 10px 30px -10px rgba(76, 7, 140, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Mulish', sans-serif;
+    background-color: #E7E4EE;
+    color: var(--carbon);
+    line-height: 1.6;
+    padding: 40px 20px;
+    font-size: 17px;
+  }
+
+  .container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(43,43,43,0.12);
+    overflow: hidden;
+    border: 1px solid rgba(166, 105, 218, 0.2);
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--violeta) 0%, var(--indigo) 100%);
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(42, 210, 197, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .brand-badge {
+    font-family: 'Jost', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 14px;
+    color: var(--turquesa);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Jost', sans-serif;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .header .subtitle {
+    font-family: 'Mulish', sans-serif;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* Content Padding */
+  .content {
+    padding: 45px 50px;
+  }
+
+  /* Intro Quote Card */
+  .intro-box {
+    background: var(--blanco-petalo);
+    border-left: 5px solid var(--lila-vivo);
+    padding: 24px 30px;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 40px;
+  }
+
+  .intro-quote {
+    font-family: 'Jost', sans-serif;
+    font-size: 19px;
+    color: var(--violeta);
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .intro-author {
+    font-size: 14px;
+    color: var(--gris-loto);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .intro-text {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 23px;
+    color: var(--violeta);
+    font-weight: 600;
+    margin: 35px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid rgba(166, 105, 218, 0.15);
+    padding-bottom: 10px;
+  }
+
+  .section-title span.number {
+    background: var(--violeta);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  /* Questions Cards */
+  .question-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(186, 129, 201, 0.25);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  }
+
+  .question-number {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: var(--lila-vivo);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .question-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 18px;
+    color: var(--carbon);
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  .options-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-item {
+    background: var(--blanco-petalo);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15.5px;
+    color: #333;
+  }
+
+  .option-badge {
+    background: white;
+    border: 1.5px solid var(--lila-suave);
+    color: var(--violeta);
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Scoring Table */
+  .scoring-container {
+    background: linear-gradient(180deg, var(--blanco-petalo) 0%, #FFF 100%);
+    border: 2px dashed var(--lila-suave);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 40px 0;
+  }
+
+  .scoring-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  .scoring-table th, .scoring-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .scoring-table th {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    color: var(--violeta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .scoring-table td {
+    font-size: 15.5px;
+  }
+
+  .score-input {
+    width: 65px;
+    height: 34px;
+    border: 1.5px solid var(--lila-vivo);
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--violeta);
+    font-size: 16px;
+  }
+
+  /* Profile Cards */
+  .profile-card {
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 25px;
+    position: relative;
+    border-left: 6px solid var(--violeta);
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+
+  .profile-card.p1 { border-left-color: #E74C3C; }
+  .profile-card.p2 { border-left-color: #F1C40F; }
+  .profile-card.p3 { border-left-color: #3498DB; }
+  .profile-card.p4 { border-left-color: #8E44AD; }
+
+  .profile-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gris-loto);
+    margin-bottom: 4px;
+  }
+
+  .profile-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 21px;
+    color: var(--violeta);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .profile-section {
+    margin-bottom: 12px;
+  }
+
+  .profile-section strong {
+    color: var(--carbon);
+    font-size: 14.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .profile-section p {
+    font-size: 15.5px;
+    color: #444;
+  }
+
+  /* Footer Quote */
+  .footer-quote-box {
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--violeta) 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 30px;
+    border-radius: 14px;
+    margin-top: 40px;
+  }
+
+  .footer-quote {
+    font-family: 'Jost', sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .footer-author {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--turquesa);
+    font-weight: 600;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .container { box-shadow: none; border: none; max-width: 100%; }
+    .question-card, .profile-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand-badge">RealMente Club · Marbelis Montero</div>
+    <h1>Instrumento de Autoevaluación</h1>
+    <div class="subtitle">¿Cuál es tu bucle de saboteo y parálisis?</div>
+    <div style="margin-top:12px; font-size:14px; opacity:0.85; font-family:'Jost';">Basado en el Episodio #57: "Tu vida no cambia cuando lo entiendes, cambia cuando lo accionas"</div>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+    
+    <!-- Intro -->
+    <div class="intro-box">
+      <div class="intro-quote">"Tu vida no cambia por el número de libros leídos, terapias hechas o patrones diagnosticados; cambia por lo que te atreves a transformar."</div>
+      <div class="intro-author">— Marbelis Montero · Coach & Trainer en PNL</div>
+      <p class="intro-text">
+        En el Episodio 57 dejamos algo muy claro: nuestra mente es experta en construir <strong>bucles de saboteo</strong> para proteger al ego del miedo a la imperfección o a la exposición en la realidad. Este test de 10 preguntas revelará dónde se paraliza tu mente de forma inconsciente: <strong>¿hacia el PASADO?</strong> o <strong>¿hacia el FUTURO?</strong>
+      </p>
+    </div>
+
+    <!-- Instrucciones -->
+    <div style="background: var(--blanco-petalo); border-left: 4px solid var(--violeta); padding: 20px 24px; border-radius: 8px; margin-bottom: 35px; font-size: 15px; color: #444; line-height: 1.7;">
+      <strong style="color: var(--violeta); font-family: 'Jost'; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px; font-size: 15px;">📝 Instrucciones de aplicación:</strong>
+      1. Lee cuidadosamente cada situación y responde de la manera más espontánea posible, sin pensar tanto, sin sobrepensar ni sobreanalizar.<br>
+      2. Elige la opción (A, B, C o D) que mejor describa tu conducta habitual o diálogo interno.<br>
+      3. Suma tus respuestas en la Hoja de Totalización al final de las preguntas.<br>
+      4. Revisa el diagnóstico correspondiente a tu perfil dominante.
+    </div>
+
+    <!-- Preguntas -->
+    <div class="section-title">
+      <span class="number">10</span> Preguntas Diagnósticas
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 01</div>
+      <div class="question-text">Llevas días o semanas queriendo tomar una decisión o avanzar en una meta personal. Cuando por fin te sientas a trabajar en ello, ¿qué es lo primero que termina sucediendo?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> Me pongo a repasar mentalmente las razones o eventos de mi vida que me han llevado a sentirme estancada en este punto.</li>
+        <li class="option-item"><span class="option-badge">B</span> Noto una incomodidad interna y decido que es mejor hacer un ejercicio de escritura, meditación o desahogo para canalizar esa emoción antes de empezar.</li>
+        <li class="option-item"><span class="option-badge">C</span> Me distraigo organizando mi espacio o atendiendo pendientes menores, convenciéndome de que al día siguiente estaré con más energía.</li>
+        <li class="option-item"><span class="option-badge">D</span> Le doy vueltas a la estructura, al formato o a los detalles, ajustando la idea una y otra vez sin llegar a mostrar nada.</li>
+      </ul>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 02</div>
+      <div class="question-text">Te das cuenta de que pasó otro día más sin dar el paso que te prometiste. ¿En qué se engancha tu mente por la noche?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> En intentar rastrear cuándo empezó el problema: <em>"¿En qué momento empecé a reaccionar así y por qué me cuesta tanto cambiarlo?"</em></li>
+        <li class="option-item"><span class="option-badge">B</span> En evaluar mi estado interior: <em>"Tengo que revisar qué herida o memoria del pasado se me volvió a activar hoy."</em></li>
+        <li class="option-item"><span class="option-badge">C</span> En reorganizar la agenda: <em>"Hoy fue un día muy pesado; el fin de semana sin distracciones sí le voy a dar con todo."</em></li>
+        <li class="option-item"><span class="option-badge">D</span> En evaluar el riesgo: <em>"Si lo saco a medias y la gente no responde bien, sentiré que desperdicié una buena idea."</em></li>
+      </ul>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 03</div>
+      <div class="question-text">Tienes un momento de "clic" o revelación profunda sobre un tema tuyo en una sesión o lectura. ¿Cuál es tu conducta automática posterior?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> Busco más libros, podcasts o información sobre el tema para profundizar y entenderlo en todas sus capas.</li>
+        <li class="option-item"><span class="option-badge">B</span> Busco una herramienta de integración emocional o acompañamiento para procesar internamente lo que acabo de descubrir.</li>
+        <li class="option-item"><span class="option-badge">C</span> Siento alivio por la claridad obtenida, cierro el cuaderno y espero a que esa sensación se traduzca sola en ganas de actuar.</li>
+        <li class="option-item"><span class="option-badge">D</span> Armo un plan o esquema detalladísimo de cómo debería ejecutarse eso en la práctica para que todo salga bien.</li>
+      </ul>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 04</div>
+      <div class="question-text">¿Qué pensamiento surge cuando escuchas a alguien decirte <em>"ya estás lista, hazlo de una vez"</em>?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> <em>"Es fácil decirlo, pero hasta que no entienda por qué reacciono con este freno, actuar sería ir a ciegas."</em></li>
+        <li class="option-item"><span class="option-badge">B</span> <em>"Aún siento cierta inseguridad o inestabilidad interna; forzarme a actuar así sería no respetar mi proceso."</em></li>
+        <li class="option-item"><span class="option-badge">C</span> <em>"En este momento tengo la cabeza en mil cosas; necesito un par de días de desconexión para ponerle toda la energía."</em></li>
+        <li class="option-item"><span class="option-badge">D</span> <em>"Todavía hay detalles sueltos; no puedo salir a mostrar algo que no esté verdaderamente pulido."</em></li>
+      </ul>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 05</div>
+      <div class="question-text">Cuando proyectas el futuro de tus metas o proyectos:</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> Me cuesta visualizarlo con claridad porque mi mente vuelve a recordar intentos anteriores donde las cosas se complicaron.</li>
+        <li class="option-item"><span class="option-badge">B</span> Pienso en la versión de mí que debería sostener ese resultado y siento que aún debo madurar ciertos aspectos emocionales.</li>
+        <li class="option-item"><span class="option-badge">C</span> Imagino lo genial que será cuando por fin tenga el tiempo libre, la estabilidad y la motivación constante para disfrutarlo.</li>
+        <li class="option-item"><span class="option-badge">D</span> Me entusiasma la visión impecable que tengo en la mente, pero me da vértigo pensar en los imprevistos de la vida real.</li>
+      </ul>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 06</div>
+      <div class="question-text">Te dispones a actuar hoy, pero te das cuenta de que no estás motivada ni con la energía alta. ¿Cómo reaccionas?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> Me pongo a sobrepensar en por qué me cuesta mantener la disciplina y qué hay detrás de esta apatía repentina.</li>
+        <li class="option-item"><span class="option-badge">B</span> Escucho a mi cuerpo, concluyo que mi sistema nervioso o mis emociones necesitan pausa y priorizo el autocuidado.</li>
+        <li class="option-item"><span class="option-badge">C</span> Decido no forzar la barra: prefiero esperar a un día donde me sienta con esa chispita y entusiasmo natural.</li>
+        <li class="option-item"><span class="option-badge">D</span> Intento avanzar, pero como veo que lo que estoy haciendo no está quedando con el nivel que espero, prefiero frenar.</li>
+      </ul>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 07</div>
+      <div class="question-text">Surge una oportunidad imprevista de exponerte (dar una charla, mostrar tu proyecto, vender o hablar en público):</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> Empiezo a sobreanalizar por qué la exposición me genera tanta resistencia o duda.</li>
+        <li class="option-item"><span class="option-badge">B</span> Dudo en aceptar porque siento que mi seguridad personal o mi síndrome del impostor aún requieren trabajo interno.</li>
+        <li class="option-item"><span class="option-badge">C</span> Intento correr la fecha para más adelante, buscando un momento en que mi semana esté menos convulsionada.</li>
+        <li class="option-item"><span class="option-badge">D</span> Me pongo a anticipar todo lo que podría salir mal o cómo podrían reaccionar los demás si cometo un error en vivo.</li>
+      </ul>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 08</div>
+      <div class="question-text">Si fueras 100% honesta contigo misma, ¿de qué crees que te está protegiendo la parálisis?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> De la frustración de actuar sin comprender exactamente qué es lo que estoy haciendo.</li>
+        <li class="option-item"><span class="option-badge">B</span> De la culpa de exigirme resultados sin haber terminado de sanar o estar del todo bien por dentro.</li>
+        <li class="option-item"><span class="option-badge">C</span> De la incomodidad física y mental de hacer las cosas cansada, con esfuerzo o sin ganas.</li>
+        <li class="option-item"><span class="option-badge">D</span> De la posibilidad de descubrir que la realidad de mi trabajo no es tan genial como la idea que tenía en mi cabeza.</li>
+      </ul>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 09</div>
+      <div class="question-text">¿Cuál de estas frases se parece más a tus justificaciones cotidianas?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> <em>"Tengo que investigar y entender mejor este patrón antes de tomar una decisión precipitada."</em></li>
+        <li class="option-item"><span class="option-badge">B</span> <em>"No puedo dar de lo que no tengo; primero necesito estar bien yo por dentro."</em></li>
+        <li class="option-item"><span class="option-badge">C</span> <em>"Hacer las cosas sin ganas es hacerlas a medias; prefiero hacerlo cuando pueda darle mi 100%."</em></li>
+        <li class="option-item"><span class="option-badge">D</span> <em>"Para hacer algo mediocre o improvisado, prefiero no hacer nada y esperar a tenerlo impecable."</em></li>
+      </ul>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-card">
+      <div class="question-number">Pregunta 10</div>
+      <div class="question-text">Marbelis repite en el episodio: <em>"Tu vida no cambia cuando lo entiendes, cambia cuando lo accionas"</em>. ¿Qué resuena dentro de ti al leerlo?</div>
+      <ul class="options-list">
+        <li class="option-item"><span class="option-badge">A</span> Me hace sentido, pero siento que primero necesito entender qué me impide dar el salto en la práctica.</li>
+        <li class="option-item"><span class="option-badge">B</span> Lo entiendo, pero me preocupa accionar desde la autoexigencia sin haber sanado mi relación con el esfuerzo.</li>
+        <li class="option-item"><span class="option-badge">C</span> Me inspira la frase, pero cuando se me pasa el impulso del audio sigo posponiendo el primer paso.</li>
+        <li class="option-item"><span class="option-badge">D</span> Me reta la frase, pero me cuesta soltar el control y aceptar que mi primer intento sea imperfecto.</li>
+      </ul>
+    </div>
+
+    <!-- Totalización -->
+    <div class="scoring-container">
+      <div style="font-family:'Jost'; font-size: 21px; color: var(--violeta); font-weight: 600;">📊 Hoja de Totalización de Resultados</div>
+      <p style="font-size: 14.5px; color: #666; margin-top: 4px;">Escribe la cantidad de veces que seleccionaste cada letra para identificar tu perfil dominante.</p>
+      
+      <table class="scoring-table">
+        <thead>
+          <tr>
+            <th>Opción</th>
+            <th>Total</th>
+            <th>Perfil Asociado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mayoría de A</strong></td>
+            <td><input type="text" class="score-input" placeholder="0"></td>
+            <td><strong>Perfil 1: La Analista del Pasado</strong> (Bucle del "Por Qué")</td>
+          </tr>
+          <tr>
+            <td><strong>Mayoría de B</strong></td>
+            <td><input type="text" class="score-input" placeholder="0"></td>
+            <td><strong>Perfil 2: La Sanadora Eterna</strong> (Bucle de la "Pre-condición")</td>
+          </tr>
+          <tr>
+            <td><strong>Mayoría de C</strong></td>
+            <td><input type="text" class="score-input" placeholder="0"></td>
+            <td><strong>Perfil 3: La Esperadora del Momento Perfecto</strong> (Bucle del "Futuro Idealizado")</td>
+          </tr>
+          <tr>
+            <td><strong>Mayoría de D</strong></td>
+            <td><input type="text" class="score-input" placeholder="0"></td>
+            <td><strong>Perfil 4: La Protectora del Potencial</strong> (Bucle de la "Fantasía de Control")</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 12px; font-size: 13.5px; color: var(--gris-loto); font-style: italic;">
+        * En caso de empate entre dos letras, tu mente combina ambos bucles a la vez (ejemplo: usas el análisis del pasado para justificar y la expectativa del futuro para posponer).
+      </div>
+    </div>
+
+    <!-- Perfiles -->
+    <div class="section-title">
+      <span class="number">4</span> Diagnóstico de Perfiles
+    </div>
+
+    <!-- Profile 1 -->
+    <div class="profile-card p1">
+      <div class="profile-tag">Hacia el PASADO · Trampa del Análisis</div>
+      <div class="profile-title">🔴 Perfil 1: La Analista del Pasado (Bucle del "Por Qué")</div>
+      
+      <div class="profile-section">
+        <strong>Diagnóstico de tu Ego:</strong>
+        <p>Crees que comprender la causa original o el origen de tu patrón equivale a resolverlo. Te quedas dando vueltas en la explicación en lugar de cambiar el comportamiento.</p>
+      </div>
+      
+      <div class="profile-section">
+        <strong>La Verdad Incómoda:</strong>
+        <p>Entender da aliento momentáneo, pero no cambia tu realidad exterior. De nada sirve entender el origen de una fuga de agua si no cierras la llave de paso.</p>
+      </div>
+    </div>
+
+    <!-- Profile 2 -->
+    <div class="profile-card p2">
+      <div class="profile-tag">Hacia el PASADO · Trampa de la Justificación</div>
+      <div class="profile-title">🟡 Perfil 2: La Sanadora Eterna (Bucle de la "Pre-condición")</div>
+      
+      <div class="profile-section">
+        <strong>Diagnóstico de tu Ego:</strong>
+        <p>Usas el desarrollo personal como un escudo refinado (<em>"Todavía me falta sanar X herida antes de atreverme"</em>). Confundes estar en proceso de sanación con congelarte ante el riesgo.</p>
+      </div>
+      
+      <div class="profile-section">
+        <strong>La Verdad Incómoda:</strong>
+        <p>Usas la sanación como excusa para no exponerte. No se aprende a nadar fuera del agua; se aprende y se sana DENTRO del agua. La acción es la herramienta de reprogramación más potente.</p>
+      </div>
+    </div>
+
+    <!-- Profile 3 -->
+    <div class="profile-card p3">
+      <div class="profile-tag">Hacia el FUTURO · Trampa de la Expectativa</div>
+      <div class="profile-title">🔵 Perfil 3: La Esperadora del Momento Perfecto (Bucle del "Futuro Idealizado")</div>
+      
+      <div class="profile-section">
+        <strong>Diagnóstico de tu Ego:</strong>
+        <p>Dependes de una emoción mágica (<em>"sentirse lista"</em> o totalmente motivada). Esperas que el ambiente, las ganas o el universo se alineen en un "momento ideal" que jamás llega.</p>
+      </div>
+      
+      <div class="profile-section">
+        <strong>La Verdad Incómoda:</strong>
+        <p>El momento perfecto no existe, es solo una excusa sofisticada para no arriesgarte. La motivación está sobreestimada: la acción es fría y no depende de tus emociones. El orgullo viene DESPUÉS de hacer las cosas.</p>
+      </div>
+    </div>
+
+    <!-- Profile 4 -->
+    <div class="profile-card p4">
+      <div class="profile-tag">Hacia el FUTURO · Trampa de la Fantasía</div>
+      <div class="profile-title">🟣 Perfil 4: La Protectora del Potencial (Bucle de la "Fantasía de Control")</div>
+      
+      <div class="profile-section">
+        <strong>Diagnóstico de tu Ego:</strong>
+        <p>Prefieres mantener tus ideas e imagen impecables en la mente (donde el potencial es infinito e intocable) antes que chocar con la realidad imperfecta y finita del primer intento en el mundo real.</p>
+      </div>
+      
+      <div class="profile-section">
+        <strong>La Verdad Incómoda:</strong>
+        <p>Prefieres el estatus de "alguien con un gran potencial" a secas, que encarar el aprendizaje de un primer intento imperfecto. El aprendiz no se convierte en maestro sin tropezar y tragar agua.</p>
+      </div>
+    </div>
+
+    <!-- Footer Quote -->
+    <div class="footer-quote-box">
+      <div class="footer-quote">"Recuerda que lanzarte al agua es la única forma de aprender a nadar."</div>
+      <div class="footer-author">— Marbelis Montero</div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
