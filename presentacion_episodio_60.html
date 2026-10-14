@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episodio 60 - La decisión que evades es la puerta a tu siguiente nivel | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* PALETA DE MARCA REALMENTE OFICIAL: Morado Oscuro Berenjena + Turquesa + Lila Claro */
+      --bg-gradient: linear-gradient(135deg, #12091c 0%, #1e0d32 50%, #140824 100%);
+      --card-bg: rgba(30, 15, 48, 0.85);
+      --card-border: rgba(192, 132, 252, 0.35);
+      --text-main: #f5f3ff;
+      --text-muted: #c084fc;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.25);
+      --accent-lilac: #d8b4fe;
+      --accent-lilac-glow: rgba(216, 180, 254, 0.25);
+      --badge-bg: rgba(0, 242, 254, 0.12);
+      --badge-border: rgba(0, 242, 254, 0.4);
+      --highlight-bg: linear-gradient(135deg, rgba(216, 180, 254, 0.12), rgba(0, 242, 254, 0.12));
+      --shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.75);
+    }
+
+    [data-theme="light"] {
+      --bg-gradient: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #e9d5ff 100%);
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --card-border: rgba(168, 85, 247, 0.3);
+      --text-main: #2e1065;
+      --text-muted: #7e22ce;
+      --accent-turquoise: #0891b2;
+      --accent-turquoise-glow: rgba(8, 145, 178, 0.2);
+      --accent-lilac: #9333ea;
+      --accent-lilac-glow: rgba(147, 51, 234, 0.18);
+      --badge-bg: rgba(8, 145, 178, 0.1);
+      --badge-border: rgba(8, 145, 178, 0.35);
+      --highlight-bg: linear-gradient(135deg, rgba(243, 232, 255, 0.95), rgba(233, 213, 255, 0.95));
+      --shadow: 0 20px 45px -10px rgba(76, 29, 149, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      background: #09030f;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+      transition: background 0.3s ease;
+    }
+
+    /* Top Controls Bar */
+    .controls-bar {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 100;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-turquoise);
+      color: #09030f;
+      border-color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-turquoise-glow);
+    }
+
+    .slide-counter-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      padding: 4px 14px;
+      background: rgba(0, 242, 254, 0.12);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+    }
+
+    /* Presentation Deck Viewport (16:9) */
+    .deck-viewport {
+      width: 100%;
+      max-width: 980px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-gradient);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    /* Glowing decorative backgrounds */
+    .glow-circle-1 {
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, var(--accent-turquoise-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .glow-circle-2 {
+      position: absolute;
+      bottom: -140px;
+      left: -140px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, var(--accent-lilac-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Individual Slide Container */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 45px 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.96) translateY(10px);
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+      z-index: 10;
+    }
+
+    /* Header Badges & Titles */
+    .tag-header {
+      display: inline-block;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--accent-turquoise);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--accent-turquoise);
+      margin-bottom: 16px;
+      max-width: 860px;
+    }
+
+    .slide-subtitle {
+      font-size: 1.15rem;
+      color: var(--accent-lilac);
+      font-weight: 500;
+      max-width: 720px;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    /* Quote Box */
+    .quote-box {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-left: 5px solid var(--accent-turquoise);
+      border-top: 1px solid var(--card-border);
+      border-right: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 34px 44px;
+      max-width: 820px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .quote-author {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* Big Callout / Feature Container */
+    .feature-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px 32px;
+      max-width: 860px;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .feature-lead {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-bottom: 16px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .feature-banner {
+      background: var(--highlight-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 0.98rem;
+      line-height: 1.45;
+      color: var(--text-main);
+      margin-top: 14px;
+    }
+
+    /* Etymology Visual Layout (Slide 4) */
+    .etymology-box {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: stretch;
+      margin: 14px 0 18px 0;
+      width: 100%;
+      max-width: 820px;
+    }
+
+    .etymo-card {
+      flex: 1;
+      background: rgba(30, 15, 48, 0.9);
+      border: 1.5px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 22px;
+      text-align: center;
+      transition: transform 0.25s ease;
+    }
+
+    .etymo-root {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .etymo-meaning {
+      font-size: 1.05rem;
+      color: var(--accent-lilac);
+      font-weight: 600;
+    }
+
+    /* Dual Contrast Columns (Slide 6) */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      width: 100%;
+      max-width: 860px;
+      margin-top: 8px;
+      text-align: left;
+    }
+
+    .split-col {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .split-col.passive {
+      border: 1.5px solid rgba(244, 63, 94, 0.45);
+      border-top: 4px solid #f43f5e;
+    }
+
+    .split-col.active-power {
+      border: 1.5px solid rgba(0, 242, 254, 0.45);
+      border-top: 4px solid var(--accent-turquoise);
+    }
+
+    .col-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .split-col.passive .col-header { color: #fb7185; }
+    .split-col.active-power .col-header { color: var(--accent-turquoise); }
+
+    .col-body p {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+    .col-body p:last-child { margin-bottom: 0; }
+
+    /* Minimalist Action Slide (Slide 9) */
+    .action-box {
+      background: var(--highlight-bg);
+      border: 2px dashed var(--accent-turquoise);
+      border-radius: 24px;
+      padding: 60px 50px;
+      max-width: 760px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+    }
+
+    .action-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      color: var(--accent-turquoise);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    /* Q&A Presentation Box (Slide 11) */
+    .qa-box {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 2px solid rgba(0, 242, 254, 0.4);
+      border-radius: 24px;
+      padding: 50px 60px;
+      max-width: 780px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+      text-align: center;
+    }
+
+    /* Nav Arrows */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 50;
+      transition: all 0.2s ease;
+      font-size: 1.2rem;
+    }
+
+    .nav-arrow:hover {
+      background: var(--accent-turquoise);
+      color: #09030f;
+      border-color: var(--accent-turquoise);
+    }
+
+    .nav-prev { left: 18px; }
+    .nav-next { right: 18px; }
+
+    /* Footer bar inside deck */
+    .slide-footer {
+      position: absolute;
+      bottom: 16px;
+      left: 35px;
+      right: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 10px;
+      z-index: 20;
+    }
+
+    .key-hint {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .key-badge {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-family: monospace;
+      color: var(--accent-turquoise);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Bar -->
+  <div class="controls-bar">
+    <button class="btn" onclick="prevSlide()">← Anterior</button>
+    <div class="slide-counter-badge" id="slideNum">Slide 1 / 11</div>
+    <button class="btn" onclick="nextSlide()">Siguiente →</button>
+    <button class="btn" onclick="toggleTheme()">🌓 Tema (Oscuro / Claro)</button>
+    <button class="btn" onclick="toggleFullscreen()">⛶ Pantalla Completa</button>
+  </div>
+
+  <!-- Deck Viewport -->
+  <div class="deck-viewport" id="deck">
+    <div class="glow-circle-1"></div>
+    <div class="glow-circle-2"></div>
+
+    <button class="nav-arrow nav-prev" onclick="prevSlide()">‹</button>
+    <button class="nav-arrow nav-next" onclick="nextSlide()">›</button>
+
+    <!-- SLIDE 1: PORTADA OFICIAL -->
+    <div class="slide active">
+      <span class="tag-header">RealMente Club | Clase en Vivo</span>
+      <h1 class="slide-title">La decisión que llevas meses evadiendo es la puerta a tu siguiente nivel</h1>
+      <p class="slide-subtitle">Episodio 60 • RealMente Club<br><strong style="color: var(--accent-turquoise);">Con Marbelis Montero</strong></p>
+    </div>
+
+    <!-- SLIDE 2: FRASE DE APERTURA (OPCIÓN B) -->
+    <div class="slide">
+      <span class="tag-header">Reflexión Inicial</span>
+      <div class="quote-box">
+        <p class="quote-text">"La claridad no llega para que te atrevas a decidir; la claridad llega después de que tienes el coraje de dar el paso."</p>
+        <p class="quote-author">— Marbelis Montero</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: LA ILUSIÓN DE LA OMNIPOTENCIA -->
+    <div class="slide">
+      <span class="tag-header">Arquitectura de la Evasión</span>
+      <h2 class="slide-title" style="font-size: 2rem;">La Falsa Libertad de "Tener Opciones"</h2>
+      
+      <div class="feature-container">
+        <p class="feature-lead">Confundir mantener alternativas abiertas con tener verdadera libertad.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px;">
+          <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-lilac); padding: 12px 16px; border-radius: 8px;">
+            <div style="color: var(--accent-lilac); font-weight: 700; font-size: 0.95rem; margin-bottom: 6px;">La Fantasía Infantil</div>
+            <p style="font-size: 0.9rem; line-height: 1.4; color: var(--text-main);">Creer que mientras no elijas, sigues teniendo todas las vidas posibles disponibles sin pagar el costo de ninguna.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-turquoise); padding: 12px 16px; border-radius: 8px;">
+            <div style="color: var(--accent-turquoise); font-weight: 700; font-size: 0.95rem; margin-bottom: 6px;">La Realidad Ontológica</div>
+            <p style="font-size: 0.9rem; line-height: 1.4; color: var(--text-main);">Mantener todas las puertas abiertas no es amplitud: es parálisis. Mientras sostienes todas las posibilidades en tu cabeza, no estás viviendo ninguna en la realidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: LA RAÍZ: DECIDIR ES CORTAR -->
+    <div class="slide">
+      <span class="tag-header">Raíz Ontológica</span>
+      <h2 class="slide-title" style="font-size: 2rem; margin-bottom: 8px;">Decidir es Cortar</h2>
+      
+      <div class="etymology-box">
+        <div class="etymo-card" style="border-top: 3px solid var(--accent-turquoise);">
+          <div class="etymo-root">de-</div>
+          <div class="etymo-meaning">Separar de raíz</div>
+        </div>
+        <div class="etymo-card" style="border-top: 3px solid var(--accent-lilac);">
+          <div class="etymo-root">caedere</div>
+          <div class="etymo-meaning">Cortar / Matar</div>
+        </div>
+      </div>
+
+      <div class="feature-container" style="max-width: 820px;">
+        <p style="font-size: 1.05rem; line-height: 1.5; color: var(--text-main); text-align: center;">
+          <strong style="color: var(--accent-turquoise);">Toda decisión auténtica exige la muerte voluntaria de las otras posibilidades.</strong><br>
+          La parálisis no es falta de datos: es resistencia a asumir las renuncias que el crecimiento exige. Crecer no es acumular certezas; es tener la madurez de asumir pérdidas.
+        </p>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: LA CONFUSIÓN COMO TRANCE DEFENSIVO (PNL) -->
+    <div class="slide">
+      <span class="tag-header">Programación Neurolingüística</span>
+      <h2 class="slide-title" style="font-size: 2rem;">La Mentira del «No Sé Qué Hacer»</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 840px;">
+        <div class="feature-container" style="border-left: 4px solid var(--accent-turquoise);">
+          <h3 style="font-size: 1.15rem; color: var(--accent-turquoise); margin-bottom: 6px;">La Certeza Oculta</h3>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--text-main);">
+            En PNL sostenemos que nadie está verdaderamente confundida sobre lo que necesita hacer: <strong>en el fondo, sabes exactamente la respuesta</strong>. Te refugias en el estado de duda porque la certeza te obligaría a actuar y exponerte.
+          </p>
+        </div>
+
+        <div class="feature-container" style="border-left: 4px solid var(--accent-lilac);">
+          <h3 style="font-size: 1.15rem; color: var(--accent-lilac); margin-bottom: 6px;">El Trance Hipnótico Funcional</h3>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--text-main);">
+            Declararte "confundida" es la trinchera más elegante para justificar la inacción. Sobrepensar te mantiene ocupada sin tener que responder por las consecuencias de avanzar.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: LA DELEGACIÓN DE SOBERANÍA (COMPARATIVA DUAL) -->
+    <div class="slide">
+      <span class="tag-header">Evasión vs. Soberanía</span>
+      <h2 class="slide-title" style="font-size: 1.95rem; margin-bottom: 12px;">La Trampa de las "Manos Limpias"</h2>
+      
+      <div class="split-grid">
+        <div class="split-col passive">
+          <div class="col-header">
+            <span>⚠️</span> Si la vida o el otro deciden
+          </div>
+          <div class="col-body">
+            <p>• Conservas la ilusión de no tener la culpa si algo sale mal.</p>
+            <p>• Te mantienes en el rol de víctima de las circunstancias.</p>
+            <p>• Tu paz mental queda hipotecada al humor y criterio ajeno.</p>
+          </div>
+        </div>
+
+        <div class="split-col active-power">
+          <div class="col-header">
+            <span>👑</span> Si tú asumes y decides
+          </div>
+          <div class="col-body">
+            <p>• Asumes el mando absoluto de tu propio destino.</p>
+            <p>• Reclamas tu soberanía interna y validas tu propio criterio.</p>
+            <p>• Rompes para siempre el ciclo de esperar que alguien te rescate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: LA TRAMPA DE LA DECISIÓN PERFECTA -->
+    <div class="slide">
+      <span class="tag-header">Filosofía de Acción</span>
+      <h2 class="slide-title" style="font-size: 1.95rem; margin-bottom: 12px;">El Duelo Ontológico y la Certeza</h2>
+      
+      <div class="feature-container" style="max-width: 840px;">
+        <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 12px; padding: 12px 18px; margin-bottom: 14px; text-align: center;">
+          <span style="color: #fb7185; font-weight: 700; font-size: 0.95rem;">El arrepentimiento anticipado:</span>
+          <span style="color: var(--text-main); font-size: 0.92rem;"> Paralizarse buscando una garantía cósmica de no equivocarse.</span>
+        </div>
+
+        <p style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--accent-turquoise); text-align: center; margin: 12px 0; font-style: italic;">
+          "La decisión correcta previa a la acción no existe."
+        </p>
+
+        <div class="feature-banner" style="text-align: center;">
+          El acierto no te espera afuera como una respuesta mágica:<br>
+          <strong style="color: var(--accent-lilac);">se construye con la coherencia y el compromiso con el que sostienes el camino que eliges hoy.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: CORTAR LA CUERDA INVISIBLE -->
+    <div class="slide">
+      <span class="tag-header">Metáfora de Ruptura</span>
+      <h2 class="slide-title" style="font-size: 2rem; margin-bottom: 12px;">A un Metro del Suelo</h2>
+      
+      <div class="feature-container" style="max-width: 850px;">
+        <p style="font-size: 1.1rem; line-height: 1.45; text-align: center; color: var(--text-main); margin-bottom: 16px;">
+          Te aferras a lo conocido creyendo que te salva la vida,<br>
+          <strong style="color: #fb7185;">sin darte cuenta de que es lo único que te está congelando en la tormenta.</strong>
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 12px 16px; border: 1px solid var(--card-border);">
+            <div style="color: var(--accent-lilac); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">La Cuerda que Cargas:</div>
+            <div style="font-size: 0.88rem; color: var(--text-main); line-height: 1.35;">La costumbre, la relación desgastada, el estándar bajo o el silencio complaciente.</div>
+          </div>
+          <div style="background: rgba(0, 242, 254, 0.08); border-radius: 12px; padding: 12px 16px; border: 1px solid rgba(0, 242, 254, 0.3);">
+            <div style="color: var(--accent-turquoise); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px;">Tu Siguiente Nivel:</div>
+            <div style="font-size: 0.88rem; color: var(--text-main); line-height: 1.35;">No te pide más esfuerzo ni más resistencia: te pide cortar dependencias y validar tu propio criterio.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: ACCIÓN EN VIVO (ULTRA MINIMALISTA) -->
+    <div class="slide">
+      <div class="action-box">
+        <h1 class="action-title">Cruzar la línea:<br><span style="color: var(--accent-lilac);">tu decisión hoy</span></h1>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: FRASE DE CIERRE (LIMPIA Y EXCLUSIVA) -->
+    <div class="slide">
+      <span class="tag-header">Anclaje Final</span>
+      <div class="quote-box">
+        <p class="quote-text">"Tu siguiente nivel no te pide más esfuerzo ni más desgaste: te pide cortar la cuerda y confiar en tu propio criterio."</p>
+        <p class="quote-author">— Marbelis Montero</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: ESPACIO ABIERTO A PREGUNTAS (LÁMINA INDEPENDIENTE) -->
+    <div class="slide">
+      <span class="tag-header" style="background: rgba(0, 242, 254, 0.15); border-color: rgba(0, 242, 254, 0.4); color: var(--accent-turquoise);">
+        🎙️ Espacio Exclusivo RealMente Club
+      </span>
+      <div class="qa-box">
+        <h2 class="slide-title" style="font-size: 2.5rem; margin-bottom: 14px; color: var(--accent-turquoise);">
+          Espacio Abierto a Preguntas
+        </h2>
+        <p class="slide-subtitle" style="font-size: 1.25rem; color: var(--text-main); font-weight: 600; margin-bottom: 10px;">
+          Mentoría en vivo y análisis de casos reales
+        </p>
+        <p style="font-size: 1.05rem; color: var(--accent-lilac); font-weight: 400; line-height: 1.4;">
+          Micrófonos y chat abiertos para las socias del Club.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Bar inside Deck -->
+    <div class="slide-footer">
+      <span>RealMente Club • Episodio 60</span>
+      <span>Marbelis Montero — Master Trainer en PNL</span>
+    </div>
+  </div>
+
+  <!-- Key hint -->
+  <div class="key-hint">
+    <span>Navega con teclado: <span class="key-badge">←</span> <span class="key-badge">→</span> o clic en las flechas</span>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const slideNum = document.getElementById('slideNum');
+    const deck = document.getElementById('deck');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx === index) {
+          slide.classList.add('active');
+        }
+      });
+      
+      currentSlide = index;
+      slideNum.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+
+    // Theme Toggle (Light / Dark)
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        document.body.removeAttribute('data-theme');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+      }
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        deck.requestFullscreen().catch(err => {
+          alert(`Error al activar pantalla completa: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
