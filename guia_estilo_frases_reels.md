@@ -87,7 +87,26 @@
 
 ---
 
+## 🎬 SELECCIÓN OFICIAL DE CARRETE DE CHOQUE — EPISODIO 60 (Decisión, Evasión y Falsas Señales)
+
+### 📌 CARRETE DE 6 SLIDES GANADOR (Ángulo: Desmontando la excusa mística y el costo del tiempo)
+* **Slide 1 (Portada - Gancho Viral WhatsApp):**
+  > *"El universo no te va a mandar un WhatsApp. Y Mercurio retrógrado NO tiene la culpa de que te dé pavor tomar una decisión."*
+* **Slide 2 (El Primer Impacto):**
+  > *"No decidir ya es una decisión. Es la decisión cobarde de quedarte en el limbo esperando que la vida o alguien más elija por ti."*
+* **Slide 3 (La Máscara al Descubierto):**
+  > *"Lees el horóscopo, buscas señales, pides opiniones a medio mundo... Haces cualquier cosa con tal de no tener esa conversación incómoda, renunciar a ese lugar o cortar esa relación que te apaga. Eso no es paciencia: es cobardía con aroma a incienso."*
+* **Slide 4 (El Cuchillo en el Estómago):**
+  > *"Mírate al espejo con total honestidad: ¿Cuántos años más de tu vida vas a tirar a la basura esperando una «señal divina»? Mientras tú dudas y te escondes detrás de excusas... la vida real se te está yendo. Te estás haciendo vieja en la indecisión."*
+* **Slide 5 (El Golpe de Realidad):**
+  > *"¿Sabes qué es lo que más te va a doler? El día que por fin te atrevas a dar el paso, te vas a decir con rabia y lágrimas en los ojos: «¿Por qué carajos regalé tantos años de mi vida esperando señales en lugar de decidir?»"*
+* **Slide 6 (Reencuadre y CTA):**
+  > *"La vida no se destraba pidiendo permiso afuera. Se destraba cuando te paras firme adentro: «Ya está. Ya lo vi. Ya lo decidí.» Escucha el Episodio 60 de RealMente. Comenta DECISIÓN para enviártelo al privado."*
+
+---
+
 ## 📝 REGISTRO DE SEGUIMIENTO
-* **Fecha de actualización:** 26 de septiembre de 2026
-* **Estado:** Actualizado y guardado en la carpeta del proyecto (OneDrive / Google Drive sync).
+* **Fecha de actualización:** 11 de octubre de 2026
+* **Estado:** Actualizado con el Carrete de Choque oficial del Episodio 60 (Archivos: `carrete_6_slides_episodio_60.md` y `carrete_6_slides_episodio_60.html`).
+
 
