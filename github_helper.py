@@ -6,9 +6,12 @@ import urllib.request
 import urllib.error
 import ssl
 import argparse
+import hashlib
+import time
+from datetime import datetime
 
 # Config file path
-CONFIG_FILE = os.path.join(os.path.dirname(__file__), ".github_config.json")
+CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".github_config.json")
 
 # Ensure stdout uses UTF-8 encoding on Windows terminals
 if sys.stdout.encoding != 'utf-8':
@@ -19,7 +22,7 @@ if sys.stdout.encoding != 'utf-8':
 
 # Files and extensions to ignore during project sync
 IGNORED_DIRS = {".git", "__pycache__", ".vscode", ".idea", ".vercel"}
-IGNORED_FILES = {".env", ".github_config.json", ".vercel_config.json", "desktop.ini", "Thumbs.db"}
+IGNORED_FILES = {".env", ".github_config.json", ".vercel_config.json", "desktop.ini", "Thumbs.db", ".DS_Store"}
 IGNORED_EXTS = {".pyc", ".log", ".tmp"}
 
 def load_credentials():
@@ -80,6 +83,53 @@ def github_request(url, method="GET", data=None, token=None, silent_404=False):
         print(f"[X] Error de conexión: {e}")
         return None
 
+def compute_git_blob_sha(content_bytes):
+    """Calcula el SHA-1 oficial de Git Blob para comparar con GitHub."""
+    header = f"blob {len(content_bytes)}\0".encode("ascii")
+    return hashlib.sha1(header + content_bytes).hexdigest()
+
+def get_remote_tree(repo_name, branch="main", token=None):
+    """Obtiene el árbol completo de blobs de un repositorio en una sola petición."""
+    username, t = load_credentials()
+    token = token or t
+    url = f"https://api.github.com/repos/{username}/{repo_name}/git/trees/{branch}?recursive=1"
+    res = github_request(url, token=token, silent_404=True)
+    if not res or "tree" not in res:
+        return {}
+    return {item["path"]: item["sha"] for item in res["tree"] if item["type"] == "blob"}
+
+def get_local_files(base_dir=None):
+    """Escanea los archivos locales del proyecto calculando sus SHAs y marcas de tiempo."""
+    if not base_dir:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    local_files = {}
+    for root, dirs, files in os.walk(base_dir):
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
+        for f in files:
+            if f in IGNORED_FILES:
+                continue
+            ext = os.path.splitext(f)[1].lower()
+            if ext in IGNORED_EXTS:
+                continue
+            
+            full_path = os.path.join(root, f)
+            rel_path = os.path.relpath(full_path, base_dir).replace("\\", "/")
+            try:
+                with open(full_path, "rb") as fp:
+                    data = fp.read()
+                sha = compute_git_blob_sha(data)
+                mtime = os.path.getmtime(full_path)
+                local_files[rel_path] = {
+                    "full_path": full_path,
+                    "sha": sha,
+                    "mtime": mtime,
+                    "size": len(data)
+                }
+            except Exception as e:
+                print(f"[!] No se pudo leer {rel_path}: {e}")
+    return local_files
+
 def check_status():
     username, token = load_credentials()
     print(f"[*] Verificando conexión para el usuario: @{username}...")
@@ -120,7 +170,7 @@ def create_repository(repo_name, description="", private=False):
         print(f"[X] No se pudo crear el repositorio.")
         return None
 
-def upload_file(repo_name, file_path, target_rel_path=None, message=None, branch="main"):
+def upload_file(repo_name, file_path, target_rel_path=None, message=None, branch="main", sha=None):
     username, token = load_credentials()
     if not os.path.exists(file_path):
         print(f"[X] El archivo local '{file_path}' no existe.")
@@ -129,7 +179,6 @@ def upload_file(repo_name, file_path, target_rel_path=None, message=None, branch
     if not target_rel_path:
         target_rel_path = os.path.basename(file_path)
         
-    # Convert windows backslashes to forward slashes for URL
     target_rel_path = target_rel_path.replace("\\", "/")
     
     with open(file_path, "rb") as f:
@@ -138,15 +187,19 @@ def upload_file(repo_name, file_path, target_rel_path=None, message=None, branch
     
     url = f"https://api.github.com/repos/{username}/{repo_name}/contents/{target_rel_path}"
     
-    # Check if file exists to get sha
-    sha = None
-    existing = github_request(f"{url}?ref={branch}", token=token, silent_404=True)
-    if existing and "sha" in existing:
-        sha = existing["sha"]
-        
+    if sha is None:
+        existing = github_request(f"{url}?ref={branch}", token=token, silent_404=True)
+        if existing and "sha" in existing:
+            sha = existing["sha"]
+            
     if not message:
-        prefix = "update" if sha else "add"
-        message = f"chore: {prefix} {target_rel_path}"
+        prefix = "actualizar" if sha else "agregar"
+        if target_rel_path.startswith(".agents/") or target_rel_path.startswith("skill_") or target_rel_path.endswith(".md"):
+            message = f"docs: {prefix} {target_rel_path}"
+        elif target_rel_path.endswith((".html", ".png", ".jpg", ".jpeg", ".pdf")):
+            message = f"feat: {prefix} {target_rel_path}"
+        else:
+            message = f"chore: {prefix} {target_rel_path}"
         
     payload = {
         "message": message,
@@ -158,53 +211,159 @@ def upload_file(repo_name, file_path, target_rel_path=None, message=None, branch
         
     res = github_request(url, method="PUT", data=payload, token=token)
     if res and "content" in res:
-        print(f"[✓] Subido: {target_rel_path} (Commit: {res.get('commit', {}).get('sha', '')[:7]})")
+        print(f"  [↑] Subido: {target_rel_path} (Commit: {res.get('commit', {}).get('sha', '')[:7]})")
         return True
     else:
-        print(f"[X] Error al subir '{target_rel_path}'.")
+        print(f"  [X] Error al subir '{target_rel_path}'.")
         return False
 
-def sync_project(repo_name="realmente-marca"):
+def download_file(repo_name, rel_path, sha=None, branch="main", base_dir=None):
+    """Descarga un archivo desde GitHub al workspace local."""
+    username, token = load_credentials()
+    if not base_dir:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    local_path = os.path.join(base_dir, rel_path.replace("/", os.sep))
+    
+    # Obtener el blob por SHA (rápido y hasta 100MB) o por contents
+    data_bytes = None
+    if sha:
+        blob_url = f"https://api.github.com/repos/{username}/{repo_name}/git/blobs/{sha}"
+        res = github_request(blob_url, token=token, silent_404=True)
+        if res and "content" in res:
+            data_bytes = base64.b64decode(res["content"])
+            
+    if data_bytes is None:
+        content_url = f"https://api.github.com/repos/{username}/{repo_name}/contents/{rel_path}?ref={branch}"
+        res = github_request(content_url, token=token, silent_404=True)
+        if res and "content" in res:
+            data_bytes = base64.b64decode(res["content"])
+            
+    if data_bytes is None:
+        print(f"  [X] No se pudo descargar {rel_path} desde GitHub.")
+        return False
+        
+    os.makedirs(os.path.dirname(local_path), exist_ok=True)
+    with open(local_path, "wb") as f:
+        f.write(data_bytes)
+    print(f"  [↓] Descargado: {rel_path} ({len(data_bytes)} bytes)")
+    return True
+
+def pull_project(repo_name="realmente-marca", branch="main"):
+    """Descarga de GitHub los archivos nuevos o actualizados en el repositorio remoto."""
     username, token = load_credentials()
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    print(f"[*] Iniciando sincronización completa del proyecto en '{base_dir}' a GitHub ('{repo_name}')...")
+    print(f"[*] Verificando actualizaciones en GitHub (https://github.com/{username}/{repo_name}) -> Local...")
     
-    # Ensure repo exists
+    remote_tree = get_remote_tree(repo_name, branch=branch, token=token)
+    if not remote_tree:
+        print(f"[!] Repositorio remoto vacío o no encontrado.")
+        return
+        
+    local_files = get_local_files(base_dir)
+    downloaded_count = 0
+    
+    for rel_path, remote_sha in remote_tree.items():
+        if rel_path in IGNORED_FILES:
+            continue
+        ext = os.path.splitext(rel_path)[1].lower()
+        if ext in IGNORED_EXTS:
+            continue
+            
+        if rel_path not in local_files:
+            print(f"[*] Archivo nuevo detectado en GitHub: {rel_path}")
+            if download_file(repo_name, rel_path, sha=remote_sha, branch=branch, base_dir=base_dir):
+                downloaded_count += 1
+        else:
+            if local_files[rel_path]["sha"] != remote_sha:
+                # Comprobar fecha de commit remoto vs mtime local
+                commit_info = github_request(
+                    f"https://api.github.com/repos/{username}/{repo_name}/commits?path={rel_path}&page=1&per_page=1",
+                    token=token, silent_404=True
+                )
+                remote_is_newer = False
+                if commit_info and len(commit_info) > 0:
+                    remote_date_str = commit_info[0]["commit"]["committer"]["date"]
+                    remote_ts = datetime.fromisoformat(remote_date_str.replace("Z", "+00:00")).timestamp()
+                    if remote_ts > local_files[rel_path]["mtime"]:
+                        remote_is_newer = True
+                
+                if remote_is_newer:
+                    print(f"[*] Archivo más reciente en GitHub: {rel_path}")
+                    if download_file(repo_name, rel_path, sha=remote_sha, branch=branch, base_dir=base_dir):
+                        downloaded_count += 1
+                else:
+                    print(f"[-] {rel_path}: Versión local es más reciente que en GitHub (se preservará).")
+                    
+    if downloaded_count == 0:
+        print("[✓] Espacio local completamente actualizado con GitHub. No hay descargas pendientes.")
+    else:
+        print(f"[✓] Se descargaron {downloaded_count} archivos actualizados desde GitHub.")
+
+def push_project(repo_name="realmente-marca", branch="main"):
+    """Sube a GitHub todos los archivos locales nuevos o modificados (Copia de Seguridad Exacta)."""
+    username, token = load_credentials()
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    print(f"[*] Iniciando respaldo completo: Local -> GitHub (https://github.com/{username}/{repo_name})...")
+    
+    # Asegurar que el repo existe
     existing_repo = github_request(f"https://api.github.com/repos/{username}/{repo_name}", token=token, silent_404=True)
     if not existing_repo:
         print(f"[*] Repositorio '{repo_name}' no encontrado. Creándolo automáticamente...")
         create_repository(repo_name, description="Repositorio oficial de marca, recursos y contenidos de RealMente", private=False)
 
-    files_to_upload = []
-    for root, dirs, files in os.walk(base_dir):
-        # Prune ignored dirs
-        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
-        for f in files:
-            if f in IGNORED_FILES:
-                continue
-            ext = os.path.splitext(f)[1].lower()
-            if ext in IGNORED_EXTS:
-                continue
-            
-            full_path = os.path.join(root, f)
-            rel_path = os.path.relpath(full_path, base_dir)
-            files_to_upload.append((full_path, rel_path))
-
-    print(f"[*] Se encontraron {len(files_to_upload)} archivos para sincronizar.")
-    success_count = 0
-    for full_path, rel_path in files_to_upload:
-        # Determine semantic message prefix
-        if rel_path.startswith("skill_") or rel_path.endswith(".md"):
-            msg = f"docs: actualizar {rel_path}"
-        elif rel_path.endswith(".html") or rel_path.endswith(".png") or rel_path.endswith(".pdf"):
-            msg = f"feat: actualizar recurso visual {rel_path}"
+    remote_tree = get_remote_tree(repo_name, branch=branch, token=token)
+    local_files = get_local_files(base_dir)
+    
+    to_upload = []
+    already_synced = 0
+    
+    for rel_path, info in local_files.items():
+        remote_sha = remote_tree.get(rel_path)
+        if remote_sha == info["sha"]:
+            already_synced += 1
         else:
-            msg = f"chore: sincronizar {rel_path}"
+            to_upload.append((rel_path, info["full_path"], remote_sha))
             
-        if upload_file(repo_name, full_path, target_rel_path=rel_path, message=msg):
-            success_count += 1
+    print(f"[*] Total archivos locales evaluados: {len(local_files)}")
+    print(f"[*] Archivos ya sincronizados e idénticos en GitHub: {already_synced}")
+    print(f"[*] Archivos pendientes por subir/actualizar: {len(to_upload)}")
+    
+    if not to_upload:
+        print("[✓] Todo el repositorio en GitHub ya es una copia exacta e idéntica.")
+        return
+        
+    uploaded_count = 0
+    for rel_path, full_path, remote_sha in to_upload:
+        action = "actualizar" if remote_sha else "agregar"
+        if rel_path.startswith(".agents/") or rel_path.startswith("skill_") or rel_path.endswith(".md"):
+            msg = f"docs: {action} {rel_path}"
+        elif rel_path.endswith((".html", ".png", ".jpg", ".jpeg", ".pdf")):
+            msg = f"feat: {action} {rel_path}"
+        else:
+            msg = f"chore: {action} {rel_path}"
+            
+        if upload_file(repo_name, full_path, target_rel_path=rel_path, message=msg, branch=branch, sha=remote_sha):
+            uploaded_count += 1
+        # Pequeña pausa para evitar rate limit secundario de GitHub
+        time.sleep(0.15)
+        
+    print(f"\n[✓] Respaldo finalizado: {uploaded_count}/{len(to_upload)} archivos subidos.")
+    print(f"    Ver en: https://github.com/{username}/{repo_name}")
 
-    print(f"\n[✓] Sincronización completa finalizada: {success_count}/{len(files_to_upload)} archivos subidos a https://github.com/{username}/{repo_name}")
+def sync_project(repo_name="realmente-marca", branch="main"):
+    """Sincronización Bidireccional Completa: GitHub <-> Workspace Local."""
+    print("==================================================================")
+    print(f"🔄 SINCRONIZACIÓN BIDIRECCIONAL: REALMENTE <-> GITHUB ({repo_name})")
+    print("==================================================================")
+    print("\n>>> FASE 1: DESCARGA DE CAMBIOS DESDE GITHUB (PULL)...")
+    pull_project(repo_name=repo_name, branch=branch)
+    
+    print("\n>>> FASE 2: SUBIDA Y RESPALDO EXACTO A GITHUB (PUSH)...")
+    push_project(repo_name=repo_name, branch=branch)
+    print("\n==================================================================")
+    print("🎉 SINCRONIZACIÓN Y COPIA DE SEGURIDAD COMPLETADAS CON ÉXITO")
+    print("==================================================================")
 
 def add_collaborator(repo_name, collaborator_user, permission="push"):
     username, token = load_credentials()
@@ -222,11 +381,31 @@ def add_collaborator(repo_name, collaborator_user, permission="push"):
         return False
 
 def main():
-    parser = argparse.ArgumentParser(description="Asistente de la Skill de GitHub para RealMente")
+    parser = argparse.ArgumentParser(description="Asistente de Sincronización y Respaldo en GitHub para RealMente")
     subparsers = parser.add_subparsers(dest="command")
     
     # Status
     subparsers.add_parser("status", help="Verificar conexión y listar repositorios")
+    
+    # Push (Local -> GitHub)
+    push_parser = subparsers.add_parser("push", help="Subir archivos locales a GitHub (copia exacta de seguridad)")
+    push_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio de destino")
+    push_parser.add_argument("--branch", default="main", help="Rama de destino")
+    
+    # Pull (GitHub -> Local)
+    pull_parser = subparsers.add_parser("pull", help="Descargar cambios de GitHub al workspace local")
+    pull_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio remoto")
+    pull_parser.add_argument("--branch", default="main", help="Rama remota")
+
+    # Sync (Bidireccional)
+    sync_parser = subparsers.add_parser("sync", help="Sincronización bidireccional completa (Pull + Push)")
+    sync_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio")
+    sync_parser.add_argument("--branch", default="main", help="Rama")
+
+    # Sync Project (Legacy Alias)
+    sync_proj_parser = subparsers.add_parser("sync-project", help="Alias de sync")
+    sync_proj_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio")
+    sync_proj_parser.add_argument("--branch", default="main", help="Rama")
     
     # Create Repo
     create_parser = subparsers.add_parser("create-repo", help="Crear un nuevo repositorio en GitHub")
@@ -234,39 +413,36 @@ def main():
     create_parser.add_argument("--desc", default="", help="Descripción del repositorio")
     create_parser.add_argument("--private", action="store_true", help="Si el repositorio debe ser privado")
     
-    # Upload File
-    upload_parser = subparsers.add_parser("upload", help="Subir un archivo a un repositorio")
+    # Upload Single File
+    upload_parser = subparsers.add_parser("upload", help="Subir un archivo específico a un repositorio")
     upload_parser.add_argument("--repo", required=True, help="Nombre del repositorio")
     upload_parser.add_argument("--file", required=True, help="Ruta del archivo local")
     upload_parser.add_argument("--target", help="Ruta de destino en el repo")
     upload_parser.add_argument("--message", help="Mensaje de commit (semántico)")
+    upload_parser.add_argument("--branch", default="main", help="Rama")
     
     # Add Collaborator
     collab_parser = subparsers.add_parser("add-collaborator", help="Invitar a un colaborador al repositorio")
     collab_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio")
     collab_parser.add_argument("--user", required=True, help="Nombre de usuario del colaborador en GitHub")
-    collab_parser.add_argument("--permission", default="push", choices=["pull", "push", "admin", "maintain", "triage"], help="Permisos (push = escritura)")
-
-    # Sync Project (All workspace files)
-    sync_proj_parser = subparsers.add_parser("sync-project", help="Sincronizar todo el espacio de trabajo con el repositorio de marca")
-    sync_proj_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio de destino")
-    
-    # Sync All (legacy alias for sync-project)
-    sync_parser = subparsers.add_parser("sync-all", help="Sincronizar todo el proyecto de marca")
-    sync_parser.add_argument("--repo", default="realmente-marca", help="Nombre del repositorio de destino")
+    collab_parser.add_argument("--permission", default="push", choices=["pull", "push", "admin", "maintain", "triage"], help="Permisos")
 
     args = parser.parse_args()
     
     if args.command == "status":
         check_status()
+    elif args.command == "push":
+        push_project(args.repo, branch=args.branch)
+    elif args.command == "pull":
+        pull_project(args.repo, branch=args.branch)
+    elif args.command in ["sync", "sync-project"]:
+        sync_project(args.repo, branch=args.branch)
     elif args.command == "create-repo":
         create_repository(args.name, description=args.desc, private=args.private)
     elif args.command == "upload":
-        upload_file(args.repo, args.file, target_rel_path=args.target, message=args.message)
+        upload_file(args.repo, args.file, target_rel_path=args.target, message=args.message, branch=args.branch)
     elif args.command == "add-collaborator":
         add_collaborator(args.repo, args.user, permission=args.permission)
-    elif args.command in ["sync-project", "sync-all"]:
-        sync_project(args.repo)
     else:
         parser.print_help()
 
