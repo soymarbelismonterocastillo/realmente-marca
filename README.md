@@ -30,12 +30,14 @@ MARCA/
 ├── 📖 Brand Book - Marbelis Montero (Presentacion).html # Manual interactivo de marca
 ├── 🗣️ Voz de la marca Marbelis Montero.md              # Tono, arquetipo y voz editorial
 ├── 🐍 github_helper.py                # Asistente de sincronización bidireccional en Python
-├── 📂 Episodios/                       # Guiones, transcripciones y materiales por episodio
+├── 📂 Episodios/                       # Catálogo completo de episodios (EP00 al EP61)
+│   ├── EP00_Episodio_0/ ... EP58_Seguridad_Neuroalineacion/
 │   ├── EP59_Necesidad_vs_Poder/
 │   ├── EP60_Decision_y_Evasion/
 │   └── EP61_Esfuerzo_e_Identidad/
+├── 📂 02_Transcripciones_Podcast/      # Transcripciones completas de los episodios del podcast
 ├── 📂 Redes_Sociales/                  # Lluvia de ideas, carruseles, reels y contenidos
-├── 📂 Realmente_Club/                  # Material exclusivo para miembros del club
+├── 📂 Realmente_Club/                  # Evaluaciones PNL, diapositivas y clases del club
 └── 🌐 Presentations & Interactive HTML # Diapositivas 16:9 y Tests PNL Interactivos
 ```
 
