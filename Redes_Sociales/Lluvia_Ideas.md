@@ -2,213 +2,408 @@
 ### *Estrategia de Redes Sociales — RealMente Podcast (Marbelis Montero)*
 **Carpeta:** `Redes_Sociales/Lluvia_Ideas.md`  
 **Frecuencia:** Rutina recurrente de los Lunes a las 9:00 AM  
-**Última actualización:** Lunes, 28 de Septiembre de 2026 (09:09 AM)
+**Última actualización:** Lunes, 12 de Octubre de 2026 (09:00 AM)  
+**Semana Activa:** Episodio #61 (*«RealMente de nada sirve esforzarte tanto si tu identidad no está alineada con lo que quieres»*)  
+**Matriz de Referencia:** [investigacion_competencia.xlsx](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/investigacion_competencia.xlsx)
 
 ---
 
-## 🧭 1. Marco Estratégico: Avatar y Transición de Contenido Actual
+## 🧭 1. Marco Estratégico: Avatar y Transición de Contenido Activa
 
-Para que cada idea extraída del mercado mantenga coherencia con el ADN de Marbelis Montero, todo el contenido filtrado en este banco responde a los siguientes pilares de transición:
+Para asegurar que cada idea extraída del mercado y de los competidores mantenga una coherencia milimétrica con el ADN de Marbelis Montero, todo el contenido filtrado en este banco responde a los siguientes pilares de la transición de marca:
 
 | Variable | De Dónde Venimos (Antes) | Hacia Dónde Vamos (Transición Activa) |
 | :--- | :--- | :--- |
-| **Formato Visual** | Grabar hablando directo a cámara con esfuerzo de producción. | **Reels estéticos en bucle (B-roll / aesthetic cinemático corto)** con texto en pantalla (*overlay text*) de alto impacto psicológico y retención >100% en Modo Prueba. |
-| **Tono & Enfoque** | Motivación general o afirmaciones espirituales abstractas. | **Psicología cotidiana visceral, PNL y descodificación biológica del inconsciente**. La "amiga que va a la par" dando **"cachetadas de realidad"** con humor fino, ironía y cero excusas. |
-| **El Avatar Clave** | "Cualquiera que quiera superarse". | **Mujeres y profesionales con ambición pero atrapadas en el autosabotaje cotidiano**: personas que se callan para no incomodar, complacientes por miedo al rechazo, adictas a pedir validación ajena y paralizadas bajo la excusa de "respetar mis tiempos". |
-| **Conversión** | Publicar por publicar. | **Embudos orgánicos hacia el Podcast (Ep. 58 y 59), el RealMente Club y la charla presencial de Mentalidad y PNL**. |
+| **Formato Visual** | Grabar hablando directo a cámara con esfuerzo de producción y desgaste diario. | **Reels estéticos en bucle (*Visual Loop* / B-roll cinemático de 5 a 7 seg)** con texto en pantalla (*overlay text*) de alto impacto psicológico y retención >100% en Modo Prueba, complementados con **Carretes de 6 Slides bajo la Regla del 50% Inferior Libre**. |
+| **Tono & Enfoque** | Motivación general o afirmaciones espirituales abstractas (*"vibra alto", "el universo escucha"*). | **Psicología cotidiana visceral, PNL y descodificación biológica del inconsciente**. La mentora firme que sostiene un espejo limpio dando **"cachetadas de realidad con amor"**, ironía fina y cero excusas. |
+| **Voz Gramatical** | Plural inclusivo o sermones genéricos (*"creemos", "nos pasa", "todos hacemos"*). | **Segunda persona singular estricta (`tú`, `te`, `tu`)**. Hablándole directamente al oído a ella, sin sermones ni condescendencia, confrontando la ganancia oculta del ego. |
+| **El Avatar Clave** | "Cualquiera que quiera superarse". | **Mujeres y profesionales con ambición pero atrapadas en el autosabotaje cotidiano**: adictas a la autoexigencia y al sobre-esfuerzo ("la luchadora incansable"), con un techo de cristal en su autoconcepto, que creen que para merecer hay que sufrir o que tienen que demostrar el doble para ser vistas. |
+| **Conversión & Embudo** | Publicar contenido sin llamada a la acción clara. | **Embudos orgánicos hacia el Podcast ([Episodio 61](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad) y Ep. 60), el RealMente Club y la mentoría de Neuroalineación**. |
 
 ---
 
-## 📅 ENTREGA SEMANAL: Lunes 28 de Septiembre de 2026
+## 📅 ENTREGA SEMANAL: Lunes 12 de Octubre de 2026 (Ciclo Activo)
 
-A continuación se presenta el análisis de los 6 competidores extraídos de la matriz maestra (`investigacion_competencia.xlsx`), más el análisis del referente de estilo validado (Perla Salas), traduciendo el contenido de mayor tracción de cada uno a la voz y avatar de Marbelis.
+Investigación exhaustiva de los 6 competidores de la matriz maestra ([investigacion_competencia.xlsx](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/investigacion_competencia.xlsx)) más el referente de estilo validado (Perla Salas), adaptados a la transición temática del **Episodio 61: Esfuerzo vs. Identidad, el techo de cristal del autoconcepto y la trampa del agotamiento físico**.
 
 ---
 
 ### 1️⃣ Referente: Tony Robbins
-* **Tendencia / Contenido Detectado:** Discurso de romper el estado de parálisis ("Get out of your head and get into action"). Enfocado en romper patrones de personas que se declaran "deprimidas" o "atascadas" mediante confrontación fisiológica y preguntas directas sobre sus excusas.
-* **El Filtro RealMente (Diferenciador):** Tony utiliza adrenalina masiva de estadio. Marbelis lo traduce a la **ganancia secundaria inconsciente** de la mujer profesional que disfraza el miedo bajo la etiqueta de "autocuidado".
+* **Tendencia / Contenido Detectado:** *«The only thing keeping you from getting what you want is the story you keep telling yourself»* vs. la identidad como fuerza motriz (*«We all have a need to remain consistent with who we define ourselves to be»*). Robbins empuja al cambio de estado masivo mediante fisiología extrema, adrenalina de estadio y disciplina arrolladora (*"push through"*).
+* **El Filtro RealMente (Diferenciador):** Robbins recurre a la fuerza bruta, la energía atlética y el mandato de *hustle*. Marbelis demuestra que **la fuerza de voluntad no puede ganar una guerra contra un autoconcepto no alineado**: puedes trabajar 14 horas diarias, pero si tu identidad profunda sigue siendo la de la "heroína que rema contra la corriente", tu mente inconsciente siempre recreará el caos y saboteará tu descanso para volver a la lucha que conoce.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** FÓRMULA 1 — *"Cada vez que dices X... tu mente escucha Y."*
-* **Video de Fondo:** Video aesthetic en loop (caminando sola con café por la ciudad o acomodando una taza en silencio, luz cálida, sin hablar a cámara).
+* **Fórmula Aplicada:** FÓRMULA 1 — Choque con la Conducta Cotidiana / Paradoja del Sobre-Esfuerzo.
+* **Video de Fondo:** B-roll aesthetic en bucle de 5 a 6 segundos: mujer en un loft luminoso cerrando su portátil al anochecer, tomando una taza de té y exhalando con alivio y soberanía mirando por un gran ventanal (loop continuo perfecto).
 * **Texto Overlay en Pantalla:**
-  > **"Cada vez que dices 'estoy respetando mis tiempos', tu mente escucha: 'Perfecto, 6 meses más de permiso para no arriesgarnos a fallar'."**
-* **Audio Sugerido:** Audio en tendencia reflexivo/lo-fi o audio original con voz en off templada.
+  > **"Te puedes matar trabajando 14 horas al día, pero si tu identidad inconsciente sigue siendo 'la que le toca remar contra la corriente', siempre vas a sabotear tus ingresos y tu paz para volver a la lucha que conoces."**
+* **Audio Sugerido:** Pista de ambientación cinemática con piano contemporáneo profundo y pulso rítmico elegante.
 * **Caption / Copywriting:**
-  > Hay una diferencia abismal entre tener autocompasión y estar patrocinando tu propio autosabotaje. Señores, el cerebro es un órgano predictivo que ama el mínimo gasto de energía: si le das la excusa perfecta envuelta en papel de "salud mental", la va a comprar de inmediato.
+  > Nos educaron bajo la creencia de que el éxito es un premio que se compra exclusivamente con sudor, agotamiento y sacrificio extremo.
   >
-  > Decir que "no estás lista" o que "estás en tu proceso" se siente muy seguro porque elimina la culpa del estancamiento. Pero la verdad incómoda es que la claridad no llega pensando en tu habitación con una vela encendida; la claridad llega cuando pones el cuerpo en acción.
+  > Y por eso, cada vez que un proyecto empieza a fluir con facilidad, o cuando tus finanzas se estabilizan, tu sistema nervioso se asusta y enciende una alarma: *"Esto es demasiado fácil, seguro algo va a salir mal"*.
   >
-  > ¿Realmente estás respetando tus tiempos o solo estás cómoda esperando que el miedo desaparezca solo? (Alerta: no va a desaparecer jamás).
+  > Inmediatamente te inventas tres urgencias nuevas, te cargas con responsabilidades ajenas y vuelves a deslomarte.
   >
-  > Si quieres entender cómo romper el ciclo de operar desde la necesidad de control en vez de tu poder interno, tienes que escuchar el Episodio 59 de RealMente. Link en mi bio. ¡Bye bye!
-* **CTA:** Comenta "TIEMPO" o ve al enlace del perfil para escuchar el Ep. 59.
+  > En PNL lo llamamos el techo de cristal del autoconcepto: tu mente inconsciente jamás te va a permitir sostener un resultado que contradiga la imagen interna que tienes de ti misma.
+  >
+  > Si en el fondo te defines como la que siempre tiene que luchar el triple para salir adelante, vas a necesitar crear problemas todos los días para confirmar quién eres.
+  >
+  > No te falta disciplina ni te faltan más horas de trabajo. Te falta actualizar el software interno de la persona que sostiene esos resultados.
+  >
+  > En el Episodio 61 de RealMente te enseño cómo alinear tu identidad para dejar de empujar desde el agotamiento. Enlace en mi biografía.
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #Autoconcepto #RealMenteClub #PNL`
+* **CTA:** Comenta **"IDENTIDAD"** o toca el link de mi perfil para escuchar el Episodio 61 en Spotify y YouTube.
 
 ---
 
 ### 2️⃣ Referente: Margarita Pasos
-* **Tendencia / Contenido Detectado:** Los "frenos invisibles" del dinero y el miedo visceral a vender o negociar ("la loca de la casa" que te paraliza con pensamientos de escasez o pánico al qué dirán).
-* **El Filtro RealMente (Diferenciador):** Margarita lo aborda desde la técnica de ventas y el alto rendimiento comercial. Marbelis lo lleva a la **psicología de la complacencia y la herida de ser la "niña buena"** que no cobra lo que vale para no ser rechazada.
+* **Tendencia / Contenido Detectado:** *«Imparable en ventas y mentalidad de alto rendimiento»*: cómo vencer el síndrome del impostor, cobrar lo que vales y eliminar el miedo a ganar dinero en grande.
+* **El Filtro RealMente (Diferenciador):** Margarita aborda el tema desde la motivación corporativa americana y las técnicas comerciales. Marbelis desmantela **el síndrome de la "luchadora incansable" y la culpa biológica por el dinero fácil**: la creencia arraigada de que cobrar bien sin desgastarse físicamente es hacer trampa o ser una usurera.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** FÓRMULA 2 — El Choque con la Inseguridad Cotidiana ("No es falta de X, es Y").
-* **Video de Fondo:** Video aesthetic corto abriendo una libreta, escribiendo con estilográfica o mirando la pantalla de la laptop en un café con estética limpia.
+* **Fórmula Aplicada:** FÓRMULA 2 — Desmonte de la Máscara del Impostor / Descodificación Financiera.
+* **Video de Fondo:** Clip aesthetic de 6 segundos: manos estilizadas guardando una pluma de diseñador en una libreta de cuero negro, cerrando la agenda con determinación y tomando las llaves sobre un escritorio pulcro.
 * **Texto Overlay en Pantalla:**
-  > **"No te da miedo vender o cobrar lo que vales: te da pánico que dejen de verte como la persona dócil que nunca incomoda a nadie."**
-* **Audio Sugerido:** Beat sutil con ritmo constante.
+  > **"No tienes el 'síndrome del impostor': tienes la adicción inconsciente a creer que si tus metas no te cuestan lágrimas, sangre y dolor, no tienes derecho a disfrutarlas."**
+* **Audio Sugerido:** Beat rítmico lo-fi relajado, moderno y sofisticado.
 * **Caption / Copywriting:**
-  > Nos programaron para creer que ser "buena persona" es ser accesible, barata y fácil de complacer. Entonces, cada vez que tienes que mandar un presupuesto, pedir un aumento o ponerle precio a tu conocimiento, tu inconsciente activa la alarma de incendio: *"¿Y si piensan que soy codiciosa?", "¿Y si se molestan y me rechazan?"*.
+  > ¿Te has fijado en lo que sientes cuando algo te sale rápido, fluido y rentable?
   >
-  > Ojo con esto: cobrar poco o regalar tu trabajo no te hace más humilde; te hace adicta a la validación ajena. Estás pagando con tu propia cuenta bancaria el precio de que los demás no se incomoden.
+  > En lugar de respirar en paz y celebrarlo, te invade una culpa sorda. Sientes que le hiciste trampa a la vida y te preguntas por dentro: *"¿No debería haberme costado más trabajo?"*.
   >
-  > Tu seguridad interna no se mide por cuánto sabes; se mide por tu capacidad de sostener una tarifa o un límite sin pedir perdón antes de decirlo.
+  > Creciste viendo a tu entorno romperse la espalda para conseguir cada centavo, y aprendiste a asociar la dignidad humana únicamente con el cansancio físico. Por eso, cuando tu talento hace que algo parezca sencillo, tu propia mente lo desvaloriza y terminas cobrando la mitad de lo que mereces.
   >
-  > ¿Cuántas veces esta semana negociaste a la baja por miedo a que te dijeran que no? Te leo abajo en los comentarios. ¡Cero excusas!
-* **Formato Secundario (Carrusel de 4 láminas):** *"3 cosas que haces todos los días creyendo que son humildad (pero en realidad son autosabotaje financiero)"*.
+  > La maestría no se mide por cuánto sudas; se mide por el valor de tu transformación.
+  >
+  > Dejar de cobrar por tu nivel de agotamiento y empezar a cobrar por tu autoridad requiere que despidas a la "niña sacrificada" que cree que solo la van a querer si llega a la meta arrastrándose.
+  >
+  > El merecimiento no se suda; se asume internamente.
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #MentalidadFinanciera #RealMenteClub #PNL`
+* **CTA:** Guarda este reel para revisarlo antes de cotizar tu próximo servicio y escucha el Ep. 61 en el link de la bio.
 
 ---
 
 ### 3️⃣ Referente: Marian Rojas Estapé
-* **Tendencia / Contenido Detectado:** La crisis del cortisol y la somatización del estrés. Cómo el cuerpo y el sistema nervioso enferman cuando nos obsesionamos con el control, las pantallas o mantener relaciones tóxicas.
-* **El Filtro RealMente (Diferenciador):** Marian habla desde la medicina psiquiátrica clínica y la empatía institucional. Marbelis lo lleva a la **descodificación biológica del trauma inconsciente**: no es un fallo químico al azar; tu cuerpo está gritando la verdad que tu boca se empeña en callar.
+* **Tendencia / Contenido Detectado:** *«El perfeccionismo es miedo disfrazado de control»*. Confundir identidad con rendimiento (*«Si rindo valgo, si fallo no valgo nada»*). La intoxicación de cortisol crónica y la somatización del cuerpo que grita lo que la mente reprime.
+* **El Filtro RealMente (Diferenciador):** Marian lo analiza desde la psiquiatría institucional y médica. Marbelis lo traduce al **costo biológico visceral de defender la etiqueta de "la mujer fuerte que puede con todo"**: el bruxismo, las contracturas y la gastritis como la factura física de no permitirse ser vulnerable por miedo al abandono o al juicio ajeno.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** Descodificación Biológica Visceral.
-* **Video de Fondo:** Primer plano aesthetic de manos sosteniendo una taza de té caliente mirando por la ventana mientras llueve o entra la luz de la mañana.
+* **Fórmula Aplicada:** FÓRMULA 3 — Descodificación Biológica Visceral / Registro Somático de la Identidad.
+* **Video de Fondo:** B-roll aesthetic de 6 segundos: mujer caminando con paso firme y abrigo estructurado por una galería minimalista con luz matutina, deteniéndose a respirar profundamente y soltar la tensión de sus hombros.
 * **Texto Overlay en Pantalla:**
-  > **"Esa gastritis, esa tensión en el cuello y ese insomnio a las 3 a.m. no son 'estrés': son todas las veces en el mes que te tragaste tu verdad para mantener la fiesta en paz ajena."**
-* **Audio Sugerido:** Música cinematográfica emotiva y minimalista.
+  > **"Ese dolor en el cuello y esa mandíbula apretada no son 'estrés': son el costo biológico de sostener la etiqueta de 'la fuerte que puede con todo' para que nadie descubra tu fragilidad."**
+* **Audio Sugerido:** Melodía envolvente de piano cinemático contemporáneo con reverberación profunda.
 * **Caption / Copywriting:**
-  > El cuerpo tiene un registro perfecto de cada "sí" que diste cuando todo tu sistema gritaba un "NO" rotundo.
+  > Te enorgulleces de que en tu trabajo y en tu familia todos recurran a ti porque *"tú siempre resuelves"*. Te fascina la medalla de la mujer inquebrantable, la que nunca se cansa, la todoterreno.
   >
-  > Cuando callas para no hacer un conflicto en tu familia, en tu pareja o en tu trabajo, el conflicto no desaparece. Solamente cambia de dirección: deja de ser interpersonal y se convierte en una guerra biológica dentro de ti. El inconsciente no sabe de diplomacia social. El inconsciente solo sabe que te estás traicionando para proteger la comodidad de otro.
+  > Pero a solas en tu cama, tu cuerpo te pasa una factura brutal: mandíbula trabada, contracturas crónicas, colon irritable y un cansancio que no se quita ni durmiendo todo el fin de semana.
   >
-  > Tu salud física es el termómetro de tus límites. Si no aprendes a ser incómoda con tu voz, vas a terminar siendo paciente en una sala de espera.
+  > Tu cuerpo no está cansado de trabajar; está colapsado de sostener una identidad rígida.
   >
-  > En el Episodio 58 de RealMente hablamos exactamente de la Tríada de la Seguridad Interna y cómo dejar de pagar el peaje del silencio. Escúchalo hoy en Spotify o Apple Podcasts.
-* **CTA:** Guarda este reel para la próxima vez que sientas la tentación de decir "no pasa nada" cuando todo te pasa por dentro.
+  > Ser "la fuerte" fue la armadura que inventaste en tu infancia para no sentirte rechazada o para sostener a los que te rodeaban. Pero hoy esa misma armadura te está asfixiando viva.
+  >
+  > Aprender a decir *"no puedo con esto"*, *"necesito ayuda"* o simplemente *"hoy decido no resolverle la vida a nadie"* no te hace débil; te devuelve la salud biológica.
+  >
+  > ¿Cuánto tiempo más vas a seguir sacrificando tus órganos para sostener un personaje que hace años te quedó chico?
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #Somatizacion #RealMenteClub #PNL`
+* **CTA:** Escucha el Episodio 61 de RealMente: *«De nada sirve esforzarte tanto si tu identidad no está alineada con lo que quieres»*. Enlace directo en mi biografía.
 
 ---
 
 ### 4️⃣ Referente: Enric Corbera
-* **Tendencia / Contenido Detectado:** El concepto del "espejo" y las proyecciones inconscientes: lo que te molesta de los demás o los patrones que repites en tus parejas no son mala suerte, sino información no resuelta de tu sistema familiar.
-* **El Filtro RealMente (Diferenciador):** Enric se enfoca en Bioneuroemoción con marco de Un Curso de Milagros y lealtades transgeneracionales complejas. Marbelis lo traduce a **rutas neuronales predictivas y responsabilidad radical sin mística enredada**: el GPS mental busca lo que conoce, no lo que le hace bien.
+* **Tendencia / Contenido Detectado:** Lealtades invisibles transgeneracionales: el mandato inconsciente de repetir el dolor del clan familiar. El miedo a traicionar las raíces si prosperas sin sufrir.
+* **El Filtro RealMente (Diferenciador):** Enric se apoya en árboles genealógicos y mística de bioneuroemoción. Marbelis lo traduce a **las rutas neuronales de la lealtad inconsciente en la vida práctica**: boicotear tu propia paz porque en tu familia la mujer que prospera sin drama es tachada de egoísta o descastada.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** FÓRMULA 2 con Analogía del GPS Mental.
-* **Video de Fondo:** Movimiento de cámara suave aesthetic (caminando de espaldas en una galería o biblioteca, atmósfera de contemplación).
+* **Fórmula Aplicada:** FÓRMULA 4 — Choque con la Lealtad Inconsciente del Clan.
+* **Video de Fondo:** B-roll aesthetic de 5 segundos: manos ordenando papeles en un escritorio de madera noble, cerrando una carpeta y mirando hacia adelante con mirada limpia, iluminada por el sol matinal.
 * **Texto Overlay en Pantalla:**
-  > **"No tienes 'mala suerte' con las personas que llegan a tu vida: tienes un GPS mental programado para buscar a quien te confirme la herida de que tienes que mendigar amor."**
-* **Audio Sugerido:** Pista de ambientación profunda con reverb.
+  > **"No estás estancada por falta de capacidad: estás frenando tu éxito para no incomodar a una familia que te enseñó que para pertenecer hay que vivir quejándose."**
+* **Audio Sugerido:** Pista ambiental profunda e introspectiva con texturas de violonchelo sutil.
 * **Caption / Copywriting:**
-  > Decir que "todos son iguales" o que "siempre te tocan los mismos" es la forma más sofisticada que tiene tu ego para lavarse las manos y no asumir responsabilidad.
+  > Hay un miedo mucho más primitivo que el miedo al fracaso: el terror inconsciente a superar en felicidad y en dinero a las personas que amas.
   >
-  > A nivel neurológico, tu cerebro no busca personas que te hagan feliz; busca personas que le resulten familiares. Si en tu infancia aprendiste que para recibir afecto tenías que esforzarte el doble, callarte o ser invisible, tu inconsciente va a buscar parejas y socios que te hagan sentir exactamente igual. ¿Por qué? Porque para el cerebro, lo conocido es sinónimo de supervivencia.
+  > Si en tu sistema familiar el dinero siempre fue sinónimo de conflicto, si las mujeres de tu árbol vivieron resignadas o si el sacrificio era la única moneda de valor moral, tu cerebro límbico interpreta el éxito sin sufrimiento como un peligro de expulsión del clan.
   >
-  > Dejar de repetir el patrón no es salir a buscar a alguien "diferente"; es reprogramar el concepto interno de lo que crees que mereces recibir.
+  > Por eso, cada vez que estás a punto de dar un salto financiero o profesional, te enfermas, cometes un error inexplicable o te gastas los ahorros en tonterías.
   >
-  > Señores, hasta que no hagas consciente tu propia adicción a la validación, vas a seguir llamando "destino" a tus heridas no resueltas. ¿Te resuena? Te leo en los comentarios.
-* **Formato Secundario (Historia interactiva):** Caja de preguntas: *"¿Qué patrón sientes que repites sin parar en tus relaciones o proyectos? Déjamelo aquí y te doy una cachetada de realidad con PNL"*.
+  > Prefieres la seguridad de ser aceptada en la queja de los domingos antes que la soledad de tu propia expansión.
+  >
+  > La verdadera lealtad con los tuyos no es perpetuar su escasez; es tener el coraje de mostrarles que otra forma de vivir es posible.
+  >
+  > Tu éxito no los ofende; tu libertad los honra.
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #LealtadesInvisibles #RealMenteClub #PNL`
+* **CTA:** Comenta **"LEALTAD"** para enviarte el Episodio 61 directo a tus mensajes privados.
 
 ---
 
 ### 5️⃣ Referente: Laín García Calvo
-* **Tendencia / Contenido Detectado:** Afirmaciones de reprogramación subconsciente, manifestar dinero y abundancia mediante la ley de atracción y "declarar tu éxito en 5 minutos diarios".
-* **El Filtro RealMente (Diferenciador):** Laín usa promesas metafísicas de "vibra alto y el universo te traerá millones". Marbelis prohíbe los clichés vacíos y desmonta la espiritualidad pasiva mediante **neurociencia de la identidad y coherencia mente-acción**: no manifiestas lo que deseas, manifiestas lo que sostienes con tus decisiones diarias.
+* **Tendencia / Contenido Detectado:** *«Decretos de identidad millonaria y afirmaciones cuánticas matutinas»*. La ley de atracción y manifestar riqueza mediante rituales y decretos repetidos con fe.
+* **El Filtro RealMente (Diferenciador):** Laín recurre a promesas metafísicas de decretos mágicos y señales cósmicas. Marbelis prohíbe el misticismo pasivo y fundamenta la identidad en la **neurobiología de la tolerancia**: no manifiestas lo que deseas en un cuaderno; manifiestas exactamente el nivel de paz y prosperidad que tu sistema nervioso se siente seguro de sostener sin entrar en pánico.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** Diálogo Irónico y Choque de Realidad ("Procrastinación con aroma a velas").
-* **Video de Fondo:** Tomas estéticas encendiendo una vela o cerrando un cuaderno de gratitud, cambiando a una mirada reflexiva y firme frente al espejo o ventana.
+* **Fórmula Aplicada:** FÓRMULA 5 — Diálogo Irónico / Cero Espiritualidad Pasiva.
+* **Video de Fondo:** B-roll aesthetic de 5 segundos: mujer frente a un espejo empañado, limpiando el vapor con una toalla blanca y mirándose fijamente con aplomo y seguridad absoluta (loop continuo).
 * **Texto Overlay en Pantalla:**
-  > **"Haces journal, meditas y afirmas abundancia... pero a la primera oportunidad negocias tus precios a la baja. Eso no es manifestar: es mendigar con aroma a incienso."**
-* **Audio Sugerido:** Transición rítmica de sonido relajante a un pulso contundente.
+  > **"Puedes pasarte 2 horas decretando abundancia... pero si tu sistema nervioso se siente en peligro cuando no estás estresada, siempre vas a recrear el caos."**
+* **Audio Sugerido:** Transición rítmica de un sonido calmo y misterioso hacia un beat moderno con bajo contundente.
 * **Caption / Copywriting:**
-  > Nos vendieron la idea de que para transformar tu realidad económica solo necesitas prender velas, escribir 55 veces una afirmación en una libreta y "vibrar alto".
+  > Nos vendieron la ilusión de que para cambiar tu vida basta con escribir diez afirmaciones en una libreta bonita y prender un incienso antes de dormir.
   >
-  > Pero la neurociencia es tajante: tu sistema reticular no responde a deseos bonitos; responde a tu identidad y a la congruencia entre lo que dices y lo que ejecutas. No puedes pedir abundancia en tu meditación de las 7:00 a.m. y pasar las siguientes 12 horas del día operando desde el terror, rogándole a clientes que no te valoran y diciendo "sí" a acuerdos que insultan tu tiempo.
+  > Pero a nivel neurobiológico, tu mente no funciona con fantasías. Tu sistema nervioso está programado para buscar lo que le resulta conocido, no lo que deseas intelectualmente.
   >
-  > La verdadera reprogramación no sucede en tu cuaderno de manifestación; sucede en el momento exacto en que te atreves a decir: *"Este es mi valor y no lo negocio"*.
+  > Si durante años tu cuerpo estuvo acostumbrado a la angustia, al fuego cruzado y a la incertidumbre, la calma te va a generar ansiedad.
   >
-  > ¿Querés aprender a alinear tu mente inconsciente con acciones de verdadero poder? Te espero en el RealMente Club. Información directa en el link de mi bio. ¡Bye bye!
-* **CTA:** Comparte este video con esa amiga que se sabe todas las leyes del universo pero todavía no se atreve a lanzar su proyecto.
+  > Por eso te sientas a descansar un domingo y a los cinco minutos ya sientes culpa y buscas en qué problema meterte. Tu identidad biológica es adicta a la adrenalina de la supervivencia.
+  >
+  > Dejar de autosabotearte no requiere que "vibres más alto"; requiere que entrenes a tu cuerpo para que aprenda a tolerar la paz, los ingresos altos y la estabilidad sin buscar arruinarlos.
+  >
+  > La abundancia no se decreta; se sostiene en el sistema nervioso.
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #Neuroalineacion #RealMenteClub #PNL`
+* **CTA:** Ve al enlace de mi biografía y escucha el Episodio 61 de RealMente Podcast. Cero excusas.
 
 ---
 
 ### 6️⃣ Referente: Silvia Congost
-* **Tendencia / Contenido Detectado:** Identificación de la dependencia emocional, las consecuencias de no poner límites y el autoengaño de esperar que la otra persona cambie mágicamente.
-* **El Filtro RealMente (Diferenciador):** Silvia se enfoca en terapia clásica de pareja y luto por ruptura. Marbelis extrapola la **dependencia de aprobación a todos los ámbitos de la vida (negocios, familia, decisiones diarias)** utilizando la confrontación con la propia cobardía inconsciente.
+* **Tendencia / Contenido Detectado:** Dependencia emocional y relaciones tóxicas: apegarse a vínculos dañinos por miedo a la soledad y a no saber quién eres fuera de la pareja.
+* **El Filtro RealMente (Diferenciador):** Silvia enfoca su marco exclusivamente en rupturas sentimentales. Marbelis lo traslada a **la relación de dependencia más tóxica de todas: la adicción a tu propia identidad de víctima**: estar enamorada del personaje que sufre porque te da pánico el vacío de quién serías si dejas de tener problemas de qué quejarte.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** FÓRMULA 3 — La Pregunta Incómoda de Seguridad Interna.
-* **Video de Fondo:** B-roll estético de una mujer sentada sola en una terraza urbana, mirando al horizonte, con postura de firmeza y serenidad.
+* **Fórmula Aplicada:** FÓRMULA 6 — La Pregunta Incómoda de Apego al Personaje.
+* **Video de Fondo:** B-roll aesthetic de 6 segundos: mujer sentada sola en una butaca de diseño en un salón minimalista, tomando una taza de café sin mirar el móvil, sonriendo con paz genuina en medio de un silencio absoluto.
 * **Texto Overlay en Pantalla:**
-  > **"¿Hasta cuándo vas a seguir llamando 'pedir consejo' a la cobardía de no querer hacerte cargo de tus propias decisiones?"**
-* **Audio Sugerido:** Audio viral con piano de fondo emotivo y pausado.
+  > **"La relación más tóxica de tu vida no es con tu ex: es con la versión tuya que sufre, porque te aterra descubrir quién eres cuando no tienes nada de qué quejarte."**
+* **Audio Sugerido:** Pista reflexiva instrumental con guitarra acústica sobria y sintetizador lo-fi.
 * **Caption / Copywriting:**
-  > Le preguntas a tu mamá, a tu amiga, a tu pareja y hasta al chat grupal antes de dar el siguiente paso. Y te convences a ti misma de que eres una persona "democrática" o "prudente".
+  > ¿Alguna vez te has preguntado de qué hablarías con tus amigas si te estuviera prohibido quejarte de tu trabajo, de tu pareja o de lo cansada que vives?
   >
-  > ¿Sabes qué es en realidad? Es el miedo atroz a equivocarte y no tener a quién culpar.
+  > El sufrimiento crónico es una de las drogas de identidad más difíciles de soltar. Te da un tema de conversación garantizado, te compra la lástima ajena y te da la coartada perfecta para no asumir la responsabilidad de crecer.
   >
-  > Cuando subastas tus decisiones pidiendo que otros te den la bendición o la luz verde, le estás gritando a tu mente inconsciente que tu propio criterio no tiene ningún valor. Y así es exactamente como se construye una autoestima en ruinas: delegando tu poder para tener una coartada si las cosas salen mal.
+  > Muchas veces no sueltas tus problemas porque no tienes la más remota idea de quién eres cuando estás en paz.
   >
-  > La madurez emocional empieza el día en que tomas una decisión sola, asumes el riesgo y te prometes que, pase lo que pase, la primera en respaldarte vas a ser tú misma.
+  > El día que decides soltar el papel de la incomprendida o de la mártir sacrificada, se abre un silencio inmenso frente a ti. Y ese silencio asusta, porque te deja a solas con tu propia grandeza.
   >
-  > Si estás lista para recuperar tu poder y dejar de mendigar seguridad afuera, tienes que escuchar el Episodio 59 de RealMente: "Necesidad vs. Poder". Disponible ya.
-* **Formato Secundario (Carrusel Educativo):** *"4 señales de que no tienes dudas, solo tienes miedo de asumir la responsabilidad de tu vida"*.
+  > Es hora de terminar la relación con tu vieja historia.
+  >
+  > Despídete de la que fuiste y dale la bienvenida a la mujer que decide desde su verdadero poder.
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #Autoestima #RealMenteClub #PNL`
+* **CTA:** Guarda este reel y compártelo con esa persona que vive atrapada en su queja diaria.
 
 ---
 
-### ⭐ Bonus Referente de Estilo: Perla Salas (@encuentrosagrado)
-* **Tendencia / Contenido Detectado:** Cápsulas sobre la autotraición cotidiana y la sanación de la relación con uno mismo mediante vulnerabilidad y herramientas de liberación emocional.
-* **El Filtro RealMente (Diferenciador):** Perla utiliza el tapping y un formato hablado a cámara muy dulce. Marbelis lo traduce al **formato de bucle estético de alta retención** con su sello de firmeza transformadora ("cachetada amorosa").
+### ⭐ Referente de Estilo Validado: Perla Salas (@encuentrosagrado)
+* **Tendencia / Contenido Detectado:** Soltar las viejas etiquetas y reconciliarte con el vacío de la transformación personal; dejar de defender quién fuiste para abrirle espacio a quien quieres ser.
+* **El Filtro RealMente (Diferenciador):** Perla utiliza un tono suave de contención maternal y tapping. Marbelis lo traduce al **formato de bucle cinemático de alto impacto con la Pregunta Ancla oficial del Ep. 61**: confrontar de frente el apego al *"yo soy así"* sin anestesia pero con profunda elegancia.
 
 #### 🎬 Adaptación para Reel en Bucle (Visual Loop):
-* **Fórmula Aplicada:** Choque con la Conducta Cotidiana / La Autotraición Silenciosa.
-* **Video de Fondo:** Plano estético y cercano de una mano apagando una alarma de reloj o cerrando un libro al atardecer.
+* **Fórmula Aplicada:** FÓRMULA 7 — Pregunta de Poder Visceral / Desarme del "Yo Soy Así".
+* **Video de Fondo:** B-roll aesthetic de 5 segundos: plano cenital de manos ordenando con lentitud y presencia un escritorio despejado, guardando una pluma fina y apartando la silla con total serenidad y aplomo.
 * **Texto Overlay en Pantalla:**
-  > **"Tu mayor miedo nunca fue que los demás te abandonaran. Tu mayor terror es darte cuenta de que la primera en abandonarse todos los días eres tú."**
-* **Audio Sugerido:** Melodía acústica suave e introspectiva.
+  > **"¿Qué parte de quién crees que eres estás cuidando tanto, que no te está dejando llegar a donde dices que quieres ir?"**
+* **Audio Sugerido:** Pulso rítmico moderno con sintetizador elegante y tempo pausado que genera intriga hipnótica.
 * **Caption / Copywriting:**
-  > Te desvives por cumplirle a tu jefe, a tus hijos, a tus clientes y a tus amigos. Jamás les quedas mal. Si dices que vas a estar a las 8:00, estás a las 7:55.
+  > Te quejas de que no logras despegar, pero cada vez que tienes la oportunidad de dar el salto retrocedes y dices con orgullo: *"Es que yo soy así"*.
   >
-  > Pero cuando se trata de la cita contigo misma... cuando se trata de ir al gimnasio, de estudiar ese curso que compraste, de sentarte a escribir tu proyecto o simplemente de descansar cuando tu cuerpo ya no da más... te cancelas sin pestañear.
+  > Déjame decirte algo con toda la verdad del mundo: ese *"yo soy así"* no es tu personalidad ni tu verdadera esencia. Es simplemente la etiqueta que te acostumbraste a defender para no incomodarte.
   >
-  > Cada vez que te rompes una promesa personal para no incomodar la agenda ajena, le enseñas a tu sistema nervioso que tu palabra no vale nada. Y después te preguntas por qué te cuesta tanto confiar en ti.
+  > El techo de lo que puedes lograr en tu vida nunca ha sido tu falta de talento o de preparación.
   >
-  > Tu seguridad no nace de afirmaciones frente al espejo; nace de convertirte en una persona que no se traiciona.
+  > El verdadero techo es la historia sobre ti misma que todavía no tienes la valentía de soltar.
   >
-  > ¿Qué promesa te hiciste la semana pasada que te cancelaste a ti misma? Empieza hoy por cumplirte una sola cosa pequeña. ¡Pasito a pasito y cero excusas!
-* **CTA:** Comenta "PODER" si estás comprometida a no abandonarte esta semana.
+  > Es biológicamente imposible construir una realidad diferente mientras sigas defendiendo a muerte a la versión tuya que ya no quieres ser.
+  >
+  > Hoy detente un minuto y respóndete con total honestidad: ¿prefieres seguir teniendo la razón con tus viejas excusas o prefieres tener la vida que quieres?
+* **Hashtags:** `#RealMentePodcast #MarbelisMontero #PreguntasDePoder #RealMenteClub #PNL`
+* **CTA:** Escucha el Episodio 61 en Spotify y YouTube. Enlace directo en mi perfil.
 
 ---
 
-## 📊 Matriz Comparativa Semanal (Resumen Ejecutivo)
+## 🎠 FORMATO SECUNDARIO: CARRETE DE 6 SLIDES PARA INSTAGRAM
+### *Arquitectura Psicológica y Regla de Oro del 50% Inferior Libre ([skill_carretes_instagram_realmente.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/skill_carretes_instagram_realmente.md))*
+* **Episodio Vinculado:** Ep. 61 (*Esfuerzo e Identidad*)
+* **Dimensiones:** 1080 x 1350 px (4:5)
+* **Regla Estricta:** Todo el texto y tarjetas glassmorphism se concentran estrictamente en los primeros 600 a 650 px superiores. Los 650 a 1250 px inferiores quedan **100% libres y limpios** para stickers, memes o fotos personales de Marbelis.
 
-| # | Referente | Ángulo Original | Idea Adaptada RealMente | Formato Recomendado | Gancho Overlay (Texto Pantalla) |
-| :-: | :--- | :--- | :--- | :--- | :--- |
-| **1** | **Tony Robbins** | Romper parálisis y cambiar estado ya. | Desmontar la excusa de "respetar mis tiempos" como justificación de parálisis. | Reel en bucle estético | *"Cada vez que dices 'estoy respetando mis tiempos', tu mente escucha: 'Perfecto, 6 meses más de permiso para no arriesgarnos'."* |
-| **2** | **Margarita Pasos** | Superar el miedo a vender y cobrar. | Desarmar la complacencia de la "niña buena" que cobra poco por miedo a ser rechazada. | Reel en bucle + Carrusel de apoyo | *"No te da miedo vender o cobrar lo que vales: te da pánico que dejen de verte como la persona dócil que no incomoda a nadie."* |
-| **3** | **Marian Rojas E.** | Cortisol, estrés biológico y somatización. | La gastritis y el dolor físico como el peaje biológico de tragar la verdad para agradar. | Reel en bucle estético | *"Esa gastritis y esa tensión en el cuello no son 'estrés': son todas las veces que te tragaste tu verdad para mantener la fiesta ajena."* |
-| **4** | **Enric Corbera** | El espejo y lealtades familiares inconscientes. | El GPS mental predictivo: tu cerebro no busca felicidad, busca lo que le resulta familiar. | Reel en bucle + Caja de preguntas | *"No tienes 'mala suerte' en el amor: tienes un GPS mental programado para buscar a quien te confirme la herida de mendigar afecto."* |
-| **5** | **Laín García C.** | Manifestar abundancia con afirmaciones diarias. | Neurociencia de la coherencia: no manifiestas lo que decretas, manifiestas lo que sostienes con tus acciones. | Reel en bucle irónico | *"Haces journal y decretas abundancia... pero negocias tus precios a la baja. Eso no es manifestar: es mendigar con aroma a incienso."* |
-| **6** | **Silvia Congost** | Dependencia emocional y apego ansioso. | Dependencia de validación en la toma de decisiones: delegar tu criterio para tener a quién culpar. | Reel en bucle reflexivo | *"¿Hasta cuándo vas a seguir llamando 'pedir consejo' a la cobardía de no querer hacerte cargo de tus propias decisiones?"* |
-| **⭐** | **Perla Salas** | Autocompasión, relación propia y tapping. | La autotraición cotidiana: cumplirle a todo el mundo pero cancelarte siempre a ti misma. | Reel en bucle introspectivo | *"Tu mayor miedo nunca fue que los demás te abandonaran. Tu mayor terror es darte cuenta de que la primera en abandonarse eres tú."* |
+```text
+SLIDE 1 (El Gancho) — Fondo: Berenjena Profundo (#12091C)
+• Header: ✨ REALMENTE | 📌 Ep. 61 • Podcast
+• Tarjeta Glassmorphism (Mitad Superior):
+  "Te puedes matar trabajando 14 horas al día..."
+  «De nada sirve esforzarte tanto si tu identidad profunda no está alineada con lo que quieres.»
+• Mitad Inferior: 100% Libre para foto personal de Marbelis con mirada reflexiva.
+• Footer: @marbelismontero | Desliza ➡️
+
+SLIDE 2 (El Primer Impacto) — Fondo: Petróleo / Turquesa Oscuro (#0D3B38)
+• Header: ✨ REALMENTE | 📌 Ep. 61 • Podcast
+• Tarjeta Glassmorphism (Mitad Superior):
+  "El gran autoengaño:"
+  «Crees que no avanzas por falta de disciplina o estrategia.
+  La verdad es que tu mente jamás te dejará sostener lo que contradice quién crees que eres.»
+• Mitad Inferior: 100% Libre para sticker de humor o reacción.
+• Footer: @marbelismontero | Desliza ➡️
+
+SLIDE 3 (La Máscara) — Fondo: Violeta Loto (#2E0C59)
+• Header: ✨ REALMENTE | 📌 Ep. 61 • Podcast
+• Tarjeta Glassmorphism (Mitad Superior):
+  "Desmontando la etiqueta:"
+  «Ese 'es que yo soy así' no es tu personalidad.
+  Es la coartada que inventó tu ego para quedarse estancado con permiso de quejarse.»
+• Mitad Inferior: 100% Libre.
+• Footer: @marbelismontero | Desliza ➡️
+
+SLIDE 4 (El Cuchillo en el Estómago) — Fondo: Negro Carbón / Índigo (#12101F)
+• Header: ✨ REALMENTE | 📌 Ep. 61 • Podcast
+• Tarjeta Glassmorphism (Mitad Superior):
+  "La trampa del sobre-esfuerzo:"
+  «Trabajar el doble es el analgésico que usas para no mirar que te da terror asumir tu verdadero poder.»
+• Mitad Inferior: 100% Libre.
+• Footer: @marbelismontero | Desliza ➡️
+
+SLIDE 5 (El Golpe de Realidad) — Fondo: Ciruela / Uva Profundo (#4A0E4E)
+• Header: ✨ REALMENTE | 📌 Ep. 61 • Podcast
+• Tarjeta Glassmorphism (Mitad Superior):
+  "La paradoja de tu biología:"
+  «Tu sistema nervioso prefiere el sufrimiento conocido antes que la incomodidad de tu propia libertad.»
+• Mitad Inferior: 100% Libre.
+• Footer: @marbelismontero | Desliza ➡️
+
+SLIDE 6 (El Cierre y Mantra) — Fondo: Gradiente Violeta Cierre (#2E0C59 -> #4A0E4E -> #1A0536)
+• Header: ✨ REALMENTE | 📌 Ep. 61 • Podcast
+• Tarjeta Glassmorphism (Mitad Superior):
+  «Ya no defiendo a quien fui.
+  Hoy asumo a quien elijo ser.»
+  🎙️ Escucha el Episodio 61 en Spotify y YouTube.
+  Comenta "IDENTIDAD" para enviarte el enlace directo.
+• Mitad Inferior: 100% Libre para foto o sticker final.
+• Footer: @marbelismontero | Guarda y Comparte 💫
+```
 
 ---
 
-## ⚙️ Protocolo Operativo: Rutina de los Lunes (9:00 AM)
+## 📊 Matriz Comparativa Semanal (Ciclo: Lunes 12 de Octubre de 2026)
 
-Para mantener este banco permanentemente vivo, actualizado y sincronizado en cada inicio de semana:
+| # | Referente | Ángulo Original Detectado | Idea Adaptada RealMente (Filtro Avatar) | Formato de Video | Gancho Overlay (Texto en Pantalla) | Conexión Podcast / Embudo |
+| :-: | :--- | :--- | :--- | :--- | :--- | :--- |
+| **1** | **Tony Robbins** | Tu historia e identidad determinan tu destino; cambio fisiológico masivo. | La fuerza bruta no le gana al autoconcepto: si tu mente es "luchadora", siempre saboteará el descanso. | Reel B-roll en bucle (5s) | *"Te puedes matar trabajando 14 horas al día, pero si tu identidad es 'remar contra la corriente', sabotearás tu paz para volver a la lucha."* | Ep. 61 (Techo de cristal del autoconcepto) |
+| **2** | **Margarita Pasos** | Imparable en ventas y mentalidad; superar el síndrome del impostor comercial. | Desmontar la adicción a creer que si no cuesta lágrimas y sufrimiento, no mereces cobrar bien. | Reel en bucle (6s) | *"No tienes 'síndrome del impostor': tienes la adicción a creer que si no te cuesta sangre y dolor, no mereces cobrar lo que vales."* | RealMente Club (Autoridad y merecimiento) |
+| **3** | **Marian Rojas E.** | El perfeccionismo como miedo al control; cortisol crónico y somatización. | La factura física de sostener la etiqueta de "la mujer todoterreno": bruxismo, gastritis y agotamiento. | Reel B-roll cinemático (6s) | *"Ese dolor de cuello no es 'estrés': es el costo biológico de sostener la etiqueta de 'la fuerte' para ocultar tu fragilidad."* | Ep. 61 (Costo biológico del personaje) |
+| **4** | **Enric Corbera** | Lealtades familiares invisibles; repetición del dolor transgeneracional. | Boicotear tu éxito para no hacer sentir incómodo al clan familiar que te enseñó a vivir quejándote. | Reel en bucle (5s) | *"No estás estancada por falta de capacidad: estás frenando tu éxito para no incomodar a una familia que te enseñó a quejarte."* | Ep. 61 (Rutas neuronales y pertenencia) |
+| **5** | **Laín García C.** | Afirmaciones cuánticas y decretos de abundancia millonaria. | Cero misticismo pasivo: tu mente no manifiesta deseos, manifiesta lo que tu sistema nervioso tolera en calma. | Reel en bucle irónico (5s) | *"Puedes pasar 2h decretando... pero si tu sistema nervioso se asusta sin estrés, siempre vas a recrear el caos."* | Ep. 61 (Neurobiología de la tolerancia) |
+| **6** | **Silvia Congost** | Dependencia emocional y relaciones tóxicas en pareja. | La adicción a tu propia identidad de víctima: terror a quién serías si no tuvieras problemas de qué quejarte. | Reel en bucle (6s) | *"La relación más tóxica no es con tu ex: es con la versión tuya que sufre, porque te aterra descubrir quién eres cuando estás en paz."* | RealMente Club (Soberanía y desapego) |
+| **⭐** | **Perla Salas** | Soltar viejas etiquetas y reconciliarte con tu transformación. | El apego destructivo al *"es que yo soy así"*: confrontación de la coartada que frena el siguiente nivel. | Reel B-roll introspectivo (5s) | *"¿Qué parte de quién crees que eres estás cuidando tanto, que no te está dejando llegar a donde dices que quieres ir?"* | Ep. 61 (Pregunta de Poder oficial) |
 
-1. **Hora de Ejecución:** Cada lunes a las 09:00 AM.
+---
+
+## 🗄️ HISTÓRICO Y BANCO ACUMULATIVO DE SEMANAS ANTERIORES
+
+### 📅 ENTREGA: Lunes 5 de Octubre de 2026 (Semana Ep. 60 — Toma de Decisiones y Evasión)
+
+<details>
+<summary><strong>▶ Desplegar ideas y adaptaciones del Ciclo del 5 de Octubre de 2026 (Ep. 60)</strong></summary>
+
+#### 1. Tony Robbins
+* **Tendencia:** *«It is in your moments of decision that your destiny is shaped»* vs. la indecisión como decisión activa de permanecer en el dolor.
+* **Gancho Overlay:** *"Llevas 6 meses diciendo 'lo estoy pensando'. Traduzco lo que tu mente realmente decidió: eligió quedarse cansada, estancada y quejándose antes que ser valiente."*
+* **Ángulo:** Desmontar el mito de la neutralidad: no decidir recalienta el sistema nervioso y mantiene 40 aplicaciones abiertas en segundo plano.
+* **CTA:** Ep. 60 ("La decisión que llevas meses evadiendo").
+
+#### 2. Margarita Pasos
+* **Tendencia:** "La loca de la casa" y los frenos inconscientes para cobrar y vender con autoridad.
+* **Gancho Overlay:** *"No bajas tus precios para 'ayudar a la gente'. Los bajas porque te da pánico sostener tu valor cuando alguien te frunce el ceño."*
+* **Ángulo:** La herida de aprobación y la trampa de regalar el trabajo para ser querida por barata.
+* **Formato:** Reel en bucle + Carrusel de 4 láminas.
+
+#### 3. Marian Rojas Estapé
+* **Tendencia:** Pensar vs. rumiar; intoxicación de cortisol por bucles cognitivos inconclusos.
+* **Gancho Overlay:** *"Ese insomnio a las 3 a.m. y esa mandíbula apretada no son 'estrés de trabajo': es tu cuerpo colapsado por tener 40 decisiones pendientes que te da miedo enfrentar."*
+* **Ángulo:** El Efecto Zeigárnik y el registro biológico del autosabotaje en los órganos.
+* **CTA:** Ep. 60 (Eje del estrés y neurobiología).
+
+#### 4. Enric Corbera
+* **Tendencia:** El autosacrificio como manipulación inconsciente y demanda oculta de amor.
+* **Gancho Overlay:** *"Tu autosacrificio no es generosidad ni bondad: es la forma más cara y manipuladora que inventó tu ego para obligar a los demás a quererte."*
+* **Ángulo:** Desarmar a la mártir salvadora: resolverles la vida a otros como anestesia para no mirar la propia.
+
+#### 5. Laín García Calvo
+* **Tendencia:** Zona de confort como zona muerta; esperar señales cósmicas para actuar.
+* **Gancho Overlay:** *"Llevas un año pidiéndole 'una señal' al universo... cuando la única señal que falta es que dejes de ser cómplice de tu propia cobardía."*
+* **Ángulo:** La certeza previa a la acción es un mito biológico; la claridad se construye después de la micro-acción de 24h.
+
+#### 6. Silvia Congost
+* **Tendencia:** Poner límites sin culpa; soltar el miedo a decepcionar.
+* **Gancho Overlay:** *"Poner un límite no destruye relaciones sanas: destruye la ilusión de que tu vida le pertenecía a los demás."*
+* **Ángulo:** La culpa no es un fallo moral; es el síntoma de desobedecer el mandato de la sumisión.
+
+#### ⭐ Perla Salas (@encuentrosagrado)
+* **Tendencia:** Autotraición cotidiana y recuperar la confianza en la propia palabra.
+* **Gancho Overlay:** *"Tu mayor problema no es que los demás no confíen en ti. El problema es que tu propio inconsciente sabe cuántas veces te has prometido cambiar y te has dejado plantada."*
+* **Ángulo:** La autoconfianza como historial medible de acuerdos cumplidos entre tú y tu inconsciente.
+
+</details>
+
+---
+
+### 📅 ENTREGA: Lunes 28 de Septiembre de 2026 (Semana de Validación Ep. 58 & 59)
+
+<details>
+<summary><strong>▶ Desplegar ideas y adaptaciones del Ciclo del 28 de Septiembre de 2026 (Ep. 58 & 59)</strong></summary>
+
+#### 1. Tony Robbins
+* **Tendencia:** Discurso de romper el estado de parálisis ("Get out of your head and get into action").
+* **Gancho Overlay:** *"Cada vez que dices 'estoy respetando mis tiempos', tu mente escucha: 'Perfecto, 6 meses más de permiso para no arriesgarnos a fallar'."*
+* **Ángulo:** Desmontar la excusa de la autocompasión que patrocina el estancamiento.
+* **CTA:** Ep. 59 ("Necesidad vs. Poder").
+
+#### 2. Margarita Pasos
+* **Tendencia:** Los frenos invisibles del dinero y el miedo a negociar.
+* **Gancho Overlay:** *"No te da miedo vender o cobrar lo que vales: te da pánico que dejen de verte como la persona dócil que nunca incomoda a nadie."*
+* **Ángulo:** La herida de la "niña buena" y la complacencia financiera.
+* **Formato:** Reel en bucle + Carrusel de 4 láminas.
+
+#### 3. Marian Rojas Estapé
+* **Tendencia:** La crisis del cortisol y la somatización del estrés por complacencia.
+* **Gancho Overlay:** *"Esa gastritis, esa tensión en el cuello y ese insomnio a las 3 a.m. no son 'estrés': son todas las veces en el mes que te tragaste tu verdad para mantener la fiesta en paz ajena."*
+* **Ángulo:** Descodificación biológica: tu cuerpo grita lo que tu boca calla.
+* **CTA:** Ep. 58 (Tríada de la Seguridad Interna).
+
+#### 4. Enric Corbera
+* **Tendencia:** El concepto del "espejo" y proyecciones inconscientes en vínculos.
+* **Gancho Overlay:** *"No tienes 'mala suerte' con las personas que llegan a tu vida: tienes un GPS mental programado para buscar a quien te confirme la herida de que tienes que mendigar amor."*
+* **Ángulo:** Rutas neuronales predictivas: el cerebro busca lo familiar, no la felicidad.
+
+#### 5. Laín García Calvo
+* **Tendencia:** Afirmaciones matutinas y decretos de abundancia.
+* **Gancho Overlay:** *"Haces journal, meditas y afirmas abundancia... pero a la primera oportunidad negocias tus precios a la baja. Eso no es manifestar: es mendigar con aroma a incienso."*
+* **Ángulo:** Coherencia neurológica: no manifiestas lo que deseas, manifiestas lo que sostienes con tus decisiones.
+
+#### 6. Silvia Congost
+* **Tendencia:** Dependencia emocional y necesidad de validación externa.
+* **Gancho Overlay:** *"¿Hasta cuándo vas a seguir llamando 'pedir consejo' a la cobardía de no querer hacerte cargo de tus propias decisiones?"*
+* **Ángulo:** Subastar el criterio propio para tener una coartada en caso de fallar.
+
+#### ⭐ Perla Salas (@encuentrosagrado)
+* **Tendencia:** Autotraición cotidiana y cancelación personal.
+* **Gancho Overlay:** *"Tu mayor miedo nunca fue que los demás te abandonaran. Tu mayor terror es darte cuenta de que la primera en abandonarse todos los días eres tú."*
+* **Ángulo:** Cumplirle a todo el mundo pero cancelarte siempre a ti misma.
+
+</details>
+
+---
+
+## ⚙️ Protocolo Operativo: Rutina de los Lunes (09:00 AM)
+
+Para mantener este banco de ideas permanentemente actualizado y sincronizado en cada inicio de semana:
+
+1. **Momento de Ejecución:** Cada lunes a las 09:00 AM (inicio de ciclo semanal de contenidos).
 2. **Revisión del Radar:**
-   - Consultar la matriz [investigacion_competencia.xlsx](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/investigacion_competencia.xlsx) y fuentes digitales de los 6 competidores base.
-   - Identificar las 3 temáticas que mayor interacción o viralidad hayan generado durante los últimos 7 días en sus canales.
+   - Consultar la matriz maestra [investigacion_competencia.xlsx](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/investigacion_competencia.xlsx) y los canales de los 6 competidores base + referentes de estilo validados.
+   - Detectar la temática o ángulo de mayor tracción o viralidad de los últimos 7 días.
 3. **Filtro de Transformación RealMente:**
-   - Descartar misticismo vacío o fórmulas corporativas descafeinadas.
-   - Traducir cada concepto al dolor del avatar de Marbelis (complacencia, autosabotaje, validación, miedo a incomodar).
-   - Convertir la idea en una frase de alto impacto para video en bucle estético (>100% retención).
-   - Redactar el copy con el ADN lingüístico de Marbelis (PNL, "chismecito", cachetada amorosa, preguntas de poder y cierre icónico).
+   - Descartar misticismo pasivo (*"espera a que el universo te lo traiga"*) o recetas corporativas descafeinadas.
+   - Traducir cada concepto al dolor del avatar de Marbelis (complacencia, sobre-esfuerzo, rumiación, autosabotaje, validación, techo de cristal).
+   - Convertir la idea en una frase de alto impacto para video en bucle estético de 5 a 7 segundos (>100% retención) o carrusel de 6 slides (regla del 50% inferior libre).
+   - Redactar el copy con el ADN lingüístico de Marbelis: PNL, neurobiología, segunda persona singular estricta (`tú`, `te`, `tu`), preguntas de poder y cierre icónico con exactamente 5 hashtags.
+   - Conectar con el episodio activo de la semana (actualmente [Episodio 61](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP61_Esfuerzo_e_Identidad)).
 4. **Almacenamiento Acumulativo:**
-   - Incorporar la nueva entrega semanal al inicio de este documento, preservando las semanas anteriores como histórico y biblioteca de recursos reutilizables.
+   - Incorporar la nueva entrega semanal en la parte superior del documento, archivando las semanas anteriores en la sección de historial acumulativo con menús desplegables (`<details>`).
