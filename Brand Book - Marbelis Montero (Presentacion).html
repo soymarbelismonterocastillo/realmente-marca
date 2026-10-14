@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Book · Marbelis Montero</title>
+<meta name="description" content="Manual de identidad visual de la marca personal Marbelis Montero — Coach y Trainer en PNL. Logotipo, color, tipografía y normas de uso.">
+<link rel="stylesheet" href="brand-book.css">
+<style>
+  /* ===== Modo presentación plana: diapositivas A4 horizontal apiladas ===== */
+  body{ background:#E7E4EE; }
+  .book{ display:contents; }
+  .book,.cover{ margin-left:0 !important; }
+  .slidewrap{ padding:46px 0 70px; display:flex; flex-direction:column; align-items:center; gap:34px; }
+
+  .cover, .page{
+    width:1123px; height:794px; max-width:94vw;
+    margin:0 auto !important; min-height:0 !important;
+    background:#fff; border:none !important; border-radius:6px;
+    box-shadow:0 30px 70px -34px rgba(43,43,43,.40);
+    overflow:hidden; position:relative;
+    padding:64px 76px !important;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .cover{
+    padding:0 88px !important;
+    background:
+      radial-gradient(120% 90% at 80% 8%, rgba(166,105,218,.20), transparent 55%),
+      radial-gradient(90% 80% at 12% 100%, rgba(42,210,197,.14), transparent 60%),
+      var(--blanco-petalo);
+  }
+  .inner{ max-width:100%; }
+  .sec-title{ font-size:46px !important; margin-bottom:.4em; }
+  .lead{ font-size:18px !important; }
+  .cover h1{ font-size:92px !important; }
+  /* fija las rejillas a varias columnas aunque el viewport sea estrecho */
+  .grid-2{ grid-template-columns:1fr 1fr !important; gap:40px !important; }
+  .grid-3{ grid-template-columns:repeat(3,1fr) !important; }
+  .grid-4{ grid-template-columns:repeat(4,1fr) !important; }
+  .swatches{ grid-template-columns:repeat(4,1fr) !important; }
+  .toc{ grid-template-columns:repeat(2,1fr) !important; }
+  .rules{ grid-template-columns:repeat(3,1fr) !important; }
+  .stage{ min-height:0; }
+
+  @media print{
+    @page{ size:A4 landscape; margin:0; }
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+    body{ background:#fff; }
+    .slidewrap{ padding:0; gap:0; }
+    .cover, .page{
+      width:100%; height:100vh; max-width:none; border-radius:0;
+      box-shadow:none; break-after:page; page-break-after:always;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<div class="slidewrap">
+
+<!-- ============================ PORTADA ============================ -->
+<header class="cover">
+  <img class="petal-bg" src="assets/iso-lila.png" alt="">
+  <div class="cover-inner">
+    <div class="eyebrow">Manual de Identidad Visual</div>
+    <h1>Brand<br><b>Book</b></h1>
+    <div class="subtitle">Marbelis Montero · Coach &amp; Trainer en PNL</div>
+    <div class="meta">
+      <div><span>Documento</span>Guía oficial de marca</div>
+      <div><span>Versión</span>1.0 — 2026</div>
+      <div><span>Alcance</span>Logo · Color · Tipografía · Uso</div>
+    </div>
+  </div>
+</header>
+
+<div class="book">
+
+<!-- ============================ ÍNDICE ============================ -->
+<section class="page" id="indice">
+  <div class="inner">
+    <div class="kicker">Contenido</div>
+    <h2 class="sec-title">Índice del <b>manual</b></h2>
+    <p class="lead">Esta guía define cómo se ve, se siente y se comunica la marca Marbelis Montero. Sigue estas normas para mantener una identidad coherente en cada punto de contacto.</p>
+    <div class="toc">
+      <a href="#esencia"><span class="n">01</span><span class="t">Esencia de marca<small>Propósito, misión y promesa</small></span></a>
+      <a href="#personalidad"><span class="n">02</span><span class="t">Personalidad y valores<small>El carácter de la marca</small></span></a>
+      <a href="#voz"><span class="n">03</span><span class="t">Tono de voz<small>Cómo hablamos y qué decimos</small></span></a>
+      <a href="#logo"><span class="n">04</span><span class="t">El logotipo<small>Anatomía y significado del loto</small></span></a>
+      <a href="#versiones"><span class="n">05</span><span class="t">Versiones del logotipo<small>Variantes y cuándo usarlas</small></span></a>
+      <a href="#construccion"><span class="n">06</span><span class="t">Construcción y protección<small>Área de respeto y tamaño mínimo</small></span></a>
+      <a href="#usos"><span class="n">07</span><span class="t">Usos correctos e incorrectos<small>Lo que sí y lo que no</small></span></a>
+      <a href="#color"><span class="n">08</span><span class="t">Paleta de color<small>Primarios, lilas, acento y neutros</small></span></a>
+      <a href="#transparencias"><span class="n">09</span><span class="t">Sistema de transparencias<small>El alma del logo</small></span></a>
+      <a href="#tipografia"><span class="n">10</span><span class="t">Tipografía<small>Familias y jerarquía</small></span></a>
+      <a href="#graficos"><span class="n">11</span><span class="t">Elementos gráficos<small>Patrones, ondas y fondos</small></span></a>
+      <a href="#aplicaciones"><span class="n">12</span><span class="t">Aplicaciones<small>La marca en acción</small></span></a>
+      <a href="#ia"><span class="n">13</span><span class="t">Especificaciones para IA<small>Resumen legible por máquinas</small></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 01 ESENCIA ============================ -->
+<section class="page" id="esencia">
+  <div class="inner">
+    <div class="grid-2">
+      <div>
+        <div class="kicker">01 · Esencia de marca</div>
+        <h2 class="sec-title">Te acompaño a <b>transformar tu vida</b></h2>
+        <p class="lead">Marbelis Montero es una marca personal de acompañamiento y transformación a través de la Programación Neurolingüística. Une el rigor profesional con una cercanía cálida y humana.</p>
+        <p>El símbolo de la marca —la flor de loto— resume su promesa: del fondo turbio nace algo luminoso. Cada pétalo translúcido representa una capa de la persona que, al superponerse, revela claridad, equilibrio y crecimiento.</p>
+      </div>
+      <div class="stage" style="min-height:380px; background:radial-gradient(circle at 50% 45%, #fff, var(--blanco-petalo));">
+        <img src="assets/logo-principal-violeta.png" alt="Logotipo principal Marbelis Montero" style="max-width:62%;">
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:54px;">
+      <div class="value-card">
+        <div class="ix">PROPÓSITO</div>
+        <h3>Despertar el potencial</h3>
+        <p>Guiar a las personas para que reescriban sus límites y diseñen una vida con sentido.</p>
+      </div>
+      <div class="value-card">
+        <div class="ix">MISIÓN</div>
+        <h3>Acompañar el cambio</h3>
+        <p>Ofrecer herramientas de PNL, hipnosis y psicopintura para resolver conflictos, gestionar el estrés y lograr objetivos.</p>
+      </div>
+      <div class="value-card">
+        <div class="ix">PROMESA</div>
+        <h3>Transformación real</h3>
+        <p>Procesos personalizados, empáticos y profesionales que generan resultados que se sienten y se viven.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 02 PERSONALIDAD ============================ -->
+<section class="page" id="personalidad">
+  <div class="inner">
+    <div class="kicker">02 · Personalidad y valores</div>
+    <h2 class="sec-title">El <b>carácter</b> de la marca</h2>
+    <p class="lead">Si Marbelis Montero fuera una persona en una sala, sería serena pero firme, cálida pero profesional. Estos cinco valores guían cada decisión visual y de comunicación.</p>
+    <div class="grid-4" style="margin-top:40px;">
+      <div class="value-card"><div class="ix">01</div><h3>Calma</h3><p>Espacios de respiración, tonos suaves, ritmo pausado.</p></div>
+      <div class="value-card"><div class="ix">02</div><h3>Cercanía</h3><p>Tuteo, escucha y empatía. La marca abraza, no impone.</p></div>
+      <div class="value-card"><div class="ix">03</div><h3>Confianza</h3><p>Credenciales y método. El violeta profundo aporta autoridad.</p></div>
+      <div class="value-card"><div class="ix">04</div><h3>Crecimiento</h3><p>El loto que florece: progreso, apertura, transformación.</p></div>
+    </div>
+    <div class="grid-2" style="margin-top:46px; align-items:stretch;">
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;">
+        <div class="pill">Espectro de tono</div>
+        <p style="margin-top:18px;font-size:15px;color:#555;">La marca vive en el equilibrio. Nunca cae en los extremos.</p>
+        <div style="margin-top:14px;font-family:'Jost';font-size:15px;color:var(--carbon);line-height:2.2;">
+          Profesional <span style="color:var(--lila);">———●———</span> Cercana<br>
+          Serena <span style="color:var(--lila);">———●———</span> Energética<br>
+          Espiritual <span style="color:var(--lila);">——●————</span> Pragmática
+        </div>
+      </div>
+      <div class="stage lila" style="min-height:auto;">
+        <img src="assets/iso-lila-claro.png" alt="" style="max-width:50%;">
+        <div class="cap">Equilibrio · Apertura · Florecimiento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 03 VOZ ============================ -->
+<section class="page" id="voz">
+  <div class="inner">
+    <div class="kicker">03 · Tono de voz</div>
+    <h2 class="sec-title">Cómo <b>hablamos</b></h2>
+    <div class="grid-2" style="margin-top:20px; align-items:start;">
+      <div>
+        <p class="lead">La voz es la de una guía de confianza: habla de tú, en presente, con verbos de acción y esperanza. Frases cortas, cálidas y claras.</p>
+        <div class="quote" style="margin:30px 0;">“Te acompaño a <b>transformar tu vida</b>.”</div>
+        <p style="font-size:14px;color:#888;">— Mensaje insignia de la marca</p>
+      </div>
+      <div class="grid-2" style="gap:22px;">
+        <div class="card" style="padding:26px;">
+          <div class="pill" style="background:rgba(31,143,107,.12);color:#1f8f6b;">Sí decimos</div>
+          <ul style="margin:16px 0 0;padding-left:18px;color:#444;font-size:15px;line-height:1.9;">
+            <li>Te acompaño</li>
+            <li>Juntos lo logramos</li>
+            <li>Tu proceso, a tu ritmo</li>
+            <li>Sesiones personalizadas</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:26px;">
+          <div class="pill" style="background:rgba(192,57,43,.10);color:#c0392b;">No decimos</div>
+          <ul style="margin:16px 0 0;padding-left:18px;color:#444;font-size:15px;line-height:1.9;">
+            <li>Cura garantizada</li>
+            <li>Jerga clínica fría</li>
+            <li>Promesas mágicas</li>
+            <li>Lenguaje impersonal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:36px;">Palabras clave del territorio verbal: <strong>transformar · acompañar · proceso · bienestar · conflicto · objetivos · comunicación · presencia · calma · potencial</strong>.</div>
+  </div>
+</section>
+
+<!-- ============================ 04 LOGOTIPO ============================ -->
+<section class="page" id="logo">
+  <div class="inner">
+    <div class="kicker">04 · El logotipo</div>
+    <h2 class="sec-title">Anatomía del <b>loto</b></h2>
+    <p class="lead">El logotipo combina un <strong>isotipo</strong> (la flor de loto) y un <strong>logotipo tipográfico</strong> (el nombre). El loto se construye con cinco pétalos translúcidos que se superponen para crear profundidad y luz.</p>
+    <div class="grid-2" style="margin-top:40px;">
+      <div class="anatomy">
+        <img src="assets/iso-violeta-degradado.png" alt="Anatomía del isotipo loto">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;justify-content:center;">
+        <div class="card" style="padding:24px 28px;">
+          <h3 style="font-size:18px;">Pétalo central</h3>
+          <p style="margin:6px 0 0;font-size:14.5px;color:#666;">Erguido y luminoso. Representa el yo en crecimiento, la aspiración y la claridad mental.</p>
+        </div>
+        <div class="card" style="padding:24px 28px;">
+          <h3 style="font-size:18px;">Pétalos laterales abiertos</h3>
+          <p style="margin:6px 0 0;font-size:14.5px;color:#666;">Acogen y sostienen. Simbolizan el acompañamiento y la apertura al cambio.</p>
+        </div>
+        <div class="card" style="padding:24px 28px;">
+          <h3 style="font-size:18px;">Centro profundo</h3>
+          <p style="margin:6px 0 0;font-size:14.5px;color:#666;">Donde se superponen las transparencias nace el violeta más intenso: la raíz, la transformación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 05 VERSIONES ============================ -->
+<section class="page" id="versiones">
+  <div class="inner">
+    <div class="kicker">05 · Versiones del logotipo</div>
+    <h2 class="sec-title">Un sistema <b>flexible</b></h2>
+    <p class="lead">La marca cuenta con un repertorio de versiones para cada contexto. Elige siempre la que garantice máxima legibilidad y contraste con el fondo.</p>
+    <div class="grid-3" style="margin-top:38px;">
+      <div class="stage"><img src="assets/logo-principal-violeta.png" alt=""><div class="cap">Principal · vertical</div></div>
+      <div class="stage"><img src="assets/iso-violeta-degradado.png" alt="" style="max-width:50%;"><div class="cap">Isotipo · violeta</div></div>
+      <div class="stage checker"><img src="assets/iso-costado.png" alt="" style="max-width:46%;"><div class="cap">Isotipo de costado</div></div>
+      <div class="stage lila"><img src="assets/iso-lila-claro.png" alt="" style="max-width:50%;"><div class="cap">Isotipo · sobre lila</div></div>
+      <div class="stage dark"><img src="assets/iso-lila.png" alt="" style="max-width:50%;"><div class="cap">Isotipo · sobre violeta</div></div>
+      <div class="stage"><img src="assets/iso-turquesa.png" alt="" style="max-width:50%;"><div class="cap">Isotipo · turquesa</div></div>
+      <div class="stage" style="grid-column:span 1;"><img src="assets/logo-badge-circular.jpg" alt="" style="max-width:62%;"><div class="cap">Sello circular</div></div>
+      <div class="stage"><img src="assets/iso-gris.png" alt="" style="max-width:50%;"><div class="cap">Versión neutra · gris</div></div>
+      <div class="stage indigo"><img src="assets/iso-lila-claro.png" alt="" style="max-width:50%;"><div class="cap">Reserva · sobre índigo</div></div>
+    </div>
+    <div class="note" style="margin-top:30px;">El <strong>sello circular</strong> se reserva para sellos de agua, marcas en fotografía, avatares y aplicaciones donde el formato cuadrado domina. El <strong>isotipo turquesa</strong> es un acento ocasional, no la versión principal.</div>
+  </div>
+</section>
+
+<!-- ============================ 06 CONSTRUCCIÓN ============================ -->
+<section class="page" id="construccion">
+  <div class="inner">
+    <div class="kicker">06 · Construcción y protección</div>
+    <h2 class="sec-title">Aire y <b>respeto</b></h2>
+    <p class="lead">El logotipo necesita espacio para respirar. Mantén siempre un área de protección libre de otros elementos, y nunca lo reproduzcas por debajo de su tamaño mínimo.</p>
+    <div class="grid-2" style="margin-top:40px;">
+      <div>
+        <div class="anatomy" style="padding:30px;">
+          <div style="position:relative;padding:14%;border:1.5px dashed var(--lavanda);border-radius:14px;">
+            <img src="assets/iso-violeta-degradado.png" alt="Área de protección" style="display:block;max-width:200px;margin:0 auto;">
+            <span style="position:absolute;top:6px;left:50%;transform:translateX(-50%);font-family:'Jost';font-size:11px;letter-spacing:.14em;color:var(--lila);">↕ X</span>
+          </div>
+        </div>
+        <p style="margin-top:18px;font-size:14.5px;color:#666;">El área de protección equivale a <strong>la altura de un pétalo lateral (X)</strong> en todos los lados. Ningún texto, imagen o borde debe invadir esta zona.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;justify-content:center;">
+        <div class="card">
+          <h3 style="font-size:19px;">Tamaño mínimo</h3>
+          <div style="display:flex;align-items:flex-end;gap:30px;margin-top:20px;">
+            <div style="text-align:center;"><img src="assets/iso-violeta-degradado.png" style="width:64px;"><div style="font-family:'Jost';font-size:11px;color:#999;margin-top:8px;">Isotipo<br>24 px / 10 mm</div></div>
+            <div style="text-align:center;"><img src="assets/logo-principal-violeta.png" style="width:120px;"><div style="font-family:'Jost';font-size:11px;color:#999;margin-top:8px;">Completo<br>40 px / 22 mm ancho</div></div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:0;">Por debajo de estos tamaños el degradado de pétalos pierde definición. En usos muy pequeños (favicon, sello), usa el isotipo sólido sin transparencias.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 07 USOS ============================ -->
+<section class="page" id="usos">
+  <div class="inner">
+    <div class="kicker">07 · Usos correctos e incorrectos</div>
+    <h2 class="sec-title">Lo que <b>sí</b> y lo que <b>no</b></h2>
+    <p class="lead">Proteger la integridad del logotipo es proteger la marca. Evita cualquier alteración que comprometa su forma, color o legibilidad.</p>
+    <div class="rules" style="margin-top:38px;">
+      <div class="rule ok">
+        <div class="vis" style="background:#fff;"><img src="assets/logo-principal-violeta.png" alt=""></div>
+        <div class="tag"><span class="ic">✓</span><b>Sobre fondos claros y neutros</b></div>
+      </div>
+      <div class="rule ok">
+        <div class="vis" style="background:var(--violeta);"><img src="assets/iso-lila-claro.png" alt="" style="max-width:34%;"></div>
+        <div class="tag"><span class="ic">✓</span><b>Versión clara sobre fondo violeta</b></div>
+      </div>
+      <div class="rule no">
+        <div class="vis" style="background:#fff;"><img src="assets/iso-violeta-degradado.png" alt="" style="transform:scaleX(.55);max-width:40%;"></div>
+        <div class="tag"><span class="ic">✕</span><b>No deformes ni estires el loto</b></div>
+      </div>
+      <div class="rule no">
+        <div class="vis" style="background:linear-gradient(45deg,#ff7a00,#00c2ff);"><img src="assets/iso-violeta-degradado.png" alt="" style="max-width:38%;"></div>
+        <div class="tag"><span class="ic">✕</span><b>No lo coloques sobre fondos ruidosos</b></div>
+      </div>
+      <div class="rule no">
+        <div class="vis" style="background:#fff;filter:hue-rotate(120deg);"><img src="assets/iso-violeta-degradado.png" alt="" style="max-width:38%;"></div>
+        <div class="tag"><span class="ic">✕</span><b>No cambies los colores de marca</b></div>
+      </div>
+      <div class="rule no">
+        <div class="vis" style="background:#fff;"><img src="assets/iso-violeta-degradado.png" alt="" style="max-width:38%;box-shadow:6px 6px 0 rgba(0,0,0,.4);border-radius:8px;"></div>
+        <div class="tag"><span class="ic">✕</span><b>No añadas sombras, bordes ni efectos</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 08 COLOR ============================ -->
+<section class="page" id="color">
+  <div class="inner">
+    <div class="kicker">08 · Paleta de color</div>
+    <h2 class="sec-title">Un universo <b>violeta</b></h2>
+    <p class="lead">El violeta es el corazón de la marca: espiritualidad, transformación y sabiduría. Lo acompañan los lilas (calma y feminidad), un acento turquesa (frescura y equilibrio) y neutros que dan aire.</p>
+
+    <h3 style="font-family:'Jost';font-weight:500;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--gris-loto);margin:42px 0 18px;">Primarios</h3>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#4C078C;"></div><div class="info"><div class="name">Violeta Loto</div><div class="val"><b>HEX</b> #4C078C<br><b>RGB</b> 76 · 7 · 140<br><b>CMYK</b> 76 · 96 · 0 · 18</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#2E0981;"></div><div class="info"><div class="name">Índigo Profundo</div><div class="val"><b>HEX</b> #2E0981<br><b>RGB</b> 46 · 9 · 129<br><b>CMYK</b> 84 · 96 · 0 · 22</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#A669DA;"></div><div class="info"><div class="name">Lila Vivo</div><div class="val"><b>HEX</b> #A669DA<br><b>RGB</b> 166 · 105 · 218<br><b>CMYK</b> 24 · 52 · 0 · 15</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#BA81C9;"></div><div class="info"><div class="name">Lila Suave</div><div class="val"><b>HEX</b> #BA81C9<br><b>RGB</b> 186 · 129 · 201<br><b>CMYK</b> 7 · 36 · 0 · 21</div></div></div>
+    </div>
+
+    <h3 style="font-family:'Jost';font-weight:500;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--gris-loto);margin:40px 0 18px;">Acento &amp; neutros</h3>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#2AD2C5;"></div><div class="info"><div class="name">Turquesa Sereno</div><div class="val"><b>HEX</b> #2AD2C5<br><b>RGB</b> 42 · 210 · 197<br><b>CMYK</b> 80 · 0 · 6 · 18</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#2B2B2B;"></div><div class="info"><div class="name">Carbón</div><div class="val"><b>HEX</b> #2B2B2B<br><b>RGB</b> 43 · 43 · 43<br><b>Uso</b> Texto largo</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#808080;"></div><div class="info"><div class="name">Gris Loto</div><div class="val"><b>HEX</b> #808080<br><b>RGB</b> 128 · 128 · 128<br><b>Uso</b> Wordmark</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#FAFAF9;border-bottom:1px solid var(--gris-bruma);"></div><div class="info"><div class="name">Blanco Pétalo</div><div class="val"><b>HEX</b> #FAFAF9<br><b>RGB</b> 250 · 250 · 249<br><b>Uso</b> Fondos</div></div></div>
+    </div>
+
+    <div class="note" style="margin-top:34px;">Proporción recomendada: <strong>60%</strong> blancos y neutros · <strong>30%</strong> violeta e índigo · <strong>10%</strong> lilas y turquesa. El violeta domina, los lilas suavizan, el turquesa puntúa.</div>
+  </div>
+</section>
+
+<!-- ============================ 09 TRANSPARENCIAS ============================ -->
+<section class="page" id="transparencias">
+  <div class="inner">
+    <div class="kicker">09 · Sistema de transparencias</div>
+    <h2 class="sec-title">El alma del <b>loto</b></h2>
+    <p class="lead">El logotipo no usa degradados pintados: su profundidad nace de <strong>superponer pétalos del mismo violeta con distintas opacidades</strong>. Donde dos pétalos se cruzan, el color se intensifica. Este principio es la firma gráfica de la marca.</p>
+    <div class="grid-2" style="margin-top:40px;">
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="display:flex;">
+          <div style="flex:1;height:170px;background:#4C078C;opacity:.45;"></div>
+          <div style="flex:1;height:170px;background:#4C078C;opacity:.70;"></div>
+          <div style="flex:1;height:170px;background:#4C078C;"></div>
+        </div>
+        <div style="padding:18px 24px;font-family:'Jost';font-size:13px;color:#777;letter-spacing:.04em;">Mismo violeta · 45% → 70% → 100% de opacidad</div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;">
+        <p>Para recrear el efecto en cualquier diseño:</p>
+        <ul style="color:#555;font-size:15px;line-height:2;padding-left:20px;">
+          <li>Parte del violeta base <strong>#4C078C</strong>.</li>
+          <li>Aplica los pétalos como capas translúcidas (40–70%).</li>
+          <li>Deja que las intersecciones generen el tono profundo.</li>
+          <li>Nunca añadas un cuarto color al degradado.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:34px;">
+      <div class="stage" style="min-height:200px;"><img src="assets/iso-lila-claro.png" style="max-width:60%;"><div class="cap">Translúcido · etéreo</div></div>
+      <div class="stage" style="min-height:200px;"><img src="assets/iso-violeta-degradado.png" style="max-width:60%;"><div class="cap">Pleno · equilibrado</div></div>
+      <div class="stage" style="min-height:200px;"><img src="assets/iso-violeta-degradado-2.png" style="max-width:60%;"><div class="cap">Denso · profundo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 10 TIPOGRAFÍA ============================ -->
+<section class="page" id="tipografia">
+  <div class="inner">
+    <div class="kicker">10 · Tipografía</div>
+    <h2 class="sec-title">Voz <b>tipográfica</b></h2>
+    <p class="lead">Una geometría ligera y abierta refleja la serenidad de la marca. El nombre se compone en mayúsculas espaciadas; los textos largos en una sans humanista, cómoda de leer.</p>
+
+    <div class="grid-2" style="margin-top:40px;align-items:stretch;">
+      <div class="type-spec">
+        <div class="pill">Display · Jost</div>
+        <div class="big">Aa</div>
+        <div class="glyphs">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br>abcdefghijklmnñopqrstuvwxyz 1234567890</div>
+        <p style="margin-top:20px;font-size:14px;color:#888;">Para el wordmark, titulares y rótulos. Úsala en peso Light/Regular con <strong>letter-spacing amplio</strong> (.12–.20em) en mayúsculas.</p>
+      </div>
+      <div class="type-spec">
+        <div class="pill" style="background:rgba(42,210,197,.14);color:#1a9b91;">Texto · Mulish</div>
+        <div style="font-family:'Mulish';font-weight:700;font-size:44px;color:var(--carbon);margin-top:14px;line-height:1.1;">Acompañar<br>con claridad</div>
+        <p style="font-family:'Mulish';margin-top:20px;color:#555;">Mulish aporta calidez y legibilidad en párrafos, listas y textos de interfaz. Combina Regular (400) para el cuerpo y SemiBold (600/700) para destacar.</p>
+        <div class="weights">
+          <div><div class="w" style="font-family:'Mulish';font-weight:300;">Aa</div><small>Light 300</small></div>
+          <div><div class="w" style="font-family:'Mulish';font-weight:400;">Aa</div><small>Regular 400</small></div>
+          <div><div class="w" style="font-family:'Mulish';font-weight:700;">Aa</div><small>Bold 700</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:30px;">
+      <h3 style="font-size:19px;margin-bottom:18px;">Jerarquía recomendada</h3>
+      <div class="dl">
+        <dt>Wordmark</dt><dd>Jost Light · mayúsculas · tracking .18em · color Gris Loto #808080</dd>
+        <dt>Titular (H1)</dt><dd>Jost Light/SemiBold · 48–96 px · violeta #4C078C</dd>
+        <dt>Subtítulo</dt><dd>Jost Regular · 20–28 px · lila o carbón</dd>
+        <dt>Cuerpo</dt><dd>Mulish Regular · 16–18 px · carbón #2B2B2B</dd>
+        <dt>Apoyo / pie</dt><dd>Mulish · 12–14 px · gris #808080</dd>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 11 GRÁFICOS ============================ -->
+<section class="page" id="graficos">
+  <div class="inner">
+    <div class="kicker">11 · Elementos gráficos</div>
+    <h2 class="sec-title">Texturas y <b>fondos</b></h2>
+    <p class="lead">Más allá del logo, la marca dispone de un kit gráfico: el patrón de lotos, las ondas curvas y los halos de luz. Úsalos para construir piezas con personalidad sin saturar.</p>
+    <div class="grid-2" style="margin-top:38px;">
+      <div class="pattern-tile" style="background-image:url('assets/patron-loto-gris.png');"></div>
+      <div style="display:flex;flex-direction:column;justify-content:center;">
+        <h3 style="font-family:'Jost';font-weight:500;font-size:22px;">Patrón de lotos</h3>
+        <p style="font-size:15px;color:#666;">Loto repetido en tono claro sobre gris. Ideal como fondo sutil de documentos, fondos de pantalla y reversos. Mantenerlo siempre de bajo contraste para no competir con el contenido.</p>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:30px;">
+      <div class="pattern-tile" style="background-image:url('assets/fondo-ondas-violeta.png');min-height:180px;"></div>
+      <div class="pattern-tile" style="background-image:url('assets/fondo-ondas-turquesa.png');min-height:180px;"></div>
+      <div class="pattern-tile" style="background-image:url('assets/fondo-halo-lila.png');min-height:180px;"></div>
+    </div>
+    <div class="grid-3" style="margin-top:18px;font-family:'Jost';font-size:12.5px;color:#999;letter-spacing:.04em;text-align:center;">
+      <div>Ondas violeta · cabeceras y pies</div>
+      <div>Ondas turquesa · acento fresco</div>
+      <div>Halo lila · fondos suaves</div>
+    </div>
+    <div class="note" style="margin-top:28px;">Las <strong>ondas curvas</strong> evocan los pétalos del loto y se usan en esquinas o bordes de las piezas. El <strong>halo radial lila</strong> sirve como fondo limpio para retratos y citas.</div>
+  </div>
+</section>
+
+<!-- ============================ 12 APLICACIONES ============================ -->
+<section class="page" id="aplicaciones">
+  <div class="inner">
+    <div class="kicker">12 · Aplicaciones</div>
+    <h2 class="sec-title">La marca en <b>acción</b></h2>
+    <p class="lead">Ejemplo de cómo conviven todos los elementos: logo, color, tipografía, ondas y retrato profesional en una pieza de comunicación real.</p>
+    <div class="grid-2" style="margin-top:38px;align-items:start;">
+      <div class="stage" style="padding:24px;background:var(--blanco-petalo);">
+        <img src="assets/ejemplo-flyer.jpeg" alt="Flyer de ejemplo" style="max-width:88%;max-height:560px;border-radius:10px;box-shadow:var(--shadow-soft);">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px;justify-content:center;">
+        <div class="card" style="padding:24px 28px;"><h3 style="font-size:18px;">Redes sociales</h3><p style="margin:6px 0 0;font-size:14.5px;color:#666;">Titulares en Jost violeta, subtítulos en Lila Vivo, cuerpo en gris. Ondas violeta enmarcando y retrato recortado sobre fondo blanco.</p></div>
+        <div class="card" style="padding:24px 28px;"><h3 style="font-size:18px;">Fotografía de marca</h3><p style="margin:6px 0 0;font-size:14.5px;color:#666;">Retratos cálidos y naturales, fondo limpio, vestuario sobrio. La persona transmite cercanía y profesionalidad.</p></div>
+        <div class="card" style="padding:24px 28px;"><h3 style="font-size:18px;">Contacto y firma</h3><p style="margin:6px 0 0;font-size:14.5px;color:#666;">Íconos en violeta sobre lila. Usuario social: <strong>@marbelismonterocastillo</strong>.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 13 IA ============================ -->
+<section class="page" id="ia">
+  <div class="inner">
+    <div class="kicker">13 · Especificaciones para IA</div>
+    <h2 class="sec-title">Resumen <b>legible por máquinas</b></h2>
+    <p class="lead">Bloque estructurado para que otro sistema de IA o herramienta de diseño reproduzca la marca con fidelidad. Copia estos tokens tal cual.</p>
+    <div class="grid-2" style="margin-top:36px;align-items:start;">
+      <div class="ai-block">
+        <h3>brand-tokens.json</h3>
+<pre>{
+  <span class="k">"brand"</span>: <span class="v">"Marbelis Montero"</span>,
+  <span class="k">"sector"</span>: <span class="v">"Coaching / PNL / Bienestar"</span>,
+  <span class="k">"symbol"</span>: <span class="v">"Loto de pétalos translúcidos"</span>,
+  <span class="k">"colors"</span>: {
+    <span class="k">"violeta"</span>:   <span class="v">"#4C078C"</span>,
+    <span class="k">"indigo"</span>:    <span class="v">"#2E0981"</span>,
+    <span class="k">"lilaVivo"</span>:  <span class="v">"#A669DA"</span>,
+    <span class="k">"lilaSuave"</span>: <span class="v">"#BA81C9"</span>,
+    <span class="k">"lavanda"</span>:   <span class="v">"#C9A9DB"</span>,
+    <span class="k">"turquesa"</span>:  <span class="v">"#2AD2C5"</span>,
+    <span class="k">"carbon"</span>:    <span class="v">"#2B2B2B"</span>,
+    <span class="k">"grisLoto"</span>:  <span class="v">"#808080"</span>,
+    <span class="k">"blanco"</span>:    <span class="v">"#FAFAF9"</span>
+  },
+  <span class="k">"fonts"</span>: {
+    <span class="k">"display"</span>: <span class="v">"Jost (300/400/600)"</span>,
+    <span class="k">"body"</span>:    <span class="v">"Mulish (400/700)"</span>
+  },
+  <span class="k">"ratio"</span>: <span class="v">"60 neutro / 30 violeta / 10 acento"</span>
+}</pre>
+      </div>
+      <div>
+        <div class="card">
+          <h3 style="font-size:19px;margin-bottom:6px;">Reglas para generación</h3>
+          <div class="dl" style="margin-top:14px;">
+            <dt>Tono</dt><dd>Cálido, cercano, esperanzador. Tutea. Frases cortas.</dd>
+            <dt>Color base</dt><dd>Domina el violeta #4C078C sobre fondos claros.</dd>
+            <dt>Degradados</dt><dd>Solo por superposición translúcida del mismo violeta.</dd>
+            <dt>Símbolo</dt><dd>Loto de 5 pétalos. No usar otras flores ni íconos.</dd>
+            <dt>Tipografía</dt><dd>Títulos Jost ligero espaciado; cuerpo Mulish.</dd>
+            <dt>Evitar</dt><dd>Fondos ruidosos, sombras duras, colores fuera de paleta, deformar el loto.</dd>
+            <dt>Imagen</dt><dd>Retratos naturales, fondo limpio, vestuario sobrio.</dd>
+          </div>
+        </div>
+        <div class="note" style="margin-top:22px;">Palabras de marca: <strong>transformar · acompañar · loto · calma · proceso · bienestar · potencial</strong>.</div>
+      </div>
+    </div>
+    <p style="margin-top:54px;font-family:'Jost';letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:#aaa;text-align:center;">Marbelis Montero · Manual de identidad visual · v1.0 · 2026</p>
+  </div>
+</section>
+
+</div><!-- /book -->
+</div><!-- /slidewrap -->
+
+<script>
+// Presentación plana: sin interacción. Auto-impresión al cargar.
+window.addEventListener('load', async () => {
+  try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e){}
+  setTimeout(() => window.print(), 700);
+});
+</script>
+</body>
+</html>
