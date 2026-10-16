@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualizador interactivo de Carrusel de 5 Slides para Instagram - Episodio 61 de RealMente Podcast con Marbelis Montero">
+  <title>Carrusel 5 Slides — Episodio 61 | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0410;
+      --bg-gradient: linear-gradient(145deg, #12091c 0%, #1e0d32 50%, #150824 100%);
+      --card-bg: rgba(28, 14, 46, 0.75);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #2ad2c5;
+      --accent-turquoise-hover: #38bdf8;
+      --accent-turquoise-glow: rgba(42, 210, 197, 0.35);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --accent-alert: #fb7185;
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 35px rgba(42, 210, 197, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      width: 100%;
+      max-width: 1120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-pill {
+      background: linear-gradient(135deg, rgba(42, 210, 197, 0.2), rgba(192, 132, 252, 0.2));
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: var(--accent-turquoise);
+      color: #072b28;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--accent-turquoise-glow);
+    }
+
+    .btn-action.primary:hover {
+      background: #38bdf8;
+      color: #0c0414;
+      transform: translateY(-1px);
+    }
+
+    /* Main Grid */
+    .app-container {
+      width: 100%;
+      max-width: 1120px;
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* Simulator Column */
+    .simulator-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .instagram-card {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-soft), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      background: #12091c;
+      transition: all 0.3s ease;
+    }
+
+    .instagram-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Navigation Arrows & Dots */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 18px;
+      padding: 0 4px;
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      border-radius: 10px;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 10px var(--accent-turquoise-glow);
+    }
+
+    /* Sidebar / Right Panel */
+    .sidebar-panel {
+      background: rgba(20, 10, 32, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .thumb-btn {
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border: 1.5px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-turquoise-glow);
+    }
+
+    .thumb-btn span {
+      font-size: 0.65rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* Slide Text Copy Box */
+    .text-copy-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    /* Caption Box */
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    /* Badge Rule Info */
+    .rule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(42, 210, 197, 0.12);
+      border: 1px solid rgba(42, 210, 197, 0.3);
+      font-size: 0.78rem;
+      color: var(--accent-turquoise);
+      font-weight: 600;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      background: var(--accent-turquoise);
+      color: #072b28;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(42, 210, 197, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="brand-tag">
+      <span class="brand-pill">Episodio 61</span>
+      <span class="brand-title">RealMente • Marbelis Montero</span>
+    </div>
+    <div class="header-actions">
+      <span class="rule-badge">👑 Regla 50% Inferior Libre</span>
+      <button class="btn-action" onclick="copyCurrentSlideText()">📋 Copiar Slide</button>
+      <button class="btn-action primary" onclick="copyInstagramCaption()">🚀 Copiar Caption IG</button>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <div class="app-container">
+
+    <!-- Simulator Column -->
+    <div class="simulator-wrapper">
+      
+      <!-- Instagram Card (4:5) -->
+      <div class="instagram-card" id="cardViewport">
+        <img id="activeSlideImg" src="slide_1_ep61.png" alt="Slide 1">
+      </div>
+
+      <!-- Navigation Arrows & Dots -->
+      <div class="carousel-nav">
+        <button class="btn-action" onclick="prevSlide()" id="prevBtn">◀ Anterior</button>
+        <div class="slide-dots" id="dotsContainer">
+          <div class="dot active" onclick="goToSlide(0)"></div>
+          <div class="dot" onclick="goToSlide(1)"></div>
+          <div class="dot" onclick="goToSlide(2)"></div>
+          <div class="dot" onclick="goToSlide(3)"></div>
+          <div class="dot" onclick="goToSlide(4)"></div>
+        </div>
+        <button class="btn-action" onclick="nextSlide()" id="nextBtn">Siguiente ▶</button>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar Panel -->
+    <div class="sidebar-panel">
+
+      <div>
+        <h3 class="panel-section-title">🎠 Selección de Lámina (5 Slides)</h3>
+        <div class="thumbnails-grid">
+          <button class="thumb-btn active" onclick="goToSlide(0)">#1<span>Portada</span></button>
+          <button class="thumb-btn" onclick="goToSlide(1)">#2<span>Techo</span></button>
+          <button class="thumb-btn" onclick="goToSlide(2)">#3<span>Máscara</span></button>
+          <button class="thumb-btn" onclick="goToSlide(3)">#4<span>SAR</span></button>
+          <button class="thumb-btn" onclick="goToSlide(4)">#5<span>CTA</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">📝 Texto de esta Lámina</h3>
+          <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="copyCurrentSlideText()">Copiar Texto</button>
+        </div>
+        <div class="text-copy-box" id="slideTextRaw">
+          Cargando contenido...
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">💬 Caption para Instagram (Copy Complementario)</h3>
+          <button class="btn-action primary" style="padding:4px 10px; font-size:0.75rem;" onclick="copyInstagramCaption()">Copiar Caption</button>
+        </div>
+        <div class="caption-box" id="captionTextRaw">
+Te levantas más temprano, sumas más tareas a la agenda, tomas otro curso técnico y te vas a dormir con el cuerpo destrozado pensando que "mañana le echas más ganas". ⏱️🥀
+
+Pero seamos brutalmente sinceras:
+El problema nunca ha sido tu falta de disciplina, ni la economía, ni que no te estés esforzando lo suficiente.
+
+El verdadero problema es que estás intentando forzar un resultado de gran escala operando con la mentalidad y la identidad de una niña herida que todavía cree que tiene que desgastarse para merecer su lugar en el mundo.
+
+En PNL lo vemos a diario: tu mente inconsciente JAMÁS va a permitirte sostener un nivel de ingresos, visibilidad o autoridad que contradiga el autoconcepto profundo que tienes de ti misma.
+
+Cuando tu identidad no está alineada con tu meta, el sobre-esfuerzo físico no es productividad: es la compensación desesperada del ego. Y tu cerebro, a través de su Sistema de Activación Reticular (SAR), se encargará de sabotearte en piloto automático para mantenerte en lo "seguro y conocido".
+
+Para llegar a ese siguiente nivel, hay una versión tuya que tiene que morir. Y no, cambiar de hábitos no destruye tu esencia: tu esencia es tu luz intacta; tu identidad es solo el abrigo que te pones o te quitas según el clima.
+
+¿Estás dispuesta a pagar el precio de convertirte en la mujer que sostiene esa vida, o vas a seguir defendiendo tu pequeñez detrás del «es que yo soy así»?
+
+Desliza el carrusel completo para integrar el mapa de neuroalineación de esta semana. 🎠
+
+🎙️ EPISODIO 61 YA DISPONIBLE en Spotify y YouTube (enlace directo en mi biografía).
+
+💬 Comenta la palabra IDENTIDAD aquí abajo y te envío de inmediato el Test de Auditoría de Autoconcepto en PDF directo a tu DM.
+
+¡Cero excusas!
+
+#RealMentePodcast #MarbelisMontero #Identidad #RealMenteClub #PNL
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="toast" id="toastMsg">Texto copiado al portapapeles ✨</div>
+
+  <script>
+    const slidesData = [
+      {
+        id: 1,
+        title: "Slide 1 — Portada / Gancho Disruptivo",
+        img: "slide_1_ep61.png",
+        text: `✨ REALMENTE | 📌 Ep. 61 • Podcast
+
+De nada sirve reventarte trabajando 14 horas al día... ⏱️⚡
+
+...si por dentro sigues operando con la identidad de quien cree que el éxito cuesta sangre, sudor y lágrimas.
+
+A esa meta no vas a llegar tú: va a llegar la mujer en la que elijas convertirte. ✨
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 2,
+        title: "Slide 2 — Techo de Cristal / Diagnóstico",
+        img: "slide_2_ep61.png",
+        text: `✨ REALMENTE | 📌 Ep. 61 • Podcast
+
+El freno no está en el mercado, ni en la economía, ni en la suerte:
+
+ESTÁ EN TU SOFTWARE MENTAL:
+Tu mente inconsciente jamás te permitirá sostener un resultado que contradiga la imagen profunda que tienes de ti misma.
+
+⚠️ Trabajar hasta el agotamiento es la compensación del ego cuando la identidad interna no está alineada.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 3,
+        title: "Slide 3 — Desmontar la Máscara / Abrigo Infantil",
+        img: "slide_3_ep61.png",
+        text: `✨ REALMENTE | 📌 Ep. 61 • Podcast
+
+Tu identidad no es tu esencia: es solo un traje que te pusiste de niña. 🧥
+
+En la nieve necesitas un abrigo grueso para no congelarte. Pero si viajas a la playa con 35°C, te lo quitas y tu piel sigue intacta.
+Tu armadura infantil hoy de adulta te está asfixiando.
+
+Tu esencia es tu luz. Tu identidad es la ropa que hoy te quedó chica. ✨
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 4,
+        title: "Slide 4 — Quiebre Neurobiológico / Trampa del SAR",
+        img: "slide_4_ep61.png",
+        text: `✨ REALMENTE | 📌 Ep. 61 • Podcast
+
+Cuidado con tu excusa favorita:
+«Es que yo soy así y no puedo cambiar». 🚨
+
+Cada vez que decretas que eres «despistada», «desordenada» o «insegura», tu cerebro activa su Sistema de Activación Reticular (SAR) para buscar pruebas y darte la razón.
+
+👀 No eres así: estás adicta a defender la vieja versión conocida de ti misma.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 5,
+        title: "Slide 5 — Cierre de Poder / Mantra y CTA",
+        img: "slide_5_ep61.png",
+        text: `✨ REALMENTE | 📌 Ep. 61 • Podcast
+
+A donde dices que quieres llegar, la versión que eres hoy no cabe.
+
+«No negocio mi transformación. Asumo la identidad que me expande.»
+
+🎙️ EPISODIO 61 • REALMENTE PODCAST
+De nada sirve esforzarte tanto si tu identidad no está alineada con lo que quieres.
+
+💬 Comenta la palabra IDENTIDAD
+y te envío el Test de Autoconcepto directo a tu DM 📩
+
+@marbelismontero | RealMente Podcast`
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function updateView() {
+      const slide = slidesData[currentSlide];
+      document.getElementById('activeSlideImg').src = slide.img;
+      document.getElementById('slideTextRaw').innerText = slide.text;
+
+      // Update dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+
+      // Update thumbnail buttons
+      const thumbs = document.querySelectorAll('.thumb-btn');
+      thumbs.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateView();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+      updateView();
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slidesData.length;
+      updateView();
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function copyCurrentSlideText() {
+      const text = slidesData[currentSlide].text;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`¡Texto del Slide ${currentSlide + 1} copiado! ✨`);
+      });
+    }
+
+    function copyInstagramCaption() {
+      const caption = document.getElementById('captionTextRaw').innerText.trim();
+      navigator.clipboard.writeText(caption).then(() => {
+        showToast("¡Caption de Instagram copiado! 🚀");
+      });
+    }
+
+    // Initialize
+    updateView();
+  </script>
+</body>
+</html>
