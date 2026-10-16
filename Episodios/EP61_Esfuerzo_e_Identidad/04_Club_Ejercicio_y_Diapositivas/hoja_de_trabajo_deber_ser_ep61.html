@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio Práctico — Episodio 61 | RealMente Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FDFBFE;
+      --card-bg: #FFFFFF;
+      --primary-dark: #1A0536;
+      --primary-violet: #2E0C59;
+      --accent-turquesa: #0E9B90;
+      --accent-turquesa-light: #E6F7F5;
+      --accent-lilac: #8E44AD;
+      --accent-lilac-soft: #F4ECFE;
+      --text-main: #1D1526;
+      --text-muted: #574B66;
+      --text-light: #8E82A0;
+      --border-soft: #EAE3F2;
+      --border-focus: #CBB9E3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EDE8F5;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .print-bar {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #1A0536 0%, #2E0C59 100%);
+      color: #FFFFFF;
+      border: 1px solid #2AD2C5;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(26, 5, 54, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-print:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(14, 155, 144, 0.35);
+      background: linear-gradient(135deg, #2E0C59 0%, #0E9B90 100%);
+    }
+
+    /* Contenedor A4 con márgenes superiores generosos y balance vertical */
+    .page-container {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      background: var(--bg-page);
+      padding: 16mm 18mm 14mm 18mm;
+      box-shadow: 0 12px 36px rgba(26, 5, 54, 0.12);
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .page-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(180deg, #2AD2C5 0%, #2E0C59 50%, #C084FC 100%);
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    /* HEADER */
+    .header {
+      border-bottom: 2px solid var(--border-soft);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .brand-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-turquesa);
+      margin-bottom: 5px;
+    }
+
+    .brand-eyebrow span.dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-turquesa);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 21.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+    }
+
+    .doc-subtitle {
+      font-size: 12px;
+      color: var(--accent-lilac);
+      font-weight: 700;
+      margin-top: 4px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .header-badge {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .pill-episode {
+      background: var(--primary-dark);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.8px;
+      display: inline-block;
+      margin-bottom: 3px;
+      border: 1px solid rgba(42, 210, 197, 0.4);
+    }
+
+    .instructor-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* INSTRUCCIONES TRANQUILAS */
+    .intro-banner {
+      background: var(--accent-lilac-soft);
+      border: 1px solid #DBC9F2;
+      border-left: 4.5px solid var(--accent-turquesa);
+      border-radius: 8px;
+      padding: 11px 15px;
+      margin-bottom: 15px;
+    }
+
+    .intro-text-lead {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .intro-text-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* PASOS */
+    .step-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 9px;
+      padding: 13px 17px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(26, 5, 54, 0.02);
+      position: relative;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .step-number {
+      width: 25px;
+      height: 25px;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-violet) 100%);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12.5px;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(46, 12, 89, 0.2);
+    }
+
+    .step-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.2px;
+    }
+
+    .step-instruction {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    /* EJEMPLOS EN PASO 1 */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 9px;
+    }
+
+    .example-pill {
+      background: #F6F2FA;
+      border: 1px dashed var(--border-focus);
+      padding: 5px 8px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      color: var(--primary-violet);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* PROMPT DESTACADO / CUADERNO */
+    .notebook-prompt {
+      background: #FAF7FE;
+      border: 1.2px solid #D6C7EC;
+      border-radius: 7px;
+      padding: 9px 13px;
+    }
+
+    .prompt-label {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-turquesa);
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .prompt-quote {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.35;
+    }
+
+    .fill-line {
+      display: inline-block;
+      border-bottom: 2px solid var(--accent-turquesa);
+      min-width: 190px;
+      color: var(--accent-turquesa);
+      font-weight: 700;
+      padding: 0 6px;
+    }
+
+    /* LISTA DEL PASO 2 */
+    .list-wrapper {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .list-num {
+      width: 21px;
+      height: 21px;
+      background: var(--accent-turquesa-light);
+      color: var(--accent-turquesa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11.5px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .list-line {
+      flex: 1;
+      border-bottom: 1.5px solid #DCD3EA;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .list-footer-hint {
+      font-size: 11px;
+      color: var(--accent-lilac);
+      font-style: italic;
+      font-weight: 600;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    /* CIERRE TRANQUILO DE LA CLASE */
+    .class-closure-banner {
+      background: linear-gradient(135deg, #1A0536 0%, #2E0C59 100%);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 3px 12px rgba(26, 5, 54, 0.15);
+      border: 1px solid rgba(42, 210, 197, 0.4);
+    }
+
+    .closure-icon {
+      font-size: 24px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .closure-content h4 {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: #2AD2C5;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .closure-content p {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #F1EDF7;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1.5px solid var(--border-soft);
+      padding-top: 10px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .footer-quote {
+      font-style: italic;
+      color: var(--primary-violet);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ESTILOS PARA IMPRESIÓN Y PDF (A4 EXACTO) */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+
+      .print-bar {
+        display: none !important;
+      }
+
+      .page-container {
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 16mm 18mm 14mm 18mm;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÓN DE IMPRESIÓN RÁPIDA -->
+  <div class="print-bar">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+      </svg>
+      Descargar en PDF / Imprimir
+    </button>
+  </div>
+
+  <div class="page-container">
+
+    <div class="top-content">
+      <!-- HEADER -->
+      <div class="header">
+        <div>
+          <div class="brand-eyebrow">
+            <span>✨ RealMente Club</span>
+            <span class="dot"></span>
+            <span>Episodio #61</span>
+          </div>
+          <h1 class="doc-title">«RealMente de nada sirve esforzarte tanto si tu identidad no está alineada con lo que quieres»</h1>
+          <p class="doc-subtitle">Ejercicio práctico de esta semana</p>
+        </div>
+        <div class="header-badge">
+          <div class="pill-episode">REALMENTE CLUB</div>
+          <div class="instructor-name">Marbelis Montero • Master Trainer en PNL</div>
+        </div>
+      </div>
+
+      <!-- INSTRUCCIONES TRANQUILAS -->
+      <div class="intro-banner">
+        <div class="intro-text-lead">
+          En el podcast vimos que tu mente inconsciente jamás te permitirá sostener una meta que contradiga quién crees que eres.
+        </div>
+        <div class="intro-text-body">
+          Tómate un momento para ti, unos minutos, y responde tranquilamente. No necesitas imprimir esta hoja: responde lo más espontáneo posible directamente en tu cuaderno o libreta de notas.
+        </div>
+      </div>
+
+      <!-- PASO 1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2 class="step-title">Antes de escribir: Piensa en tu Rol o Meta Deseada</h2>
+        </div>
+        <p class="step-instruction">
+          Piensa en tu objetivo principal de este momento y dale el nombre exacto de la persona o el rol que lo logra con éxito en el mundo real. Algunos ejemplos para inspirarte:
+        </p>
+
+        <div class="examples-grid">
+          <div class="example-pill">Una empresaria rentable</div>
+          <div class="example-pill">Una líder con autoridad</div>
+          <div class="example-pill">Una conferencista con impacto</div>
+          <div class="example-pill">Mujer con libertad financiera</div>
+          <div class="example-pill">Una artista / creadora exitosa</div>
+          <div class="example-pill">Una mujer en balance y paz</div>
+        </div>
+
+        <div class="notebook-prompt">
+          <div class="prompt-label">✍️ Anota esto como encabezado en tu cuaderno:</div>
+          <div class="prompt-quote">«MI ROL O META ELEGIDA ES: __________________________________»</div>
+        </div>
+      </div>
+
+      <!-- PASO 2 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2 class="step-title">Ahora responde con total honestidad y sin filtro</h2>
+        </div>
+        <p class="step-instruction">
+          Completa en tu libreta la siguiente frase con lo primero que te venga a la mente, sin juzgarte ni buscar sonar correcta:
+        </p>
+
+        <div class="notebook-prompt">
+          <div class="prompt-label">🧭 Escribe y completa esta frase en tu libreta:</div>
+          <div class="prompt-quote">
+            «Según lo que yo he visto, aprendido o creo, una persona que es <span class="fill-line">_________________________________</span> <em>(escribe aquí tu rol/meta)</em> TIENE QUE SER...»
+          </div>
+        </div>
+
+        <p class="step-instruction" style="margin-top: 8px; margin-bottom: 4px; font-size: 12px;">
+          <em>Escribe un <strong>mínimo de 5 características</strong> (pero si te salen más, anota absolutamente todo lo que te venga: entre más cosas describas, más valioso será el ejercicio para ti).</em>
+        </p>
+        <p class="step-instruction" style="margin-bottom: 6px; font-size: 11.5px; color: var(--accent-lilac); font-weight: 600;">
+          ✨ <em>Hazlo sin juicios y en total libertad: no filtres si lo que te viene te parece «bueno» o «malo». Si crees que esa persona es fría, solitaria, exigente o estresada, anótalo también con total verdad. Piensa: ¿Cómo se comporta? ¿Qué carácter tiene? ¿Cómo maneja su tiempo, su dinero o sus límites? ¿Qué hace o qué deja de hacer?</em>
+        </p>
+
+        <div class="list-wrapper">
+          <div class="list-item">
+            <div class="list-num">1</div>
+            <div class="list-line">Escribe tu 1era característica en tu cuaderno...</div>
+          </div>
+          <div class="list-item">
+            <div class="list-num">2</div>
+            <div class="list-line">Escribe tu 2da característica en tu cuaderno...</div>
+          </div>
+          <div class="list-item">
+            <div class="list-num">3</div>
+            <div class="list-line">Escribe tu 3era característica en tu cuaderno...</div>
+          </div>
+          <div class="list-item">
+            <div class="list-num">4</div>
+            <div class="list-line">Escribe tu 4ta característica en tu cuaderno...</div>
+          </div>
+          <div class="list-item">
+            <div class="list-num">5</div>
+            <div class="list-line">Escribe tu 5ta característica en tu cuaderno...</div>
+          </div>
+        </div>
+        <div class="list-footer-hint">*(si tienes más de 5, continúa anotando todas las que salgan hacia abajo en tu cuaderno)*</div>
+      </div>
+
+      <!-- CIERRE TRANQUILO DE LA CLASE -->
+      <div class="class-closure-banner">
+        <div class="closure-icon">🌿</div>
+        <div class="closure-content">
+          <h4>Date el permiso de sentir y hacer</h4>
+          <p>
+            Puedes reflexionar sobre lo que acabas de escribir, pero ten presente que el verdadero cierre y la integración profunda de este ejercicio lo haremos juntas en la clase en vivo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-left">
+        <span>✨ RealMente Club</span>
+        <span>•</span>
+        <span>@marbelismontero</span>
+        <span>•</span>
+        <span>Episodio #61</span>
+      </div>
+      <div class="footer-quote">
+        «A esa meta no vas a llegar tú; va a llegar la mujer en la que estés dispuesta a convertirte.»
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
