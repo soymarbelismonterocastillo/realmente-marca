@@ -9,22 +9,26 @@
 
 ## 📌 Lista de Pendientes Activos de la Semana (Episodio 61)
 
-1. [ ] **Crear el carrete (Carrusel de Instagram 1080x1350 px)**
-   - **Objetivo:** Estructurar y redactar el carrusel de 6 diapositivas aplicando la *Regla del 50% Inferior Libre*, alternancia cromática, renderizado visual y caption resumido con exactamente 5 hashtags.
-   - **Guía de referencia:** [`skill_carretes_instagram_realmente.md`](skill_carretes_instagram_realmente.md)
-   - **Destino:** `Episodios/EP61_Esfuerzo_e_Identidad/05_Redes_Reels_y_Carruseles/`
+1. [x] **Crear el carrete (Carrusel de Instagram 1080x1350 px)**
+   - **Estado:** ✅ Completado (15-Oct). Redactado en Markdown, codificado en HTML y renderizadas las 5 láminas en PNG listas para publicación.
+   - **Destino:** [`Episodios/EP61_Esfuerzo_e_Identidad/05_Redes_Reels_y_Carruseles/carrusel_5_slides_episodio_61.md`](Episodios/EP61_Esfuerzo_e_Identidad/05_Redes_Reels_y_Carruseles/carrusel_5_slides_episodio_61.md)
 
-2. [ ] **Hacer un Reel**
-   - **Objetivo:** Concepto, gancho inicial y guion de video corto (visual loop de alta retención o mensaje directo a cámara) sobre la trampa de matarse trabajando sin alinear la identidad interna.
-   - **Destino:** `Episodios/EP61_Esfuerzo_e_Identidad/05_Redes_Reels_y_Carruseles/`
+2. [x] **Hacer un Reel (Video corto de alto impacto / Visual Loop)**
+   - **Estado:** ✅ Completado (17-Oct). Guion oficial redactado con dos variantes (Opción 1: Visual Loop Aesthetic en bucle de 5-7s con overlay text y caption; Opción 2: Hablado directo a cámara de 45-60s) con los 5 hashtags oficiales.
+   - **Destino:** [`Episodios/EP61_Esfuerzo_e_Identidad/05_Redes_Reels_y_Carruseles/reel_episodio_61.md`](Episodios/EP61_Esfuerzo_e_Identidad/05_Redes_Reels_y_Carruseles/reel_episodio_61.md)
 
-3. [ ] **Preparar la clase de la semana (Sábado 17 — RealMente Club)**
-   - **Objetivo:** Conceptualizar la clase en vivo, redactar el contenido de las diapositivas y desarrollar el visor interactivo HTML 16:9 con paleta violeta berenjena/turquesa, integrando el cierre de la hoja de trabajo del jueves.
-   - **Guía de referencia:** [`skill_clases_sabados_realmente.md`](skill_clases_sabados_realmente.md)
-   - **Destino:** `Episodios/EP61_Esfuerzo_e_Identidad/04_Club_Ejercicio_y_Diapositivas/`
+3. [x] **Preparar la clase de la semana (Sábado 17 — RealMente Club)**
+   - **Estado:** ✅ Completado (16-Oct). Presentación interactiva 16:9 con 11 láminas, visor HTML con cambio de tema y previsualizaciones PNG renderizadas listas para compartir en Zoom.
+   - **Destino:** [`Episodios/EP61_Esfuerzo_e_Identidad/04_Club_Ejercicio_y_Diapositivas/presentacion_episodio_61.html`](Episodios/EP61_Esfuerzo_e_Identidad/04_Club_Ejercicio_y_Diapositivas/presentacion_episodio_61.html)
 
 4. [ ] **Sincronización y Respaldo GitHub**
-   - **Objetivo:** Subir todos los archivos generados de la semana 61 (transcripciones, ejercicio PDF, stories, etc.) al repositorio `realmente-marca`.
+   - **Objetivo:** Subir todos los archivos generados de la semana 61 (presentación, previews, carrusel, hoja de trabajo) al repositorio `realmente-marca`.
+
+---
+
+## 🚀 Próximo Ciclo: Episodio 62 (Semana del Lunes 19 de Octubre)
+- **Tema:** *«RealMente la neurociencia de la auto-integridad: cómo entrenar a tu mente para cumplir lo que promete»* (Construcción de Recurso)
+- **Hitos:** Frase y mensaje de apertura del lunes, escaleta de grabación, ejercicio de auto-cumplimiento para el club.
 
 ---
 
