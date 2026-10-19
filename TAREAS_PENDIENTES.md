@@ -26,9 +26,13 @@
 
 ---
 
-## 🚀 Próximo Ciclo: Episodio 62 (Semana del Lunes 19 de Octubre)
-- **Tema:** *«RealMente la neurociencia de la auto-integridad: cómo entrenar a tu mente para cumplir lo que promete»* (Construcción de Recurso)
-- **Hitos:** Frase y mensaje de apertura del lunes, escaleta de grabación, ejercicio de auto-cumplimiento para el club.
+## 🚀 Ciclo Activo: Episodio 62 (Semana del Lunes 19 de Octubre)
+- **Tema:** *«RealMente la trampa de la culpa y el precio invisible de asumir esta nueva identidad»* (Diagnóstico & Liberación de la Culpa / Continuación de Identidad)
+- **Hitos:**
+  - [x] Frase y mensaje de apertura del lunes ([`mensaje_apertura_club_ep62.md`](Episodios/EP62_La_Trampa_de_la_Culpa/01_Frase_Inicio_Semana/mensaje_apertura_club_ep62.md)).
+  - [ ] Estructura y escaleta de grabación del podcast (próximo paso).
+  - [ ] Ejercicio para el club (jueves).
+  - [ ] Clase en vivo del sábado (presentación 16:9).
 
 ---
 
