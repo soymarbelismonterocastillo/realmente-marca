@@ -70,3 +70,21 @@
   3. **La Trampa del «Yo Soy» y «Yo Necesito»:** Cómo el constante *"soy desordenada, soy lenta, soy enfermiza, necesito más tiempo"* te distrae, te desconecta y boicotea la meta.
   4. **Auditoría de Coherencia y el Precio a Pagar:** El freno no está afuera ni en el dinero; está en lo que crees y reafirmas de ti. Confrontar qué requiere el objetivo de ti y decidir si asumes el costo de transformarte.
 
+---
+
+## 🎙️ EPISODIO 62 DE PODCAST
+* **Título Oficial:** *RealMente la trampa de la culpa y el precio invisible de asumir esta nueva identidad*
+* **Carpeta Oficial:** [EP62_La_Trampa_de_la_Culpa](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa)
+* **Estado:** Planificado / Seleccionado para la semana del 19 de Octubre de 2026.
+* **Tipo:** Diagnóstico del Bloqueo & Liberación Emocional (PNL / Autoconcepto)
+* **Pregunta de Poder preliminar:** ¿A quién sientes que estás traicionando cuando eliges ser la mujer que realmente quieres ser?
+* **Premisa y Pilares Centrales:**
+  1. **La Culpa como Guardiana:** La culpa no es una brújula moral ni te avisa que estás haciendo daño; es el perro guardián que tu mente suelta para devolverte a la jaula de lo conocido.
+  2. **Las Caras de la Culpa:**
+     - La culpa de soltar la armadura de «la que todo lo resuelve».
+     - La culpa de romper la lealtad familiar o al clan (crecer más que tu entorno).
+     - La culpa de que las cosas fluyan sin sufrimiento (desmontar la adicción al sacrificio).
+     - La culpa de incomodar y decepcionar expectativas ajenas.
+  3. **El Precio Invisible:** Aprender a tolerar la culpa es el peaje innegociable para no abortar tu nueva identidad.
+
+
