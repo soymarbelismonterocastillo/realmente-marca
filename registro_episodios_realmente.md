@@ -75,9 +75,12 @@
 ## 🎙️ EPISODIO 62 DE PODCAST
 * **Título Oficial:** *RealMente la trampa de la culpa y el precio invisible de asumir esta nueva identidad*
 * **Carpeta Oficial:** [EP62_La_Trampa_de_la_Culpa](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa)
-* **Estado:** Planificado / Seleccionado para la semana del 19 de Octubre de 2026.
+* **Estado:** Escaleta y Guion de locución listos para grabación (20-Oct-2026).
+* **Escaleta / Esquema de Grabación:** [escaleta_ep62_la_trampa_de_la_culpa.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/02_Podcast_Guion_y_Grabacion/escaleta_ep62_la_trampa_de_la_culpa.md)
+* **Guion Oficial de Locución Editado:** [guion_limpio_edicion_ep62.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/02_Podcast_Guion_y_Grabacion/guion_limpio_edicion_ep62.md) (~1.520 palabras | ~12 min)
+* **Mensaje y Frase de Inicio:** [mensaje_apertura_club_ep62.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/01_Frase_Inicio_Semana/mensaje_apertura_club_ep62.md)
 * **Tipo:** Diagnóstico del Bloqueo & Liberación Emocional (PNL / Autoconcepto)
-* **Pregunta de Poder preliminar:** ¿A quién sientes que estás traicionando cuando eliges ser la mujer que realmente quieres ser?
+* **Pregunta de Poder:** ¿A quién sientes que estás traicionando cuando eliges ser la mujer que realmente quieres ser?
 * **Premisa y Pilares Centrales:**
   1. **La Culpa como Guardiana:** La culpa no es una brújula moral ni te avisa que estás haciendo daño; es el perro guardián que tu mente suelta para devolverte a la jaula de lo conocido.
   2. **Las Caras de la Culpa:**
