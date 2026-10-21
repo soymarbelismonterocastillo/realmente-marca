@@ -73,9 +73,11 @@
 ---
 
 ## 🎙️ EPISODIO 62 DE PODCAST
-* **Título Oficial:** *RealMente la trampa de la culpa y el precio invisible de asumir esta nueva identidad*
+* **Título Oficial:** *RealMente la trampa de la culpa y el precio invisible de asumir tu nueva identidad*
+* **Video Oficial en YouTube:** [Ver Episodio en YouTube](https://www.youtube.com/watch?v=WUycHriqJz4) (ID: `WUycHriqJz4` | Duración: 25:50 | Publicado: 21-Oct-2026)
 * **Carpeta Oficial:** [EP62_La_Trampa_de_la_Culpa](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa)
-* **Estado:** Escaleta y Guion de locución listos para grabación (20-Oct-2026).
+* **Transcripciones:** [Transcripción Editada](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/03_Transcripcion_Final/transcripcion_final_editada_ep62.md) | [Transcripción Cruda](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/03_Transcripcion_Final/transcripcion_cruda_youtube_ep62.md)
+* **Estado:** Publicado en YouTube y Transcripciones Oficiales integradas (21-Oct-2026).
 * **Escaleta / Esquema de Grabación:** [escaleta_ep62_la_trampa_de_la_culpa.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/02_Podcast_Guion_y_Grabacion/escaleta_ep62_la_trampa_de_la_culpa.md)
 * **Guion Oficial de Locución Editado:** [guion_limpio_edicion_ep62.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/02_Podcast_Guion_y_Grabacion/guion_limpio_edicion_ep62.md) (~1.520 palabras | ~12 min)
 * **Mensaje y Frase de Inicio:** [mensaje_apertura_club_ep62.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/01_Frase_Inicio_Semana/mensaje_apertura_club_ep62.md)
