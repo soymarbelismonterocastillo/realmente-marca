@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episodio 63 - RealMente el arte de sostenerte a ti misma | RealMente Club</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* PALETA DE MARCA REALMENTE OFICIAL: Morado Oscuro Berenjena + Turquesa + Lila Claro */
+      --bg-gradient: linear-gradient(135deg, #12091c 0%, #1e0d32 50%, #140824 100%);
+      --card-bg: rgba(30, 15, 48, 0.88);
+      --card-border: rgba(192, 132, 252, 0.38);
+      --text-main: #f5f3ff;
+      --text-muted: #c084fc;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.28);
+      --accent-lilac: #d8b4fe;
+      --accent-lilac-glow: rgba(216, 180, 254, 0.28);
+      --badge-bg: rgba(0, 242, 254, 0.14);
+      --badge-border: rgba(0, 242, 254, 0.45);
+      --highlight-bg: linear-gradient(135deg, rgba(216, 180, 254, 0.14), rgba(0, 242, 254, 0.14));
+      --shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.75);
+    }
+
+    [data-theme="light"] {
+      --bg-gradient: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #e9d5ff 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(168, 85, 247, 0.35);
+      --text-main: #2e1065;
+      --text-muted: #7e22ce;
+      --accent-turquoise: #0891b2;
+      --accent-turquoise-glow: rgba(8, 145, 178, 0.2);
+      --accent-lilac: #9333ea;
+      --accent-lilac-glow: rgba(147, 51, 234, 0.18);
+      --badge-bg: rgba(8, 145, 178, 0.1);
+      --badge-border: rgba(8, 145, 178, 0.35);
+      --highlight-bg: linear-gradient(135deg, rgba(243, 232, 255, 0.95), rgba(233, 213, 255, 0.95));
+      --shadow: 0 20px 45px -10px rgba(76, 29, 149, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      background: #09030f;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+      transition: background 0.3s ease;
+    }
+
+    /* Top Controls Bar */
+    .controls-bar {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      z-index: 100;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 9px 20px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-turquoise);
+      color: #09030f;
+      border-color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-turquoise-glow);
+    }
+
+    .slide-counter-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      padding: 5px 16px;
+      background: rgba(0, 242, 254, 0.15);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 242, 254, 0.35);
+    }
+
+    /* Presentation Deck Viewport (16:9) */
+    .deck-viewport {
+      width: 100%;
+      max-width: 1040px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-gradient);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    /* Glowing decorative backgrounds */
+    .glow-circle-1 {
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, var(--accent-turquoise-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .glow-circle-2 {
+      position: absolute;
+      bottom: -140px;
+      left: -140px;
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, var(--accent-lilac-glow) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Individual Slide Container */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 30px 45px 44px 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.96) translateY(10px);
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+      z-index: 10;
+    }
+
+    /* Header Badges & Titles */
+    .tag-header {
+      display: inline-block;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--accent-turquoise);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: var(--text-main);
+      max-width: 900px;
+    }
+
+    .slide-subtitle {
+      font-size: 1.15rem;
+      color: var(--accent-lilac);
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      max-width: 820px;
+    }
+
+    /* Slide 2 & 8: Quotes */
+    .quote-box {
+      max-width: 880px;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--card-border);
+      border-radius: 20px;
+      padding: 40px 50px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+      position: relative;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.05rem;
+      font-style: italic;
+      line-height: 1.42;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+
+    .quote-author {
+      font-size: 1.05rem;
+      color: var(--accent-turquoise);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* Two-column comparison (Slide 3 & Slide 5) */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 920px;
+      text-align: left;
+    }
+
+    .compare-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 24px 26px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+    }
+
+    .compare-card.danger {
+      border: 1.5px solid rgba(244, 63, 94, 0.45);
+      border-top: 5px solid #f43f5e;
+    }
+
+    .compare-card.success {
+      border: 1.5px solid rgba(0, 242, 254, 0.45);
+      border-top: 5px solid var(--accent-turquoise);
+    }
+
+    .card-badge {
+      align-self: flex-start;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .danger .card-badge { background: rgba(244, 63, 94, 0.2); color: #fb7185; }
+    .success .card-badge { background: rgba(0, 242, 254, 0.2); color: var(--accent-turquoise); }
+
+    .compare-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .compare-list li {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .compare-list li::before {
+      content: '•';
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .danger .compare-list li::before { color: #fb7185; }
+    .success .compare-list li::before { color: var(--accent-turquoise); }
+
+    .bottom-anchor-note {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      color: var(--accent-lilac);
+      font-style: italic;
+      text-align: center;
+      max-width: 820px;
+    }
+
+    /* Three-column grid (Slide 4 & Slide 6) */
+    .three-col-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 940px;
+      text-align: left;
+    }
+
+    .three-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1.5px solid var(--card-border);
+      border-top: 4px solid var(--accent-turquoise);
+    }
+
+    .three-card.lilac-top {
+      border-top: 4px solid var(--accent-lilac);
+    }
+
+    .three-card-badge {
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent-turquoise);
+    }
+
+    .three-card.lilac-top .three-card-badge {
+      background: rgba(216, 180, 254, 0.15);
+      color: var(--accent-lilac);
+    }
+
+    .three-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .three-card-desc {
+      font-size: 1.02rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+    }
+
+    /* Slide 7: Ultra-minimalist Exercise */
+    .minimal-box {
+      max-width: 780px;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 2px dashed rgba(0, 242, 254, 0.5);
+      border-radius: 28px;
+      padding: 50px 60px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .minimal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .minimal-subtitle {
+      font-size: 1.35rem;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .minimal-note {
+      font-size: 1.1rem;
+      color: var(--accent-lilac);
+      font-style: italic;
+    }
+
+    /* Slide 9: Private Zone */
+    .qa-box {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 2px solid rgba(0, 242, 254, 0.45);
+      border-radius: 24px;
+      padding: 45px 55px;
+      max-width: 840px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.18);
+    }
+
+    .qa-features {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .qa-feature-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-lilac);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Slide Footer */
+    .slide-footer {
+      position: absolute;
+      bottom: 12px;
+      left: 45px;
+      right: 45px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--accent-lilac);
+      opacity: 0.7;
+      z-index: 20;
+    }
+
+    /* Arrows on sides */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      z-index: 30;
+      user-select: none;
+    }
+
+    .nav-arrow:hover {
+      background: var(--accent-turquoise);
+      color: #09030f;
+      border-color: var(--accent-turquoise);
+      box-shadow: 0 0 15px var(--accent-turquoise-glow);
+    }
+
+    .nav-arrow.left { left: 16px; }
+    .nav-arrow.right { right: 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Controls Bar -->
+  <div class="controls-bar">
+    <button class="btn" onclick="prevSlide()">◀ Anterior</button>
+    <div class="slide-counter-badge" id="slideCounter">Slide 1 / 9</div>
+    <button class="btn" onclick="nextSlide()">Siguiente ▶</button>
+    <button class="btn" onclick="toggleTheme()">🌗 Tema (Oscuro / Claro)</button>
+    <button class="btn" onclick="toggleFullscreen()">⛶ Pantalla Completa</button>
+  </div>
+
+  <!-- Deck Viewport (16:9) -->
+  <div class="deck-viewport" id="deck">
+    <div class="glow-circle-1"></div>
+    <div class="glow-circle-2"></div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrow left" onclick="prevSlide()">❮</div>
+    <div class="nav-arrow right" onclick="nextSlide()">❯</div>
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide active">
+      <span class="tag-header">RealMente Club • Clase en Vivo</span>
+      <h1 class="slide-title">RealMente el arte de sostenerte a ti misma</h1>
+      <p class="slide-subtitle" style="font-size: 1.35rem; margin-bottom: 8px;">La guía para ser tu mejor refugio en momentos de crisis</p>
+      <p class="slide-subtitle" style="color: #e2e8f0;">Episodio 63 • Sesión de Mentoría y Crecimiento<br><strong style="color: var(--accent-turquoise); font-size: 1.25rem;">Con Marbelis Montero</strong></p>
+    </div>
+
+    <!-- SLIDE 2: FRASE DE APERTURA -->
+    <div class="slide">
+      <span class="tag-header">Punto de Partida</span>
+      <div class="quote-box">
+        <p class="quote-text">«Si no aprendes a estar de tu lado en los días difíciles, cualquier tropiezo afuera te va a parecer el fin del mundo.»</p>
+        <p class="quote-author">— Marbelis Montero</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: LA DISTINCIÓN CLAVE -->
+    <div class="slide">
+      <span class="tag-header">La Distinción Clave</span>
+      <h2 class="slide-title" style="font-size: 2.1rem; margin-bottom: 6px;">Sostenerte no es Justificar el Error</h2>
+      <p class="slide-subtitle" style="margin-bottom: 18px;">Es cuidar y respaldar a quien tiene que resolverlo</p>
+
+      <div class="two-col-grid">
+        <div class="compare-card danger">
+          <span class="card-badge">El Látigo del Castigo</span>
+          <h3 class="compare-title">La Parálisis de la Culpa</h3>
+          <ul class="compare-list">
+            <li>Dispara cortisol y nubla tu lucidez mental.</li>
+            <li>Te drena la energía repasando mil veces lo que falló.</li>
+            <li>Te trata como tu peor enemiga justo cuando más vulnerable estás.</li>
+          </ul>
+        </div>
+
+        <div class="compare-card success">
+          <span class="card-badge">La Firmeza del Sostén</span>
+          <h3 class="compare-title">La Lucidez Resolutiva</h3>
+          <ul class="compare-list">
+            <li>Acepta la realidad del hecho sin añadirle drama ni insultos.</li>
+            <li>Te devuelve los recursos cognitivos para diseñar la solución.</li>
+            <li>Te respalda con firmeza adulta: <em>«Esto dolió, pero vamos a salir de aquí juntas»</em>.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="bottom-anchor-note">«La culpa castiga el pasado; el sostén te devuelve la fuerza para actuar en el presente.»</p>
+    </div>
+
+    <!-- SLIDE 4: LAS 3 SEÑALES SOMÁTICAS -->
+    <div class="slide">
+      <span class="tag-header">Autorregulación en Caliente</span>
+      <h2 class="slide-title" style="font-size: 2.1rem; margin-bottom: 6px;">Las 3 Señales de que te estás Abandonando</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;">Detecta el ataque antes de que el verdugo interno tome el control</p>
+
+      <div class="three-col-grid">
+        <div class="three-card">
+          <span class="three-card-badge">1. En el Cuerpo</span>
+          <h3 class="three-card-title">La Alarma Biológica</h3>
+          <p class="three-card-desc">Mandíbula apretada, respiración corta en el pecho o sensación de vacío en el estómago. Tu sistema nervioso interpreta que el depredador eres tú misma.</p>
+        </div>
+
+        <div class="three-card lilac-top">
+          <span class="three-card-badge">2. En la Conducta</span>
+          <h3 class="three-card-title">La Fuga Inmediata</h3>
+          <p class="three-card-desc">Ganas repentinas de aislarte del mundo, hiperactividad nerviosa o salir corriendo a anestesiarte (en comida, pantallas, queja o compras compulsivas).</p>
+        </div>
+
+        <div class="three-card">
+          <span class="three-card-badge">3. En el Pensamiento</span>
+          <h3 class="three-card-title">La Urgencia Externa</h3>
+          <p class="three-card-desc">La necesidad desesperada de que alguien de afuera te valide, te perdone o te rescate para poder calmar la angustia que tú no logras contener por dentro.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: EL ESPEJO DE TUS VÍNCULOS -->
+    <div class="slide">
+      <span class="tag-header">El Espejo de tus Vínculos</span>
+      <h2 class="slide-title" style="font-size: 2.1rem; margin-bottom: 6px;">¿Desde Dónde te Relacionas con tu Entorno?</h2>
+      <p class="slide-subtitle" style="margin-bottom: 18px;">La diferencia invisible entre apoyarte en otros y abandonarte en ellos</p>
+
+      <div class="two-col-grid">
+        <div class="compare-card danger">
+          <span class="card-badge">Mendigar Rescate</span>
+          <h3 class="compare-title">Desde la Carencia y la Dependencia</h3>
+          <ul class="compare-list">
+            <li>Nace de creer inconscientemente que tú sola no puedes sostenerte.</li>
+            <li>Esperas que los demás adivinen tu dolor y carguen con tus soluciones.</li>
+            <li>Si el otro no reacciona como esperas, te llenas de frustración y resentimiento.</li>
+          </ul>
+        </div>
+
+        <div class="compare-card success">
+          <span class="card-badge">Pedir Apoyo</span>
+          <h3 class="compare-title">Desde tu Centro y Soberanía</h3>
+          <ul class="compare-list">
+            <li>Nace de saberte al mando y responsable de tu propia vida.</li>
+            <li>Comunicas tus necesidades con claridad, madurez y sin exigencias infantiles.</li>
+            <li>Recibes el amor y respaldo del entorno como un complemento, no como tu único salvavidas.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="bottom-anchor-note">«Nadie afuera puede darte el refugio que tú misma te estás negando adentro.»</p>
+    </div>
+
+    <!-- SLIDE 6: LAS 3 REACCIONES AUTOMÁTICAS -->
+    <div class="slide">
+      <span class="tag-header">Radar de Autoboicot</span>
+      <h2 class="slide-title" style="font-size: 2.1rem; margin-bottom: 6px;">3 Reacciones que Destruyen tu Paz</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;">Mecanismos inconscientes activados por miedo al rechazo o a perder el control</p>
+
+      <div class="three-col-grid">
+        <div class="three-card lilac-top">
+          <span class="three-card-badge">Reacción 1</span>
+          <h3 class="three-card-title">Sobreexplicarte</h3>
+          <p class="three-card-desc">Dar mil justificaciones por cada decisión o límite que pones, intentando convencer al otro de que tienes derecho a elegir o a decir «no».</p>
+        </div>
+
+        <div class="three-card">
+          <span class="three-card-badge">Reacción 2</span>
+          <h3 class="three-card-title">Complacer por Miedo</h3>
+          <p class="three-card-desc">Decir «sí» cuando todo tu cuerpo grita «no», pagando el precio de traicionarte a ti misma para evitar que alguien se disguste o se aleje.</p>
+        </div>
+
+        <div class="three-card lilac-top">
+          <span class="three-card-badge">Reacción 3</span>
+          <h3 class="three-card-title">Cargar con Todo</h3>
+          <p class="three-card-desc">Hacerte responsable de lo que sienten, hacen o dejan de hacer los demás, bajo la falsa ilusión de que si todo depende de ti, nada se caerá.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: EJERCICIO PRÁCTICO EN VIVO -->
+    <div class="slide">
+      <div class="minimal-box">
+        <span class="tag-header" style="margin-bottom: 14px;">Momento de Conexión</span>
+        <h1 class="minimal-title"># Ejercicio Práctico en Vivo</h1>
+        <p class="minimal-subtitle">Abre tu hoja de trabajo o tu libreta de notas personal.</p>
+        <p class="minimal-note">«Un espacio íntimo, sin juicios y de ti para ti.»</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: FRASE DE CIERRE -->
+    <div class="slide">
+      <span class="tag-header">Anclaje y Soberanía</span>
+      <div class="quote-box">
+        <p class="quote-text">«Baja la guardia y respira. De todas las caídas de las que creíste que no salías, hoy estás aquí. Confía en ti.»</p>
+        <p class="quote-author">— Marbelis Montero</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: ZONA PRIVADA -->
+    <div class="slide">
+      <span class="tag-header" style="background: rgba(0, 242, 254, 0.15); border-color: rgba(0, 242, 254, 0.4); color: var(--accent-turquoise);">
+        🔒 Espacio Exclusivo RealMente Club
+      </span>
+      <div class="qa-box">
+        <h2 class="slide-title" style="font-size: 2.5rem; margin-bottom: 14px; color: var(--accent-turquoise);">
+          Zona Privada & Mentoría en Vivo
+        </h2>
+        <p class="slide-subtitle" style="font-size: 1.25rem; color: #f5f3ff; margin-bottom: 10px;">
+          Apagamos cámaras de grabación. Abrimos micrófonos y chat para compartir juntas este ejercicio en vivo.
+        </p>
+        <div class="qa-features">
+          <div class="qa-feature-pill">🎙️ Micrófonos Abiertos</div>
+          <div class="qa-feature-pill">✨ Espacio Seguro y Confidencial</div>
+          <div class="qa-feature-pill">💜 Crecimiento en Comunidad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide Footer -->
+    <div class="slide-footer">
+      <span>RealMente Club • Episodio 63</span>
+      <span>Marbelis Montero — Master Trainer en PNL</span>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) {
+          s.classList.add('active');
+        }
+      });
+      
+      currentSlide = index;
+      counter.innerText = `Slide ${currentSlide + 1} / ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+
+    // Theme toggle
+    function toggleTheme() {
+      const body = document.body;
+      if (body.getAttribute('data-theme') === 'light') {
+        body.removeAttribute('data-theme');
+      } else {
+        body.setAttribute('data-theme', 'light');
+      }
+    }
+
+    // Fullscreen toggle
+    function toggleFullscreen() {
+      const deck = document.getElementById('deck');
+      if (!document.fullscreenElement) {
+        deck.requestFullscreen().catch(err => {
+          alert(`Error al intentar pantalla completa: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
