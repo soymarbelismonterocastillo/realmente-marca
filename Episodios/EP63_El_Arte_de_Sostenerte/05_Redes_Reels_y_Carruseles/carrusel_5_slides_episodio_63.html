@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualizador interactivo de Carrusel de 5 Slides para Instagram - Episodio 63 de RealMente Podcast con Marbelis Montero">
+  <title>Carrusel 5 Slides — Episodio 63 | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0410;
+      --bg-gradient: linear-gradient(145deg, #12091c 0%, #1e0d32 50%, #150824 100%);
+      --card-bg: rgba(28, 14, 46, 0.75);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #2ad2c5;
+      --accent-turquoise-hover: #38bdf8;
+      --accent-turquoise-glow: rgba(42, 210, 197, 0.35);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --accent-alert: #fb7185;
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 35px rgba(42, 210, 197, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      width: 100%;
+      max-width: 1140px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-pill {
+      background: linear-gradient(135deg, rgba(42, 210, 197, 0.2), rgba(192, 132, 252, 0.2));
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: var(--accent-turquoise);
+      color: #072b28;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--accent-turquoise-glow);
+    }
+
+    .btn-action.primary:hover {
+      background: #38bdf8;
+      color: #0c0414;
+      transform: translateY(-1px);
+    }
+
+    /* Main Grid */
+    .app-container {
+      width: 100%;
+      max-width: 1140px;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* Simulator Column */
+    .simulator-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .instagram-card {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-soft), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      background: #12091c;
+      transition: all 0.3s ease;
+    }
+
+    .instagram-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Navigation Arrows & Dots */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 16px;
+      padding: 0 4px;
+    }
+
+    .nav-arrow-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-arrow-btn:hover {
+      background: var(--accent-turquoise);
+      color: #072b28;
+      border-color: var(--accent-turquoise);
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      border-radius: 10px;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 10px var(--accent-turquoise-glow);
+    }
+
+    /* Sidebar / Right Panel */
+    .sidebar-panel {
+      background: rgba(20, 10, 32, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .thumb-btn {
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border: 1.5px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      padding: 4px;
+      text-align: center;
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-turquoise-glow);
+    }
+
+    .thumb-btn span {
+      font-size: 0.65rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* Slide Text Copy Box */
+    .text-copy-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    /* Caption Box */
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    .rule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(42, 210, 197, 0.12);
+      border: 1px solid rgba(42, 210, 197, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: var(--accent-turquoise);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-tag">
+      <div class="brand-pill">Skill Oficial</div>
+      <div class="brand-title">🎠 Carrusel 5 Slides — Episodio 63 (RealMente Podcast)</div>
+    </div>
+    <div class="header-actions">
+      <div class="rule-badge">👑 50% Inferior Libre Activo</div>
+      <button class="btn-action primary" onclick="copyCaption()">📋 Copiar Caption</button>
+    </div>
+  </header>
+
+  <main class="app-container">
+    <!-- Simulator Column -->
+    <div class="simulator-wrapper">
+      <div class="instagram-card">
+        <img id="main-slide-img" src="slide_1_ep63.png" alt="Slide 1">
+      </div>
+      <div class="carousel-nav">
+        <button class="nav-arrow-btn" onclick="prevSlide()">◀</button>
+        <div class="slide-dots">
+          <div class="dot active" onclick="setSlide(1)"></div>
+          <div class="dot" onclick="setSlide(2)"></div>
+          <div class="dot" onclick="setSlide(3)"></div>
+          <div class="dot" onclick="setSlide(4)"></div>
+          <div class="dot" onclick="setSlide(5)"></div>
+        </div>
+        <button class="nav-arrow-btn" onclick="nextSlide()">▶</button>
+      </div>
+    </div>
+
+    <!-- Sidebar Info Column -->
+    <div class="sidebar-panel">
+      <div>
+        <div class="panel-section-title">📑 Miniaturas de Diapositivas</div>
+        <div class="thumbnails-grid">
+          <button class="thumb-btn active" id="thumb-1" onclick="setSlide(1)">S1<span>Portada</span></button>
+          <button class="thumb-btn" id="thumb-2" onclick="setSlide(2)">S2<span>Diagnóstico</span></button>
+          <button class="thumb-btn" id="thumb-3" onclick="setSlide(3)">S3<span>Máscara</span></button>
+          <button class="thumb-btn" id="thumb-4" onclick="setSlide(4)">S4<span>PNL Quiebre</span></button>
+          <button class="thumb-btn" id="thumb-5" onclick="setSlide(5)">S5<span>Mantra & CTA</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel-section-title">
+          <span>✍️ Texto de la Diapositiva Seleccionada</span>
+          <button class="btn-action" style="padding: 4px 10px; font-size: 0.72rem; margin-left: auto;" onclick="copySlideText()">Copiar Texto</button>
+        </div>
+        <div class="text-copy-box" id="slide-text-display">Cargando...</div>
+      </div>
+
+      <div>
+        <div class="panel-section-title">
+          <span>📝 Caption Oficial para Instagram</span>
+          <span style="font-size: 0.75rem; color: var(--accent-lilac); margin-left: auto;">5 Hashtags Exactos</span>
+        </div>
+        <div class="caption-box" id="caption-display">Te prometiste que ibas a ser impecable, que este proyecto saldría perfecto y que ya tenías todo bajo control. 🚪⏳
+
+Pero la vida no es una línea recta. En el instante en que algo tropieza, cometes un error o los planes se caen... ¿qué es lo primero que haces?
+
+No te engañes: sacas el látigo. Te conviertes en tu peor verdugo justo en el segundo en que más vulnerable estás.
+
+Nos vendieron la mentira cultural de que ser crueles con nosotras mismas es sinónimo de «disciplina». La neurobiología demuestra exactamente lo contrario: cuando te insultas por fallar, tu cerebro entra en secuestro amigdalino. Se dispara el cortisol, agotas tu dopamina y quedas biológicamente sin recursos para resolver el problema real.
+
+En el nuevo Episodio 63 de RealMente Podcast desmontamos la raíz del autoabandono:
+👉 Por qué castigarte no te hace mejor: solo te nubla la mente y sabotea tu energía de acción.
+👉 La trampa del rescate externo: por qué mendigar que otros te salven jamás llenará el vacío que tú misma te generas por dentro.
+👉 La ruta somática de 3 pasos: cómo intervenir al verdugo mental antes de que colapse tu sistema nervioso.
+👉 Dejar de quererte bajo contrato: el acuerdo innegociable de respaldarte con mayor fuerza aún en los días difíciles.
+
+A la niña que fuiste no le faltaban ganas ni capacidad: le faltaba una adulta que no la castigara cuando se raspaba las rodillas. Hoy esa adulta eres tú: no la vuelvas a dejar sola.
+
+Desliza el carrusel completo para integrar las herramientas de sostén de esta semana. 🎠
+
+🎙️ EPISODIO 63 YA DISPONIBLE en Spotify y YouTube (enlace en mi perfil).
+
+💬 Comenta la palabra REFUGIO aquí abajo y te envío de inmediato la Hoja de Trabajo con el ejercicio de autorregulación somática en PDF directo a tu DM.
+
+¡Cero excusas!
+
+#RealMentePodcast #MarbelisMontero #AmorPropio #RealMenteClub #PNL</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const slidesData = [
+      {
+        num: 1,
+        title: "Slide 1 (Portada / Gancho Disruptivo)",
+        text: `✨ REALMENTE | 📌 Ep. 63 • Podcast
+
+Tu mayor crisis nunca es lo que pasa afuera...
+empieza cuando tu propia mente te patea en el suelo. 🚪⚡
+
+[Tarjeta Glassmorphism]:
+¿Cómo pretendes que el mundo te respalde si, ante el primer tambaleo o error, tú eres la primera en saltar de tu propio barco?
+
+A la niña que fuiste no le faltaban ganas: le faltaba una adulta que no la castigara. ✨
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        num: 2,
+        title: "Slide 2 (El Diagnóstico / Falsa Excelencia)",
+        text: `✨ REALMENTE | 📌 Ep. 63 • Podcast
+
+Tratarte como basura ante un error...
+no es «disciplina»: es adicción al castigo. 🏛️
+
+[Tarjeta Glassmorphism]:
+Te contaste el cuento de que ser despiadada contigo te hace impecable, y que si te tratas con compasión te volverás mediocre.
+
+La neurobiología te desmiente: el látigo agota tu dopamina, dispara el cortisol y te deja sin recursos cognitivos para resolver.
+
+⚠️ Castigarte no te hace más responsable: solo nubla tu mente y te anula.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        num: 3,
+        title: "Slide 3 (La Máscara / Ilusión del Refugio Externo)",
+        text: `✨ REALMENTE | 📌 Ep. 63 • Podcast
+
+Nadie allá afuera puede darte...
+el refugio que tú te estás negando adentro. 🪞
+
+[Tarjeta Glassmorphism]:
+En plena crisis sales corriendo a anestesiarte en comida, redes o quejas; o a mendigar desesperadamente que otros te rescaten.
+
+Esperas que el mundo te salve mientras tú en silencio te sigues hablando como tu peor enemiga.
+
+💡 El autoabandono es la estrategia perfecta para mantenerte desconectada de tu poder.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        num: 4,
+        title: "Slide 4 (El Quiebre Somático / La Metáfora y PNL)",
+        text: `✨ REALMENTE | 📌 Ep. 63 • Podcast
+
+Si un niño tropieza y se lastima...
+¿vas y le pegas con un palo para que aprenda? 🩹
+
+[Tarjeta Glassmorphism]:
+Jamás lo harías con nadie vulnerable. Pero es exactamente lo que haces contigo en cuanto los planes fallan.
+
+Tu cerebro interpreta que el agresor eres tú misma. Haz una pausa somática, baja el volumen al verdugo y respira.
+
+👀 Cometiste una equivocación: tú NO eres una equivocación.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        num: 5,
+        title: "Slide 5 (Resolución de Poder / Mantra & CTA)",
+        text: `✨ REALMENTE | 📌 Ep. 63 • Podcast
+
+Deja de quererte bajo contrato:
+tu lealtad hacia ti no depende del resultado.
+
+«Sé esa casa sólida a la que siempre puedas volver con las rodillas raspadas, sabiendo que nadie te va a echar.»
+
+🎙️ EPISODIO 63 • REALMENTE PODCAST
+El arte de sostenerte a ti misma: la guía para ser tu mejor refugio en momentos de crisis.
+
+💬 Comenta la palabra REFUGIO
+y te envío la Hoja de Trabajo y la Ruta Somática de 3 Pasos directo a tu DM 📩
+
+@marbelismontero | RealMente Podcast`
+      }
+    ];
+
+    let currentSlide = 1;
+
+    function setSlide(num) {
+      currentSlide = num;
+      document.getElementById('main-slide-img').src = `slide_${num}_ep63.png`;
+      
+      document.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i + 1 === num);
+      });
+
+      document.querySelectorAll('.thumb-btn').forEach((b, i) => {
+        b.classList.toggle('active', i + 1 === num);
+      });
+
+      document.getElementById('slide-text-display').textContent = slidesData[num - 1].text;
+    }
+
+    function nextSlide() {
+      if (currentSlide < 5) setSlide(currentSlide + 1);
+      else setSlide(1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) setSlide(currentSlide - 1);
+      else setSlide(5);
+    }
+
+    function copyCaption() {
+      const text = document.getElementById('caption-display').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("¡Caption copiado al portapapeles con éxito!");
+      });
+    }
+
+    function copySlideText() {
+      const text = document.getElementById('slide-text-display').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("¡Texto del Slide copiado al portapapeles!");
+      });
+    }
+
+    // Inicializar
+    setSlide(1);
+  </script>
+</body>
+</html>
