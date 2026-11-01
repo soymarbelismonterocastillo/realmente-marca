@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termómetro del Freno Invisible — Episodio 62 | RealMente Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FAF8FD;
+      --card-bg: #FFFFFF;
+      --primary-dark: #1A0536;
+      --primary-violet: #2E0C59;
+      --accent-turquesa: #0E9B90;
+      --accent-turquesa-light: #E6F7F5;
+      --accent-lilac: #8E44AD;
+      --accent-lilac-soft: #F4ECFE;
+      --accent-gold: #B45309;
+      --text-main: #1D1526;
+      --text-muted: #574B66;
+      --text-light: #7E7290;
+      --border-soft: #E5DDF0;
+      --border-hover: #0E9B90;
+      --shadow-sm: 0 4px 14px rgba(26, 5, 54, 0.05);
+      --shadow-md: 0 8px 24px rgba(26, 5, 54, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.55;
+      font-size: 16.5px; /* FUENTE BASE GRANDE PARA LECTURA CÓMODA EN CELULAR */
+      padding: 20px 14px 60px 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .main-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* TOP FLOATING ACTION BAR */
+    .top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .back-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-turquesa);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .btn-pdf {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-violet) 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(42, 210, 197, 0.5);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(26, 5, 54, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .btn-pdf:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, var(--primary-violet) 0%, var(--accent-turquesa) 100%);
+    }
+
+    /* HEADER OFICIAL */
+    .header-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 26px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(180deg, #2AD2C5 0%, #2E0C59 60%, #C084FC 100%);
+    }
+
+    .cintillo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-turquesa);
+      margin-bottom: 10px;
+    }
+
+    .cintillo .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-turquesa);
+      border-radius: 50%;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 27px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .instrument-type {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-lilac);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .episode-reference {
+      background: #F8F4FD;
+      border-left: 3.5px solid var(--accent-lilac);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      color: var(--primary-violet);
+      font-weight: 600;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .doc-author {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* BANNER DE INTRODUCCIÓN Y CALMA */
+    .calm-intro-card {
+      background: linear-gradient(135deg, #F4ECFE 0%, #FAF5FF 100%);
+      border: 1.5px solid #DFC9F3;
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .calm-intro-title {
+      font-size: 17.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .calm-intro-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .calm-intro-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .calm-pill {
+      background: #FFFFFF;
+      border: 1px solid #D6C2EB;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary-violet);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* STICKY SCORE BAR (CALCULADORA EN TIEMPO REAL PARA EL CELULAR) */
+    .score-tracker-card {
+      background: var(--primary-dark);
+      color: #FFFFFF;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(26, 5, 54, 0.25);
+      border: 1px solid rgba(42, 210, 197, 0.4);
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .score-tracker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .score-tracker-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #2AD2C5;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .score-badge {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .score-progress-bg {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      height: 12px;
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .score-progress-fill {
+      background: linear-gradient(90deg, #2AD2C5 0%, #C084FC 50%, #EF4444 100%);
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.4s ease;
+    }
+
+    .score-tracker-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #DDD4EC;
+      font-weight: 600;
+    }
+
+    /* PREGUNTAS / MICRO-ESCENARIOS */
+    .question-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 24px 22px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .question-card.answered {
+      border-color: #CBB9E3;
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .q-number {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-violet) 100%);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15.5px;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 3px 8px rgba(46, 12, 89, 0.25);
+    }
+
+    .q-title {
+      font-size: 18.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.35;
+    }
+
+    .q-scenario {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border-soft);
+      font-style: italic;
+    }
+
+    /* OPCIONES DE RESPUESTA EN FORMATO TÁCTIL GRANDE */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .opt-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #FAF9FC;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    .opt-label:hover {
+      background: #F4ECFE;
+      border-color: var(--border-hover);
+    }
+
+    .opt-label.selected {
+      background: #F4ECFE;
+      border-color: var(--accent-lilac);
+      box-shadow: 0 2px 10px rgba(142, 68, 173, 0.15);
+    }
+
+    .opt-label input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #AFA3C2;
+      border-radius: 50%;
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .opt-label input[type="radio"]:checked {
+      border-color: var(--accent-turquesa);
+      background-color: var(--accent-turquesa);
+    }
+
+    .opt-label input[type="radio"]:checked::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFFFFF;
+    }
+
+    .opt-content {
+      flex: 1;
+    }
+
+    .opt-score-tag {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--accent-lilac);
+      background: rgba(142, 68, 173, 0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      display: inline-block;
+    }
+
+    /* SECCIÓN DE RESULTADOS Y NIVELES DE CULPA */
+    .results-section {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-top: 30px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .results-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .level-cards-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .level-card {
+      border-radius: 12px;
+      padding: 20px;
+      border: 1.5px solid var(--border-soft);
+      background: #FFFFFF;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .level-card.active-match {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(26, 5, 54, 0.15);
+      border-width: 2.5px;
+    }
+
+    .level-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+    }
+
+    .level-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .level-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .level-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .level-percentage {
+      font-size: 14.5px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+
+    .level-desc {
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .level-podcast-quote {
+      background: #FAF8FC;
+      border-left: 3.5px solid var(--accent-turquesa);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--primary-violet);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    /* Colores específicos de cada nivel */
+    .level-red {
+      border-color: #FECACA;
+      background: #FFFBFB;
+    }
+    .level-red .level-badge { background: #DC2626; }
+    .level-red .level-percentage { background: #FEE2E2; color: #991B1B; }
+    .level-red.active-match { border-color: #DC2626; }
+
+    .level-orange {
+      border-color: #FED7AA;
+      background: #FFFAF5;
+    }
+    .level-orange .level-badge { background: #EA580C; }
+    .level-orange .level-percentage { background: #FFEDD5; color: #9A3412; }
+    .level-orange.active-match { border-color: #EA580C; }
+
+    .level-yellow {
+      border-color: #FEF08A;
+      background: #FEFDF5;
+    }
+    .level-yellow .level-badge { background: #CA8A04; }
+    .level-yellow .level-percentage { background: #FEF9C3; color: #854D0E; }
+    .level-yellow.active-match { border-color: #CA8A04; }
+
+    .level-green {
+      border-color: #BBF7D0;
+      background: #F6FEF9;
+    }
+    .level-green .level-badge { background: #0E9B90; }
+    .level-green .level-percentage { background: #E6F7F5; color: #0E9B90; }
+    .level-green.active-match { border-color: #0E9B90; }
+
+    /* CIERRE PARA LA CLASE EN VIVO */
+    .live-class-banner {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-violet) 100%);
+      color: #FFFFFF;
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid rgba(42, 210, 197, 0.4);
+      box-shadow: 0 4px 16px rgba(26, 5, 54, 0.2);
+    }
+
+    .live-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .live-text h4 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #2AD2C5;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+
+    .live-text p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #F4ECFE;
+    }
+
+    /* FOOTER */
+    .doc-footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1.5px solid var(--border-soft);
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    .doc-footer-brand {
+      font-weight: 700;
+      color: var(--primary-violet);
+      margin-bottom: 4px;
+    }
+
+    .doc-footer-quote {
+      font-style: italic;
+      color: var(--accent-turquesa);
+      font-weight: 600;
+    }
+
+    /* AJUSTES PARA PANTALLAS MÓVILES (OPTIMIZACIÓN TOTAL CELULAR) */
+    @media (max-width: 600px) {
+      body {
+        padding: 12px 10px 50px 10px;
+        font-size: 16px;
+      }
+
+      .main-title {
+        font-size: 22px;
+      }
+
+      .header-card {
+        padding: 20px 16px;
+      }
+
+      .question-card {
+        padding: 18px 14px;
+      }
+
+      .opt-label {
+        padding: 12px 14px;
+        font-size: 15.5px;
+      }
+
+      .score-tracker-card {
+        padding: 14px 16px;
+      }
+
+      .score-tracker-title {
+        font-size: 13.5px;
+      }
+
+      .level-card {
+        padding: 16px 14px;
+      }
+
+      .level-name {
+        font-size: 16.5px;
+      }
+    }
+
+    /* ESTILOS DE IMPRESIÓN Y PDF CONTINUO (COMPACTO Y SIN SALTOS FORZADOS) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm 10mm;
+      }
+
+      * {
+        break-inside: auto !important;
+        page-break-inside: auto !important;
+        break-before: auto !important;
+        page-break-before: auto !important;
+        break-after: auto !important;
+        page-break-after: auto !important;
+      }
+
+      body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+      }
+
+      .main-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .top-actions, .btn-pdf {
+        display: none !important;
+      }
+
+      .header-card {
+        padding: 12px 14px !important;
+        margin-bottom: 8px !important;
+        border-radius: 8px !important;
+      }
+
+      .main-title {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .instrument-type {
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .episode-reference {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .doc-author {
+        font-size: 11.5px !important;
+      }
+
+      .calm-intro-card {
+        padding: 8px 12px !important;
+        margin-bottom: 8px !important;
+        border-radius: 8px !important;
+      }
+
+      .calm-intro-title {
+        font-size: 13.5px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .calm-intro-text {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+        margin-bottom: 4px !important;
+      }
+
+      .calm-intro-pills {
+        display: none !important;
+      }
+
+      .score-tracker-card {
+        position: static !important;
+        background: #FAF8FC !important;
+        color: #1A0536 !important;
+        border: 1px solid #2E0C59 !important;
+        box-shadow: none !important;
+        margin-bottom: 8px !important;
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+      }
+
+      .score-progress-bg {
+        display: none !important;
+      }
+
+      .score-tracker-title {
+        color: #1A0536 !important;
+        font-size: 12px !important;
+      }
+
+      .score-badge {
+        color: #1A0536 !important;
+        border: 1px solid #CBB9E3 !important;
+        font-size: 11.5px !important;
+        padding: 2px 8px !important;
+      }
+
+      .score-tracker-footer {
+        color: #574B66 !important;
+        font-size: 11px !important;
+      }
+
+      .question-card {
+        box-shadow: none !important;
+        border: 1px solid #E2D9EE !important;
+        margin-bottom: 8px !important;
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+      }
+
+      .q-header {
+        margin-bottom: 4px !important;
+        gap: 8px !important;
+      }
+
+      .q-number {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 11.5px !important;
+      }
+
+      .q-title {
+        font-size: 14px !important;
+      }
+
+      .q-scenario {
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+        margin-bottom: 6px !important;
+        padding-bottom: 4px !important;
+      }
+
+      .options-list {
+        gap: 4px !important;
+      }
+
+      .opt-label {
+        padding: 4px 8px !important;
+        font-size: 11.5px !important;
+        line-height: 1.3 !important;
+        border-radius: 6px !important;
+        gap: 8px !important;
+        border: 1px solid #EAE3F2 !important;
+        background: #FFFFFF !important;
+      }
+
+      .opt-label input[type="radio"] {
+        width: 14px !important;
+        height: 14px !important;
+        margin-top: 1px !important;
+      }
+
+      .opt-score-tag {
+        font-size: 10px !important;
+        padding: 1px 4px !important;
+        margin-right: 4px !important;
+      }
+
+      .results-section {
+        box-shadow: none !important;
+        border: 1px solid #E2D9EE !important;
+        margin-top: 10px !important;
+        padding: 12px 14px !important;
+        border-radius: 8px !important;
+      }
+
+      .results-header {
+        margin-bottom: 8px !important;
+      }
+
+      .results-header h2 {
+        font-size: 17px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .results-header p {
+        font-size: 12px !important;
+      }
+
+      .level-cards-wrapper {
+        gap: 6px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .level-card {
+        box-shadow: none !important;
+        margin-bottom: 6px !important;
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+      }
+
+      .level-card-header {
+        margin-bottom: 3px !important;
+        padding-bottom: 3px !important;
+      }
+
+      .level-name {
+        font-size: 13px !important;
+      }
+
+      .level-percentage {
+        font-size: 11px !important;
+        padding: 1px 6px !important;
+      }
+
+      .level-desc {
+        font-size: 11.5px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 3px !important;
+      }
+
+      .level-podcast-quote {
+        font-size: 10.5px !important;
+        line-height: 1.3 !important;
+        padding: 4px 8px !important;
+      }
+
+      .live-class-banner {
+        padding: 8px 12px !important;
+        margin-top: 8px !important;
+        border-radius: 8px !important;
+        gap: 10px !important;
+      }
+
+      .live-icon {
+        font-size: 20px !important;
+      }
+
+      .live-text h4 {
+        font-size: 12.5px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .live-text p {
+        font-size: 11px !important;
+        line-height: 1.3 !important;
+      }
+
+      .doc-footer {
+        margin-top: 8px !important;
+        padding-top: 6px !important;
+        font-size: 10.5px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper">
+
+    <!-- BARRA SUPERIOR CON ACCIONES -->
+    <div class="top-actions">
+      <div class="back-tag">
+        <span>✨ RealMente Club</span>
+        <span>•</span>
+        <span>Episodio 62</span>
+      </div>
+      <button class="btn-pdf" onclick="window.print()">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+          <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+        </svg>
+        Guardar en PDF / Imprimir
+      </button>
+    </div>
+
+    <!-- CABECERA PRINCIPAL -->
+    <header class="header-card">
+      <div class="cintillo">
+        <span>RealMente Club</span>
+        <span class="dot"></span>
+        <span>Herramienta Oficial de PNL</span>
+      </div>
+      <h1 class="main-title">Termómetro del Freno Invisible</h1>
+      <div class="instrument-type">Instrumento de Autoevaluación del Nivel de Culpa Inconsciente</div>
+      
+      <div class="episode-reference">
+        🎙️ Basado en el Episodio #62: <strong>«RealMente la trampa de la culpa y el precio invisible de asumir esta nueva identidad»</strong>
+      </div>
+
+      <div class="doc-author">
+        <span>Conducido por:</span>
+        <strong style="color: var(--primary-dark);">Marbelis Montero</strong>
+        <span>• Master Trainer en PNL</span>
+      </div>
+    </header>
+
+    <!-- INTRODUCCIÓN TRANQUILA (BAJAR LA GUARDIA) -->
+    <section class="calm-intro-card">
+      <div class="calm-intro-title">
+        <span>🌿</span>
+        <span>Tómate tu tiempo y responde en total tranquilidad</span>
+      </div>
+      <p class="calm-intro-text">
+        En el podcast vimos que la culpa inconsciente casi nunca se presenta diciendo <em>«siento culpa»</em>: se disfraza con sutileza bajo la máscara de la <strong>prudencia, la educación, el deber ser o el miedo a que te llamen egoísta</strong>.
+      </p>
+      <p class="calm-intro-text">
+        Este no es un examen académico ni una prueba con respuestas "buenas" o "malas". Es un espacio íntimo de autoobservación. Tómate unos minutos a solas, respira hondo y responde con total verdad. Puedes tocar las opciones directamente en tu pantalla o anotar tus respuestas en tu libreta personal.
+      </p>
+      <div class="calm-intro-pills">
+        <span class="calm-pill">✨ Sin juicio mental</span>
+        <span class="calm-pill">⏱️ A tu propio ritmo</span>
+        <span class="calm-pill">📓 Para tu libreta personal</span>
+      </div>
+    </section>
+
+    <!-- BARRA INTERACTIVA DE PUNTUACIÓN (SEGUIMIENTO EN VIVO) -->
+    <div class="score-tracker-card" id="scoreTracker">
+      <div class="score-tracker-header">
+        <span class="score-tracker-title">🧭 Nivel de Culpa Inconsciente</span>
+        <span class="score-badge" id="scoreBadge">0 pts (0%)</span>
+      </div>
+      <div class="score-progress-bg">
+        <div class="score-progress-fill" id="progressBar"></div>
+      </div>
+      <div class="score-tracker-footer">
+        <span id="answeredCount">0 de 7 respondidas</span>
+        <span id="currentStatusHint" style="color: #2AD2C5; font-weight: 700;">Selecciona tus respuestas</span>
+      </div>
+    </div>
+
+    <!-- CUESTIONARIO: 7 MICRO-ESCENARIOS -->
+    <form id="evaluationForm">
+
+      <!-- PREGUNTA 1 -->
+      <article class="question-card" id="card-q1">
+        <div class="q-header">
+          <div class="q-number">1</div>
+          <h2 class="q-title">La tarde de descanso no programado</h2>
+        </div>
+        <p class="q-scenario">
+          Estás en casa en un momento libre. No estás enferma, no hay urgencias, pero tienes pendientes cotidianos que podrían esperar. Decides recostarte en el sofá a no hacer nada:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q1', 0, this)">
+            <input type="radio" name="q1" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Me relajo plenamente, suelto el control y disfruto el vacío sin darle vueltas a la cabeza.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q1', 1, this)">
+            <input type="radio" name="q1" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Descanso, pero con un ruidito mental de fondo recordándome lo que dejé sin hacer.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q1', 2, this)">
+            <input type="radio" name="q1" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              Para sentarme tranquila, primero tengo que dejar todo impecable; necesito sentir que "me lo gané".
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q1', 3, this)">
+            <input type="radio" name="q1" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              No aguanto la quietud: me genera una inquietud física tan fuerte que termino levantándome a hacer tareas para no sentirme una irresponsable.
+            </div>
+          </label>
+        </div>
+      </article>
+
+      <!-- PREGUNTA 2 -->
+      <article class="question-card" id="card-q2">
+        <div class="q-header">
+          <div class="q-number">2</div>
+          <h2 class="q-title">La anatomía de un «NO»</h2>
+        </div>
+        <p class="q-scenario">
+          Una persona cercana te pide un favor o te invita a un compromiso al que genuinamente no deseas asistir:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q2', 0, this)">
+            <input type="radio" name="q2" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Digo con serenidad: <em>«Esta vez no voy a poder, ¡gracias por tenerme en cuenta!»</em>, y sigo con mi día en paz.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q2', 1, this)">
+            <input type="radio" name="q2" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Digo que no, pero me quedo un rato pensando en cómo le habrá sentado mi negativa.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q2', 2, this)">
+            <input type="radio" name="q2" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              Doy una justificación larguísima (o invento una excusa "válida") para que no piensen que soy mala persona o desconsiderada.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q2', 3, this)">
+            <input type="radio" name="q2" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              Casi siempre termino diciendo que sí y postergando mis planes con tal de no sostener la tensión o que me tilden de egoísta.
+            </div>
+          </label>
+        </div>
+      </article>
+
+      <!-- PREGUNTA 3 -->
+      <article class="question-card" id="card-q3">
+        <div class="q-header">
+          <div class="q-number">3</div>
+          <h2 class="q-title">Darse un gusto o invertir en ti</h2>
+        </div>
+        <p class="q-scenario">
+          Ves algo que te fascina (un curso, un viaje, una prenda, una experiencia de bienestar) y decides pagarlo exclusivamente para ti:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q3', 0, this)">
+            <input type="radio" name="q3" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Hago el pago con gratitud y alegría, celebrando mi capacidad de expandirme y disfrutar mi dinero.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q3', 1, this)">
+            <input type="radio" name="q3" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Lo disfruto, pero busco convencerme mentalmente de que era "estrictamente necesario" o que estaba en oferta.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q3', 2, this)">
+            <input type="radio" name="q3" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              En los días posteriores siento la necesidad de compensarlo: gasto en otros, me privo de cosas o escondo el precio real ante mi entorno.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q3', 3, this)">
+            <input type="radio" name="q3" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              Siento un nudo en el estómago; postergo la decisión meses pensando: <em>«Hay cosas más importantes antes de gastar en mí»</em>.
+            </div>
+          </label>
+        </div>
+      </article>
+
+      <!-- PREGUNTA 4 -->
+      <article class="question-card" id="card-q4">
+        <div class="q-header">
+          <div class="q-number">4</div>
+          <h2 class="q-title">Pedir lo que te corresponde o cobrar</h2>
+        </div>
+        <p class="q-scenario">
+          Llega el momento de cobrar tus honorarios, reclamar un error en un cobro o pedir que te devuelvan algo que prestaste:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q4', 0, this)">
+            <input type="radio" name="q4" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Me comunico de forma clara, directa, profesional y sin rodeos ni rodeos emocionales.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q4', 1, this)">
+            <input type="radio" name="q4" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Busco el momento "ideal" y reviso el mensaje varias veces para asegurarme de que no suene demandante.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q4', 2, this)">
+            <input type="radio" name="q4" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              Abro con disculpas: <em>«Perdón que te moleste...»</em> o uso diminutivos (<em>«un favorcito»</em>, <em>«el dinerito»</em>) para suavizarlo.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q4', 3, this)">
+            <input type="radio" name="q4" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              Lo postergo semanas esperando que se acuerden solos; prefiero perder dinero antes que afrontar la incomodidad de reclamar.
+            </div>
+          </label>
+        </div>
+      </article>
+
+      <!-- PREGUNTA 5 -->
+      <article class="question-card" id="card-q5">
+        <div class="q-header">
+          <div class="q-number">5</div>
+          <h2 class="q-title">La prudencia ante tu propio éxito</h2>
+        </div>
+        <p class="q-scenario">
+          Consigues un logro extraordinario, aumentas tus ingresos o alcanzas una meta que a personas queridas de tu entorno les cuesta lograr:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q5', 0, this)">
+            <input type="radio" name="q5" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Lo comparto con alegría sincera y orgullo sano con mi gente cercana.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q5', 1, this)">
+            <input type="radio" name="q5" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Lo comparto, pero aclaro rápido: <em>«Me costó un sacrificio inmenso»</em> para que no parezca presumido ni fácil.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q5', 2, this)">
+            <input type="radio" name="q5" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              Oculto los detalles o minimizo el logro (<em>«Fue suerte, no es para tanto»</em>) para no hacer sentir mal o incomodar a nadie.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q5', 3, this)">
+            <input type="radio" name="q5" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              Siento que al avanzar estoy "traicionando" a los míos; me da pánico que mi brillo despierte rechazo, distancia o envidia.
+            </div>
+          </label>
+        </div>
+      </article>
+
+      <!-- PREGUNTA 6 -->
+      <article class="question-card" id="card-q6">
+        <div class="q-header">
+          <div class="q-number">6</div>
+          <h2 class="q-title">El enfado o la frialdad ajena</h2>
+        </div>
+        <p class="q-scenario">
+          Tomas una decisión alineada contigo (un límite, un cambio de horario o de prioridades), y alguien de tu círculo se enfada o se muestra distante:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q6', 0, this)">
+            <input type="radio" name="q6" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Entiendo que su molestia es su propio proceso y no mi condena; permanezco serena en mi decisión.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q6', 1, this)">
+            <input type="radio" name="q6" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Me incomoda la tensión en el ambiente, pero procuro no engancharme y darle su espacio.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q6', 2, this)">
+            <input type="radio" name="q6" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              Paso horas repasando qué dije o hice mal, y busco un gesto complaciente para que se le pase el enfado.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q6', 3, this)">
+            <input type="radio" name="q6" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              Entro en angustia somática (rol de victimaria): siento la urgencia desesperada de pedir perdón o ceder en lo que decidí con tal de recuperar la paz.
+            </div>
+          </label>
+        </div>
+      </article>
+
+      <!-- PREGUNTA 7 -->
+      <article class="question-card" id="card-q7">
+        <div class="q-header">
+          <div class="q-number">7</div>
+          <h2 class="q-title">El error o imprevisto cotidiano</h2>
+        </div>
+        <p class="q-scenario">
+          Cometes una equivocación en un proyecto, olvidas un detalle o las cosas no salen como habías planificado:
+        </p>
+        <div class="options-list">
+          <label class="opt-label" onclick="selectOption('q7', 0, this)">
+            <input type="radio" name="q7" value="0">
+            <div class="opt-content">
+              <span class="opt-score-tag">0 pts</span>
+              Mirada de PNL: <em>«El hecho es neutro. Esto no funcionó, ajusto la estrategia y continúo»</em>.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q7', 1, this)">
+            <input type="radio" name="q7" value="1">
+            <div class="opt-content">
+              <span class="opt-score-tag">1 pt</span>
+              Me molesta cometer un error, pero me enfoco con rapidez en resolver el problema práctico.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q7', 2, this)">
+            <input type="radio" name="q7" value="2">
+            <div class="opt-content">
+              <span class="opt-score-tag">2 pts</span>
+              Mi diálogo interno se torna reproche moral: <em>«Siempre te pasa lo mismo»</em>, <em>«Debiste haberlo previsto»</em>.
+            </div>
+          </label>
+          <label class="opt-label" onclick="selectOption('q7', 3, this)">
+            <input type="radio" name="q7" value="3">
+            <div class="opt-content">
+              <span class="opt-score-tag">3 pts</span>
+              Siento que soy un fraude total; me hundo en la auto-condena y siento que le he fallado a todo el mundo.
+            </div>
+          </label>
+        </div>
+      </article>
+
+    </form>
+
+    <!-- SECCIÓN DE RESULTADOS: EL TERMÓMETRO DE IDENTIDAD -->
+    <section class="results-section" id="resultsSection">
+      <div class="results-header">
+        <span class="cintillo" style="justify-content: center; margin-bottom: 6px;">📊 Guía de Diagnóstico</span>
+        <h2>Los 4 Niveles de Culpa Inconsciente</h2>
+        <p>Suma tus puntos en tu libreta (de 0 a 21) o consulta tu nivel calculado automáticamente arriba:</p>
+      </div>
+
+      <div class="level-cards-wrapper">
+
+        <!-- NIVEL ROJO: 80% - 100% -->
+        <div class="level-card level-red" id="level-red">
+          <div class="level-card-header">
+            <div class="level-title-group">
+              <span class="level-badge">Nivel Crítico</span>
+              <h3 class="level-name">La Guardiana del Deber Ser</h3>
+            </div>
+            <span class="level-percentage">80% a 100% de Freno (17 a 21 pts)</span>
+          </div>
+          <p class="level-desc">
+            <strong>Diagnóstico de Identidad:</strong> Vives cautiva del molde histórico y del mandato social de "ser la buena". Para tu sistema nervioso, existir, descansar, cobrar o crecer se sienten inconscientemente como un delito que exige disculpas constantes. Compras la paz ajena pagando con tu propia frustración, salud y estancamiento.
+          </p>
+          <div class="level-podcast-quote">
+            💡 <strong>Clave del Episodio 62:</strong> «No estás cometiendo ningún delito: simplemente estás rompiendo una norma de comportamiento que otros establecieron para que fueras dócil, predecible y fácil de manejar.»
+          </div>
+        </div>
+
+        <!-- NIVEL NARANJA: 55% - 75% -->
+        <div class="level-card level-orange" id="level-orange">
+          <div class="level-card-header">
+            <div class="level-title-group">
+              <span class="level-badge">Nivel Elevado</span>
+              <h3 class="level-name">La Compradora de Paz Ajena</h3>
+            </div>
+            <span class="level-percentage">55% a 75% de Freno (12 a 16 pts)</span>
+          </div>
+          <p class="level-desc">
+            <strong>Diagnóstico de Identidad:</strong> Avanzas hacia tus metas, pero pagas un peaje oculto de agotamiento y sobreesfuerzo. Das pasos hacia tu nueva versión, pero sientes la necesidad de justificarte tres veces o sobrecompensar en casa para tener "derecho" a crecer. Tu mente aún cree que si alguien se incomoda con tu cambio, tú eres la victimaria.
+          </p>
+          <div class="level-podcast-quote">
+            💡 <strong>Clave del Episodio 62:</strong> «La culpa no mide tu bondad; solo mide tu terror a que los demás te llamen egoísta. Su molestia es su proceso, no tu condena.»
+          </div>
+        </div>
+
+        <!-- NIVEL AMARILLO: 25% - 50% -->
+        <div class="level-card level-yellow" id="level-yellow">
+          <div class="level-card-header">
+            <div class="level-title-group">
+              <span class="level-badge">Nivel de Transición</span>
+              <h3 class="level-name">El Techo de Expansión</h3>
+            </div>
+            <span class="level-percentage">25% a 50% de Freno (6 a 11 pts)</span>
+          </div>
+          <p class="level-desc">
+            <strong>Diagnóstico de Identidad:</strong> Ya desarticulaste gran parte del mandato, pero estás tocando el límite superior de tu etapa actual. Sabes poner límites y cobrar por tu valor, pero cada vez que vas a dar un salto a un nivel más visible o ambicioso, el freno de mano salta. No retrocedes, pero te cuesta sostener la incomodidad somática de romper el techo.
+          </p>
+          <div class="level-podcast-quote">
+            💡 <strong>Clave del Episodio 62:</strong> «La culpa es el termómetro de tu techo actual: no significa que te estés equivocando, sino que estás rompiendo el molde viejo para dejar entrar a la mujer que de verdad quieres ser.»
+          </div>
+        </div>
+
+        <!-- NIVEL VERDE: 0% - 20% -->
+        <div class="level-card level-green" id="level-green">
+          <div class="level-card-header">
+            <div class="level-title-group">
+              <span class="level-badge">Soberanía Total</span>
+              <h3 class="level-name">Neutralidad y Libertad de PNL</h3>
+            </div>
+            <span class="level-percentage">0% a 20% de Freno (0 a 5 pts)</span>
+          </div>
+          <p class="level-desc">
+            <strong>Diagnóstico de Identidad:</strong> Identidad plenamente soberana. Entiendes que los hechos son neutros y no viniste a cumplir las expectativas ajenas. Toleras la incomodidad transitoria de que otros no aprueben tus decisiones sin sentirte culpable. Tu bienestar y tus metas no son negociables.
+          </p>
+          <div class="level-podcast-quote">
+            💡 <strong>Clave del Episodio 62:</strong> «Nada es bueno ni malo, simplemente es. La culpa se extingue cuando te demuestras que tu bienestar no es negociable.»
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CIERRE PARA LA CLASE EN VIVO DEL SÁBADO -->
+      <div class="live-class-banner">
+        <div class="live-icon">🌿</div>
+        <div class="live-text">
+          <h4>Integración profunda en nuestra clase en vivo</h4>
+          <p>
+            Lleva tu puntaje y tus descubrimientos a la clase en vivo del sábado en <strong>RealMente Club</strong>. Allí desmontaremos juntas la pata de victimaria de la mesa y realizaremos el ejercicio somático de PNL para cruzar el puente de tu nueva identidad sin culpa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="doc-footer">
+      <div class="doc-footer-brand">✨ RealMente Club • @marbelismontero • Episodio #62</div>
+      <div class="doc-footer-quote">«Sentir culpa no significa que te estés equivocando; significa que estás rompiendo el molde viejo para dejar entrar a la mujer que de verdad quieres ser.»</div>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPT INTERACTIVO PARA CÁLCULO EN TIEMPO REAL -->
+  <script>
+    const userAnswers = {};
+
+    function selectOption(questionId, points, labelEl) {
+      userAnswers[questionId] = points;
+
+      // Actualizar estilo visual del radio seleccionado
+      const parentCard = document.getElementById('card-' + questionId);
+      if (parentCard) {
+        parentCard.classList.add('answered');
+        const labels = parentCard.querySelectorAll('.opt-label');
+        labels.forEach(l => l.classList.remove('selected'));
+      }
+      labelEl.classList.add('selected');
+
+      updateScoreTracker();
+    }
+
+    function updateScoreTracker() {
+      const answeredKeys = Object.keys(userAnswers);
+      const totalAnswered = answeredKeys.length;
+      let totalPoints = 0;
+
+      for (let key in userAnswers) {
+        totalPoints += userAnswers[key];
+      }
+
+      // Máximo 21 puntos = 100%
+      const percentage = Math.round((totalPoints / 21) * 100);
+
+      const progressBar = document.getElementById('progressBar');
+      const scoreBadge = document.getElementById('scoreBadge');
+      const answeredCount = document.getElementById('answeredCount');
+      const currentStatusHint = document.getElementById('currentStatusHint');
+
+      progressBar.style.width = percentage + '%';
+      scoreBadge.textContent = totalPoints + ' pts (' + percentage + '%)';
+      answeredCount.textContent = totalAnswered + ' de 7 respondidas';
+
+      // Cambiar texto de estado
+      if (totalAnswered < 7) {
+        currentStatusHint.textContent = 'Faltan ' + (7 - totalAnswered) + ' preguntas';
+        currentStatusHint.style.color = '#DDD4EC';
+      } else {
+        currentStatusHint.textContent = '¡Completado! Mira tu nivel abajo';
+        currentStatusHint.style.color = '#2AD2C5';
+      }
+
+      // Resaltar tarjeta correspondiente en resultados
+      highlightResultLevel(totalPoints, totalAnswered);
+    }
+
+    function highlightResultLevel(points, answeredCount) {
+      const levels = ['level-red', 'level-orange', 'level-yellow', 'level-green'];
+      levels.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('active-match');
+      });
+
+      if (answeredCount === 0) return;
+
+      let targetId = '';
+      if (points >= 17) {
+        targetId = 'level-red';
+      } else if (points >= 12) {
+        targetId = 'level-orange';
+      } else if (points >= 6) {
+        targetId = 'level-yellow';
+      } else {
+        targetId = 'level-green';
+      }
+
+      const activeEl = document.getElementById(targetId);
+      if (activeEl) {
+        activeEl.classList.add('active-match');
+        if (answeredCount === 7) {
+          activeEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
