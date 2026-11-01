@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualizador interactivo de Carrusel de 5 Slides para Instagram - Episodio 62 de RealMente Podcast con Marbelis Montero">
+  <title>Carrusel 5 Slides — Episodio 62 | RealMente Podcast</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0410;
+      --bg-gradient: linear-gradient(145deg, #12091c 0%, #1e0d32 50%, #150824 100%);
+      --card-bg: rgba(28, 14, 46, 0.75);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #d8b4fe;
+      --accent-turquoise: #2ad2c5;
+      --accent-turquoise-hover: #38bdf8;
+      --accent-turquoise-glow: rgba(42, 210, 197, 0.35);
+      --accent-lilac: #c084fc;
+      --accent-lilac-glow: rgba(192, 132, 252, 0.25);
+      --accent-alert: #fb7185;
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 35px rgba(42, 210, 197, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    /* Header Nav */
+    header {
+      width: 100%;
+      max-width: 1120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-pill {
+      background: linear-gradient(135deg, rgba(42, 210, 197, 0.2), rgba(192, 132, 252, 0.2));
+      border: 1px solid var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: var(--accent-turquoise);
+      color: #072b28;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--accent-turquoise-glow);
+    }
+
+    .btn-action.primary:hover {
+      background: #38bdf8;
+      color: #0c0414;
+      transform: translateY(-1px);
+    }
+
+    /* Main Grid */
+    .app-container {
+      width: 100%;
+      max-width: 1120px;
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .app-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    /* Simulator Column */
+    .simulator-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .instagram-card {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      border: 1.5px solid var(--card-border);
+      box-shadow: var(--shadow-soft), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      background: #12091c;
+      transition: all 0.3s ease;
+    }
+
+    .instagram-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Navigation Arrows & Dots */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 18px;
+      padding: 0 4px;
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      border-radius: 10px;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 10px var(--accent-turquoise-glow);
+    }
+
+    /* Sidebar / Right Panel */
+    .sidebar-panel {
+      background: rgba(20, 10, 32, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .thumb-btn {
+      aspect-ratio: 4 / 5;
+      background: var(--bg-gradient);
+      border: 1.5px solid rgba(192, 132, 252, 0.25);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .thumb-btn:hover, .thumb-btn.active {
+      border-color: var(--accent-turquoise);
+      color: var(--accent-turquoise);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-turquoise-glow);
+    }
+
+    .thumb-btn span {
+      font-size: 0.65rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* Slide Text Copy Box */
+    .text-copy-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    /* Caption Box */
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      max-height: 220px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+
+    /* Badge Rule Info */
+    .rule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(42, 210, 197, 0.12);
+      border: 1px solid rgba(42, 210, 197, 0.3);
+      font-size: 0.78rem;
+      color: var(--accent-turquoise);
+      font-weight: 600;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      background: var(--accent-turquoise);
+      color: #072b28;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(42, 210, 197, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Nav -->
+  <header>
+    <div class="brand-tag">
+      <span class="brand-pill">Episodio 62</span>
+      <span class="brand-title">RealMente • Marbelis Montero</span>
+    </div>
+    <div class="header-actions">
+      <span class="rule-badge">👑 Regla 50% Inferior Libre</span>
+      <button class="btn-action" onclick="copyCurrentSlideText()">📋 Copiar Slide</button>
+      <button class="btn-action primary" onclick="copyInstagramCaption()">🚀 Copiar Caption IG</button>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <div class="app-container">
+
+    <!-- Simulator Column -->
+    <div class="simulator-wrapper">
+      
+      <!-- Instagram Card (4:5) -->
+      <div class="instagram-card" id="cardViewport">
+        <img id="activeSlideImg" src="slide_1_ep62.png" alt="Slide 1">
+      </div>
+
+      <!-- Navigation Arrows & Dots -->
+      <div class="carousel-nav">
+        <button class="btn-action" onclick="prevSlide()" id="prevBtn">◀ Anterior</button>
+        <div class="slide-dots" id="dotsContainer">
+          <div class="dot active" onclick="goToSlide(0)"></div>
+          <div class="dot" onclick="goToSlide(1)"></div>
+          <div class="dot" onclick="goToSlide(2)"></div>
+          <div class="dot" onclick="goToSlide(3)"></div>
+          <div class="dot" onclick="goToSlide(4)"></div>
+        </div>
+        <button class="btn-action" onclick="nextSlide()" id="nextBtn">Siguiente ▶</button>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar Panel -->
+    <div class="sidebar-panel">
+
+      <div>
+        <h3 class="panel-section-title">🎠 Selección de Lámina (5 Slides)</h3>
+        <div class="thumbnails-grid">
+          <button class="thumb-btn active" onclick="goToSlide(0)">#1<span>Portada</span></button>
+          <button class="thumb-btn" onclick="goToSlide(1)">#2<span>Origen</span></button>
+          <button class="thumb-btn" onclick="goToSlide(2)">#3<span>4 Patas</span></button>
+          <button class="thumb-btn" onclick="goToSlide(3)">#4<span>Neutro</span></button>
+          <button class="thumb-btn" onclick="goToSlide(4)">#5<span>CTA</span></button>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">📝 Texto de esta Lámina</h3>
+          <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="copyCurrentSlideText()">Copiar Texto</button>
+        </div>
+        <div class="text-copy-box" id="slideTextRaw">
+          Cargando contenido...
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 class="panel-section-title" style="margin-bottom:0;">💬 Caption para Instagram (Copy Complementario)</h3>
+          <button class="btn-action primary" style="padding:4px 10px; font-size:0.75rem;" onclick="copyInstagramCaption()">Copiar Caption</button>
+        </div>
+        <div class="caption-box" id="captionTextRaw">
+Te prometiste que este año ibas a priorizarte, a cobrar lo que vale tu tiempo, a decir que no a compromisos que te drenan y a construir tu proyecto sin distracciones. 🚪⏳
+
+Pero en el segundo exacto en que vas a ejecutar esa decisión, se te cierra el estómago y aparece esa voz pesada y punzante: "¿Quién te crees que eres? Qué egoísta... van a pensar que cambiaste para mal".
+
+Y retrocedes. Vuelves a decir que sí. Vuelves a regalar tu energía para que nadie se incomode.
+
+Detente un segundo:
+La culpa no es una brújula moral ni te está avisando que estás haciendo daño. La culpa es el perro guardián que tu mente suelta para devolverte a la jaula de lo conocido, a la versión dócil y predecible que los demás esperan de ti.
+
+En el nuevo Episodio 62 de RealMente Podcast desmontamos la raíz invisible de este freno:
+👉 Por qué la culpa no es biológica: es una construcción histórica de control social basada en el rígido "deber ser".
+👉 La metáfora de la mesa de 4 patas (bueno, malo, víctima y victimario): cómo te pasas la vida bamboleándote entre el sacrificio y el miedo a ser "la mala".
+👉 El principio liberador de la PNL: los hechos son 100% neutros. La condena moral solo vive en el significado dramático que le cuelgas en tu cabeza.
+👉 Por qué la molestia de los demás no demuestra que seas culpable; solo demuestra que la expectativa que tenían sobre ti se rompió.
+
+El precio de tu nueva identidad no es el dinero ni reventarte trabajando más. El verdadero peaje es aprender a sostener la culpa transitoria de dejar de complacer al mundo para por fin serte fiel a ti.
+
+Desliza el carrusel completo para integrar las herramientas de neuroalineación de esta semana. 🎠
+
+🎙️ EPISODIO 62 YA DISPONIBLE en Spotify y YouTube (enlace en mi biografía).
+
+💬 Comenta la palabra CULPA aquí abajo y te envío de inmediato la Guía de Desactivación del Diálogo Culposo en PDF directo a tu DM.
+
+¡Cero excusas!
+
+#RealMentePodcast #MarbelisMontero #CulpaInconsciente #RealMenteClub #PNL
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="toast" id="toastMsg">Texto copiado al portapapeles ✨</div>
+
+  <script>
+    const slidesData = [
+      {
+        id: 1,
+        title: "Slide 1 — Portada / Gancho Disruptivo",
+        img: "slide_1_ep62.png",
+        text: `✨ REALMENTE | 📌 Ep. 62 • Podcast
+
+No estás siendo «prudente»... 
+le tienes pánico a que te llamen egoísta. 🚪⚡
+
+En el segundo exacto en que vas a poner un límite o decir «no», tu mente suelta a la culpa como perro guardián.
+
+La culpa no te avisa que haces daño: te avisa que estás a punto de ser libre. ✨
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 2,
+        title: "Slide 2 — Diagnóstico / Falsa Prudencia",
+        img: "slide_2_ep62.png",
+        text: `✨ REALMENTE | 📌 Ep. 62 • Podcast
+
+Tú no naciste sintiendo culpa: 
+te la programaron para hacerte predecible. 🏛️
+
+Durante siglos se implantó el «deber ser» como alarma interna para mantener el control sin un policía vigilándote todo el día.
+Cuando rompes el molde para crecer, no cometes un delito: desafías normas que otros inventaron para mantenerte dócil.
+
+⚠️ Cada vez que te achicas para encajar, compras paz ajena con tu propia frustración.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 3,
+        title: "Slide 3 — Desmontar la Máscara / Mesa de 4 Patas",
+        img: "slide_3_ep62.png",
+        text: `✨ REALMENTE | 📌 Ep. 62 • Podcast
+
+El juego perverso de la culpa: 
+la mesa en la que vives atrapada. 🪑
+
+Toda tu vida te la pasas rotando entre 4 esquinas:
+• Lo Bueno vs. Lo Malo: juicios morales rígidos.
+• Víctima vs. Victimaria: si dices no, te crees mala; si toleras todo, te refugias como víctima abnegada.
+
+💡 La culpa solo existe si previamente etiquetaste tu bienestar como algo «inaceptable».
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 4,
+        title: "Slide 4 — Quiebre en PNL / Hechos Neutros",
+        img: "slide_4_ep62.png",
+        text: `✨ REALMENTE | 📌 Ep. 62 • Podcast
+
+Axioma liberador de PNL: 
+Los hechos son neutros. El drama lo inventas tú. 🧠
+
+Decir «no puedo hoy» es un hecho neutro. El reproche culposo es el invento de tu diálogo interno.
+Si alguien se molesta por tu límite, solo demuestra que su expectativa sobre ti se rompió.
+
+👀 Su enojo es su proceso: jamás tu condena.
+
+@marbelismontero | Desliza ➡️`
+      },
+      {
+        id: 5,
+        title: "Slide 5 — Resolución de Poder / Mantra y CTA",
+        img: "slide_5_ep62.png",
+        text: `✨ REALMENTE | 📌 Ep. 62 • Podcast
+
+Sentir culpa no es señal de error:
+es el termómetro de tu expansión.
+
+«No compro paz ajena con mi frustración. Sostengo la culpa transitoria de ser fiel a mí misma.»
+
+🎙️ EPISODIO 62 • REALMENTE PODCAST
+La trampa de la culpa y el precio invisible de asumir tu nueva identidad.
+
+💬 Comenta la palabra CULPA
+y te envío la Guía de Desactivación del Diálogo Culposo directo a tu DM 📩
+
+@marbelismontero | RealMente Podcast`
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function updateView() {
+      const slide = slidesData[currentSlide];
+      document.getElementById('activeSlideImg').src = slide.img;
+      document.getElementById('slideTextRaw').innerText = slide.text;
+
+      // Update dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+
+      // Update thumbnail buttons
+      const thumbs = document.querySelectorAll('.thumb-btn');
+      thumbs.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateView();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
+      updateView();
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slidesData.length;
+      updateView();
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function copyCurrentSlideText() {
+      const text = slidesData[currentSlide].text;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`¡Texto del Slide ${currentSlide + 1} copiado! ✨`);
+      });
+    }
+
+    function copyInstagramCaption() {
+      const caption = document.getElementById('captionTextRaw').innerText.trim();
+      navigator.clipboard.writeText(caption).then(() => {
+        showToast("¡Caption de Instagram copiado! 🚀");
+      });
+    }
+
+    // Initialize
+    updateView();
+  </script>
+</body>
+</html>
