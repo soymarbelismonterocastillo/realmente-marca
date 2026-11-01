@@ -77,6 +77,7 @@
 * **Video Oficial en YouTube:** [Ver Episodio en YouTube](https://www.youtube.com/watch?v=WUycHriqJz4) (ID: `WUycHriqJz4` | Duración: 25:50 | Publicado: 21-Oct-2026)
 * **Carpeta Oficial:** [EP62_La_Trampa_de_la_Culpa](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa)
 * **Transcripciones:** [Transcripción Editada](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/03_Transcripcion_Final/transcripcion_final_editada_ep62.md) | [Transcripción Cruda](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/03_Transcripcion_Final/transcripcion_cruda_youtube_ep62.md)
+* **Carrusel de Instagram (5 Slides):** [carrusel_5_slides_episodio_62.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/05_Redes_Reels_y_Carruseles/carrusel_5_slides_episodio_62.md) | [Visor Interactivo HTML](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/carrusel_5_slides_episodio_62.html) | GDrive: `C018_La_Trampa_de_la_Culpa_Ep62`
 * **Estado:** Publicado en YouTube y Transcripciones Oficiales integradas (21-Oct-2026).
 * **Escaleta / Esquema de Grabación:** [escaleta_ep62_la_trampa_de_la_culpa.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/02_Podcast_Guion_y_Grabacion/escaleta_ep62_la_trampa_de_la_culpa.md)
 * **Guion Oficial de Locución Editado:** [guion_limpio_edicion_ep62.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP62_La_Trampa_de_la_Culpa/02_Podcast_Guion_y_Grabacion/guion_limpio_edicion_ep62.md) (~1.520 palabras | ~12 min)
@@ -93,3 +94,48 @@
   3. **El Precio Invisible:** Aprender a tolerar la culpa es el peaje innegociable para no abortar tu nueva identidad.
 
 
+
+---
+
+## 🎙️ EPISODIO 63 DE PODCAST
+* **Título Oficial:** *RealMente el arte de sostenerte a ti misma: la guía para ser tu mejor refugio en momentos de crisis*
+* **Video Oficial en YouTube:** [Ver Episodio en YouTube](https://www.youtube.com/watch?v=VfQeFyrSyX4) (ID: `VfQeFyrSyX4` | Duración: 25:52 | Publicado: 28-Oct-2026)
+* **Carpeta Oficial:** [EP63_El_Arte_de_Sostenerte](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP63_El_Arte_de_Sostenerte)
+* **Transcripciones:** [Transcripción Editada](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP63_El_Arte_de_Sostenerte/03_Transcripcion_Final/transcripcion_final_editada_ep63.md) | [Transcripción Cruda](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP63_El_Arte_de_Sostenerte/03_Transcripcion_Final/transcripcion_cruda_youtube_ep63.md)
+* **Estado:** Publicado en YouTube y Transcripciones Oficiales integradas (28-Oct-2026).
+* **Guion Maestro de Grabación:** [guion_final_grabacion_ep63.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP63_El_Arte_de_Sostenerte/02_Podcast_Guion_y_Grabacion/guion_final_grabacion_ep63.md) (~1.550 palabras | ~14-17 min)
+* **Guion Oficial de Locución Editado:** [guion_limpio_edicion_ep63.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP63_El_Arte_de_Sostenerte/02_Podcast_Guion_y_Grabacion/guion_limpio_edicion_ep63.md)
+* **Mensaje y Frase de Inicio:** [mensaje_apertura_club_ep63.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP63_El_Arte_de_Sostenerte/01_Frase_Inicio_Semana/mensaje_apertura_club_ep63.md)
+* **Tipo:** Autocompasión Consciente, Regulación Somática y Reprogramación de Diálogo Interno (PNL)
+* **Pregunta de Poder:** La próxima vez que algo tambalee en tu vida o se caiga, ¿qué mujer va a aparecer frente al espejo: la que te hunde la cabeza en el agua para ahogarte, o la que te tiende la mano para sacarte de ahí?
+* **Premisa y Pilares Centrales:**
+  1. **La Verdadera Crisis:** La crisis nunca es lo que ocurre afuera; empieza en el segundo exacto en que tu voz interior te declara la guerra y te patea en el suelo.
+  2. **Las 3 Trampas Inconscientes:**
+     - *Cultural:* Castigarte antes para amortiguar el golpe o agradar al entorno.
+     - *Falsa Excelencia:* Confundir dureza y crueldad interna con disciplina y enfoque.
+     - *Biológica:* El látigo agota la dopamina, dispara el cortisol y secuestra la amígdala, nublando la lucidez cognitiva.
+  3. **El Espejismo del Refugio Externo:** Nadie afuera puede darte el refugio que tú te estás negando adentro; la evasión en compras, redes, sustancias o aprobación perpetúa el vacío.
+  4. **Protocolo Somático de 3 Pasos:**
+     - *Pausa fisiológica:* Oxigenar el cuerpo y avisarle al sistema nervioso que tú no eres el depredador.
+     - *Intervención del diálogo interno:* Bajar el volumen y ralentizar el tono del verdugo.
+     - *Separar el hecho de la identidad:* El error es un evento transitorio, no define tu esencia ni tu capacidad de resolver.
+  5. **Dejar de Quererte Bajo Contrato:** Amor incondicional como una casa sólida a la que siempre puedes regresar con las rodillas raspadas y en lágrimas sin ser juzgada.
+
+---
+
+## 🗓️ PLANIFICACIÓN OFICIAL APROBADA (EPISODIOS #64 AL #73) - NOVIEMBRE 2026 A ENERO 2027
+*Documento de referencia:* [LISTA_OFICIAL_EPISODIOS_64_73.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/LISTA_OFICIAL_EPISODIOS_64_73.md)  
+*Estado:* APROBADO (2026-11-01) - Formato Video Podcast
+
+| # | Mes / Semana | Título Oficial de YouTube | Chars | Foco Transformacional (PNL y Club) |
+|---|---|---|---|---|
+| **64** | Noviembre (S1) | **RealMente estar de tu lado: el arte de no volverte a fallar** | 58 | Reconstrucción de la autoconfianza y cumplimiento de acuerdos propios sin látigo ni sobreexigencia. |
+| **65** | Noviembre (S2) | **Hacer las paces contigo: el paso previo a cualquier cambio** | 58 | Paz interna como suelo fértil para desear, soñar y conectar con el propósito genuino. |
+| **66** | Noviembre (S3) | **RealMente querer no basta: la brecha entre desear y accionar** | 60 | Diferencia neurobiológica entre deseo vs. objetivo. Salir de la ilusión mental hacia la acción. |
+| **67** | Noviembre (S4) | **A esa meta no vas a llegar tú: alinea tu identidad primero** | 59 | Actualización de la autoimagen profunda para sostener el crecimiento sin autosabotaje. |
+| **68** | Diciembre (S1) | **Aprender a leer tus ciclos: por qué forzar los tiempos agota** | 61 | Comprensión de tiempos, estaciones y temporadas personales para evitar el agotamiento. |
+| **69** | Diciembre (S2) | **La siembra consciente: cómo cada día define lo que viene** | 57 | Conexión micro-macro. Puente directo a la Masterclass de YouTube sobre los 12 primeros días. |
+| **70** | Diciembre (S3) | **Sostener el rumbo: qué hacer cuando el camino se desvía** | 56 | Madurez emocional para no abandonar cuando las circunstancias externas no salen según el plan. |
+| **71** | Diciembre (S4) | **Cerrar un ciclo de verdad: lo que necesitas soltar hoy** | 55 | Despedida consciente del año, duelo de etapas concluidas y limpieza del terreno interno. |
+| **72** | Enero (S1) | **Bájale a la prisa de enero: cómo empezar con calma y foco** | 58 | Desactivar la euforia insostenible de año nuevo. Regulación somática y arranque con los pies en la tierra. |
+| **73** | Enero (S2) | **Cuando se acaba la motivación: el arte de cumplirte** | 52 | Hábitos reales, coherencia y sostén de promesas cuando pasa el entusiasmo inicial. |
