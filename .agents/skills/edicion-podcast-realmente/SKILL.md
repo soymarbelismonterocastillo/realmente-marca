@@ -1,116 +1,100 @@
 ---
 name: edicion-podcast-realmente
-description: Metodología, protocolo de edición, co-creación y directrices de locución para los episodios del podcast RealMente de Marbelis Montero. Define la regla de no alterar el texto sin permiso previo, el control métrico de duración (~18-22 min / ~2.400 palabras a 130 ppm), la limpieza de transcripciones y muletillas, la preservación de la voz cálida y cercana, y la integración colaborativa de anécdotas y conceptos de PNL.
+description: Metodología oficial, calibración de voz y protocolo quirúrgico de edición para los episodios del podcast RealMente de Marbelis Montero. Estandariza la preservación sagrada del tono íntimo, cálido y vulnerable, la limpieza sutil sin alterar palabras ni secuencia original, las marcas somáticas de respiración para teleprompter/atril, y la regla de no agregar contenido al guion salvo sugerencias separadas al final.
 ---
 
 # 🎙️ Skill Oficial: Edición y Guiones de Podcast — RealMente (Marbelis Montero)
 
-Esta skill estandariza el flujo integral de edición, expansión y calibración de guiones para los episodios del podcast **RealMente**, conducido por **Marbelis Montero** (Master Trainer en PNL).
+Esta skill define el **estándar definitivo y calibrado** de edición, pulido y formato para los episodios del podcast **RealMente**, conducido por **Marbelis Montero** (Master Trainer en PNL).
+
+> [!IMPORTANT]
+> **Hito de Calibración Perfecta (Consolidado en EP63):**  
+> *"Acertamos muchísimo después de mucho tiempo en que todo el contenido y la forma en que editaste está muy alineado a mi voz y me encantó. Guárdalo como skill para las siguientes ediciones."* — Marbelis Montero.
 
 ---
 
 ## 🎯 1. Filosofía, Voz y Reglas de Oro
 
-1. **👑 Regla de Oro de Integridad:**
-   * **NUNCA modificar ideas ni añadir contenido nuevo al texto base sin autorización expresa de Marbelis.**
-   * Las sugerencias de ampliación o cambios temáticos se presentan SIEMPRE en una sección aparte con preguntas directas.
+1. **👑 Regla Sagrada de Integridad (Preservar la Emoción Real):**
+   * Cuando Marbelis entrega un borrador redactado o dictado por ella, lo hace desde una conexión emocional visceral, profunda y auténtica.
+   * **NUNCA modificar sus ideas, ni reescribir frases con palabras ajenas, ni alterar la secuencia original.**
+   * **NUNCA agregar contenido nuevo dentro del cuerpo del guion.** Cualquier idea, ampliación, técnica de PNL o metáfora complementaria se presenta **estrictamente al final**, en una sección separada e independiente titulada:  
+     `### 💡 Sugerencias Opcionales y Matices (Solo para tu consideración, NADA incluido en el texto)`.
 
-2. **Tono de Voz y Cercanía:**
-   * **Cálido, empático, reflexivo, acogedor y de liderazgo consciente:** hablar "de tú a tú", al oído de la oyente.
-   * **Identidad lingüística:** Uso natural de expresiones de Marbelis (*«amiga»*, *«freno de mano»*, *«hacer clic»*, *«sacar a pasear a tu niña herida»*, *«la verdad que te va a doler»*, *«cero excusas»*, *«¡Bye, bye!»*).
-   * **PNL cotidiana y aplicable:** Desmontar trampas mentales, absolutismos y armaduras del ego sin caer en tecnicismos académicos pesados ni sermones moralistas.
+2. **Tono de Voz, Intimidad y Cercanía:**
+   * **De tú a tú, al oído de la oyente:** Cálido, humano, compasivo, pero con la firmeza y contención de una mentora adulta consciente.
+   * **Identidad lingüística y anclas de Marbelis:**  
+     * Conectores y frases entrañables: *«amiga»*, *«freno de mano»*, *«el látigo»*, *«el verdugo»*, *«yo puedo, he podido y podré; y tú también has podido, puedes y podrás»*, *«voy a poder con esto»*, *«hacer clic»*, *«sacar a pasear a tu niña herida»*, *«dejar de quererte bajo contrato»*, *«casa sólida»*, *«las rodillas raspadas»*, *«¡Bye, bye!»*.
+   * **PNL cotidiana y biológica:** Desmontar trampas mentales, absolutismos y secuestros emocionales con ejemplos reales de la vida diaria y sesiones 1 a 1, sin academicismos fríos.
 
 3. **Separación Editorial: Podcast vs. Club:**
-   * **El Podcast:** Es un espacio abierto, reflexivo, cuestionador e inspirador. Evitar convertirlo en un taller con tareas estructuradas o listas rígidas de ejercicios.
-   * **RealMente Club:** Es el espacio donde se profundizan las herramientas, se entregan las tareas, la clase en vivo de los sábados y los ejercicios prácticos guiados.
+   * **El Podcast:** Espacio de reflexión, cuestionamiento íntimo, vulnerabilidad, despertar y caricia al alma. No convertirlo en taller con instrucciones rígidas.
+   * **RealMente Club:** Espacio donde se ejecutan las herramientas, la clase de los sábados, las plantillas y los ejercicios guiados.
 
 ---
 
-## ⏱️ 2. Métrica de Duración y Ritmo de Locución
+## ✂️ 2. Protocolo Quirúrgico de Edición (Lo que se limpia vs. lo que se preserva)
 
-* **Velocidad estándar de locución reflexiva:** 125 a 135 palabras por minuto (ppm) considerando pausas dramáticas y silencios de integración.
-* **Duración objetivo estándar:** **18 a 22 minutos** por episodio.
-* **Tabla de equivalencias métricas:**
-  * **12 a 13 minutos:** ~1.600 - 1.700 palabras *(requiere expansión)*.
-  * **18 a 19 minutos:** ~2.350 - 2.500 palabras *(meta estándar óptima)*.
-  * **22 a 25 minutos:** ~2.800 - 3.200 palabras *(episodios profundos)*.
+El trabajo de edición es un **pulido fino y respetuoso**, no una reescritura:
 
-### Protocolo cuando el borrador es corto (< 18 min):
-1. Calcular el déficit exacto en palabras y minutos.
-2. Presentar el guion base pulido respetando fielmente las palabras de Marbelis.
-3. Presentar un **Menú de Expansión** con 3 a 5 puntos estratégicos (conceptos de PNL a aterrizar, anécdotas de vida o metáforas).
-4. Permitir que Marbelis dicte o apruebe los bloques antes de ensamblar el guion maestro final.
+### A. Lo que SÍ se limpia:
+* **Fallas fonéticas y de dictado:** Errores de transcripción automática o tipeo rápido (ej. *«bajo cionamientos»* ➔ *«bajo condicionamientos»*, *«la es el siguiente»* ➔ *«es la siguiente»*).
+* **Tartamudeos y tropiezos orales:** Repeticiones involuntarias de palabras (ej. *«para para evadirse»* ➔ *«para evadirse»*).
+* **Puntuación y pausas respiratorias:** Dividir oraciones excesivamente largas en frases con ritmo orgánico, evitando que Marbelis se quede sin aire al grabar frente al micrófono.
 
----
-
-## ✂️ 3. Protocolo de Limpieza y Formato para Micrófono
-
-Cualquier borrador o transcripción automática (dictado por voz / Whisper / notas rápidas) debe procesarse bajo este estándar:
-
-1. **Limpieza de fallas de transcripción:**
-   * Corregir errores fonéticos comunes (ej. *«Navidad»* ➔ *«vida»*, *«clip»* ➔ *«clic»*, *«lo de ese yo soy o citas»* ➔ *«yo soy o yo necesito»*).
-   * Eliminar repeticiones involuntarias, tartamudeos y falsos inicios de frase.
-   * Preservar muletillas con intención comunicativa y cercanía (*«amiga»*, *«fíjate en esto»*, *«¿me explico?»*).
-
-2. **Marcas somáticas y respiración:**
-   * Insertar acotaciones explícitas de locución entre paréntesis para dar ritmo al hablar:
-     * `(Pausa)` o `(Pausa reflexiva)`
-     * `(Inhala / Exhala)` o `(Inhala profundo / Exhala)`
-     * `(Sonrisa / Tono conversacional)`
-
-3. **Jerarquía visual para teleprompter / lectura en atril:**
-   * **Negritas:** En preguntas de poder, verdades incómodas, axiomas y llamados a la acción.
-   * *Cursivas:* Para pensamientos del diálogo interno, citas textuales y ejemplos de excusas (*«es que yo soy lenta»*).
-   * Viñetas ordenadas para listas de etiquetas o contrastes.
+### B. Lo que se PRESERVA con celo absoluto:
+* Cada uno de sus giros personales, anécdotas propias y preguntas de poder.
+* Sus apelaciones directas: *«amiga»*, *«fíjate en esto»*, *«les regalo ese dato»*.
+* La emoción y vulnerabilidad con la que fue concebido el episodio.
 
 ---
 
-## 📐 4. Arquitectura Narrativa en 7 Bloques
+## 🎙️ 3. Formato Oficial para Teleprompter / Atril
 
-```text
-1. [INTRO Y GANCHO]:
-   - Bienvenida cálida a RealMente.
-   - Pregunta detonante / impacto inicial que rompa el piloto automático.
-   - Llamado a la acción inicial (like, suscribir, RealMente Club).
-   - Anuncio de la tesis central innegociable.
+Cada guion editado debe formatearse para garantizar una locución fluida y descansada:
 
-2. [BLOQUE 1: LA ILUSIÓN DE LA ESENCIA Y EL CICLO NATURAL]:
-   - Desmontar la creencia de que "cambiar es traicionarte".
-   - Diferencia clave entre IDENTIDAD (traje, ego, software) y ESENCIA (valores profundos, alma, luz).
-   - Pregunta incómoda: ¿Quién te dijo que esa persona tiene que acompañarte toda la vida?
-
-3. [BLOQUE 2: ORIGEN PSICOLÓGICO Y METÁFORA DEL TRAJE]:
-   - Por qué te aferras a ese personaje: construido en la infancia para recibir amor o evitar daño.
-   - La metáfora visual (ej. el abrigo en el frío vs. en el calor; el traje no es tu piel).
-   - Hacer consciente a la niña herida.
-
-4. [BLOQUE 3: EL DUELO QUE NADIE TE CUENTA]:
-   - Para que nazca la nueva versión, algo tiene que morir (pérdida real para el inconsciente).
-   - Qué muere: la historia de víctima, ciertas amistades que no evolucionan y dinámicas familiares.
-   - Concepto clave: "La soledad es el puente" (sostenerse en el vacío sin volver a lo viejo).
-
-5. [BLOQUE 4: LA NEUROBIOLOGÍA Y LA TRAMPA DEL LENGUAJE]:
-   - Exposición de las etiquetas cotidianas: lista del «yo soy» y del «yo necesito».
-   - Sustento neurobiológico simple: el Sistema de Activación Reticular (SAR) como radar que confirma tu decreto.
-   - Romper el absolutismo: pasar del «yo soy» al «a veces actúo / a veces me distraigo».
-
-6. [BLOQUE 5: CASO REAL O ANÉCDOTA PERSONAL Y AUDITORÍA]:
-   - Historia de vida de Marbelis (ej. la abogada puntual vs. la vida social) o caso real autorizado.
-   - Prueba irrefutable de que la identidad es contextual y se puede elegir según el objetivo.
-   - Confrontación: ¿Estás dispuesta a pagar el precio de transformarte o prefieres la comodidad de decir "yo soy así"?
-
-7. [CIERRE Y LLAMADO A LA ACCIÓN]:
-   - Libertad y soberanía: "Si quieres seguir siendo la misma, quédate ahí, pero ten la decencia de no quejarte".
-   - Pregunta ancla para la libreta.
-   - Despedida icónica: CTA para compartir + invitación a RealMente Club + "¡Bye, bye!".
-```
+1. **Marcas Somáticas de Respiración y Ritmo (entre paréntesis y en cursiva):**
+   * `(Tono cálido, íntimo y vulnerable)`
+   * `(Pausa)` o `(Pausa reflexiva)` / `(Pausa profunda)`
+   * `(Inhala profundo / Exhala)` o `(Inhala / Exhala)`
+   * `(Voz firme, con autoridad interna)`
+   * `(Sonrisa / Tono conversacional)` o `(Sonrisa)`
+2. **Jerarquía Visual de Lectura:**
+   * **Negritas:** En preguntas de poder para la libreta, axiomas clave y verdades de choque.
+   * *Cursivas:* En diálogo interno, pensamientos del verdugo (*«no sirves para esto»*) y afirmaciones de poder (*«voy a poder con esto»*).
+   * **Listas y viñetas:** Para enumerar trampas inconscientes o pasos de autorregulación, facilitando la lectura a primera vista.
 
 ---
 
-## 📁 5. Estructura de Carpetas y Nomenclatura
+## ⏱️ 4. Métrica de Duración y Pacing
 
-* **Carpeta Oficial del Episodio:**  
-  `Episodios/EP[N]_[Nombre_Corto]/02_Podcast_Guion_y_Grabacion/`
-* **Archivos Clave por Episodio:**
-  1. `escaleta_ep[N]_[tema].md`: Esquema pedagógico y estructura inicial de grabación.
-  2. `guion_final_grabacion_ep[N].md`: Guion maestro definitivo palabra por palabra con marcas de locución y tiempo calibrado.
+* **Velocidad de locución reflexiva con pausas de integración:** 120 a 130 palabras por minuto (ppm).
+* **Cálculo estándar:**
+  * ~1.500 - 1.600 palabras = **14 a 17 minutos** (episodio conciso y de alto impacto emocional).
+  * ~2.300 - 2.500 palabras = **18 a 22 minutos** (episodio de desarrollo estándar profundo).
+  * Si un borrador es conciso pero completo emocionalmente (como EP63 con ~1.550 palabras), se respeta plenamente y se calculan sus minutos reales sin forzar rellenos innecesarios.
+
+---
+
+## 📁 5. Estructura de Archivos y Entregables en el Workspace
+
+Para cada nuevo episodio procesado, se debe mantener esta arquitectura estricta:
+
+1. **Creación de Carpeta y Subcarpetas:**
+   `Episodios/EP[N]_[Nombre_Corto]/`
+   * `01_Frase_Inicio_Semana/`
+   * `02_Podcast_Guion_y_Grabacion/`
+   * `03_Transcripcion_Final/`
+   * `04_Club_Ejercicio_y_Diapositivas/`
+   * `05_Redes_Reels_y_Carruseles/`
+
+2. **Archivos Clave en `02_Podcast_Guion_y_Grabacion/`:**
+   * `guion_final_grabacion_ep[N].md`: Guion maestro palabra por palabra con acotaciones somáticas, negritas, métrica y tiempo estimado.
+   * `guion_limpio_edicion_ep[N].md`: Versión continua limpia para lectura fluida.
+
+3. **Registro Oficial de Marca:**
+   * Actualizar siempre `registro_episodios_realmente.md` con:
+     * Título oficial.
+     * Enlace a los archivos del guion.
+     * Pregunta de poder.
+     * Premisa central y pilares clave del episodio.
