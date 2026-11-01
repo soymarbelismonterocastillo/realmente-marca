@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio Práctico — Episodio 63 | RealMente Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FDFBFE;
+      --card-bg: #FFFFFF;
+      --primary-dark: #1A0536;
+      --primary-violet: #2E0C59;
+      --accent-turquesa: #0E9B90;
+      --accent-turquesa-light: #E6F7F5;
+      --accent-turquesa-bright: #2AD2C5;
+      --accent-lilac: #8E44AD;
+      --accent-lilac-soft: #F6EFFE;
+      --accent-rose-soft: #FCF4F7;
+      --text-main: #1D1526;
+      --text-muted: #574B66;
+      --text-light: #8E82A0;
+      --border-soft: #EAE3F2;
+      --border-focus: #CBB9E3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EDE8F5;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .print-bar {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #1A0536 0%, #2E0C59 100%);
+      color: #FFFFFF;
+      border: 1px solid #2AD2C5;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(26, 5, 54, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-print:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(14, 155, 144, 0.35);
+      background: linear-gradient(135deg, #2E0C59 0%, #0E9B90 100%);
+    }
+
+    /* Contenedor A4 con proporciones exactas */
+    .page-container {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      background: var(--bg-page);
+      padding: 13mm 17mm 11mm 17mm;
+      box-shadow: 0 12px 36px rgba(26, 5, 54, 0.12);
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .page-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(180deg, #2AD2C5 0%, #2E0C59 50%, #C084FC 100%);
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    /* HEADER */
+    .header {
+      border-bottom: 2px solid var(--border-soft);
+      padding-bottom: 9px;
+      margin-bottom: 11px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .brand-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-turquesa);
+      margin-bottom: 3px;
+    }
+
+    .brand-eyebrow span.dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent-turquesa);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 21.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.24;
+      letter-spacing: -0.3px;
+    }
+
+    .doc-subtitle {
+      font-size: 12px;
+      color: var(--accent-lilac);
+      font-weight: 700;
+      margin-top: 3px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .header-badge {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .pill-episode {
+      background: var(--primary-dark);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 11px;
+      border-radius: 20px;
+      letter-spacing: 0.8px;
+      display: inline-block;
+      margin-bottom: 3px;
+      border: 1px solid rgba(42, 210, 197, 0.4);
+    }
+
+    .instructor-name {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* INSTRUCCIONES TRANQUILAS */
+    .intro-banner {
+      background: var(--accent-lilac-soft);
+      border: 1px solid #DBC9F2;
+      border-left: 4.5px solid var(--accent-turquesa);
+      border-radius: 7px;
+      padding: 9px 14px;
+      margin-bottom: 10px;
+    }
+
+    .intro-text-lead {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.38;
+      margin-bottom: 3px;
+    }
+
+    .intro-text-body {
+      font-size: 12.8px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* CARTA CARD */
+    .letter-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 9px;
+      padding: 13px 17px;
+      margin-bottom: 9px;
+      box-shadow: 0 3px 10px rgba(26, 5, 54, 0.03);
+      position: relative;
+    }
+
+    .letter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #DCCFEF;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .letter-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .letter-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .letter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .letter-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--accent-turquesa);
+      background: var(--accent-turquesa-light);
+      padding: 2px 9px;
+      border-radius: 12px;
+    }
+
+    .letter-salutation {
+      font-family: 'Playfair Display', serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--primary-violet);
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fill-name-line {
+      display: inline-block;
+      border-bottom: 1.8px solid var(--accent-turquesa);
+      min-width: 170px;
+      color: var(--accent-turquesa);
+      font-weight: 700;
+      padding: 0 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+    }
+
+    .letter-text {
+      font-size: 13.5px;
+      color: #372A47;
+      line-height: 1.48;
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+
+    .letter-text strong {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .letter-text em {
+      color: var(--accent-lilac);
+      font-style: italic;
+    }
+
+    /* COMPROMISOS / ACUERDOS ABIERTOS */
+    .agreements-box {
+      background: #FAF7FE;
+      border: 1.2px solid #E0D3F5;
+      border-radius: 7px;
+      padding: 9px 13px;
+      margin-top: 6px;
+      margin-bottom: 7px;
+    }
+
+    .agreements-header {
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--accent-turquesa);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .agreement-item {
+      margin-bottom: 6px;
+    }
+
+    .agreement-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .agreement-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: block;
+      margin-bottom: 1px;
+      line-height: 1.35;
+    }
+
+    .agreement-line {
+      border-bottom: 1.5px solid #D7CBE8;
+      height: 20px;
+      font-size: 12px;
+      color: var(--text-light);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      padding-left: 2px;
+    }
+
+    /* CIERRE DE CARTA Y FIRMA */
+    .letter-footer-note {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #E5DCF3;
+      gap: 12px;
+    }
+
+    .letter-anchor-quote {
+      font-size: 12.8px;
+      font-weight: 700;
+      color: var(--accent-lilac);
+      font-style: italic;
+      line-height: 1.4;
+      max-width: 60%;
+    }
+
+    .letter-sign-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .sign-row {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .sign-line {
+      display: inline-block;
+      border-bottom: 1.5px solid #372A47;
+      min-width: 120px;
+      height: 16px;
+    }
+
+    .date-line {
+      display: inline-block;
+      border-bottom: 1.5px solid #372A47;
+      min-width: 75px;
+      height: 16px;
+    }
+
+    /* CIERRE TRANQUILO DE LA CLASE */
+    .class-closure-banner {
+      background: linear-gradient(135deg, #1A0536 0%, #2E0C59 100%);
+      color: #FFFFFF;
+      border-radius: 7px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 3px 10px rgba(26, 5, 54, 0.12);
+      border: 1px solid rgba(42, 210, 197, 0.4);
+    }
+
+    .closure-icon {
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .closure-content h4 {
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: #2AD2C5;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .closure-content p {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #F1EDF7;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1.5px solid var(--border-soft);
+      padding-top: 8px;
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--text-light);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .footer-quote {
+      font-style: italic;
+      color: var(--primary-violet);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ESTILOS PARA IMPRESIÓN Y PDF (A4 EXACTO) */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+
+      .print-bar {
+        display: none !important;
+      }
+
+      .page-container {
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 13mm 17mm 11mm 17mm;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÓN DE IMPRESIÓN RÁPIDA -->
+  <div class="print-bar">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+      </svg>
+      Descargar en PDF / Imprimir
+    </button>
+  </div>
+
+  <div class="page-container">
+
+    <div class="top-content">
+      <!-- HEADER -->
+      <div class="header">
+        <div>
+          <div class="brand-eyebrow">
+            <span>✨ RealMente Club</span>
+            <span class="dot"></span>
+            <span>Episodio #63</span>
+          </div>
+          <h1 class="doc-title">«RealMente el arte de sostenerte a ti misma: la guía para ser tu mejor refugio en momentos de crisis»</h1>
+          <p class="doc-subtitle">Ejercicio práctico de esta semana</p>
+        </div>
+        <div class="header-badge">
+          <div class="pill-episode">REALMENTE CLUB</div>
+          <div class="instructor-name">Marbelis Montero • Master Trainer en PNL</div>
+        </div>
+      </div>
+
+      <!-- INSTRUCCIONES TRANQUILAS -->
+      <div class="intro-banner">
+        <div class="intro-text-lead">
+          Tu verdadera crisis nunca es lo que pasa afuera; empieza cuando tu propia voz interior te declara la guerra.
+        </div>
+        <div class="intro-text-body">
+          Sostenerte no es fingir que todo está bien, sino ser tu propio refugio cuando la vida se sacude. Tómate unos minutos en silencio y respira: tienes la libertad de imprimir esta hoja para completarla directamente, o ir copiándola y respondiéndola en tu cuaderno o libreta de notas.
+        </div>
+      </div>
+
+      <!-- CARTA CARD -->
+      <div class="letter-card">
+        <div class="letter-header">
+          <div class="letter-title-wrap">
+            <span class="letter-icon">💌</span>
+            <h2 class="letter-title">Carta a Mí Misma: Mi Promesa de Amor y Refugio</h2>
+          </div>
+          <span class="letter-tag">De Mí, Para Mí</span>
+        </div>
+
+        <div class="letter-salutation">
+          Querida <span class="fill-name-line">_____________________________ (tu nombre)</span>:
+        </div>
+
+        <p class="letter-text">
+          Hoy elijo mirarte a los ojos y <strong>dejar de quererte bajo contrato</strong>. Suelto la exigencia de amarte únicamente cuando todo sale bien o cuando eres impecable. Sé cuántas veces te has sentido asustada, cansada o mendigando afuera una aprobación que tardaba en llegar.
+        </p>
+
+        <p class="letter-text">
+          Hoy hago una tregua contigo: <strong>te prometo que nunca más voy a hacerle caso al exterior ni me voy a unir al castigo o a las palabras hirientes de los demás</strong>. Cuando la vida te sacuda, tus proyectos se caigan o cometas errores, no te voy a lastimar, no te voy a golpear, no te voy a juzgar ni te voy a tratar mal ni con frialdad. Elijo ser ese refugio, ese lugar donde siempre puedas volver con las rodillas raspadas, despeinada y con lágrimas, sabiendo con certeza que aquí estás a salvo y que nadie te va a echar a la calle ni te va a dañar.
+        </p>
+
+        <!-- ACUERDOS ABIERTOS -->
+        <div class="agreements-box">
+          <div class="agreements-header">
+            <span>✍️ Mis Acuerdos de Sostén (Completa en tu libreta con tu puño y letra):</span>
+          </div>
+
+          <div class="agreement-item">
+            <span class="agreement-label">1. Cuando algo se tambalee o cometa una equivocación, en lugar de castigarme, me prometo:</span>
+            <div class="agreement-line">Escribe aquí cómo te vas a hablar y atender con ternura...</div>
+          </div>
+
+          <div class="agreement-item">
+            <span class="agreement-label">2. Cuando mi diálogo interno quiera sacar el látigo y culparme, elijo frenarlo y recordarme:</span>
+            <div class="agreement-line">Anota tu frase de ancla y poder (ej. «Voy a poder con esto, no me voy a faltar al respeto»)...</div>
+          </div>
+
+          <div class="agreement-item">
+            <span class="agreement-label">3. Cuando sienta la tentación de anestesiarme o buscar rescate afuera, me daré primero a mí:</span>
+            <div class="agreement-line">Escribe el abrazo, la escucha o el cuidado que necesitas darte antes que a nadie más...</div>
+          </div>
+
+          <div class="agreement-item">
+            <span class="agreement-label">4. Un acuerdo amoroso que hoy nace de mi corazón para cuidarme todos los días es:</span>
+            <div class="agreement-line">Anota tu promesa personal y libre... *(puedes sumar más en tu cuaderno si lo deseas)*</div>
+          </div>
+        </div>
+
+        <!-- CIERRE Y FIRMA -->
+        <div class="letter-footer-note">
+          <div class="letter-anchor-quote">
+            «No me voy a ir, no me voy a insultar y vamos a salir de cualquier tormenta juntas. <strong>Has podido, puedes y siempre podrás.</strong>»
+          </div>
+          <div class="letter-sign-wrap">
+            <div class="sign-row">
+              <span>✍️ Mi Firma:</span>
+              <span class="sign-line"></span>
+            </div>
+            <div class="sign-row">
+              <span>🗓️ Fecha:</span>
+              <span class="date-line"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CIERRE TRANQUILO DE LA CLASE -->
+      <div class="class-closure-banner">
+        <div class="closure-icon">🌿</div>
+        <div class="closure-content">
+          <h4>Date el permiso de sentir y hacer</h4>
+          <p>
+            Esta carta no es una tarea para calificar; es un abrazo tangible que te dejas por escrito para los días difíciles. Guárdala contigo con amor. Nos vemos el sábado para nuestra sesión de RealMente.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-left">
+        <span>✨ RealMente Club</span>
+        <span>•</span>
+        <span>@marbelismontero</span>
+        <span>•</span>
+        <span>Episodio #63</span>
+      </div>
+      <div class="footer-quote">
+        «Nadie allá afuera puede ofrecerte un refugio que tú misma te estés negando adentro.»
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
