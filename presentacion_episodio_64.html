@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EP64: Hojas Guía a Cámara (Todo en Títulos Grandes) | Marbelis Montero</title>
+  <title>EP64 [OPCIÓN B]: Modo Disparadores de Ideas (Solo Títulos Gigantes) | Marbelis Montero</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,8 @@
       --text-turquoise: #00f2fe;
       --text-lilac: #d8b4fe;
       --text-gold: #fde047;
-      --glow-turquoise: rgba(0, 242, 254, 0.25);
+      --glow-turquoise: rgba(0, 242, 254, 0.28);
+      --glow-gold: rgba(253, 224, 71, 0.25);
     }
 
     * {
@@ -30,14 +31,14 @@
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg-dark);
-      background-image: radial-gradient(circle at 50% 30%, #1f0c38 0%, #0a0412 80%);
+      background-image: radial-gradient(circle at 50% 35%, #240c42 0%, #0a0412 85%);
       color: var(--text-white);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 30px;
+      padding: 24px 36px;
       overflow: hidden;
       user-select: none;
     }
@@ -50,30 +51,44 @@
       justify-content: space-between;
       align-items: center;
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      padding: 10px 24px;
+      backdrop-filter: blur(14px);
+      padding: 12px 28px;
       border-radius: 50px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       z-index: 50;
     }
 
     .ep-label {
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.05rem;
+      font-weight: 800;
       color: var(--text-lilac);
       letter-spacing: 1.5px;
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-tag {
+      background: rgba(216, 180, 254, 0.18);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border: 1px solid rgba(216, 180, 254, 0.35);
     }
 
     .counter-pill {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 900;
       color: #0a0412;
       background: var(--text-turquoise);
-      padding: 6px 20px;
+      padding: 6px 24px;
       border-radius: 30px;
       letter-spacing: 1px;
-      box-shadow: 0 0 20px var(--glow-turquoise);
+      box-shadow: 0 0 25px var(--glow-turquoise);
     }
 
     .top-btns {
@@ -85,10 +100,10 @@
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 20px;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -99,87 +114,97 @@
       font-weight: 800;
     }
 
-    /* ÁREA PRINCIPAL DE LA DIAPOSITIVA (16:9) */
+    /* CONTENEDOR CENTRAL DE LÁMINA */
     .deck-container {
       width: 100%;
-      max-width: 1300px;
-      flex-grow: 1;
+      max-width: 1250px;
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      margin: 15px 0;
+      margin: 20px 0;
+      cursor: pointer;
     }
 
     .slide {
       position: absolute;
       width: 100%;
       height: 100%;
-      min-height: 520px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 30px 60px;
       opacity: 0;
-      visibility: hidden;
-      transform: scale(0.97);
-      transition: all 0.25s ease-out;
-      background: var(--bg-card);
-      border-radius: 30px;
-      border: 2px solid rgba(216, 180, 254, 0.25);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      pointer-events: none;
+      transform: scale(0.97) translateY(12px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0 20px;
     }
 
     .slide.active {
       opacity: 1;
-      visibility: visible;
-      transform: scale(1);
-      z-index: 10;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
     }
 
-    /* EL TÍTULO GIGANTE DE CADA DIAPOSITIVA (MODO TÍTULO TOTAL) */
+    /* INSIGNIA SUPERIOR DE TEMA */
+    .topic-badge {
+      display: inline-block;
+      font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+      font-weight: 900;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.1);
+      border: 1.5px solid var(--text-turquoise);
+      padding: 8px 26px;
+      border-radius: 40px;
+      margin-bottom: 30px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px var(--glow-turquoise);
+    }
+
+    .topic-badge.badge-gold {
+      color: var(--text-gold);
+      border-color: var(--text-gold);
+      background: rgba(253, 224, 71, 0.1);
+      box-shadow: 0 0 22px var(--glow-gold);
+    }
+
+    .topic-badge.badge-lilac {
+      color: var(--text-lilac);
+      border-color: var(--text-lilac);
+      background: rgba(216, 180, 254, 0.12);
+      box-shadow: 0 0 22px rgba(216, 180, 254, 0.25);
+    }
+
+    /* EL TÍTULO GIGANTE DE CADA DIAPOSITIVA (SIN SUBTÍTULOS NI PÁRRAFOS) */
     .giant-title {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.3rem, 4.4vw, 4.2rem);
+      font-size: clamp(2.4rem, 4.8vw, 4.4rem);
       font-weight: 800;
       line-height: 1.25;
       color: var(--text-white);
-      max-width: 1100px;
+      max-width: 1150px;
       text-wrap: balance;
     }
 
-    .ep-badge {
-      display: inline-block;
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
-      font-weight: 900;
-      color: var(--text-turquoise);
-      background: rgba(0, 242, 254, 0.12);
-      border: 1.5px solid var(--text-turquoise);
-      padding: 8px 24px;
-      border-radius: 40px;
-      margin-bottom: 25px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      box-shadow: 0 0 20px var(--glow-turquoise);
-    }
-
-    /* PALABRAS CLAVE RESALTADAS EN TAMAÑO GIGANTE */
     .highlight-cyan {
       color: var(--text-turquoise);
-      text-shadow: 0 0 25px var(--glow-turquoise);
+      text-shadow: 0 0 30px var(--glow-turquoise);
       font-weight: 900;
     }
 
     .highlight-lilac {
       color: var(--text-lilac);
-      font-weight: 900;
+      font-weight: 800;
     }
 
     .highlight-gold {
       color: var(--text-gold);
       font-weight: 900;
+      text-shadow: 0 0 25px var(--glow-gold);
     }
 
     .quote-style {
@@ -195,7 +220,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 5px 15px;
+      padding: 10px 15px;
     }
 
     .nav-btn {
@@ -227,18 +252,18 @@
     }
 
     .hint-text {
-      font-size: 0.9rem;
-      color: rgba(216, 180, 254, 0.7);
+      font-size: 0.95rem;
+      color: rgba(216, 180, 254, 0.8);
       font-weight: 500;
     }
 
     .hint-key {
       background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 6px;
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
     }
   </style>
 </head>
@@ -246,26 +271,29 @@
 
   <!-- BARRA SUPERIOR -->
   <header class="top-bar">
-    <div class="ep-label">RealMente #64 • Guía a Cámara</div>
-    <div class="counter-pill" id="counter">01 / 28</div>
+    <div class="ep-label">
+      RealMente #64 <span class="opcion-tag">OPCIÓN B: DISPARADORES</span>
+    </div>
+    <div class="counter-pill" id="counter">01 / 26</div>
     <div class="top-btns">
       <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
     </div>
   </header>
 
   <!-- CONTENEDOR DE DIAPOSITIVAS GIGANTES -->
-  <main class="deck-container">
+  <main class="deck-container" onclick="handleDeckClick(event)">
 
     <!-- 01: BIENVENIDA -->
     <div class="slide active">
+      <div class="topic-badge">Podcast RealMente</div>
       <h1 class="giant-title quote-style">
-        «Sean todos bienvenidos a un nuevo episodio de tu podcast <span class="highlight-cyan">RealMente</span>»
+        «Sean bienvenidos a un nuevo episodio de tu podcast <span class="highlight-cyan">RealMente</span>»
       </h1>
     </div>
 
-    <!-- 02: TÍTULO Y NÚMERO DE EPISODIO -->
+    <!-- 02: TÍTULO OFICIAL -->
     <div class="slide">
-      <div class="ep-badge">Episodio #64</div>
+      <div class="topic-badge">Episodio #64</div>
       <h1 class="giant-title">
         «RealMente estar de tu lado:<br>
         <span class="highlight-cyan">el arte de no volverte a fallar</span>»
@@ -274,201 +302,214 @@
 
     <!-- 03: EL GANCHO -->
     <div class="slide">
+      <div class="topic-badge badge-gold">La Gran Pregunta</div>
       <h1 class="giant-title">
-        ¿Por qué le cumples al <span class="highlight-cyan">mundo entero</span>... y a ti te dejas siempre para después?
+        ¿Por qué le cumples al <span class="highlight-cyan">mundo entero</span>...<br>
+        y a ti te dejas siempre para después?
       </h1>
     </div>
 
-    <!-- 04 -->
+    <!-- 04: COMUNIDAD -->
     <div class="slide">
+      <div class="topic-badge">Comunidad</div>
       <h1 class="giant-title">
-        Quédate conmigo hasta el final: hoy te entrego las claves para que <span class="highlight-cyan">tu palabra</span> vuelva a tener valor.
+        Regálame un <span class="highlight-cyan">like</span>, suscríbete<br>
+        y compártelo con esa amiga que hoy lo necesita.
       </h1>
     </div>
 
-    <!-- 05 -->
+    <!-- 05: EL CONTRASTE -->
     <div class="slide">
+      <div class="topic-badge badge-gold">El Contraste</div>
       <h1 class="giant-title">
-        Dale <span class="highlight-cyan">like</span>, suscríbete y compártelo con esa amiga que hoy necesita esta caricia al alma.
+        Puntual para otros a las 8:00 AM...<br>
+        <span class="highlight-gold">pero contigo te cancelas en un minuto</span>.
       </h1>
     </div>
 
-    <!-- 06 -->
+    <!-- 06: EL COSTO BIOLÓGICO -->
     <div class="slide">
+      <div class="topic-badge">El Registro Inconsciente</div>
       <h1 class="giant-title">
-        Cita de trabajo a las 8:00 AM:<br>
-        llegas a las <span class="highlight-cyan">7:55 AM impecable</span>.
+        Tu mente inconsciente <span class="highlight-cyan">SÍ TE ESTÁ MIRANDO</span> en cada segundo.
       </h1>
     </div>
 
-    <!-- 07 -->
+    <!-- 07: AUTOCONFIANZA -->
     <div class="slide">
-      <h1 class="giant-title">
-        Tus 20 minutos de paz en la mañana:<br>
-        apagas la alarma y te <span class="highlight-gold">cancelas en un minuto</span>.
-      </h1>
-    </div>
-
-    <!-- 08 -->
-    <div class="slide">
-      <h1 class="giant-title">
-        La trampa del autoengaño:<br>
-        creer que fallarte a ti misma no cuesta nada porque <span class="highlight-lilac">«nadie te vio»</span>.
-      </h1>
-    </div>
-
-    <!-- 09 -->
-    <div class="slide">
-      <h1 class="giant-title">
-        Tu mente inconsciente y tu sistema nervioso <span class="highlight-cyan">SÍ TE ESTÁN MIRANDO</span> en cada segundo.
-      </h1>
-    </div>
-
-    <!-- 10 -->
-    <div class="slide">
-      <h1 class="giant-title">
-        Cada promesa rota graba un archivo en tu mente:<br>
-        <span class="highlight-gold">«Mi palabra no vale nada, no confío en mí»</span>.
-      </h1>
-    </div>
-
-    <!-- 11 -->
-    <div class="slide">
+      <div class="topic-badge badge-lilac">Autoconfianza</div>
       <h1 class="giant-title">
         No te falta fuerza de voluntad:<br>
-        tienes la cuenta de tu <span class="highlight-cyan">autoconfianza</span> en números rojos.
+        tienes tu <span class="highlight-cyan">cuenta interna en números rojos</span>.
       </h1>
     </div>
 
-    <!-- 12 -->
+    <!-- 08: INTRODUCCIÓN A LAS TRAMPAS -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Patrones Inconscientes</div>
       <h1 class="giant-title">
-        Trampa 1: <span class="highlight-cyan">El «Todo o Nada»</span>.<br>
-        Querer pasar de 0 a 100 en un solo día es la coartada del autosabotaje.
+        Las 3 trampas del <span class="highlight-cyan">autosabotaje</span>
       </h1>
     </div>
 
-    <!-- 13 -->
+    <!-- 09: TRAMPA 1 -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 01</div>
       <h1 class="giant-title">
-        Trampa 2: <span class="highlight-cyan">El Contrato de Castigo</span>.<br>
-        El látigo agota tu dopamina y dispara el cortisol. No te hace mejor.
+        El «Todo o Nada»:<br>
+        <span class="highlight-gold">Querer pasar de 0 a 100 en un solo día</span>
       </h1>
     </div>
 
-    <!-- 14 -->
+    <!-- 10: TRAMPA 2 -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 02</div>
       <h1 class="giant-title">
-        Trampa 3: <span class="highlight-cyan">Complacer para pertenecer</span>.<br>
-        Decir «sí» a todos diciendo «no» a tus propios no negociables.
+        El Contrato de Castigo:<br>
+        <span class="highlight-gold">Creer que con látigo se avanza</span>
       </h1>
     </div>
 
-    <!-- 15 -->
+    <!-- 11: TRAMPA 3 -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 03</div>
       <h1 class="giant-title">
-        Estar de tu lado <span class="highlight-gold">NO es ser un robot perfecto</span> ni vivir bajo una disciplina militar.
+        Complacer para Pertenecer:<br>
+        <span class="highlight-gold">Decirle «sí» a todos diciéndote «no» a ti</span>
       </h1>
     </div>
 
-    <!-- 16 -->
+    <!-- 12: EL GIRO DE IDENTIDAD -->
     <div class="slide">
+      <div class="topic-badge badge-lilac">El Giro de Identidad</div>
       <h1 class="giant-title">
-        Estar de tu lado significa:<br>
-        <span class="highlight-cyan">NO DECLARARTE LA GUERRA</span> el día en que las cosas salgan mal.
+        Estar de tu lado <span class="highlight-gold">NO es ser un robot perfecto</span>.
       </h1>
     </div>
 
-    <!-- 17 -->
+    <!-- 13: DEFINICIÓN REAL -->
     <div class="slide">
+      <div class="topic-badge">Definición Real</div>
       <h1 class="giant-title">
-        ¿Por qué con la gente que amas eres <span class="highlight-cyan">contención</span>... y contigo misma eres un <span class="highlight-gold">tribunal de fusilamiento</span>?
+        Estar de tu lado es:<br>
+        <span class="highlight-cyan">NO declararte la guerra</span> el día en que algo sale mal.
       </h1>
     </div>
 
-    <!-- 18 -->
+    <!-- 14: METÁFORA DE LA CONTENCIÓN -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Contención vs. Juicio</div>
+      <h1 class="giant-title">
+        ¿Por qué con otros eres <span class="highlight-cyan">bálsamo</span>...<br>
+        y contigo eres un <span class="highlight-gold">tribunal de fusilamiento</span>?
+      </h1>
+    </div>
+
+    <!-- 15: PRINCIPIO GUÍA -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Recordatorio Vital</div>
       <h1 class="giant-title quote-style">
         «No te pidas perfección;<br>
         <span class="highlight-cyan">pídete presencia y contención</span>»
       </h1>
     </div>
 
-    <!-- 19 -->
+    <!-- 16: INTRO PROTOCOLO -->
     <div class="slide">
+      <div class="topic-badge">PNL Aplicada</div>
       <h1 class="giant-title">
-        Paso 1: <span class="highlight-cyan">Acuerdo Mínimo Viable</span>.<br>
-        Una promesa tan pequeña que sea imposible fallar: 5 minutos o 1 vaso de agua.
+        Protocolo de Microacuerdos:<br>
+        <span class="highlight-cyan">4 pasos para recuperar tu palabra</span>
       </h1>
     </div>
 
-    <!-- 20 -->
+    <!-- 17: PASO 1 -->
     <div class="slide">
+      <div class="topic-badge">Paso 01</div>
       <h1 class="giant-title">
-        Paso 2: <span class="highlight-cyan">Sagralidad de la Palabra</span>.<br>
-        Honra esos 5 minutos como si fuera un contrato firmado ante un juez.
+        Acuerdo Mínimo Viable:<br>
+        <span class="highlight-cyan">Tan pequeño que sea imposible fallar</span>
       </h1>
     </div>
 
-    <!-- 21 -->
+    <!-- 18: PASO 2 -->
     <div class="slide">
+      <div class="topic-badge badge-lilac">Paso 02</div>
       <h1 class="giant-title">
-        Paso 3: <span class="highlight-cyan">Fisiología de Victoria</span>.<br>
-        Mano en el pecho, sonríe y regálale dopamina limpia a tu cerebro: <span class="highlight-lilac">«Me lo cumplí»</span>.
+        Sagralidad de la Palabra:<br>
+        <span class="highlight-lilac">Tu contrato sagrado contigo</span>
       </h1>
     </div>
 
-    <!-- 22 -->
+    <!-- 19: PASO 3 -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Paso 03</div>
       <h1 class="giant-title">
-        Paso 4: Ante el tropiezo, <span class="highlight-cyan">cero látigo</span>.<br>
-        «Aquí estoy conmigo. Reajustemos: ¿qué aprendemos hoy?»
+        Fisiología de Victoria:<br>
+        <span class="highlight-gold">Mano en el pecho y dopamina limpia</span>
       </h1>
     </div>
 
-    <!-- 23 -->
+    <!-- 20: PASO 4 -->
     <div class="slide">
+      <div class="topic-badge">Paso 04</div>
+      <h1 class="giant-title">
+        Ante el tropiezo: <span class="highlight-cyan">Cero Látigo</span><br>
+        <span class="highlight-lilac">Reajustar, aprender y seguir</span>
+      </h1>
+    </div>
+
+    <!-- 21: PREGUNTA DE PODER 1 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Pregunta de Poder</div>
       <h1 class="giant-title quote-style">
         «Si la forma en que te cumples fuera para contratar a alguien...<br>
         <span class="highlight-gold">¿confiarías hoy en ti?</span>»
       </h1>
     </div>
 
-    <!-- 24 -->
+    <!-- 22: PREGUNTA DE PODER 2 -->
     <div class="slide">
+      <div class="topic-badge">Microacuerdo Hoy</div>
       <h1 class="giant-title">
-        ¿Cuál es el <span class="highlight-cyan">microacuerdo más pequeño</span> que estás dispuesta a cumplirte HOY?
+        ¿Cuál es el <span class="highlight-cyan">microacuerdo más pequeño</span><br>
+        que estás dispuesta a cumplirte HOY?
       </h1>
     </div>
 
-    <!-- 25 -->
+    <!-- 23: COMENTARIOS -->
     <div class="slide">
+      <div class="topic-badge badge-lilac">Interacción</div>
       <h1 class="giant-title">
-        Escríbemelo aquí abajo en los <span class="highlight-cyan">comentarios</span>: te voy a leer y responder personalmente.
+        Déjamelo en los <span class="highlight-cyan">comentarios</span>:<br>
+        te leo y respondo personalmente.
       </h1>
     </div>
 
-    <!-- 26 -->
+    <!-- 24: REALMENTE CLUB -->
     <div class="slide">
+      <div class="topic-badge">RealMente Club</div>
       <h1 class="giant-title">
         Te espero en <span class="highlight-cyan">RealMente Club</span>:<br>
-        Hoja de trabajo y clase en vivo este sábado por Zoom.
+        Hoja de trabajo y clase en vivo este sábado.
       </h1>
     </div>
 
-    <!-- 27 -->
+    <!-- 25: FRASE ANCLA OFICIAL -->
     <div class="slide">
+      <div class="topic-badge badge-gold">Anclaje Oficial</div>
       <h1 class="giant-title quote-style">
         «Yo puedo, he podido y podré;<br>
         <span class="highlight-cyan">y tú también has podido, puedes y podrás</span>»
       </h1>
     </div>
 
-    <!-- 28 -->
+    <!-- 26: DESPEDIDA -->
     <div class="slide">
+      <div class="topic-badge">Cierre con Amor</div>
       <h1 class="giant-title">
-        Inhala profundo, sonríe a la cámara...<br>
-        <span class="highlight-cyan" style="font-size: 5rem;">¡Bye, bye!</span>
+        Inhala profundo... exhala... sonríe...<br>
+        <span class="highlight-cyan" style="font-size: clamp(3.4rem, 7vw, 6rem);">¡Bye, bye!</span>
       </h1>
     </div>
 
@@ -476,10 +517,10 @@
 
   <!-- NAVEGACIÓN INFERIOR -->
   <footer class="bottom-nav">
-    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>← Anterior</button>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Anterior</button>
 
     <div class="hint-text">
-      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> pantalla completa
+      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> Pantalla Completa | Clic en pantalla avanza
     </div>
 
     <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
@@ -499,10 +540,12 @@
         if (i === index) s.classList.add('active');
       });
 
-      const numStr = (index + 1).toString().padStart(2, '0');
-      const totalStr = totalSlides.toString().padStart(2, '0');
-      counterEl.textContent = `${numStr} / ${totalStr}`;
+      // Actualizar contador
+      const formattedCurrent = String(index + 1).padStart(2, '0');
+      const formattedTotal = String(totalSlides).padStart(2, '0');
+      counterEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
 
+      // Botones
       prevBtn.disabled = (index === 0);
       nextBtn.disabled = (index === totalSlides - 1);
     }
@@ -521,27 +564,46 @@
       }
     }
 
+    function handleDeckClick(event) {
+      // Si no hizo clic en un botón superior
+      nextSlide();
+    }
+
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => console.log(err));
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error al activar pantalla completa: ${err.message}`);
+        });
       } else {
-        document.exitFullscreen();
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
       }
     }
 
-    // Controles por teclado
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+    // Navegación por teclado
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         nextSlide();
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
         e.preventDefault();
         prevSlide();
       } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
         toggleFullscreen();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlide = 0;
+        updateDeck(currentSlide);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        currentSlide = totalSlides - 1;
+        updateDeck(currentSlide);
       }
     });
 
+    // Inicializar
     updateDeck(currentSlide);
   </script>
 </body>
