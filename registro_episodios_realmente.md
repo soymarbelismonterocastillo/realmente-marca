@@ -123,6 +123,25 @@
 
 ---
 
+## 🎙️ EPISODIO 64 DE PODCAST
+* **Título Oficial:** *RealMente estar de tu lado: el arte de no volverte a fallar*
+* **Carpeta Oficial:** [EP64_Estar_de_Tu_Lado](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado)
+* **Estado:** Guion Maestro de Grabación y Visor Interactivo para Laptop Aprobados (En fase de rodaje en video).
+* **Guion Maestro de Grabación:** [guion_final_grabacion_ep64.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/02_Podcast_Guion_y_Grabacion/guion_final_grabacion_ep64.md) (~1.650 palabras | ~15-18 min)
+* **Guion Limpio de Locución:** [guion_limpio_edicion_ep64.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/02_Podcast_Guion_y_Grabacion/guion_limpio_edicion_ep64.md)
+* **Visor Interactivo a Cámara (Laptop):** [guia_grabacion_ep64.html](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/guia_grabacion_ep64.html)
+* **Escaleta y Arquitectura:** [esquema_narrativo_ep64.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/02_Podcast_Guion_y_Grabacion/esquema_narrativo_ep64.md)
+* **Tipo:** Reconstrucción de Autoconfianza, PNL Biológica y Cumplimiento de Microacuerdos Sin Látigo.
+* **Pregunta de Poder:** «Si la forma en que te cumples a ti misma fuera la base para contratar a alguien o confiarle tu vida... ¿confiarías hoy en ti? ¿Cuál es el microacuerdo más pequeño que estás dispuesta a cumplirte hoy para empezar a sanar esa confianza?»
+* **Premisa y Pilares Centrales:**
+  1. **La Paradoja de la Lealtad Externa:** Impecables cumpliéndole al mundo exterior; abandono instantáneo a la hora de cumplirnos a nosotras mismas.
+  2. **El Costo Biológico y Neuroalineación:** Romper microacuerdos no es inocuo; el cerebro consolida el registro de 'mi palabra no vale nada', agotando la autoconfianza.
+  3. **Las 3 Trampas Inconscientes:** Todo o nada (sobreexigencia inhumana), Contrato de Castigo (confundir látigo con excelencia) y Complacer para pertenecer (decir sí a todos diciendo no a ti).
+  4. **Estar de tu Lado:** No significa ser un robot perfecto; significa no declararte la guerra ni patearte en el suelo cuando te equivocas.
+  5. **Protocolo de Microacuerdos:** Acuerdo mínimo viable, sagralidad de la palabra, fisiología de victoria (dopamina limpia) y reencuadre amoroso ante el tropiezo.
+
+---
+
 ## 🗓️ PLANIFICACIÓN OFICIAL APROBADA (EPISODIOS #64 AL #73) - NOVIEMBRE 2026 A ENERO 2027
 *Documento de referencia:* [LISTA_OFICIAL_EPISODIOS_64_73.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/LISTA_OFICIAL_EPISODIOS_64_73.md)  
 *Estado:* APROBADO (2026-11-01) - Formato Video Podcast
