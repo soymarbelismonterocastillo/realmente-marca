@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseña tu año: La clase completa de objetivos que nadie te enseñó | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --text-white: #ffffff;
+      --text-turquoise: #00f2fe;
+      --text-lilac: #d8b4fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.35);
+      --glow-lilac: rgba(216, 180, 254, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 25%, #220d3f 0%, #0a0412 85%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR ELEGANTE CON CONTADOR Y TIEMPO */
+    .top-bar {
+      width: 100%;
+      max-width: 1360px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 50;
+    }
+
+    .brand-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-lilac);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--text-turquoise);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--text-turquoise);
+    }
+
+    .counter-pill {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0a0412;
+      background: var(--text-turquoise);
+      padding: 6px 24px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 25px var(--glow-turquoise);
+    }
+
+    .top-btns {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-top:hover {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      font-weight: 800;
+      border-color: var(--text-turquoise);
+    }
+
+    /* BARRA DE PROGRESO DE LA CLASE */
+    .progress-track {
+      width: 100%;
+      max-width: 1360px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      margin: 10px 0 4px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #d8b4fe, #00f2fe);
+      border-radius: 10px;
+      transition: width 0.25s ease;
+      box-shadow: 0 0 12px var(--glow-turquoise);
+    }
+
+    /* CONTENEDOR 16:9 DE LA DIAPOSITIVA */
+    .deck-container {
+      width: 100%;
+      max-width: 1360px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      min-height: 530px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 65px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.97);
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+      background: var(--bg-card);
+      border-radius: 32px;
+      border: 2px solid rgba(216, 180, 254, 0.28);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.88);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    /* PÍLDORA VISIBLE DE TIEMPO Y BLOQUE */
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+      font-weight: 900;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.12);
+      border: 2px solid var(--text-turquoise);
+      padding: 8px 26px;
+      border-radius: 40px;
+      margin-bottom: 28px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px var(--glow-turquoise);
+    }
+
+    .time-badge.gold {
+      color: var(--text-gold);
+      background: rgba(253, 224, 71, 0.12);
+      border-color: var(--text-gold);
+      box-shadow: 0 0 22px rgba(253, 224, 71, 0.3);
+    }
+
+    .time-badge.lilac {
+      color: var(--text-lilac);
+      background: rgba(216, 180, 254, 0.14);
+      border-color: var(--text-lilac);
+      box-shadow: 0 0 22px var(--glow-lilac);
+    }
+
+    /* EL TÍTULO GIGANTE ABSOLUTO */
+    .giant-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 4.4vw, 4.3rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text-white);
+      max-width: 1160px;
+      text-wrap: balance;
+    }
+
+    .highlight-cyan {
+      color: var(--text-turquoise);
+      text-shadow: 0 0 26px var(--glow-turquoise);
+      font-weight: 900;
+    }
+
+    .highlight-lilac {
+      color: var(--text-lilac);
+      font-weight: 900;
+      text-shadow: 0 0 20px var(--glow-lilac);
+    }
+
+    .highlight-gold {
+      color: var(--text-gold);
+      font-weight: 900;
+    }
+
+    .quote-style {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* NAVEGACIÓN INFERIOR */
+    .bottom-nav {
+      width: 100%;
+      max-width: 1360px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 16px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 13px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+      box-shadow: 0 0 26px var(--glow-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.22;
+      cursor: not-allowed;
+    }
+
+    .hint-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: rgba(216, 180, 254, 0.75);
+      font-weight: 600;
+    }
+
+    .key-badge {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <div class="brand-label">
+      <span class="brand-dot"></span>
+      RealMente • Marbelis Montero • Clase Maestra YouTube
+    </div>
+    <div class="counter-pill" id="counter">01 / 60</div>
+    <div class="top-btns">
+      <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
+    </div>
+  </header>
+
+  <!-- BARRA DE PROGRESO DE LA CLASE -->
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL DE LÁMINAS GIGANTES -->
+  <main class="deck-container">
+
+    <!-- 01: PORTADA MAESTRA CON EL TÍTULO ACORDADO -->
+    <div class="slide active">
+      <div class="time-badge lilac">CLASE MAESTRA YOUTUBE • 60 MINUTOS</div>
+      <h1 class="giant-title">
+        DISEÑA TU AÑO:<br>
+        <span class="highlight-cyan">La clase completa de objetivos que nadie te enseñó</span>
+      </h1>
+    </div>
+
+    <!-- 02: GANCHO COMPLETO - PARTE 1 -->
+    <div class="slide">
+      <div class="time-badge">[00:00] • BLOQUE 1: EL GANCHO</div>
+      <h1 class="giant-title">
+        Si miras hacia atrás y empezaste el año con metas y proyectos... pero hoy estás en el mismo lugar:<br>
+        <span class="highlight-cyan">NO ES FALTA DE FUERZA DE VOLUNTAD</span>.
+      </h1>
+    </div>
+
+    <!-- 03: GANCHO COMPLETO - PARTE 2 -->
+    <div class="slide">
+      <div class="time-badge lilac">[00:20] • BLOQUE 1: EL GANCHO</div>
+      <h1 class="giant-title">
+        El problema es que nadie en tu vida <span class="highlight-lilac">te enseñó a programar tu cerebro</span> para materializar lo que quieres.
+      </h1>
+    </div>
+
+    <!-- 04: GANCHO COMPLETO - PARTE 3 -->
+    <div class="slide">
+      <div class="time-badge">[00:40] • BLOQUE 1: LA VERDAD NEUROLÓGICA</div>
+      <h1 class="giant-title">
+        Nos enseñaron a desear con el <span class="highlight-lilac">5% consciente</span>... mientras el <span class="highlight-cyan">95% inconsciente</span> sabotea el avance para mantenerte en lo conocido.
+      </h1>
+    </div>
+
+    <!-- 05: GANCHO COMPLETO - PARTE 4 (CONTRA EL HUMO) -->
+    <div class="slide">
+      <div class="time-badge gold">[01:00] • BLOQUE 1: CERO HUMO</div>
+      <h1 class="giant-title">
+        Esta NO es una clase de motivación:<br>
+        <span class="highlight-gold">no te voy a hablar de agendas bonitas ni de decretar al universo</span>.
+      </h1>
+    </div>
+
+    <!-- 06: GANCHO COMPLETO - PARTE 5 (VALOR REAL ENTREGADO) -->
+    <div class="slide">
+      <div class="time-badge lilac">[01:20] • BLOQUE 1: VALOR TOTAL</div>
+      <h1 class="giant-title">
+        Hoy, <span class="highlight-cyan">por primera vez totalmente gratis</span>, te entrego el método exacto con el que llevo 7 años diseñando cada uno de mis años.
+      </h1>
+    </div>
+
+    <!-- 07: GANCHO COMPLETO - PARTE 6 (ATENCIÓN PLENA) -->
+    <div class="slide">
+      <div class="time-badge gold">[01:40] • BLOQUE 1: ATENCIÓN TOTAL</div>
+      <h1 class="giant-title">
+        Si vas a escuchar esta clase de fondo mientras lavas los platos o manejas:<br>
+        <span class="highlight-gold">vas a perder tu tiempo</span>.
+      </h1>
+    </div>
+
+    <!-- 08: GANCHO COMPLETO - PARTE 7 (LLAMADO A LA LIBRETA) -->
+    <div class="slide">
+      <div class="time-badge">[02:00] • BLOQUE 1: ACCIÓN INMEDIATA</div>
+      <h1 class="giant-title">
+        Pon pausa ahora mismo, busca <span class="highlight-gold">cuaderno y bolígrafo</span>: hoy vas a hacer que tus metas sean una <span class="highlight-cyan">consecuencia inevitable</span> y no una lucha de todos los días.
+      </h1>
+    </div>
+
+    <!-- 09: GANCHO COMPLETO - PARTE 8 -->
+    <div class="slide">
+      <div class="time-badge lilac">[02:20] • BLOQUE 1: EMPECEMOS</div>
+      <h1 class="giant-title quote-style">
+        «Empecemos.»
+      </h1>
+    </div>
+
+    <!-- 10: PRESENTACIÓN MARBELIS -->
+    <div class="slide">
+      <div class="time-badge">[02:30] • BLOQUE 1: PRESENTACIÓN</div>
+      <h1 class="giant-title">
+        Soy <span class="highlight-cyan">Marbelis Montero</span>: Master en PNL, mentora, host de <span class="highlight-lilac">RealMente Podcast</span> y fundadora de <span class="highlight-lilac">RealMente Club</span>.
+      </h1>
+    </div>
+
+    <!-- 11: MISIÓN Y AUTORIDAD -->
+    <div class="slide">
+      <div class="time-badge">[03:00] • BLOQUE 1: PROPÓSITO</div>
+      <h1 class="giant-title">
+        Acompaño a personas y emprendedoras a desactivar sus <span class="highlight-cyan">frenos inconscientes</span> y reprogramar su mente para expandir sus vidas y negocios.
+      </h1>
+    </div>
+
+    <!-- 12: ESTADÍSTICA 1 - SCRANTON -->
+    <div class="slide">
+      <div class="time-badge lilac">[03:30] • BLOQUE 1: LA VALIDACIÓN CIENTÍFICA</div>
+      <h1 class="giant-title">
+        Estudio Univ. de Scranton:<br>
+        <span class="highlight-cyan">El 92%</span> de las personas fracasa en sus metas de año nuevo. <span class="highlight-gold">Solo el 8%</span> lo logra.
+      </h1>
+    </div>
+
+    <!-- 13: ESTADÍSTICA 2 - QUITTERS DAY -->
+    <div class="slide">
+      <div class="time-badge lilac">[04:30] • BLOQUE 1: EL ABANDONO</div>
+      <h1 class="giant-title">
+        El <span class="highlight-gold">"Quitter's Day"</span> (segundo viernes de enero): el abandono masivo de metas no es pereza, es <span class="highlight-cyan">desconocimiento neurobiológico</span>.
+      </h1>
+    </div>
+
+    <!-- 14: METÁFORA DEL BARCO -->
+    <div class="slide">
+      <div class="time-badge">[06:00] • BLOQUE 1: EL BARCO A LA DERIVA</div>
+      <h1 class="giant-title quote-style">
+        «Un barco sin puerto asignado <span class="highlight-cyan">no tiene viento a favor</span>: cualquier ola lo lleva a la deriva.»
+      </h1>
+    </div>
+
+    <!-- 15: LA TRAMPA DEL CÓMO -->
+    <div class="slide">
+      <div class="time-badge gold">[07:30] • BLOQUE 1: LA TRAMPA MENTAL</div>
+      <h1 class="giant-title">
+        El gran error humano: paralizarte pensando en el <span class="highlight-gold">"¿CÓMO?"</span> antes de tener absoluta claridad en el <span class="highlight-cyan">"¿QUÉ?"</span>.
+      </h1>
+    </div>
+
+    <!-- 16: LA REGLA DE ORO DE PNL -->
+    <div class="slide">
+      <div class="time-badge">[09:00] • BLOQUE 1: REGLA DE ORO DE PNL</div>
+      <h1 class="giant-title quote-style">
+        «Si el objetivo está claro y alineado,<br><span class="highlight-cyan">los recursos aparecen</span>.»
+      </h1>
+    </div>
+
+    <!-- 17: BLOQUE 2 - SAR COMPLETO -->
+    <div class="slide">
+      <div class="time-badge">[10:00] • BLOQUE 2: EL RADAR BIOLÓGICO</div>
+      <h1 class="giant-title">
+        Tu radar biológico interno:<br>
+        <span class="highlight-cyan">Sistema de Activación Reticular</span>.
+      </h1>
+    </div>
+
+    <!-- 18: FILTRO DE BITS -->
+    <div class="slide">
+      <div class="time-badge">[11:30] • BLOQUE 2: NEUROCIENCIA</div>
+      <h1 class="giant-title">
+        Tu cerebro recibe <span class="highlight-lilac">2 millones de bits</span> por segundo y solo procesa conscientemente <span class="highlight-cyan">126 bits</span>.
+      </h1>
+    </div>
+
+    <!-- 19: SAR EN NEGOCIOS -->
+    <div class="slide">
+      <div class="time-badge gold">[12:30] • BLOQUE 2: OPORTUNIDADES CIEGAS</div>
+      <h1 class="giant-title">
+        Si tu radar está en escasez, las oportunidades, clientes y socios pasan frente a ti y <span class="highlight-gold">tu cerebro los vuelve invisibles</span>.
+      </h1>
+    </div>
+
+    <!-- 20: INTRO LOS 5 FILTROS PNL -->
+    <div class="slide">
+      <div class="time-badge">[13:30] • BLOQUE 2: PNL EN ACCIÓN</div>
+      <h1 class="giant-title">
+        Los 5 filtros neurocognitivos para que un objetivo sea <span class="highlight-cyan">inevitable</span>.
+      </h1>
+    </div>
+
+    <!-- 21: FILTRO 1 -->
+    <div class="slide">
+      <div class="time-badge lilac">[14:00] • BLOQUE 2 • FILTRO 1</div>
+      <h1 class="giant-title">
+        1. FORMULADO EN POSITIVO:<br>
+        <span class="highlight-cyan">Tu cerebro no procesa la palabra "NO"</span>.
+      </h1>
+    </div>
+
+    <!-- 22: FILTRO 1 - EJEMPLO NEGOCIOS -->
+    <div class="slide">
+      <div class="time-badge gold">[15:00] • BLOQUE 2 • FILTRO 1 (EJEMPLO)</div>
+      <h1 class="giant-title">
+        No digas: <span class="highlight-gold">«No quiero clientes difíciles»</span>.<br>
+        Di: <span class="highlight-cyan">«Quiero un flujo constante de clientes calificados que paguen con gusto»</span>.
+      </h1>
+    </div>
+
+    <!-- 23: FILTRO 2 -->
+    <div class="slide">
+      <div class="time-badge lilac">[16:00] • BLOQUE 2 • FILTRO 2</div>
+      <h1 class="giant-title">
+        2. BAJO TU PROPIO CONTROL:<br>
+        <span class="highlight-cyan">Tu objetivo no puede depender del afuera</span>.
+      </h1>
+    </div>
+
+    <!-- 24: FILTRO 2 - EJEMPLO POLÍTICA/ECONOMÍA -->
+    <div class="slide">
+      <div class="time-badge gold">[17:00] • BLOQUE 2 • FILTRO 2 (EJEMPLO)</div>
+      <h1 class="giant-title">
+        No puedes depender de que <span class="highlight-gold">la situación política mejore</span> o el entorno te apoye: tu meta depende de tus <span class="highlight-cyan">ofertas, decisiones y límites</span>.
+      </h1>
+    </div>
+
+    <!-- 25: FILTRO 3 -->
+    <div class="slide">
+      <div class="time-badge lilac">[18:00] • BLOQUE 2 • FILTRO 3</div>
+      <h1 class="giant-title">
+        3. SENSORIAL Y MEDIBLE:<br>
+        <span class="highlight-cyan">Evidencia empírica en el cuerpo</span>.
+      </h1>
+    </div>
+
+    <!-- 26: FILTRO 3 - EJEMPLO BANCO -->
+    <div class="slide">
+      <div class="time-badge gold">[19:00] • BLOQUE 2 • FILTRO 3 (EJEMPLO)</div>
+      <h1 class="giant-title">
+        ¿Qué ves en la pantalla del banco? ¿Qué te dice el cliente? <span class="highlight-cyan">Si no hay evidencia sensorial, para tu cerebro es solo una fantasía</span>.
+      </h1>
+    </div>
+
+    <!-- 27: FILTRO 4 -->
+    <div class="slide">
+      <div class="time-badge lilac">[20:00] • BLOQUE 2 • FILTRO 4</div>
+      <h1 class="giant-title">
+        4. ECOLÓGICO:<br>
+        <span class="highlight-cyan">El equilibrio con tu vida</span>.
+      </h1>
+    </div>
+
+    <!-- 28: FILTRO 4 - EJEMPLO SALUD Y PAZ -->
+    <div class="slide">
+      <div class="time-badge gold">[20:45] • BLOQUE 2 • FILTRO 4 (EJEMPLO)</div>
+      <h1 class="giant-title">
+        Si tu meta de negocio te cuesta la salud, el sueño o la paz: <span class="highlight-gold">tu mente inconsciente la va a sabotear para protegerte</span>.
+      </h1>
+    </div>
+
+    <!-- 29: FILTRO 5 -->
+    <div class="slide">
+      <div class="time-badge lilac">[21:15] • BLOQUE 2 • FILTRO 5</div>
+      <h1 class="giant-title">
+        5. TIEMPO Y ESPACIO:<br>
+        <span class="highlight-cyan">Fechas y escenarios exactos en el calendario</span>.
+      </h1>
+    </div>
+
+    <!-- 30: BLOQUE 3 - ORIGEN ANCESTRAL -->
+    <div class="slide">
+      <div class="time-badge">[22:00] • BLOQUE 3: LA RAÍZ ANCESTRAL</div>
+      <h1 class="giant-title">
+        El origen: <span class="highlight-cyan">Las 12 Noches Sagradas</span> (Rauhnächte celtas) y la tradición campesina de <span class="highlight-lilac">Las Cabañuelas</span>.
+      </h1>
+    </div>
+
+    <!-- 31: LOS 12 DÍAS FUERA DEL TIEMPO -->
+    <div class="slide">
+      <div class="time-badge lilac">[23:30] • BLOQUE 3: ASTRONOMÍA AGRÍCOLA</div>
+      <h1 class="giant-title">
+        La brecha solar-lunar: <span class="highlight-cyan">12 días "fuera del tiempo"</span> donde cada día siembra y predice una cosecha del año.
+      </h1>
+    </div>
+
+    <!-- 32: EL PRINCIPIO FRACTAL -->
+    <div class="slide">
+      <div class="time-badge">[25:00] • BLOQUE 3: EL PRINCIPIO FRACTAL</div>
+      <h1 class="giant-title">
+        Un patrón que se repite a distinta escala:<br>
+        <span class="highlight-cyan">El micro-ciclo de 12 días programa el macro-ciclo de 12 meses</span>.
+      </h1>
+    </div>
+
+    <!-- 33: CORRESPONDENCIA DÍA A MES -->
+    <div class="slide">
+      <div class="time-badge gold">[26:30] • BLOQUE 3: EL MAPA EXACTO</div>
+      <h1 class="giant-title">
+        <span class="highlight-cyan">1 ene = Enero</span> | <span class="highlight-cyan">2 ene = Febrero</span>...<br>
+        hasta el <span class="highlight-gold">12 de enero = Diciembre</span>.
+      </h1>
+    </div>
+
+    <!-- 34: CUIDAR EL ESTADO INTERNO -->
+    <div class="slide">
+      <div class="time-badge">[28:00] • BLOQUE 3: PRESENCIA REAL</div>
+      <h1 class="giant-title">
+        No es un ritual pasivo: es <span class="highlight-cyan">cuidar tu estado interno, tus pensamientos y tu foco diario</span> para cada mes.
+      </h1>
+    </div>
+
+    <!-- 35: TU HISTORIA DE 2018 -->
+    <div class="slide">
+      <div class="time-badge lilac">[30:00] • BLOQUE 3: MI HISTORIA DESDE 2018</div>
+      <h1 class="giant-title">
+        En 2018 empecé esto como un <span class="highlight-lilac">experimento íntimo y familiar de 12 días</span> en mi casa.
+      </h1>
+    </div>
+
+    <!-- 36: 7 AÑOS DE MÉTODO -->
+    <div class="slide">
+      <div class="time-badge">[32:00] • BLOQUE 3: 7 AÑOS COMPROBADOS</div>
+      <h1 class="giant-title">
+        Llevo <span class="highlight-cyan">7 años seguidos</span> comprobando el poder de unir la tradición de los 12 días con el <span class="highlight-gold">anclaje neurológico de PNL</span>.
+      </h1>
+    </div>
+
+    <!-- 37: BLOQUE 4 - VERDAD INCÓMODA DE IDENTIDAD -->
+    <div class="slide">
+      <div class="time-badge">[34:00] • BLOQUE 4: ALINEACIÓN DE IDENTIDAD</div>
+      <h1 class="giant-title">
+        No materializas lo que deseas:<br>
+        <span class="highlight-cyan">materializas quién tu mente inconsciente cree que eres</span>.
+      </h1>
+    </div>
+
+    <!-- 38: EL FRENO DEL CLAN Y EL DINERO -->
+    <div class="slide">
+      <div class="time-badge gold">[35:30] • BLOQUE 4: FRENOS OCULTOS</div>
+      <h1 class="giant-title">
+        Deseas facturar más, pero tu mente teme que <span class="highlight-gold">tu familia te envidie, te juzgue o haya conflictos</span> por dinero.
+      </h1>
+    </div>
+
+    <!-- 39: EL INCONSCIENTE SIEMPRE GANA -->
+    <div class="slide">
+      <div class="time-badge lilac">[37:00] • BLOQUE 4: LA LEALTAD INVISIBLE</div>
+      <h1 class="giant-title">
+        Para no perder la pertenencia a tu clan, <span class="highlight-cyan">tu cerebro activa el freno de mano</span>: dudas, postergas o regalas tu trabajo.
+      </h1>
+    </div>
+
+    <!-- 40: EJERCICIO $100.000 / $1.000.000 -->
+    <div class="slide">
+      <div class="time-badge gold">[38:30] • BLOQUE 4: APERTURA A LA POSIBILIDAD</div>
+      <h1 class="giant-title quote-style">
+        «Si mañana tuvieras <span class="highlight-gold">100.000$ o un millón de dólares</span> en tu cuenta: ¿qué negocio harías? ¿qué harías primero?»
+      </h1>
+    </div>
+
+    <!-- 41: DESBLOQUEO DEL CÓMO -->
+    <div class="slide">
+      <div class="time-badge">[40:00] • BLOQUE 4: DÓNDE ESTÁ TU MENTE</div>
+      <h1 class="giant-title">
+        Esta pregunta elimina el miedo a los recursos y te revela <span class="highlight-cyan">dónde está verdaderamente calibrada tu mente</span>.
+      </h1>
+    </div>
+
+    <!-- 42: REFLEXIÓN DE IDENTIDAD -->
+    <div class="slide">
+      <div class="time-badge lilac">[41:00] • BLOQUE 4: REFLEXIÓN PROFUNDA</div>
+      <h1 class="giant-title quote-style">
+        «¿Quién tiene que ser la persona para la cual este objetivo <span class="highlight-cyan">ya es su estándar natural</span>?»
+      </h1>
+    </div>
+
+    <!-- 43: DECISIONES Y LÍMITES -->
+    <div class="slide">
+      <div class="time-badge">[42:30] • BLOQUE 4: ESTÁNDARES NUEVOS</div>
+      <h1 class="giant-title">
+        ¿Qué decisiones toma? ¿Qué conversaciones ya no tolera? <span class="highlight-lilac">¿Qué límites pone la versión de ti que ya factura eso?</span>
+      </h1>
+    </div>
+
+    <!-- 44: EL PAPEL DE LA EMOCIÓN -->
+    <div class="slide">
+      <div class="time-badge">[44:00] • BLOQUE 4: EL COMBUSTIBLE EMOCIONAL</div>
+      <h1 class="giant-title">
+        El pensamiento marca la dirección... pero <span class="highlight-cyan">la emoción elevada es el combustible que fija la neuroasociación</span>.
+      </h1>
+    </div>
+
+    <!-- 45: CERTEZA SOMÁTICA -->
+    <div class="slide">
+      <div class="time-badge gold">[45:30] • BLOQUE 4: SENTIR ANTES DE VER</div>
+      <h1 class="giant-title">
+        Tu sistema nervioso necesita <span class="highlight-gold">sentir la certeza y la gratitud en el cuerpo</span> antes de que el resultado aparezca físicamente.
+      </h1>
+    </div>
+
+    <!-- 46: PEDIR LO IMPOSIBLE -->
+    <div class="slide">
+      <div class="time-badge lilac">[46:15] • BLOQUE 4: ROMPER EL TECHO</div>
+      <h1 class="giant-title">
+        En tu diseño, atrévete a pedir <span class="highlight-cyan">lo que hoy crees imposible</span>: así se rompe de raíz el techo de merecimiento.
+      </h1>
+    </div>
+
+    <!-- 47: EL VISION BOARD SE GUARDA -->
+    <div class="slide">
+      <div class="time-badge gold">[47:00] • BLOQUE 5: EL PODER DEL CAJÓN</div>
+      <h1 class="giant-title">
+        Diseñas en los 12 primeros días, integras mente, emoción y energía...<br>
+        <span class="highlight-cyan">Y EL DISEÑO SE GUARDA EN EL CAJÓN</span>.
+      </h1>
+    </div>
+
+    <!-- 48: CERO ANSIEDAD / GPS EN SEGUNDO PLANO -->
+    <div class="slide">
+      <div class="time-badge">[48:30] • BLOQUE 5: DESAPEGO ACTIVO</div>
+      <h1 class="giant-title">
+        No necesitas mirarlo con angustia: <span class="highlight-lilac">cuando te desapegas, tu inconsciente opera como un GPS en segundo plano</span>.
+      </h1>
+    </div>
+
+    <!-- 49: LA MAGIA DE DICIEMBRE -->
+    <div class="slide">
+      <div class="time-badge gold">[50:00] • BLOQUE 5: LA COSECHA EN DICIEMBRE</div>
+      <h1 class="giant-title">
+        En diciembre abres el cajón y te sorprendes al ver <span class="highlight-gold">metas cumplidas que ni recordabas conscientemente</span>: es programación pura.
+      </h1>
+    </div>
+
+    <!-- 50: LA EVOLUCIÓN A 5 SEMANAS -->
+    <div class="slide">
+      <div class="time-badge lilac">[51:30] • BLOQUE 5: EVOLUCIÓN DEL MÉTODO</div>
+      <h1 class="giant-title">
+        Para que los 12 días tengan poder absoluto, primero hay que <span class="highlight-cyan">preparar y limpiar el terreno interno</span>.
+      </h1>
+    </div>
+
+    <!-- 51: QUÉ SE HACE EN LAS 5 SEMANAS -->
+    <div class="slide">
+      <div class="time-badge">[53:00] • BLOQUE 5: EL PROGRAMA DE 5 SEMANAS</div>
+      <h1 class="giant-title">
+        Limpiamos lealtades invisibles, alineamos identidad y calculamos la <span class="highlight-cyan">energía favorable del año</span> antes de llegar a enero.
+      </h1>
+    </div>
+
+    <!-- 52: ACCIÓN INMEDIATA HOY -->
+    <div class="slide">
+      <div class="time-badge gold">[55:00] • BLOQUE 6: TU PLAN PARA HOY</div>
+      <h1 class="giant-title">
+        Tus 3 pasos inmediatos al terminar este video para <span class="highlight-cyan">hacerte cargo de tu próximo año</span>.
+      </h1>
+    </div>
+
+    <!-- 53: PASO 1 - LOS 5 FILTROS -->
+    <div class="slide">
+      <div class="time-badge lilac">[55:40] • BLOQUE 6 • PASO 1</div>
+      <h1 class="giant-title">
+        1. Pasa tus metas de proyectos o negocios por los <span class="highlight-cyan">5 filtros neurocognitivos de PNL</span>.
+      </h1>
+    </div>
+
+    <!-- 54: PASO 2 - REFLEXIÓN IDENTIDAD -->
+    <div class="slide">
+      <div class="time-badge lilac">[56:20] • BLOQUE 6 • PASO 2</div>
+      <h1 class="giant-title">
+        2. Pregúntate con honestidad:<br>
+        <span class="highlight-lilac">¿Quién tengo que ser para que esta meta sea inevitable?</span>
+      </h1>
+    </div>
+
+    <!-- 55: PASO 3 - AGENDA DEL 1 AL 12 -->
+    <div class="slide">
+      <div class="time-badge lilac">[57:00] • BLOQUE 6 • PASO 3</div>
+      <h1 class="giant-title">
+        3. Bloquea en tu calendario del <span class="highlight-gold">1 al 12 de enero</span> para vivirlos con intención consciente.
+      </h1>
+    </div>
+
+    <!-- 56: CIERRE DE AUTORIDAD -->
+    <div class="slide">
+      <div class="time-badge gold">[57:30] • BLOQUE 6: CIERRE DE PODER</div>
+      <h1 class="giant-title quote-style">
+        «Tu próximo año no empieza el 1 de enero:<br>
+        <span class="highlight-cyan">empezó hoy cuando decidiste hacerte cargo</span>.»
+      </h1>
+    </div>
+
+    <!-- 57: DOS CAMINOS -->
+    <div class="slide">
+      <div class="time-badge">[58:15] • BLOQUE 6: LOS DOS CAMINOS</div>
+      <h1 class="giant-title">
+        Puedes hacer este camino por tu cuenta... o puedes <span class="highlight-cyan">vivir la inmersión de 5 semanas acompañada por mí paso a paso</span>.
+      </h1>
+    </div>
+
+    <!-- 58: LLAMADO A LA ACCIÓN A WHATSAPP -->
+    <div class="slide">
+      <div class="time-badge gold">[59:00] • BLOQUE 6: ACCESO PRIORITARIO</div>
+      <h1 class="giant-title">
+        Haz clic en el enlace de la descripción para <span class="highlight-cyan">ir directo a mi WhatsApp</span> y sumarte a la lista prioritaria del <span class="highlight-gold">Diseño del Año</span>.
+      </h1>
+    </div>
+
+    <!-- 59: CERTEZA FINAL -->
+    <div class="slide">
+      <div class="time-badge">[59:45] • BLOQUE 6: CERTEZA FINAL</div>
+      <h1 class="giant-title quote-style">
+        «No dejes tu año a la suerte.<br>
+        <span class="highlight-cyan">Ve al enlace y nos vemos adentro.</span>»
+      </h1>
+    </div>
+
+    <!-- 60: CIERRE FINAL -->
+    <div class="slide">
+      <div class="time-badge lilac">[60:00] • FIN DE LA CLASE</div>
+      <h1 class="giant-title">
+        DISEÑA TU AÑO<br>
+        <span class="highlight-cyan">¡Gracias por estar aquí!</span>
+      </h1>
+    </div>
+
+  </main>
+
+  <!-- NAVEGACIÓN INFERIOR Y ATAJOS -->
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+      ← Anterior
+    </button>
+    
+    <div class="hint-box">
+      <span>Avanzar: <span class="key-badge">Espacio</span> o <span class="key-badge">→</span></span>
+      <span>Retroceder: <span class="key-badge">←</span></span>
+      <span>Pantalla Completa: <span class="key-badge">F</span></span>
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+      Siguiente →
+    </button>
+  </footer>
+
+  <!-- SCRIPT DE NAVEGACIÓN -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('counter');
+    const progressFill = document.getElementById('progressFill');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+
+      const numStr = (index + 1).toString().padStart(2, '0');
+      const totalStr = totalSlides.toString().padStart(2, '0');
+      counterEl.textContent = `${numStr} / ${totalStr}`;
+
+      const progressPercent = ((index + 1) / totalSlides) * 100;
+      progressFill.style.width = `${progressPercent}%`;
+
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Controles por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    updateDeck(currentSlide);
+  </script>
+</body>
+</html>
