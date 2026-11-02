@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EP64: Hojas Guía a Cámara (Todo en Títulos Grandes) | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --text-white: #ffffff;
+      --text-turquoise: #00f2fe;
+      --text-lilac: #d8b4fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 30%, #1f0c38 0%, #0a0412 80%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 30px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR DISCRETA CON CONTADOR GIGANTE */
+    .top-bar {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 50;
+    }
+
+    .ep-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-lilac);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .counter-pill {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #0a0412;
+      background: var(--text-turquoise);
+      padding: 6px 20px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 20px var(--glow-turquoise);
+    }
+
+    .top-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-top:hover {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      font-weight: 800;
+    }
+
+    /* ÁREA PRINCIPAL DE LA DIAPOSITIVA (16:9) */
+    .deck-container {
+      width: 100%;
+      max-width: 1300px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 15px 0;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 60px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.97);
+      transition: all 0.25s ease-out;
+      background: var(--bg-card);
+      border-radius: 30px;
+      border: 2px solid rgba(216, 180, 254, 0.25);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    /* EL TÍTULO GIGANTE DE CADA DIAPOSITIVA (MODO TÍTULO TOTAL) */
+    .giant-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.3rem, 4.4vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text-white);
+      max-width: 1100px;
+      text-wrap: balance;
+    }
+
+    /* PALABRAS CLAVE RESALTADAS EN TAMAÑO GIGANTE */
+    .highlight-cyan {
+      color: var(--text-turquoise);
+      text-shadow: 0 0 25px var(--glow-turquoise);
+      font-weight: 900;
+    }
+
+    .highlight-lilac {
+      color: var(--text-lilac);
+      font-weight: 900;
+    }
+
+    .highlight-gold {
+      color: var(--text-gold);
+      font-weight: 900;
+    }
+
+    .quote-style {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    /* NAVEGACIÓN INFERIOR FÁCIL */
+    .bottom-nav {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 15px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+      box-shadow: 0 0 25px var(--glow-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .hint-text {
+      font-size: 0.9rem;
+      color: rgba(216, 180, 254, 0.7);
+      font-weight: 500;
+    }
+
+    .hint-key {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <div class="ep-label">RealMente #64 • Guía a Cámara</div>
+    <div class="counter-pill" id="counter">01 / 27</div>
+    <div class="top-btns">
+      <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR DE DIAPOSITIVAS GIGANTES -->
+  <main class="deck-container">
+
+    <!-- 01 -->
+    <div class="slide active">
+      <h1 class="giant-title quote-style">
+        «Sean todos bienvenidos a un nuevo episodio de tu podcast <span class="highlight-cyan">RealMente</span>»
+      </h1>
+    </div>
+
+    <!-- 02 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        ¿Por qué le cumples al <span class="highlight-cyan">mundo entero</span>... y a ti te dejas siempre para después?
+      </h1>
+    </div>
+
+    <!-- 03 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Quédate conmigo hasta el final: hoy te entrego las claves para que <span class="highlight-cyan">tu palabra</span> vuelva a tener valor.
+      </h1>
+    </div>
+
+    <!-- 04 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Dale <span class="highlight-cyan">like</span>, suscríbete y compártelo con esa amiga que hoy necesita esta caricia al alma.
+      </h1>
+    </div>
+
+    <!-- 05 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Cita de trabajo a las 8:00 AM:<br>
+        llegas a las <span class="highlight-cyan">7:55 AM impecable</span>.
+      </h1>
+    </div>
+
+    <!-- 06 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Tus 20 minutos de paz en la mañana:<br>
+        apagas la alarma y te <span class="highlight-gold">cancelas en un minuto</span>.
+      </h1>
+    </div>
+
+    <!-- 07 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        La trampa del autoengaño:<br>
+        creer que fallarte a ti misma no cuesta nada porque <span class="highlight-lilac">«nadie te vio»</span>.
+      </h1>
+    </div>
+
+    <!-- 08 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Tu mente inconsciente y tu sistema nervioso <span class="highlight-cyan">SÍ TE ESTÁN MIRANDO</span> en cada segundo.
+      </h1>
+    </div>
+
+    <!-- 09 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Cada promesa rota graba un archivo en tu mente:<br>
+        <span class="highlight-gold">«Mi palabra no vale nada, no confío en mí»</span>.
+      </h1>
+    </div>
+
+    <!-- 10 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        No te falta fuerza de voluntad:<br>
+        tienes la cuenta de tu <span class="highlight-cyan">autoconfianza</span> en números rojos.
+      </h1>
+    </div>
+
+    <!-- 11 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Trampa 1: <span class="highlight-cyan">El «Todo o Nada»</span>.<br>
+        Querer pasar de 0 a 100 en un solo día es la coartada del autosabotaje.
+      </h1>
+    </div>
+
+    <!-- 12 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Trampa 2: <span class="highlight-cyan">El Contrato de Castigo</span>.<br>
+        El látigo agota tu dopamina y dispara el cortisol. No te hace mejor.
+      </h1>
+    </div>
+
+    <!-- 13 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Trampa 3: <span class="highlight-cyan">Complacer para pertenecer</span>.<br>
+        Decir «sí» a todos diciendo «no» a tus propios no negociables.
+      </h1>
+    </div>
+
+    <!-- 14 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Estar de tu lado <span class="highlight-gold">NO es ser un robot perfecto</span> ni vivir bajo una disciplina militar.
+      </h1>
+    </div>
+
+    <!-- 15 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Estar de tu lado significa:<br>
+        <span class="highlight-cyan">NO DECLARARTE LA GUERRA</span> el día en que las cosas salgan mal.
+      </h1>
+    </div>
+
+    <!-- 16 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        ¿Por qué con la gente que amas eres <span class="highlight-cyan">contención</span>... y contigo misma eres un <span class="highlight-gold">tribunal de fusilamiento</span>?
+      </h1>
+    </div>
+
+    <!-- 17 -->
+    <div class="slide">
+      <h1 class="giant-title quote-style">
+        «No te pidas perfección;<br>
+        <span class="highlight-cyan">pídete presencia y contención</span>»
+      </h1>
+    </div>
+
+    <!-- 18 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Paso 1: <span class="highlight-cyan">Acuerdo Mínimo Viable</span>.<br>
+        Una promesa tan pequeña que sea imposible fallar: 5 minutos o 1 vaso de agua.
+      </h1>
+    </div>
+
+    <!-- 19 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Paso 2: <span class="highlight-cyan">Sagralidad de la Palabra</span>.<br>
+        Honra esos 5 minutos como si fuera un contrato firmado ante un juez.
+      </h1>
+    </div>
+
+    <!-- 20 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Paso 3: <span class="highlight-cyan">Fisiología de Victoria</span>.<br>
+        Mano en el pecho, sonríe y regálale dopamina limpia a tu cerebro: <span class="highlight-lilac">«Me lo cumplí»</span>.
+      </h1>
+    </div>
+
+    <!-- 21 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Paso 4: Ante el tropiezo, <span class="highlight-cyan">cero látigo</span>.<br>
+        «Aquí estoy conmigo. Reajustemos: ¿qué aprendemos hoy?»
+      </h1>
+    </div>
+
+    <!-- 22 -->
+    <div class="slide">
+      <h1 class="giant-title quote-style">
+        «Si la forma en que te cumples fuera para contratar a alguien...<br>
+        <span class="highlight-gold">¿confiarías hoy en ti?</span>»
+      </h1>
+    </div>
+
+    <!-- 23 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        ¿Cuál es el <span class="highlight-cyan">microacuerdo más pequeño</span> que estás dispuesta a cumplirte HOY?
+      </h1>
+    </div>
+
+    <!-- 24 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Escríbemelo aquí abajo en los <span class="highlight-cyan">comentarios</span>: te voy a leer y responder personalmente.
+      </h1>
+    </div>
+
+    <!-- 25 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Te espero en <span class="highlight-cyan">RealMente Club</span>:<br>
+        Hoja de trabajo y clase en vivo este sábado por Zoom.
+      </h1>
+    </div>
+
+    <!-- 26 -->
+    <div class="slide">
+      <h1 class="giant-title quote-style">
+        «Yo puedo, he podido y podré;<br>
+        <span class="highlight-cyan">y tú también has podido, puedes y podrás</span>»
+      </h1>
+    </div>
+
+    <!-- 27 -->
+    <div class="slide">
+      <h1 class="giant-title">
+        Inhala profundo, sonríe a la cámara...<br>
+        <span class="highlight-cyan" style="font-size: 5rem;">¡Bye, bye!</span>
+      </h1>
+    </div>
+
+  </main>
+
+  <!-- NAVEGACIÓN INFERIOR -->
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>← Anterior</button>
+
+    <div class="hint-text">
+      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> pantalla completa
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+
+      const numStr = (index + 1).toString().padStart(2, '0');
+      const totalStr = totalSlides.toString().padStart(2, '0');
+      counterEl.textContent = `${numStr} / ${totalStr}`;
+
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Controles por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    updateDeck(currentSlide);
+  </script>
+</body>
+</html>
