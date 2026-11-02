@@ -10,6 +10,9 @@ Esta skill define el **estándar definitivo y calibrado** de edición, pulido y 
 > [!IMPORTANT]
 > **Hito de Calibración Perfecta (Consolidado en EP63):**  
 > *"Acertamos muchísimo después de mucho tiempo en que todo el contenido y la forma en que editaste está muy alineado a mi voz y me encantó. Guárdalo como skill para las siguientes ediciones."* — Marbelis Montero.
+>
+> **Evolución del Formato de Grabación (A partir de EP64):**  
+> Para la conceptualización, aprobación de esquemas y generación de **Hojas Guía en diapositivas gigantes 16:9 (Modo Título Absoluto)** para grabar en video de corrido con celular y laptop, consultar y aplicar el skill complementario [`grabacion-videopodcast-realmente`](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/.agents/skills/grabacion-videopodcast-realmente/SKILL.md).
 
 ---
 
