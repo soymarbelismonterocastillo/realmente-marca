@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RealMente: Plantilla Oficial de Disparadores a Cámara | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --text-white: #ffffff;
+      --text-turquoise: #00f2fe;
+      --text-lilac: #d8b4fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.28);
+      --glow-gold: rgba(253, 224, 71, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 35%, #240c42 0%, #0a0412 85%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 36px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR */
+    .top-bar {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      padding: 12px 28px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 50;
+    }
+
+    .ep-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-lilac);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-tag {
+      background: rgba(216, 180, 254, 0.18);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border: 1px solid rgba(216, 180, 254, 0.35);
+    }
+
+    .counter-pill {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0a0412;
+      background: var(--text-turquoise);
+      padding: 6px 24px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 25px var(--glow-turquoise);
+    }
+
+    .top-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-top:hover {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      font-weight: 800;
+    }
+
+    /* CONTENEDOR CENTRAL DE LÁMINA */
+    .deck-container {
+      width: 100%;
+      max-width: 1250px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.97) translateY(12px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0 20px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
+
+    /* INSIGNIA SUPERIOR DE TEMA */
+    .topic-badge {
+      display: inline-block;
+      font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+      font-weight: 900;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.1);
+      border: 1.5px solid var(--text-turquoise);
+      padding: 8px 26px;
+      border-radius: 40px;
+      margin-bottom: 30px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px var(--glow-turquoise);
+    }
+
+    .topic-badge.badge-gold {
+      color: var(--text-gold);
+      border-color: var(--text-gold);
+      background: rgba(253, 224, 71, 0.1);
+      box-shadow: 0 0 22px var(--glow-gold);
+    }
+
+    .topic-badge.badge-lilac {
+      color: var(--text-lilac);
+      border-color: var(--text-lilac);
+      background: rgba(216, 180, 254, 0.12);
+      box-shadow: 0 0 22px rgba(216, 180, 254, 0.25);
+    }
+
+    /* EL TÍTULO GIGANTE DE CADA DIAPOSITIVA (SIN SUBTÍTULOS NI PÁRRAFOS) */
+    .giant-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text-white);
+      max-width: 1150px;
+      text-wrap: balance;
+    }
+
+    .highlight-cyan {
+      color: var(--text-turquoise);
+      text-shadow: 0 0 30px var(--glow-turquoise);
+      font-weight: 900;
+    }
+
+    .highlight-lilac {
+      color: var(--text-lilac);
+      font-weight: 800;
+    }
+
+    .highlight-gold {
+      color: var(--text-gold);
+      font-weight: 900;
+      text-shadow: 0 0 25px var(--glow-gold);
+    }
+
+    .quote-style {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    /* NAVEGACIÓN INFERIOR */
+    .bottom-nav {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+      box-shadow: 0 0 25px var(--glow-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .hint-text {
+      font-size: 0.95rem;
+      color: rgba(216, 180, 254, 0.8);
+      font-weight: 500;
+    }
+
+    .hint-key {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 9px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="ep-label">
+      RealMente #{{EP_NUM}} <span class="opcion-tag">DISPARADORES</span>
+    </div>
+    <div class="counter-pill" id="counter">01 / {{TOTAL_SLIDES}}</div>
+    <div class="top-btns">
+      <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
+    </div>
+  </header>
+
+  <main class="deck-container" onclick="handleDeckClick(event)">
+    <!-- INSERCIÓN DE DIAPOSITIVAS AQUÍ -->
+  </main>
+
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Anterior</button>
+    <div class="hint-text">
+      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> Pantalla Completa | Clic avanza
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+      const formattedCurrent = String(index + 1).padStart(2, '0');
+      const formattedTotal = String(totalSlides).padStart(2, '0');
+      counterEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function handleDeckClick(event) {
+      nextSlide();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error al activar pantalla completa: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlide = 0;
+        updateDeck(currentSlide);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        currentSlide = totalSlides - 1;
+        updateDeck(currentSlide);
+      }
+    });
+
+    updateDeck(currentSlide);
+  </script>
+</body>
+</html>
