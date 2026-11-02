@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EP64: Guía Visual de Grabación a Cámara | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #0c0514;
+      --bg-gradient: linear-gradient(135deg, #0d0618 0%, #170928 50%, #0d0517 100%);
+      --card-bg: rgba(28, 14, 46, 0.92);
+      --card-border: rgba(192, 132, 252, 0.28);
+      --text-main: #f8f6ff;
+      --text-muted: #c4b5fd;
+      --text-sub: #a78bfa;
+      --accent-turquoise: #00f2fe;
+      --accent-turquoise-glow: rgba(0, 242, 254, 0.25);
+      --accent-lilac: #d8b4fe;
+      --accent-gold: #fde047;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-main);
+      background-image: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR DE CONTROL Y CRONÓMETRO */
+    .top-bar {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(20, 10, 35, 0.75);
+      backdrop-filter: blur(16px);
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(216, 180, 254, 0.2);
+      margin-bottom: 12px;
+      z-index: 10;
+    }
+
+    .ep-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-turquoise);
+    }
+
+    .ep-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-turquoise);
+      box-shadow: 0 0 12px var(--accent-turquoise);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .timer-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 6px 18px;
+      border-radius: 30px;
+      border: 1px solid rgba(0, 242, 254, 0.25);
+    }
+
+    .timer-display {
+      font-family: 'Outfit', monospace;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-turquoise);
+      letter-spacing: 1.5px;
+    }
+
+    .timer-btn {
+      background: rgba(216, 180, 254, 0.15);
+      border: 1px solid rgba(216, 180, 254, 0.35);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .timer-btn:hover {
+      background: var(--accent-turquoise);
+      color: #0c0514;
+      font-weight: 700;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* CONTENEDOR PRINCIPAL DE DIAPOSITIVA */
+    .slide-stage {
+      width: 100%;
+      max-width: 1200px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .slide {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 38px 48px;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 520px;
+      animation: fadeIn 0.3s ease-out;
+      position: relative;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ENCABEZADO DE LA LÁMINA */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(216, 180, 254, 0.18);
+      padding-bottom: 16px;
+      margin-bottom: 22px;
+    }
+
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      color: var(--accent-turquoise);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-timing {
+      font-size: 0.95rem;
+      color: var(--accent-lilac);
+      font-weight: 600;
+    }
+
+    /* CONTENIDO CENTRAL DE LA LÁMINA */
+    .slide-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hook-phrase {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-lilac) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 1.35rem;
+      line-height: 1.45;
+      color: #f1edff;
+      font-weight: 500;
+    }
+
+    .bullet-icon {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(0, 242, 254, 0.18);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-turquoise);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-top: 3px;
+    }
+
+    .bullet-item strong {
+      color: var(--accent-turquoise);
+      font-weight: 700;
+    }
+
+    .bullet-item .callout-pill {
+      background: rgba(216, 180, 254, 0.16);
+      border: 1px solid rgba(216, 180, 254, 0.4);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    /* CAJA DE SUTILEZA O NOTA DE ATENCIÓN */
+    .mentor-note {
+      margin-top: 24px;
+      background: linear-gradient(135deg, rgba(216, 180, 254, 0.1) 0%, rgba(0, 242, 254, 0.08) 100%);
+      border-left: 4px solid var(--accent-turquoise);
+      padding: 14px 20px;
+      border-radius: 0 16px 16px 0;
+      font-size: 1.15rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mentor-note em {
+      color: var(--accent-lilac);
+      font-style: italic;
+    }
+
+    /* BARRA INFERIOR DE NAVEGACIÓN */
+    .bottom-bar {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding: 0 10px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 14px;
+    }
+
+    .nav-btn {
+      background: rgba(216, 180, 254, 0.15);
+      border: 1px solid rgba(216, 180, 254, 0.35);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--accent-turquoise);
+      color: #0c0514;
+      font-weight: 700;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--accent-turquoise-glow);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .slide-counter {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .slide-counter span {
+      color: var(--accent-turquoise);
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .keyboard-hint {
+      font-size: 0.8rem;
+      color: rgba(216, 180, 254, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kbd {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR CON CRONÓMETRO -->
+  <header class="top-bar">
+    <div class="ep-tag">
+      <div class="ep-dot"></div>
+      <span>RealMente Podcast #64 • Guía a Cámara</span>
+    </div>
+
+    <div class="timer-container">
+      <span style="font-size: 0.8rem; color: var(--text-muted);">TIEMPO:</span>
+      <div class="timer-display" id="timer">00:00</div>
+      <button class="timer-btn" id="startPauseBtn" onclick="toggleTimer()">Iniciar</button>
+      <button class="timer-btn" onclick="resetTimer()">Reset</button>
+    </div>
+
+    <div class="top-actions">
+      <button class="icon-btn" onclick="toggleFullScreen()">⛶ Pantalla Completa</button>
+    </div>
+  </header>
+
+  <!-- ESCENARIO DE LÁMINAS -->
+  <main class="slide-stage">
+
+    <!-- LÁMINA 1: APERTURA Y GANCHO -->
+    <section class="slide active" id="slide-1">
+      <div class="slide-header">
+        <div class="slide-badge">Lámina 1 de 6 • Apertura & Gancho</div>
+        <div class="slide-timing">00:00 - 02:00 min</div>
+      </div>
+      <div class="slide-body">
+        <h1 class="hook-phrase">«Sean todos bienvenidos a un nuevo episodio de tu podcast RealMente.»</h1>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">1</span>
+            <span><strong>El Espejo Visceral:</strong> ¿Por qué le cumples al mundo entero (jefes, hijos, clientes, amigas)... y a la única persona con la que vas a vivir siempre, la dejas en último lugar?</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">2</span>
+            <span><strong>La Promesa de Retención:</strong> Quédate conmigo hasta el final: te voy a entregar las claves para que tu palabra vuelva a tener peso y valor ante tus propios ojos.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">3</span>
+            <span><strong>Llamado Orgánico:</strong> Dale <em>like</em>, suscríbete y compártelo a esa amiga que hoy necesita una caricia al alma.</span>
+          </li>
+        </ul>
+        <div class="mentor-note">
+          💡 <em>Título oficial:</em> «RealMente estar de tu lado: el arte de no volverte a fallar»
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 2: EL CONTRASTE COTIDIANO -->
+    <section class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="slide-badge">Lámina 2 de 6 • El Espejo Cotidiano</div>
+        <div class="slide-timing">02:00 - 05:00 min</div>
+      </div>
+      <div class="slide-body">
+        <h1 class="hook-phrase">La paradoja de la lealtad externa vs. la traición interna</h1>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <span><strong>El contraste diario:</strong> Cita laboral 8:00 AM ➔ Llegas 7:55 AM impecable. Tus 20 minutos de paz de la mañana ➔ Los cancelas en 1 minuto.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <span><strong>El autoengaño inconsciente:</strong> Creer que fallarte "no cuesta nada" porque nadie te está vigilando afuera.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <span><strong>La verdad PNL y biológica:</strong> Tu sistema nervioso <strong>SÍ te está viendo</strong>. Cada microtraición graba el archivo de <em>«mi palabra no vale»</em> y destruye tu autoconfianza.</span>
+          </li>
+        </ul>
+        <div class="mentor-note">
+          👁️ <em>Recuerda mirar a la cámara:</em> No es falta de fuerza de voluntad; es un hábito de desvalorización inconsciente.
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 3: LAS 3 TRAMPAS INCONSCIENTES -->
+    <section class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="slide-badge">Lámina 3 de 6 • Las 3 Trampas del Sabotaje</div>
+        <div class="slide-timing">05:00 - 09:00 min</div>
+      </div>
+      <div class="slide-body">
+        <h1 class="hook-phrase">Las 3 trampas que alimentan al verdugo interior</h1>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">1</span>
+            <span><strong>La Trampa del «Todo o Nada»:</strong> Querer pasar de 0 a 100 en un día (Garantía de colapso). El verdugo entra al 3er día: <em>«¿Ves? Otra vez fallaste»</em>.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">2</span>
+            <span><strong>El Contrato de Castigo:</strong> Confundir dureza y látigo con disciplina. La culpa agota la dopamina y dispara el cortisol; no te hace mejor, te paraliza.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">3</span>
+            <span><strong>Complacer para Pertenecer:</strong> Decir "sí" a las demandas de los demás diciendo "no" a tus no negociables por miedo al conflicto o al rechazo.</span>
+          </li>
+        </ul>
+        <div class="mentor-note">
+          ⚡ <em>Enfasis somático:</em> Bajar la velocidad de la voz al hablar del verdugo; quitarle poder al juicio.
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 4: EL GIRO DE IDENTIDAD -->
+    <section class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="slide-badge">Lámina 4 de 6 • El Giro de Identidad</div>
+        <div class="slide-timing">09:00 - 12:00 min</div>
+      </div>
+      <div class="slide-body">
+        <h1 class="hook-phrase">¿Qué significa realmente «estar de tu lado»?</h1>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">✕</span>
+            <span><strong>NO es ser un robot perfecto</strong> ni vivir bajo una disciplina militar que no te permite ser humana.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">♥</span>
+            <span><strong>Es NO DECLARARTE LA GUERRA</strong> el día que las cosas salgan mal o cuando te equivoques. Es no patearte en el suelo.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">♥</span>
+            <span><strong>La metáfora de la aliada:</strong> ¿Cómo tratas a tu hija o a tu mejor amiga cuando se raspa las rodillas? No la insultas; le tiendes la mano y la abrazas.</span>
+          </li>
+        </ul>
+        <div class="mentor-note">
+          💎 <em>Axioma de Marbelis:</em> «No te pidas perfección; pídete presencia y contención.»
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 5: PROTOCOLO DE MICROACUERDOS -->
+    <section class="slide" id="slide-5">
+      <div class="slide-header">
+        <div class="slide-badge">Lámina 5 de 6 • Protocolo de Autoconfianza</div>
+        <div class="slide-timing">12:00 - 15:00 min</div>
+      </div>
+      <div class="slide-body">
+        <h1 class="hook-phrase">Protocolo PNL: Cómo reconstruir tu autoconfianza</h1>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">1</span>
+            <span><strong>El Acuerdo Mínimo Viable:</strong> Haz una promesa tan pequeña que sea imposible fallar (5 min de lectura, 1 vaso de agua, 3 respiraciones).</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">2</span>
+            <span><strong>La Sagralidad de tu Palabra:</strong> Trata ese microacuerdo como un contrato legal firmado. Tu palabra vuelve a tener valor.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">3</span>
+            <span><strong>Fisiología de Victoria:</strong> Celebra el cumplimiento para regalarle dopamina limpia a tu cerebro.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">4</span>
+            <span><strong>Ante el Tropiezo:</strong> Cero látigo. Respirar y decirte: <em>«Aquí estoy conmigo. Reajustemos. ¿Qué necesitamos aprender hoy?»</em>.</span>
+          </li>
+        </ul>
+        <div class="mentor-note">
+          🎯 <em>Regla de Oro:</em> La confianza no se decreta, se construye con hechos microscópicos diarios.
+        </div>
+      </div>
+    </section>
+
+    <!-- LÁMINA 6: PREGUNTA DE PODER Y CIERRE POTENCIADO -->
+    <section class="slide" id="slide-6">
+      <div class="slide-header">
+        <div class="slide-badge">Lámina 6 de 6 • Pregunta de Poder & Cierre Potenciado</div>
+        <div class="slide-timing">15:00 - 18:00 min</div>
+      </div>
+      <div class="slide-body">
+        <h1 class="hook-phrase">Pregunta de poder para tu libreta & Cierre con amor</h1>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">?</span>
+            <span><strong>Pregunta al corazón:</strong> «Si la forma en que te cumples fuera para contratar a alguien... ¿confiarías hoy en ti? ¿Cuál es el microacuerdo mínimo que te vas a cumplir HOY?»</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">💬</span>
+            <span><strong>Interacción en YouTube:</strong> «Déjamelo aquí abajo en los comentarios: quiero saber cuál es ese microacuerdo. Te voy a estar leyendo y respondiendo personalmente.»</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">♥</span>
+            <span><strong>Invitación al RealMente Club (Del saber al hacer):</strong> «No tienes que hacer esto sola. En el Club te dejé la hoja del <em>Protocolo Sin Látigo</em> y este sábado nos vemos en vivo por Zoom para calibrarlo juntas. Enlace en el primer comentario fijado y descripción, o directo a mi WhatsApp.»</span>
+          </li>
+        </ul>
+        <div class="mentor-note">
+          ✨ <em>Ancla final:</em> «Yo puedo, he podido y podré; y tú también has podido, puedes y podrás.» Inhala profundo, sonríe... y <strong>¡Bye, bye!</strong>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BARRA INFERIOR DE NAVEGACIÓN -->
+  <footer class="bottom-bar">
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>← Anterior</button>
+      <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+    </div>
+
+    <div class="slide-counter">
+      Lámina <span id="currentSlideNum">1</span> de <span id="totalSlidesNum">6</span>
+    </div>
+
+    <div class="keyboard-hint">
+      Usa <span class="kbd">Espacio</span> o <span class="kbd">→</span> para avanzar | <span class="kbd">←</span> para retroceder
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE INTERACTIVIDAD -->
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 6;
+
+    // Cronómetro
+    let timerSeconds = 0;
+    let timerInterval = null;
+    let isRunning = false;
+
+    function formatTime(totalSec) {
+      const min = Math.floor(totalSec / 60);
+      const sec = totalSec % 60;
+      return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('startPauseBtn');
+      if (isRunning) {
+        clearInterval(timerInterval);
+        btn.textContent = 'Reanudar';
+        isRunning = false;
+      } else {
+        timerInterval = setInterval(() => {
+          timerSeconds++;
+          document.getElementById('timer').textContent = formatTime(timerSeconds);
+        }, 1000);
+        btn.textContent = 'Pausar';
+        isRunning = true;
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isRunning = false;
+      timerSeconds = 0;
+      document.getElementById('timer').textContent = '00:00';
+      document.getElementById('startPauseBtn').textContent = 'Iniciar';
+    }
+
+    // Navegación de Diapositivas
+    function showSlide(index) {
+      if (index < 1 || index > totalSlides) return;
+
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      const activeSlide = document.getElementById(`slide-${index}`);
+      if (activeSlide) activeSlide.classList.add('active');
+
+      currentSlide = index;
+      document.getElementById('currentSlideNum').textContent = currentSlide;
+      document.getElementById('prevBtn').disabled = (currentSlide === 1);
+      document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    // Atajos de Teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'ArrowRight' || e.code === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.code === 'ArrowLeft' || e.code === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+
+    // Pantalla Completa
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
