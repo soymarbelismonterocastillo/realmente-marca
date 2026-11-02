@@ -23,7 +23,7 @@
 | # | Mes / Semana | Título Oficial de YouTube | Chars | Foco Transformacional (PNL y Club) |
 |---|---|---|---|---|
 | **64** | Noviembre (S1) | **RealMente estar de tu lado: el arte de no volverte a fallar** | 58 | Reconstrucción de la autoconfianza y cumplimiento de acuerdos propios sin látigo ni sobreexigencia. |
-| **65** | Noviembre (S2) | **Hacer las paces contigo: el paso previo a cualquier cambio** | 58 | Paz interna como suelo fértil para desear, soñar y conectar con el propósito genuino. |
+| **65** | Noviembre (S2) | **Realmente cambiar sin romperte: los pasos previos a la coherencia** | 66 | Alineación interna previa (mente, emoción, cuerpo y ecología con tu etapa de vida) para que la disciplina sea una respuesta natural. |
 | **66** | Noviembre (S3) | **RealMente querer no basta: la brecha entre desear y accionar** | 60 | Diferencia neurobiológica entre deseo vs. objetivo. Salir de la ilusión mental hacia la acción. |
 | **67** | Noviembre (S4) | **A esa meta no vas a llegar tú: alinea tu identidad primero** | 59 | Actualización de la autoimagen profunda para sostener el crecimiento sin autosabotaje. |
 | **68** | Diciembre (S1) | **Aprender a leer tus ciclos: por qué forzar los tiempos agota** | 61 | Comprensión de tiempos, estaciones y temporadas personales para evitar el agotamiento. |
