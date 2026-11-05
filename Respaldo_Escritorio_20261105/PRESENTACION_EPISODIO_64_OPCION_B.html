@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EP64 [OPCIÓN B]: Modo Disparadores de Ideas (Solo Títulos Gigantes) | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --text-white: #ffffff;
+      --text-turquoise: #00f2fe;
+      --text-lilac: #d8b4fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.28);
+      --glow-gold: rgba(253, 224, 71, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 35%, #240c42 0%, #0a0412 85%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 36px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR DISCRETA CON CONTADOR GIGANTE */
+    .top-bar {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      padding: 12px 28px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 50;
+    }
+
+    .ep-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-lilac);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-tag {
+      background: rgba(216, 180, 254, 0.18);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border: 1px solid rgba(216, 180, 254, 0.35);
+    }
+
+    .counter-pill {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0a0412;
+      background: var(--text-turquoise);
+      padding: 6px 24px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 25px var(--glow-turquoise);
+    }
+
+    .top-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-top:hover {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      font-weight: 800;
+    }
+
+    /* CONTENEDOR CENTRAL DE LÁMINA */
+    .deck-container {
+      width: 100%;
+      max-width: 1250px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.97) translateY(12px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0 20px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
+
+    /* INSIGNIA SUPERIOR DE TEMA */
+    .topic-badge {
+      display: inline-block;
+      font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+      font-weight: 900;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.1);
+      border: 1.5px solid var(--text-turquoise);
+      padding: 8px 26px;
+      border-radius: 40px;
+      margin-bottom: 30px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px var(--glow-turquoise);
+    }
+
+    .topic-badge.badge-gold {
+      color: var(--text-gold);
+      border-color: var(--text-gold);
+      background: rgba(253, 224, 71, 0.1);
+      box-shadow: 0 0 22px var(--glow-gold);
+    }
+
+    .topic-badge.badge-lilac {
+      color: var(--text-lilac);
+      border-color: var(--text-lilac);
+      background: rgba(216, 180, 254, 0.12);
+      box-shadow: 0 0 22px rgba(216, 180, 254, 0.25);
+    }
+
+    /* EL TÍTULO GIGANTE DE CADA DIAPOSITIVA (SIN SUBTÍTULOS NI PÁRRAFOS) */
+    .giant-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text-white);
+      max-width: 1150px;
+      text-wrap: balance;
+    }
+
+    .highlight-cyan {
+      color: var(--text-turquoise);
+      text-shadow: 0 0 30px var(--glow-turquoise);
+      font-weight: 900;
+    }
+
+    .highlight-lilac {
+      color: var(--text-lilac);
+      font-weight: 800;
+    }
+
+    .highlight-gold {
+      color: var(--text-gold);
+      font-weight: 900;
+      text-shadow: 0 0 25px var(--glow-gold);
+    }
+
+    .quote-style {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    /* NAVEGACIÓN INFERIOR FÁCIL */
+    .bottom-nav {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+      box-shadow: 0 0 25px var(--glow-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .hint-text {
+      font-size: 0.95rem;
+      color: rgba(216, 180, 254, 0.8);
+      font-weight: 500;
+    }
+
+    .hint-key {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 9px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <div class="ep-label">
+      RealMente #64 <span class="opcion-tag">OPCIÓN B: DISPARADORES</span>
+    </div>
+    <div class="counter-pill" id="counter">01 / 26</div>
+    <div class="top-btns">
+      <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR DE DIAPOSITIVAS GIGANTES -->
+  <main class="deck-container" onclick="handleDeckClick(event)">
+
+    <!-- 01: BIENVENIDA -->
+    <div class="slide active">
+      <div class="topic-badge">Podcast RealMente</div>
+      <h1 class="giant-title quote-style">
+        «Sean bienvenidos a un nuevo episodio de tu podcast <span class="highlight-cyan">RealMente</span>»
+      </h1>
+    </div>
+
+    <!-- 02: TÍTULO OFICIAL -->
+    <div class="slide">
+      <div class="topic-badge">Episodio #64</div>
+      <h1 class="giant-title">
+        «RealMente estar de tu lado:<br>
+        <span class="highlight-cyan">el arte de no volverte a fallar</span>»
+      </h1>
+    </div>
+
+    <!-- 03: EL GANCHO -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Gran Pregunta</div>
+      <h1 class="giant-title">
+        ¿Por qué le cumples al <span class="highlight-cyan">mundo entero</span>...<br>
+        y a ti te dejas siempre para después?
+      </h1>
+    </div>
+
+    <!-- 04: COMUNIDAD -->
+    <div class="slide">
+      <div class="topic-badge">Comunidad</div>
+      <h1 class="giant-title">
+        Regálame un <span class="highlight-cyan">like</span>, suscríbete<br>
+        y compártelo con esa amiga que hoy lo necesita.
+      </h1>
+    </div>
+
+    <!-- 05: EL CONTRASTE -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">El Contraste</div>
+      <h1 class="giant-title">
+        Puntual para otros a las 8:00 AM...<br>
+        <span class="highlight-gold">pero contigo te cancelas en un minuto</span>.
+      </h1>
+    </div>
+
+    <!-- 06: EL COSTO BIOLÓGICO -->
+    <div class="slide">
+      <div class="topic-badge">El Registro Inconsciente</div>
+      <h1 class="giant-title">
+        Tu mente inconsciente <span class="highlight-cyan">SÍ TE ESTÁ MIRANDO</span> en cada segundo.
+      </h1>
+    </div>
+
+    <!-- 07: AUTOCONFIANZA -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Autoconfianza</div>
+      <h1 class="giant-title">
+        No te falta fuerza de voluntad:<br>
+        tienes tu <span class="highlight-cyan">cuenta interna en números rojos</span>.
+      </h1>
+    </div>
+
+    <!-- 08: INTRODUCCIÓN A LAS TRAMPAS -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Patrones Inconscientes</div>
+      <h1 class="giant-title">
+        Las 3 trampas del <span class="highlight-cyan">autosabotaje</span>
+      </h1>
+    </div>
+
+    <!-- 09: TRAMPA 1 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 01</div>
+      <h1 class="giant-title">
+        El «Todo o Nada»:<br>
+        <span class="highlight-gold">Querer pasar de 0 a 100 en un solo día</span>
+      </h1>
+    </div>
+
+    <!-- 10: TRAMPA 2 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 02</div>
+      <h1 class="giant-title">
+        El Contrato de Castigo:<br>
+        <span class="highlight-gold">Creer que con látigo se avanza</span>
+      </h1>
+    </div>
+
+    <!-- 11: TRAMPA 3 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 03</div>
+      <h1 class="giant-title">
+        Complacer para Pertenecer:<br>
+        <span class="highlight-gold">Decirle «sí» a todos diciéndote «no» a ti</span>
+      </h1>
+    </div>
+
+    <!-- 12: EL GIRO DE IDENTIDAD -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">El Giro de Identidad</div>
+      <h1 class="giant-title">
+        Estar de tu lado <span class="highlight-gold">NO es ser un robot perfecto</span>.
+      </h1>
+    </div>
+
+    <!-- 13: DEFINICIÓN REAL -->
+    <div class="slide">
+      <div class="topic-badge">Definición Real</div>
+      <h1 class="giant-title">
+        Estar de tu lado es:<br>
+        <span class="highlight-cyan">NO declararte la guerra</span> el día en que algo sale mal.
+      </h1>
+    </div>
+
+    <!-- 14: METÁFORA DE LA CONTENCIÓN -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Contención vs. Juicio</div>
+      <h1 class="giant-title">
+        ¿Por qué con otros eres <span class="highlight-cyan">bálsamo</span>...<br>
+        y contigo eres un <span class="highlight-gold">tribunal de fusilamiento</span>?
+      </h1>
+    </div>
+
+    <!-- 15: PRINCIPIO GUÍA -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Recordatorio Vital</div>
+      <h1 class="giant-title quote-style">
+        «No te pidas perfección;<br>
+        <span class="highlight-cyan">pídete presencia y contención</span>»
+      </h1>
+    </div>
+
+    <!-- 16: INTRO PROTOCOLO -->
+    <div class="slide">
+      <div class="topic-badge">PNL Aplicada</div>
+      <h1 class="giant-title">
+        Protocolo de Microacuerdos:<br>
+        <span class="highlight-cyan">4 pasos para recuperar tu palabra</span>
+      </h1>
+    </div>
+
+    <!-- 17: PASO 1 -->
+    <div class="slide">
+      <div class="topic-badge">Paso 01</div>
+      <h1 class="giant-title">
+        Acuerdo Mínimo Viable:<br>
+        <span class="highlight-cyan">Tan pequeño que sea imposible fallar</span>
+      </h1>
+    </div>
+
+    <!-- 18: PASO 2 -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Paso 02</div>
+      <h1 class="giant-title">
+        Sagralidad de la Palabra:<br>
+        <span class="highlight-lilac">Tu contrato sagrado contigo</span>
+      </h1>
+    </div>
+
+    <!-- 19: PASO 3 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Paso 03</div>
+      <h1 class="giant-title">
+        Fisiología de Victoria:<br>
+        <span class="highlight-gold">Mano en el pecho y dopamina limpia</span>
+      </h1>
+    </div>
+
+    <!-- 20: PASO 4 -->
+    <div class="slide">
+      <div class="topic-badge">Paso 04</div>
+      <h1 class="giant-title">
+        Ante el tropiezo: <span class="highlight-cyan">Cero Látigo</span><br>
+        <span class="highlight-lilac">Reajustar, aprender y seguir</span>
+      </h1>
+    </div>
+
+    <!-- 21: PREGUNTA DE PODER 1 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Pregunta de Poder</div>
+      <h1 class="giant-title quote-style">
+        «Si la forma en que te cumples fuera para contratar a alguien...<br>
+        <span class="highlight-gold">¿confiarías hoy en ti?</span>»
+      </h1>
+    </div>
+
+    <!-- 22: PREGUNTA DE PODER 2 -->
+    <div class="slide">
+      <div class="topic-badge">Microacuerdo Hoy</div>
+      <h1 class="giant-title">
+        ¿Cuál es el <span class="highlight-cyan">microacuerdo más pequeño</span><br>
+        que estás dispuesta a cumplirte HOY?
+      </h1>
+    </div>
+
+    <!-- 23: COMENTARIOS -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Interacción</div>
+      <h1 class="giant-title">
+        Déjamelo en los <span class="highlight-cyan">comentarios</span>:<br>
+        te leo y respondo personalmente.
+      </h1>
+    </div>
+
+    <!-- 24: REALMENTE CLUB -->
+    <div class="slide">
+      <div class="topic-badge">RealMente Club</div>
+      <h1 class="giant-title">
+        Te espero en <span class="highlight-cyan">RealMente Club</span>:<br>
+        Hoja de trabajo y clase en vivo este sábado.
+      </h1>
+    </div>
+
+    <!-- 25: FRASE ANCLA OFICIAL -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Anclaje Oficial</div>
+      <h1 class="giant-title quote-style">
+        «Yo puedo, he podido y podré;<br>
+        <span class="highlight-cyan">y tú también has podido, puedes y podrás</span>»
+      </h1>
+    </div>
+
+    <!-- 26: DESPEDIDA -->
+    <div class="slide">
+      <div class="topic-badge">Cierre con Amor</div>
+      <h1 class="giant-title">
+        Inhala profundo... exhala... sonríe...<br>
+        <span class="highlight-cyan" style="font-size: clamp(3.4rem, 7vw, 6rem);">¡Bye, bye!</span>
+      </h1>
+    </div>
+
+  </main>
+
+  <!-- NAVEGACIÓN INFERIOR -->
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Anterior</button>
+
+    <div class="hint-text">
+      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> Pantalla Completa | Clic en pantalla avanza
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+
+      // Actualizar contador
+      const formattedCurrent = String(index + 1).padStart(2, '0');
+      const formattedTotal = String(totalSlides).padStart(2, '0');
+      counterEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
+
+      // Botones
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function handleDeckClick(event) {
+      // Si no hizo clic en un botón superior
+      nextSlide();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error al activar pantalla completa: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Navegación por teclado
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlide = 0;
+        updateDeck(currentSlide);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        currentSlide = totalSlides - 1;
+        updateDeck(currentSlide);
+      }
+    });
+
+    // Inicializar
+    updateDeck(currentSlide);
+  </script>
+</body>
+</html>
