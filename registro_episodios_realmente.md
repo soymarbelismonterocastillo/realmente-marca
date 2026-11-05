@@ -143,18 +143,20 @@
 ---
 
 ## 🎙️ EPISODIO 66 DE PODCAST
-* **Título Oficial:** *RealMente querer no basta: la diferencia entre desear y accionar*
-* **Carpeta Oficial:** [EP66_Diferencia_Desear_y_Accionar](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP66_Diferencia_Desear_y_Accionar)
+* **Título Oficial:** *RealMente te enamoraste de la idea, no de la realidad* (56 caracteres)
+* **Texto Ancla en Miniatura:** **«¿DE VERDAD LO QUIERES?»**
+* **Carpeta Oficial:** [EP66_Te_Enamoraste_de_la_Idea](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP66_Te_Enamoraste_de_la_Idea)
 * **Estado:** Esquema Narrativo y Presentación Interactiva a Cámara (Hojas Guía en modo Disparadores de Ideas) completados y desplegados en Escritorio.
-* **Presentación a Cámara (Laptop):** [presentacion_episodio_66.html](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP66_Diferencia_Desear_y_Accionar/02_Podcast_Guion_y_Grabacion/presentacion_episodio_66.html)
-* **Escaleta y Arquitectura:** [esquema_narrativo_ep66.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP66_Diferencia_Desear_y_Accionar/02_Podcast_Guion_y_Grabacion/esquema_narrativo_ep66.md)
-* **Tipo:** Neurobiología del Avance, PNL Sensorial y Desmontaje del Pensamiento Mágico.
-* **Pregunta de Poder:** «¿Cuál es ese gran deseo que llevas meses acariciando en tu mente, y cuál es la verdad incómoda: qué acción concreta estás evadiendo hacer hoy para empezar a materializarlo?»
+* **Presentación a Cámara (Laptop):** [presentacion_episodio_66.html](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP66_Te_Enamoraste_de_la_Idea/02_Podcast_Guion_y_Grabacion/presentacion_episodio_66.html)
+* **Escaleta y Arquitectura:** [esquema_narrativo_ep66.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP66_Te_Enamoraste_de_la_Idea/02_Podcast_Guion_y_Grabacion/esquema_narrativo_ep66.md)
+* **Skill Aplicado:** [titulos-y-miniaturas-realmente](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/.agents/skills/titulos-y-miniaturas-realmente/SKILL.md) & [grabacion-videopodcast-realmente](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/.agents/skills/grabacion-videopodcast-realmente/SKILL.md)
+* **Tipo:** Autoconocimiento Profundo, PNL y Desmontaje de la Culpa del Autosabotaje.
+* **Pregunta de Poder:** «Ese gran sueño que llevas meses acariciando en tu mente... si hoy te tocara vivir su rutina real con todo su cansancio y renuncias, ¿de verdad lo querrías, o solo te enamoraste de la fantasía?»
 * **Premisa y Pilares Centrales:**
-  1. **La Trampa de la Dopamina Barata:** Fantasear con el logro sacia la mente con un alivio químico transitorio, pero deja al cuerpo inmóvil en el mismo lugar.
-  2. **Las 3 Trampas de la Mente Soñadora:** Pensamiento mágico (esperar a tener ganas), Ambigüedad paralizante (órdenes difusas al inconsciente) y Fobia a la fricción (amar el aplauso pero odiar el peaje).
-  3. **La Metáfora del Motor en Neutro:** Acelerar con el auto en neutro quema combustible y hace ruido sin avanzar; para moverte necesitas engranar primera marcha.
-  4. **Protocolo de Tracción (4 Filtros PNL):** Especificidad sensorial (VAK), bajo tu piel (control directo), microacuerdo de 24 horas y asunción del peaje voluntario.
+  1. **La Mente Creativa como Simulador Gratis:** En la imaginación todo cabe y todo se dibuja bonito porque no hay gravedad, cansancio ni impuestos.
+  2. **La Tríada de Marbelis:** Querer (anhelo tibio) vs. Desear/Soñar (fantasía romántica en el aire) vs. Tener un Objetivo (elegir una posibilidad y matar las demás).
+  3. **El Choque con la Materia:** Bajar la idea a la realidad es el único filtro real: muchas veces descubres que no querías esa vida, solo amabas la postal del triunfo.
+  4. **El Protocolo del Test de Realidad:** La prueba del martes ordinario (rutina a las 3 PM), elegir el peaje cotidiano que aceptas pagar con amor y el ancla en la materia por 7 días.
 
 ---
 
@@ -166,7 +168,7 @@
 |---|---|---|---|---|
 | **64** | Noviembre (S1) | **RealMente estar de tu lado: el arte de no volverte a fallar** | 58 | Reconstrucción de la autoconfianza y cumplimiento de acuerdos propios sin látigo ni sobreexigencia. |
 | **65** | Noviembre (S2) | **Hacer las paces contigo: el paso previo a cualquier cambio** | 58 | Paz interna como suelo fértil para desear, soñar y conectar con el propósito genuino. |
-| **66** | Noviembre (S3) | **RealMente querer no basta: la diferencia entre desear y accionar** | 63 | Diferencia neurobiológica entre deseo vs. objetivo. Salir de la ilusión mental hacia la acción. |
+| **66** | Noviembre (S3) | **RealMente te enamoraste de la idea, no de la realidad** | 56 | Miniatura: *«¿DE VERDAD LO QUIERES?»*. Desmontar el autoengaño del sueño mental frente a la realidad cotidiana (PNL). |
 | **67** | Noviembre (S4) | **A esa meta no vas a llegar tú: alinea tu identidad primero** | 59 | Actualización de la autoimagen profunda para sostener el crecimiento sin autosabotaje. |
 | **68** | Diciembre (S1) | **Aprender a leer tus ciclos: por qué forzar los tiempos agota** | 61 | Comprensión de tiempos, estaciones y temporadas personales para evitar el agotamiento. |
 | **69** | Diciembre (S2) | **La siembra consciente: cómo cada día define lo que viene** | 57 | Conexión micro-macro. Puente directo a la Masterclass de YouTube sobre los 12 primeros días. |
