@@ -125,8 +125,11 @@
 
 ## 🎙️ EPISODIO 64 DE PODCAST
 * **Título Oficial:** *RealMente estar de tu lado: el arte de no volverte a fallar*
+* **Video Oficial en YouTube:** [Ver Episodio en YouTube](https://www.youtube.com/watch?v=pVSO5l7W7UQ) (ID: `pVSO5l7W7UQ` | Estreno Video Podcast Oficial)
 * **Carpeta Oficial:** [EP64_Estar_de_Tu_Lado](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado)
-* **Estado:** Guion Maestro de Grabación y Visor Interactivo para Laptop Aprobados (En fase de rodaje en video).
+* **Transcripciones:** [Transcripción Editada](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/03_Transcripcion_Final/transcripcion_final_editada_ep64.md) | [Transcripción Limpia](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/03_Transcripcion_Final/transcripcion_limpia_ep64.txt)
+* **Carrusel de Instagram (5 Slides):** [carrusel_5_slides_episodio_64.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/05_Redes_Reels_y_Carruseles/carrusel_5_slides_episodio_64.md) | [Visor Interactivo HTML](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/carrusel_5_slides_episodio_64.html) | GDrive: `C020_Estar_de_Tu_Lado_Ep64`
+* **Estado:** Publicado en YouTube, Transcripciones Oficiales integradas y Carrusel de 5 Slides renderizado (05-Nov-2026).
 * **Guion Maestro de Grabación:** [guion_final_grabacion_ep64.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/02_Podcast_Guion_y_Grabacion/guion_final_grabacion_ep64.md) (~1.650 palabras | ~15-18 min)
 * **Guion Limpio de Locución:** [guion_limpio_edicion_ep64.md](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/Episodios/EP64_Estar_de_Tu_Lado/02_Podcast_Guion_y_Grabacion/guion_limpio_edicion_ep64.md)
 * **Visor Interactivo a Cámara (Laptop):** [guia_grabacion_ep64.html](file:///c:/Users/soyma/OneDrive/Documents/ANTIGRAVITY/MARCA/guia_grabacion_ep64.html)
