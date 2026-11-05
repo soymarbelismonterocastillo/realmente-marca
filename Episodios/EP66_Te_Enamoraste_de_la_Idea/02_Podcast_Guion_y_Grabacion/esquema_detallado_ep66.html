@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esquema Detallado EP66 | RealMente con Marbelis Montero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --bg-card-hover: #1c0c30;
+      --border-card: rgba(216, 180, 254, 0.15);
+      --text-white: #ffffff;
+      --text-muted: #d8b4fe;
+      --text-body: #f3e8ff;
+      --text-turquoise: #00f2fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 15%, #240c42 0%, #0a0412 70%);
+      color: var(--text-body);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px 80px 20px;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 35px;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .badge-ep {
+      display: inline-block;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1.5px solid var(--text-turquoise);
+      color: var(--text-turquoise);
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .main-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .main-title span {
+      color: var(--text-turquoise);
+    }
+
+    .thumbnail-hook {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(253, 224, 71, 0.1);
+      border: 1px solid rgba(253, 224, 71, 0.4);
+      padding: 10px 24px;
+      border-radius: 40px;
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: var(--text-gold);
+      font-weight: 700;
+    }
+
+    .meta-bar {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 25px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .meta-item strong {
+      color: #fff;
+    }
+
+    /* QUICK ACTIONS */
+    .action-bar {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 45px;
+    }
+
+    .btn-action {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 14px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 25px var(--glow-turquoise);
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.45);
+    }
+
+    /* CARD BLOQUES */
+    .block-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 30px 35px;
+      margin-bottom: 30px;
+      transition: all 0.2s;
+    }
+
+    .block-card:hover {
+      border-color: rgba(0, 242, 254, 0.35);
+      background: var(--bg-card-hover);
+    }
+
+    .block-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .block-number {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-turquoise);
+    }
+
+    .block-time {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .block-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .block-content p {
+      font-size: 1.08rem;
+      margin-bottom: 12px;
+      color: #ede4ff;
+    }
+
+    .quote-box {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      background: rgba(0, 242, 254, 0.06);
+      border-left: 3px solid var(--text-turquoise);
+      padding: 16px 22px;
+      margin: 18px 0;
+      font-size: 1.15rem;
+      color: #ffffff;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .triad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .triad-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .triad-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .triad-1 { color: var(--text-muted); }
+    .triad-2 { color: var(--text-gold); }
+    .triad-3 { color: var(--text-turquoise); }
+
+    .test-list {
+      list-style: none;
+      margin: 15px 0;
+    }
+
+    .test-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1.05rem;
+    }
+
+    .test-list li:last-child {
+      border-bottom: none;
+    }
+
+    .check-icon {
+      color: var(--text-turquoise);
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    /* SLIDES RECAP */
+    .slides-recap {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+
+    .slides-recap h3 {
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slides-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .slides-table th, .slides-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .slides-table th {
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+    }
+
+    .slides-table td.num {
+      color: var(--text-turquoise);
+      font-weight: 800;
+      width: 50px;
+    }
+
+    .badge-mini {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(216, 180, 254, 0.15);
+      color: var(--text-muted);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="badge-ep">Podcast RealMente • Episodio #66</div>
+      <h1 class="main-title">RealMente te enamoraste de la idea, <span>no de la realidad</span></h1>
+      
+      <div class="thumbnail-hook">
+        <span>👁️ Frase de Miniatura:</span>
+        <strong>«¿DE VERDAD LO QUIERES?»</strong>
+      </div>
+
+      <div class="meta-bar">
+        <div class="meta-item">Host: <strong>Marbelis Montero</strong></div>
+        <div class="meta-item">Duración: <strong>15 a 18 min</strong></div>
+        <div class="meta-item">Láminas a cámara: <strong>28 slides</strong></div>
+        <div class="meta-item">Foco: <strong>PNL & Autoconocimiento Profundo</strong></div>
+      </div>
+    </header>
+
+    <!-- QUICK ACTIONS -->
+    <div class="action-bar">
+      <a href="PRESENTACION_EPISODIO_66.html" class="btn-action">
+        🖥️ Abrir Diapositivas para Grabar (Pantalla Completa) →
+      </a>
+    </div>
+
+    <!-- BLOQUE 1 -->
+    <div class="block-card">
+      <div class="block-header">
+        <span class="block-number">Bloque 01</span>
+        <span class="block-time">00:00 - 02:30</span>
+      </div>
+      <h2 class="block-title">Apertura: El Mito del Sueño Bonito</h2>
+      <div class="block-content">
+        <p><strong>Bienvenida oficial:</strong> <em>«Sean todos bienvenidos a un nuevo episodio de tu podcast RealMente»</em>.</p>
+        <div class="quote-box">
+          «Déjame hacerte una pregunta mirándote directo a los ojos: ese gran sueño o proyecto que llevas meses o años dándole vueltas en la cabeza... <strong>¿de verdad lo quieres?</strong>»
+        </div>
+        <p><strong>El gancho que rompe la culpa:</strong> Nos vendieron que soñar es suficiente y que si lo deseas con fuerza el universo conspirará. Pero la realidad es otra: no es que te falte constancia ni que te sabotees; <strong>te enamoraste de la idea, pero no de la realidad</strong>.</p>
+        <p><strong>Llamado a la comunidad:</strong> Like, suscribirse y compartir con esa amiga que vive culpándose por no ser "constante".</p>
+      </div>
+    </div>
+
+    <!-- BLOQUE 2 -->
+    <div class="block-card">
+      <div class="block-header">
+        <span class="block-number">Bloque 02</span>
+        <span class="block-time">02:30 - 05:30</span>
+      </div>
+      <h2 class="block-title">La Trampa de la Mente Creativa (En la Fantasía Todo Cabe)</h2>
+      <div class="block-content">
+        <p><strong>La imaginación como simulador sin gravedad:</strong> En tu cabeza todo cabe y todo es gratis. Eres exitosa, viajas, tienes el negocio soñado, pero en la mente no hay madrugadas a las 5 AM, no hay cansancio corporal, no hay impuestos ni renuncias.</p>
+        <div class="quote-box">
+          «La mente creativa ama las posibilidades infinitas: da vueltas en 50 proyectos a la vez porque fantasear da placer sin exigir ninguna renuncia real.»
+        </div>
+        <p><strong>El costo del sueño eterno:</strong> Mientras la meta se quede en la creatividad mental, no te cuesta nada... pero tampoco mueve un solo centímetro de tu vida.</p>
+      </div>
+    </div>
+
+    <!-- BLOQUE 3 -->
+    <div class="block-card">
+      <div class="block-header">
+        <span class="block-number">Bloque 03</span>
+        <span class="block-time">05:30 - 09:30</span>
+      </div>
+      <h2 class="block-title">La Tríada de Marbelis: Querer, Desear y Tener un Objetivo</h2>
+      <div class="block-content">
+        <div class="triad-grid">
+          <div class="triad-item">
+            <div class="triad-title triad-1">1. Querer</div>
+            <p>Un anhelo tibio y flotante. <em>«Quisiera estar más tranquila»</em>, <em>«quisiera emprender»</em>. No compromete a nadie y se desvanece con el viento.</p>
+          </div>
+          <div class="triad-item">
+            <div class="triad-title triad-2">2. Desear o Soñar</div>
+            <p>La emoción romántica. Te llena de ilusión pero te mantiene en el aire. Te enamoras del aplauso final, de la postal de Instagram o de la idea abstracta de triunfar.</p>
+          </div>
+          <div class="triad-item">
+            <div class="triad-title triad-3">3. Tener un Objetivo</div>
+            <p>La decisión radical (de <em>decidere</em> = cortar). Elegir una sola posibilidad y <strong>matar todas las demás</strong>. Es mirar el calendario, asumir los horarios y ponerle el cuerpo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 4 -->
+    <div class="block-card">
+      <div class="block-header">
+        <span class="block-number">Bloque 04</span>
+        <span class="block-time">09:30 - 12:30</span>
+      </div>
+      <h2 class="block-title">El Choque con la Materia: ¿De Verdad Querías Eso?</h2>
+      <div class="block-content">
+        <div class="quote-box">
+          «Cuando por fin bajas ese deseo al suelo y te toca vivir un martes ordinario de esa vida... muchas veces te das cuenta con espanto de que <strong>¡ESO NO ERA LO QUE QUERÍAS!</strong>»
+        </div>
+        <p><strong>Ejemplos cotidianos:</strong></p>
+        <ul class="test-list">
+          <li><span class="check-icon">✦</span> Querías un equipo de 20 personas... hasta que te toca liderar y gestionar conflictos humanos todos los días.</li>
+          <li><span class="check-icon">✦</span> Querías una agenda repleta de clientes... hasta que no tienes tiempo para cenar en paz con tus hijos.</li>
+          <li><span class="check-icon">✦</span> Querías viajar todo el año... hasta que extrañas tu cama, tu rutina y tu café tranquilo por la mañana.</li>
+        </ul>
+        <p><strong>El alivio del autoconocimiento:</strong> ¡No fracasaste! Amabas la postal, no el viaje. Tener la valentía de decir <em>«esto no es para mí»</em> es un acto supremo de amor propio y madurez.</p>
+      </div>
+    </div>
+
+    <!-- BLOQUE 5 -->
+    <div class="block-card">
+      <div class="block-header">
+        <span class="block-number">Bloque 05</span>
+        <span class="block-time">12:30 - 15:30</span>
+      </div>
+      <h2 class="block-title">El Test de Realidad de PNL (Antes de Quemar tu Vida)</h2>
+      <div class="block-content">
+        <ul class="test-list">
+          <li>
+            <span class="check-icon">1</span>
+            <div><strong>Filtro 01: La Prueba del «Martes Ordinario»</strong><br>
+            Cierra los ojos y no mires la fiesta del triunfo. Mira un martes ordinario a las 3:00 de la tarde en esa nueva vida. ¿Te gusta esa rutina real con sus incomodidades?</div>
+          </li>
+          <li>
+            <span class="check-icon">2</span>
+            <div><strong>Filtro 02: Elegir el Peaje Voluntario</strong><br>
+            Un objetivo real no se mide por lo que te da, sino por los problemas y fricciones que estás dispuesta a resolver felizmente todos los días.</div>
+          </li>
+          <li>
+            <span class="check-icon">3</span>
+            <div><strong>Filtro 03: El Ancla en la Materia</strong><br>
+            Una semana de prueba física en pequeño. La materia es el único espejo que no miente.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BLOQUE 6 -->
+    <div class="block-card">
+      <div class="block-header">
+        <span class="block-number">Bloque 06</span>
+        <span class="block-time">15:30 - 18:00</span>
+      </div>
+      <h2 class="block-title">Pregunta de Poder, Comunidad y Cierre con Amor</h2>
+      <div class="block-content">
+        <p><strong>Pregunta de Poder para la libreta:</strong></p>
+        <div class="quote-box">
+          «Ese gran sueño que llevas meses acariciando... si hoy te tocara vivir su rutina real con todo su cansancio y renuncias, <strong>¿de verdad lo querrías, o solo te enamoraste de la fantasía en tu mente?</strong>»
+        </div>
+        <p><strong>Interacción en YouTube:</strong> <em>«Déjame en los comentarios: ¿alguna vez lograste algo que deseabas mucho y al llegar dijiste 'esto no era lo que yo quería'? Te voy a leer con todo mi amor»</em>.</p>
+        <p><strong>Invitación a RealMente Club:</strong> Hoja de trabajo del <em>Test de Realidad</em> y sesión en vivo por Zoom.</p>
+        <p><strong>Anclaje y Despedida Oficial:</strong> Mano al pecho: <em>«Yo puedo, he podido y podré; y tú también has podido, puedes y podrás»</em>. Sonrisa a cámara: <em>«¡Bye, bye!»</em>.</p>
+      </div>
+    </div>
+
+    <!-- RECAP DE LAS 28 LÁMINAS -->
+    <div class="slides-recap">
+      <h3>📋 Lista de las 28 Diapositivas para Cámara (Modo Disparadores)</h3>
+      <table class="slides-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Insignia</th>
+            <th>Título Gigante en Pantalla</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">01</td><td><span class="badge-mini">Podcast</span></td><td>«Sean todos bienvenidos a un nuevo episodio de tu podcast RealMente»</td></tr>
+          <tr><td class="num">02</td><td><span class="badge-mini">Episodio</span></td><td>«RealMente te enamoraste de la idea, no de la realidad»</td></tr>
+          <tr><td class="num">03</td><td><span class="badge-mini">Pregunta</span></td><td>Ese gran sueño que llevas años acariciando... ¿DE VERDAD LO QUIERES?</td></tr>
+          <tr><td class="num">04</td><td><span class="badge-mini">Comunidad</span></td><td>Regálame un like, suscríbete y compártelo con quien vive culpándose.</td></tr>
+          <tr><td class="num">05</td><td><span class="badge-mini">El Mito</span></td><td>Nos vendieron que «soñar es suficiente» y que basta con desearlo.</td></tr>
+          <tr><td class="num">06</td><td><span class="badge-mini">PNL</span></td><td>Hoy te quito la culpa: no te falta constancia, te enamoraste de la idea.</td></tr>
+          <tr><td class="num">07</td><td><span class="badge-mini">La Mente</span></td><td>En tu imaginación todo cabe y todo es perfecto porque es gratis.</td></tr>
+          <tr><td class="num">08</td><td><span class="badge-mini">La Trampa</span></td><td>En la mente no hay despertador a las 5 AM, cansancio ni renuncias.</td></tr>
+          <tr><td class="num">09</td><td><span class="badge-mini">El Bucle</span></td><td>Das vueltas en 50 posibilidades para no tener que elegir ninguna.</td></tr>
+          <tr><td class="num">10</td><td><span class="badge-mini">La Tríada</span></td><td>La Tríada Real: Querer vs. Desear vs. Tener un Objetivo</td></tr>
+          <tr><td class="num">11</td><td><span class="badge-mini">Nivel 1</span></td><td>Nivel 1: El Querer — Un anhelo tibio que no compromete a nadie.</td></tr>
+          <tr><td class="num">12</td><td><span class="badge-mini">Nivel 2</span></td><td>Nivel 2: El Deseo o Sueño — La fantasía que te mantiene en el aire.</td></tr>
+          <tr><td class="num">13</td><td><span class="badge-mini">Nivel 3</span></td><td>Nivel 3: El Objetivo Real — Elegir una sola cosa y matar las demás.</td></tr>
+          <tr><td class="num">14</td><td><span class="badge-mini">La Materia</span></td><td>Cuando el deseo baja al suelo... descubres que NO es lo que querías.</td></tr>
+          <tr><td class="num">15</td><td><span class="badge-mini">La Verdad</span></td><td>Amabas la foto del éxito y el aplauso, no la vida que esa meta exige.</td></tr>
+          <tr><td class="num">16</td><td><span class="badge-mini">Alivio</span></td><td>¡No fracasaste! Descubriste quién eres tú en el mundo real.</td></tr>
+          <tr><td class="num">17</td><td><span class="badge-mini">Amor Propio</span></td><td>Tener el valor de decir «esto no es para mí» es madurez y libertad.</td></tr>
+          <tr><td class="num">18</td><td><span class="badge-mini">PNL</span></td><td>El Test de Realidad: Cómo saber si de verdad lo quieres.</td></tr>
+          <tr><td class="num">19</td><td><span class="badge-mini">Filtro 1</span></td><td>Filtro 1: La Prueba del «Martes Ordinario» a las 3:00 de la tarde.</td></tr>
+          <tr><td class="num">20</td><td><span class="badge-mini">Filtro 2</span></td><td>Filtro 2: Elegir el Peaje — Los problemas que aceptas pagar feliz.</td></tr>
+          <tr><td class="num">21</td><td><span class="badge-mini">Filtro 3</span></td><td>Filtro 3: El Ancla en la Materia — Una semana de prueba física.</td></tr>
+          <tr><td class="num">22</td><td><span class="badge-mini">El Ego</span></td><td>Suelta las metas de tu personaje y abraza lo que te da paz hoy.</td></tr>
+          <tr><td class="num">23</td><td><span class="badge-mini">Espejo</span></td><td>Deja de obligarte a empujar una vida que en el fondo no deseas.</td></tr>
+          <tr><td class="num">24</td><td><span class="badge-mini">Poder</span></td><td>«Si hoy te tocara vivir su rutina real... ¿de verdad lo querrías?»</td></tr>
+          <tr><td class="num">25</td><td><span class="badge-mini">YouTube</span></td><td>Déjamelo en los comentarios: ¿alguna vez lograste algo y no era eso?</td></tr>
+          <tr><td class="num">26</td><td><span class="badge-mini">Club</span></td><td>Te espero en RealMente Club: El Test de Realidad y sesión en vivo.</td></tr>
+          <tr><td class="num">27</td><td><span class="badge-mini">Anclaje</span></td><td>«Yo puedo, he podido y podré; y tú también has podido, puedes y podrás»</td></tr>
+          <tr><td class="num">28</td><td><span class="badge-mini">Cierre</span></td><td>Inhala profundo... exhala... sonríe... ¡Bye, bye!</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="footer">
+      <p>Ecosistema RealMente Podcast • Marbelis Montero</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
