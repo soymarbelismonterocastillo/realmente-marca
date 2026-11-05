@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EP66: Te Enamoraste de la Idea, No de la Realidad | RealMente con Marbelis Montero</title>
+  <title>EP66: Disparadores de Ideas a Cámara | Marbelis Montero</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,8 +18,8 @@
       --text-turquoise: #00f2fe;
       --text-lilac: #d8b4fe;
       --text-gold: #fde047;
-      --glow-turquoise: rgba(0, 242, 254, 0.32);
-      --glow-gold: rgba(253, 224, 71, 0.28);
+      --glow-turquoise: rgba(0, 242, 254, 0.35);
+      --glow-gold: rgba(253, 224, 71, 0.3);
       --glow-lilac: rgba(216, 180, 254, 0.25);
     }
 
@@ -39,12 +39,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 32px;
+      padding: 22px 36px;
       overflow: hidden;
       user-select: none;
     }
 
-    /* BARRA SUPERIOR ELEGANTE CON CONTADOR GIGANTE */
+    /* BARRA SUPERIOR */
     .top-bar {
       width: 100%;
       max-width: 1320px;
@@ -53,7 +53,7 @@
       align-items: center;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(14px);
-      padding: 10px 26px;
+      padding: 10px 28px;
       border-radius: 50px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       z-index: 50;
@@ -67,13 +67,13 @@
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .opcion-tag {
       background: rgba(0, 242, 254, 0.15);
       color: var(--text-turquoise);
-      border: 1px solid var(--text-turquoise);
+      border: 1.5px solid var(--text-turquoise);
       padding: 3px 12px;
       border-radius: 20px;
       font-size: 0.8rem;
@@ -82,14 +82,14 @@
     }
 
     .counter-pill {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 900;
       color: #0a0412;
       background: var(--text-turquoise);
       padding: 5px 24px;
       border-radius: 30px;
-      letter-spacing: 1px;
-      box-shadow: 0 0 22px var(--glow-turquoise);
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 24px var(--glow-turquoise);
     }
 
     .top-btns {
@@ -101,7 +101,7 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.22);
       color: #fff;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
       padding: 8px 18px;
       border-radius: 30px;
@@ -115,7 +115,7 @@
       border-color: var(--text-turquoise);
     }
 
-    /* CONTENEDOR CENTRAL DE LA LÁMINA (16:9 ENORME) */
+    /* CONTENEDOR CENTRAL DE LA LÁMINA (16:9 GIGANTE) */
     .deck-container {
       flex: 1;
       width: 100%;
@@ -125,7 +125,7 @@
       justify-content: center;
       position: relative;
       cursor: pointer;
-      margin: 10px 0;
+      margin: 12px 0;
     }
 
     .slide {
@@ -138,15 +138,15 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 35px 60px;
+      padding: 40px 65px;
       opacity: 0;
       visibility: hidden;
       transform: scale(0.97);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
       background: var(--bg-card);
       border-radius: 32px;
       border: 2px solid rgba(216, 180, 254, 0.25);
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.88);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
     }
 
     .slide.active {
@@ -156,7 +156,7 @@
       z-index: 10;
     }
 
-    /* INSIGNIA TEMÁTICA SUPERIOR */
+    /* INSIGNIA TEMÁTICA SUPERIOR (EL ANCLA CONCEPTUAL) */
     .topic-badge {
       display: inline-block;
       font-size: clamp(1rem, 1.6vw, 1.35rem);
@@ -164,32 +164,32 @@
       color: var(--text-turquoise);
       background: rgba(0, 242, 254, 0.12);
       border: 2px solid var(--text-turquoise);
-      padding: 7px 24px;
+      padding: 7px 26px;
       border-radius: 40px;
-      margin-bottom: 25px;
-      letter-spacing: 2px;
+      margin-bottom: 28px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      box-shadow: 0 0 20px var(--glow-turquoise);
+      box-shadow: 0 0 22px var(--glow-turquoise);
     }
 
     .topic-badge.badge-gold {
       color: var(--text-gold);
       border-color: var(--text-gold);
       background: rgba(253, 224, 71, 0.12);
-      box-shadow: 0 0 20px var(--glow-gold);
+      box-shadow: 0 0 22px var(--glow-gold);
     }
 
     .topic-badge.badge-lilac {
       color: var(--text-lilac);
       border-color: var(--text-lilac);
       background: rgba(216, 180, 254, 0.14);
-      box-shadow: 0 0 20px var(--glow-lilac);
+      box-shadow: 0 0 22px var(--glow-lilac);
     }
 
-    /* EL TEXTO GIGANTE PARA LEER A CÁMARA (ALTA LEGIBILIDAD) */
+    /* EL DISPARADOR DE IDEA GIGANTE */
     .giant-title {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.3rem, 4.3vw, 4.2rem);
+      font-size: clamp(2.4rem, 4.4vw, 4.4rem);
       font-weight: 800;
       line-height: 1.25;
       color: var(--text-white);
@@ -205,14 +205,14 @@
 
     .highlight-lilac {
       color: var(--text-lilac);
-      font-weight: 800;
-      text-shadow: 0 0 20px var(--glow-lilac);
+      font-weight: 900;
+      text-shadow: 0 0 22px var(--glow-lilac);
     }
 
     .highlight-gold {
       color: var(--text-gold);
       font-weight: 900;
-      text-shadow: 0 0 22px var(--glow-gold);
+      text-shadow: 0 0 24px var(--glow-gold);
     }
 
     .quote-style {
@@ -222,7 +222,7 @@
       font-weight: 700;
     }
 
-    /* NAVEGACIÓN INFERIOR ERGONÓMICA */
+    /* NAVEGACIÓN INFERIOR */
     .bottom-nav {
       width: 100%;
       max-width: 1320px;
@@ -281,9 +281,9 @@
   <!-- BARRA SUPERIOR -->
   <header class="top-bar">
     <div class="ep-label">
-      RealMente #66 <span class="opcion-tag">HOJA POR HOJA • GUÍA A CÁMARA</span>
+      RealMente #66 <span class="opcion-tag">DISPARADORES DE IDEAS</span>
     </div>
-    <div class="counter-pill" id="counter">01 / 32</div>
+    <div class="counter-pill" id="counter">01 / 28</div>
     <div class="top-btns">
       <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
     </div>
@@ -309,234 +309,215 @@
       </h1>
     </div>
 
-    <!-- 03: EL GANCHO DE LA MINIATURA -->
+    <!-- 03: EL GANCHO VISCERAL (SITUACIÓN INCÓMODA) -->
     <div class="slide">
-      <div class="topic-badge badge-gold">La Gran Pregunta</div>
-      <h1 class="giant-title quote-style">
-        Ese gran sueño que llevas meses dándole vueltas...<br>
-        <span class="highlight-gold" style="font-size: clamp(2.8rem, 5.5vw, 4.8rem);">¿DE VERDAD LO QUIERES?</span>
+      <div class="topic-badge badge-gold">La Escena Incómoda</div>
+      <h1 class="giant-title">
+        El día que por fin consigues lo que tanto pedías...<br>
+        y sientes un vacío pensando:<br>
+        <span class="highlight-gold" style="font-size: clamp(2.8rem, 5.5vw, 4.8rem);">«¿EN QUÉ ME METÍ?»</span>
       </h1>
     </div>
 
-    <!-- 04: COMUNIDAD -->
+    <!-- 04: LA GRAN PREGUNTA (MINIATURA) -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Gran Pregunta</div>
+      <h1 class="giant-title quote-style">
+        Ese proyecto o sueño que defiendes a capa y espada...<br>
+        <span class="highlight-gold" style="font-size: clamp(3rem, 6vw, 5.2rem);">¿DE VERDAD LO QUIERES?</span>
+      </h1>
+    </div>
+
+    <!-- 05: COMUNIDAD -->
     <div class="slide">
       <div class="topic-badge">Comunidad</div>
       <h1 class="giant-title">
         Regálame un <span class="highlight-cyan">like</span>, suscríbete<br>
-        y compártelo con esa amiga que vive culpándose por no avanzar.
+        y compártelo con quien vive persiguiendo espejismos.
       </h1>
     </div>
 
-    <!-- 05: EL MITO SOCIAL -->
+    <!-- 06: LA METÁFORA DE LA PELÍCULA -->
     <div class="slide">
-      <div class="topic-badge badge-gold">El Mito Social</div>
+      <div class="topic-badge badge-gold">La Metáfora Central</div>
       <h1 class="giant-title">
-        Nos vendieron que <span class="highlight-gold">«soñar es suficiente»</span><br>
-        y que basta con desearlo para que el universo conspire.
+        Te enamoraste de la <span class="highlight-gold">película mental</span>...<br>
+        pero nunca te preguntaste si querías <span class="highlight-cyan">vivir el rodaje</span>.
       </h1>
     </div>
 
-    <!-- 06: EL LATIGO DE LA CULPA -->
-    <div class="slide">
-      <div class="topic-badge badge-gold">El Autoengaño</div>
-      <h1 class="giant-title">
-        Y te pasas los años creyendo que el problema es que<br>
-        <span class="highlight-gold">te falta disciplina, constancia o fuerza de voluntad</span>.
-      </h1>
-    </div>
-
-    <!-- 07: LA REVELACIÓN LIBERADORA -->
-    <div class="slide">
-      <div class="topic-badge">Revelación de PNL</div>
-      <h1 class="giant-title">
-        Hoy te quito esa culpa de encima:<br>
-        <span class="highlight-cyan">NO TE FALTA VOLUNTAD</span>, es que te enamoraste de la idea, no de la realidad.
-      </h1>
-    </div>
-
-    <!-- 08: LA MENTE CREATIVA -->
+    <!-- 07: LA MENTE CREATIVA -->
     <div class="slide">
       <div class="topic-badge badge-lilac">La Mente Creativa</div>
       <h1 class="giant-title">
-        En tu imaginación <span class="highlight-lilac">todo es gratis y todo cabe</span>:<br>
-        porque la mente es un <span class="highlight-cyan">simulador sin gravedad</span>.
+        En tu imaginación <span class="highlight-lilac">todo es perfecto y todo cabe</span>:<br>
+        porque la fantasía es un <span class="highlight-cyan">simulador sin gravedad</span>.
       </h1>
     </div>
 
-    <!-- 09: SIN CANSANCIO NI RENUNCIAS -->
+    <!-- 08: EN LA MENTE NO HAY PRECIO -->
     <div class="slide">
       <div class="topic-badge badge-gold">La Trampa Mental</div>
       <h1 class="giant-title">
         En tu cabeza eres exitosa y viajas por el mundo...<br>
-        <span class="highlight-gold">pero no hay despertador a las 5 AM, cansancio ni impuestos</span>.
+        pero no hay <span class="highlight-gold">despertador a las 5 AM, cansancio ni impuestos</span>.
       </h1>
     </div>
 
-    <!-- 10: EL BUCLE DE LAS 50 IDEAS -->
+    <!-- 09: EL BUCLE CÓMODO -->
     <div class="slide">
       <div class="topic-badge badge-gold">El Bucle Creativo</div>
       <h1 class="giant-title">
-        Das vueltas en <span class="highlight-gold">50 posibilidades a la vez</span>...<br>
-        para no tener que asumir el compromiso de elegir una sola.
+        Dar vueltas en <span class="highlight-gold">50 proyectos soñados</span> a la vez...<br>
+        para evitar el compromiso real de <span class="highlight-cyan">elegir uno solo</span>.
       </h1>
     </div>
 
-    <!-- 11: LA DOPAMINA BARATA -->
+    <!-- 10: LA DOPAMINA BARATA -->
     <div class="slide">
       <div class="topic-badge badge-gold">Química Cerebral</div>
       <h1 class="giant-title">
-        Fantasear te da <span class="highlight-gold">dopamina barata</span>:<br>
-        sacia tu mente pero <span class="highlight-cyan">no mueve un centímetro de tu vida real</span>.
+        La mente se sacia <span class="highlight-gold">imaginando el aplauso</span>...<br>
+        mientras tu vida real <span class="highlight-cyan">sigue exactamente en el mismo lugar</span>.
       </h1>
     </div>
 
-    <!-- 12: LA TRÍADA DE MARBELIS -->
+    <!-- 11: LA TRÍADA DE MARBELIS -->
     <div class="slide">
       <div class="topic-badge">Los 3 Niveles</div>
       <h1 class="giant-title">
         La Tríada Real:<br>
-        Una cosa es <span class="highlight-lilac">Querer</span>, otra cosa es <span class="highlight-gold">Desear</span>...<br>
-        y otra muy distinta es <span class="highlight-cyan">Tener un Objetivo</span>.
+        <span class="highlight-lilac">Querer</span> vs. <span class="highlight-gold">Desear</span> vs. <span class="highlight-cyan">Tener un Objetivo</span>
       </h1>
     </div>
 
-    <!-- 13: NIVEL 1 -->
+    <!-- 12: NIVEL 1 -->
     <div class="slide">
-      <div class="topic-badge badge-lilac">Nivel 01: El Querer</div>
+      <div class="topic-badge badge-lilac">Nivel 01</div>
       <h1 class="giant-title">
-        Nivel 1: <span class="highlight-lilac">Querer</span>.<br>
-        Un anhelo tibio y flotante: <em>«quisiera estar mejor»</em>... no compromete a nadie.
+        Nivel 1: <span class="highlight-lilac">El Querer</span>.<br>
+        Un anhelo tibio que flota en el aire y no compromete a nadie.
       </h1>
     </div>
 
-    <!-- 14: NIVEL 2 -->
+    <!-- 13: NIVEL 2 -->
     <div class="slide">
-      <div class="topic-badge badge-gold">Nivel 02: Desear o Soñar</div>
+      <div class="topic-badge badge-gold">Nivel 02</div>
       <h1 class="giant-title">
         Nivel 2: <span class="highlight-gold">Desear o Soñar</span>.<br>
-        La fantasía romántica: te enamoras de la postal, del aplauso y de la foto de Instagram.
+        La emoción romántica que se queda viviendo en las nubes.
       </h1>
     </div>
 
-    <!-- 15: NIVEL 3 -->
+    <!-- 14: NIVEL 3 -->
     <div class="slide">
-      <div class="topic-badge">Nivel 03: El Objetivo</div>
+      <div class="topic-badge">Nivel 03</div>
       <h1 class="giant-title">
         Nivel 3: <span class="highlight-cyan">Tener un Objetivo</span>.<br>
-        Viene de <em>«decidere»</em> (cortar): es elegir una sola posibilidad y <span class="highlight-gold">matar todas las demás</span>.
+        Del latín <em>«decidere»</em> (cortar): elegir una opción y <span class="highlight-gold">matar todas las demás</span>.
       </h1>
     </div>
 
-    <!-- 16: BAJAR AL BARRO -->
+    <!-- 15: BAJAR AL BARRO -->
     <div class="slide">
       <div class="topic-badge">La Materia</div>
       <h1 class="giant-title">
         Tener un objetivo es bajar al barro:<br>
-        mirar el calendario, <span class="highlight-cyan">asumir los horarios y ponerle el cuerpo</span>.
+        asumir el calendario, <span class="highlight-cyan">los horarios y ponerle el cuerpo</span>.
       </h1>
     </div>
 
-    <!-- 17: EL CHOQUE CON LA REALIDAD -->
+    <!-- 16: EL CHOQUE CON LA REALIDAD -->
     <div class="slide">
-      <div class="topic-badge badge-gold">La Gran Revelación</div>
+      <div class="topic-badge badge-gold">El Choque con la Materia</div>
       <h1 class="giant-title">
-        Y aquí viene la gran verdad que nadie te dice:<br>
-        cuando bajas el deseo al suelo...<br>
-        <span class="highlight-gold">¡muchas veces descubres que NO querías eso!</span>
+        Cuando el deseo baja al suelo...<br>
+        descubres con espanto que <span class="highlight-gold">¡NO ERA LO QUE QUERÍAS!</span>
       </h1>
     </div>
 
-    <!-- 18: EJEMPLO 1 (EQUIPO) -->
+    <!-- 17: CONTRASTES COTIDIANOS -->
     <div class="slide">
-      <div class="topic-badge badge-lilac">Ejemplo Real 01</div>
+      <div class="topic-badge badge-lilac">El Espejo Cotidiano</div>
       <h1 class="giant-title">
-        Querías un gran equipo de trabajo...<br>
-        hasta que te toca <span class="highlight-cyan">liderar y gestionar conflictos humanos</span> todos los días.
+        Amabas la foto del éxito y el estatus...<br>
+        <span class="highlight-cyan">no la rutina diaria que esa meta exige</span>.
       </h1>
     </div>
 
-    <!-- 19: EJEMPLO 2 (CLIENTES) -->
+    <!-- 18: EJEMPLOS REALES -->
     <div class="slide">
-      <div class="topic-badge badge-lilac">Ejemplo Real 02</div>
+      <div class="topic-badge badge-gold">Casos Reales</div>
       <h1 class="giant-title">
-        Querías la agenda llena de clientes...<br>
-        hasta que <span class="highlight-gold">no te queda tiempo para cenar en paz con tus hijos</span>.
+        El gran equipo, la agenda colapsada de clientes<br>
+        o la fantasía de viajar <span class="highlight-gold">sin poder cenar en paz con tus hijos</span>.
       </h1>
     </div>
 
-    <!-- 20: EJEMPLO 3 (NÓMADA) -->
-    <div class="slide">
-      <div class="topic-badge badge-lilac">Ejemplo Real 03</div>
-      <h1 class="giant-title">
-        Querías ser nómada digital...<br>
-        hasta que <span class="highlight-cyan">extrañas tu cama, tu rutina y tu café tranquilo</span> por las mañanas.
-      </h1>
-    </div>
-
-    <!-- 21: NO FRACASASTE -->
+    <!-- 19: DESMONTAR LA CULPA -->
     <div class="slide">
       <div class="topic-badge">Alivio Inmediato</div>
       <h1 class="giant-title">
-        ¡NO FRACASASTE!<br>
-        Descubriste la verdad: <span class="highlight-cyan">estabas enamorada de la postal, no del viaje</span>.
+        ¡No era autosabotaje!<br>
+        Tu inconsciente <span class="highlight-cyan">rechazaba con sabiduría esa vida</span>.
       </h1>
     </div>
 
-    <!-- 22: EL VALOR DE DECIR NO -->
+    <!-- 20: VALENTÍA Y AMOR PROPIO -->
     <div class="slide">
-      <div class="topic-badge badge-lilac">Madurez y Amor Propio</div>
+      <div class="topic-badge badge-lilac">Amor Propio</div>
       <h1 class="giant-title">
-        Tener la valentía de decir <span class="highlight-lilac">«esto no es lo que quiero para mi vida»</span><br>
-        es un acto supremo de amor propio.
+        Tener el coraje de decir <span class="highlight-lilac">«esto no es para mí»</span><br>
+        es tu mayor acto de libertad y madurez.
       </h1>
     </div>
 
-    <!-- 23: PROTOCOLO TEST DE REALIDAD -->
+    <!-- 21: EL TEST DE REALIDAD -->
     <div class="slide">
       <div class="topic-badge">PNL Aplicada</div>
       <h1 class="giant-title">
-        Protocolo PNL: <span class="highlight-cyan">El Test de Realidad</span>.<br>
-        Cómo saber si de verdad lo quieres antes de desgastar tu vida entera.
+        El Test de Realidad:<br>
+        <span class="highlight-cyan">Cómo filtrar tus sueños antes de desgastar tu vida</span>
       </h1>
     </div>
 
-    <!-- 24: FILTRO 1 -->
+    <!-- 22: FILTRO 1 -->
     <div class="slide">
       <div class="topic-badge">Filtro 01</div>
       <h1 class="giant-title">
         Filtro 1: <span class="highlight-cyan">La Prueba del «Martes Ordinario»</span>.<br>
-        No mires la fiesta del triunfo: mira un martes cualquiera a las 3 PM. ¿Te gusta esa rutina real?
+        ¿Te gusta la rutina real a las 3:00 de la tarde en un día cualquiera?
       </h1>
     </div>
 
-    <!-- 25: FILTRO 2 -->
+    <!-- 23: FILTRO 2 -->
     <div class="slide">
       <div class="topic-badge badge-gold">Filtro 02</div>
       <h1 class="giant-title">
         Filtro 2: <span class="highlight-gold">Elegir el Peaje Voluntario</span>.<br>
-        Un objetivo se mide por los problemas y fricciones que estás dispuesta a resolver con una sonrisa.
+        ¿Qué problemas y fricciones estás dispuesta a resolver con una sonrisa?
       </h1>
     </div>
 
-    <!-- 26: FILTRO 3 -->
+    <!-- 24: FILTRO 3 -->
     <div class="slide">
       <div class="topic-badge badge-lilac">Filtro 03</div>
       <h1 class="giant-title">
         Filtro 3: <span class="highlight-cyan">El Ancla en la Materia</span>.<br>
-        Una semana de prueba física en pequeño. La materia es el único espejo que no miente.
+        7 días de prueba física antes de hipotecar tu futuro.
       </h1>
     </div>
 
-    <!-- 27: SOLTAR EL PERSONAJE -->
+    <!-- 25: DESARMAR EL PERSONAJE -->
     <div class="slide">
-      <div class="topic-badge badge-gold">Confrontación Amorosa</div>
+      <div class="topic-badge badge-gold">Desarmar el Ego</div>
       <h1 class="giant-title">
-        Deja de obligarte a empujar metas que le pertenecen<br>
-        <span class="highlight-gold">a tu personaje mental o a lo que otros esperan de ti</span>.
+        Suelta los sueños que le pertenecen <span class="highlight-gold">a tu personaje mental</span><br>
+        o a la expectativa de los demás.
       </h1>
     </div>
 
-    <!-- 28: PREGUNTA DE PODER -->
+    <!-- 26: PREGUNTA DE PODER -->
     <div class="slide">
       <div class="topic-badge badge-gold">Pregunta de Poder</div>
       <h1 class="giant-title quote-style">
@@ -545,39 +526,22 @@
       </h1>
     </div>
 
-    <!-- 29: COMENTARIOS -->
+    <!-- 27: COMENTARIOS Y CLUB -->
     <div class="slide">
-      <div class="topic-badge badge-lilac">Interacción en YouTube</div>
+      <div class="topic-badge badge-lilac">Interacción & Club</div>
       <h1 class="giant-title">
-        Déjamelo aquí abajo en los <span class="highlight-cyan">comentarios</span>:<br>
-        ¿alguna vez lograste algo que deseabas y al llegar dijiste <em>«esto no era lo que quería»</em>?
+        Comentarios: <span class="highlight-cyan">¿Alguna vez lograste algo y no era lo que querías?</span><br>
+        Te espero este sábado en <span class="highlight-lilac">RealMente Club</span>.
       </h1>
     </div>
 
-    <!-- 30: REALMENTE CLUB -->
+    <!-- 28: ANCLAJE Y CIERRE -->
     <div class="slide">
-      <div class="topic-badge">RealMente Club</div>
-      <h1 class="giant-title">
-        Te espero en <span class="highlight-cyan">RealMente Club</span>:<br>
-        esta semana trabajamos la hoja del Test de Realidad y nuestra clase en vivo de los sábados.
-      </h1>
-    </div>
-
-    <!-- 31: ANCLAJE OFICIAL -->
-    <div class="slide">
-      <div class="topic-badge badge-gold">Anclaje Oficial</div>
+      <div class="topic-badge">Cierre Somático</div>
       <h1 class="giant-title quote-style">
         «Yo puedo, he podido y podré;<br>
-        <span class="highlight-cyan">y tú también has podido, puedes y podrás</span>»
-      </h1>
-    </div>
-
-    <!-- 32: DESPEDIDA -->
-    <div class="slide">
-      <div class="topic-badge">Cierre con Amor</div>
-      <h1 class="giant-title">
-        Inhala profundo... exhala... sonríe...<br>
-        <span class="highlight-cyan" style="font-size: clamp(3.2rem, 6.5vw, 5.5rem);">¡Bye, bye!</span>
+        <span class="highlight-cyan">y tú también has podido, puedes y podrás»</span><br>
+        <span class="highlight-gold" style="font-size: clamp(3rem, 6vw, 5rem);">¡Bye, bye!</span>
       </h1>
     </div>
 
@@ -608,12 +572,10 @@
         if (i === index) s.classList.add('active');
       });
 
-      // Actualizar contador con padding de dos dígitos
       const formattedCurrent = String(index + 1).padStart(2, '0');
       const formattedTotal = String(totalSlides).padStart(2, '0');
       counterEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
 
-      // Estado de botones
       prevBtn.disabled = (index === 0);
       nextBtn.disabled = (index === totalSlides - 1);
     }
@@ -648,7 +610,7 @@
       }
     }
 
-    // Navegación ergonómica por teclado
+    // Navegación por teclado
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
@@ -670,7 +632,6 @@
       }
     });
 
-    // Inicializar primera lámina
     updateDeck(currentSlide);
   </script>
 </body>
