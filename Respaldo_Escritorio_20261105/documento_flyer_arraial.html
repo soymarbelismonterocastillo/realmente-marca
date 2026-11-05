@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documento Oficial - Charla PNL | Marbelis Montero</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Outfit', 'Montserrat', sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Action bar at top */
+    .top-toolbar {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      padding: 16px 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .top-toolbar h3 {
+      font-size: 1rem;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: #14b8a6;
+    }
+    .btn-copy:hover {
+      background: #0d9488;
+    }
+
+    /* Main Document Sheet */
+    .document-sheet {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 50px 45px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid #cbd5e1;
+      position: relative;
+    }
+
+    .doc-header {
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 6px 16px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .doc-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .doc-subtitle {
+      font-size: 1.1rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .editable-section {
+      background: #fafafa;
+      border: 1px dashed #cbd5e1;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 28px;
+      transition: all 0.2s ease;
+    }
+
+    .editable-section:focus-within {
+      background: #ffffff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #2563eb;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .field-group {
+      margin-bottom: 16px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .editable-content {
+      font-size: 1rem;
+      color: #1e293b;
+      line-height: 1.6;
+      outline: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .editable-content:hover {
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    .editable-content:focus {
+      background: #ffffff;
+      box-shadow: inset 0 0 0 1px #2563eb;
+    }
+
+    .bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .bullet-list li {
+      padding: 6px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      background: #10b981;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 1000;
+    }
+
+    @media print {
+      .top-toolbar { display: none; }
+      body { background: white; padding: 0; }
+      .document-sheet { box-shadow: none; border: none; padding: 0; }
+      .editable-section { border: none; background: transparent; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar -->
+  <div class="top-toolbar">
+    <h3>📄 Documento Oficial de la Charla (Puedes editar cualquier texto directamente aquí)</h3>
+    <div class="btn-group">
+      <button class="btn btn-copy" onclick="copyAllText()">📋 Copiar Todo el Texto</button>
+      <button class="btn" onclick="window.print()">🖨️ Guardar PDF / Imprimir</button>
+    </div>
+  </div>
+
+  <!-- Document Sheet -->
+  <div class="document-sheet" id="docContent">
+    
+    <div class="doc-header">
+      <span class="brand-badge">MARBELIS MONTERO • CONTENIDO OFICIAL</span>
+      <h1 class="doc-title">Información para el Flyer & Difusión</h1>
+      <p class="doc-subtitle">Charla de Programación Neurolingüística (PNL) - Coworking Arraial</p>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="editable-section">
+      <div class="section-label">📌 1. TEXTO EXACTO PARA EL DISEÑO DEL FLYER</div>
+      
+      <div class="field-group">
+        <div class="field-title">TÍTULO PRINCIPAL:</div>
+        <div class="editable-content" contenteditable="true">Mentalidad de expansión: el factor invisible que multiplica tus resultados</div>
+      </div>
+
+      <div class="field-group" style="margin-top: 14px;">
+        <div class="field-title">ACTIVIDAD:</div>
+        <div class="editable-content" contenteditable="true">Charla de Programación Neurolingüística (PNL)</div>
+      </div>
+
+      <div class="field-group" style="margin-top: 14px;">
+        <div class="field-title">PONENTE Y CREDENCIALES:</div>
+        <div class="editable-content" contenteditable="true"><strong>Marbelis Montero</strong><br>Trainer en Programación Neurolingüística, mentora y formadora con más de 15 años de experiencia. Host y creadora de Realmente Podcast y fundadora de Realmente Club.</div>
+      </div>
+
+      <div class="field-group" style="margin-top: 14px;">
+        <div class="field-title">DATOS DEL EVENTO:</div>
+        <ul class="bullet-list">
+          <li>🗓️ <strong>Fecha:</strong> <span contenteditable="true">Viernes 2 de Octubre</span></li>
+          <li>🕔 <strong>Horario:</strong> <span contenteditable="true">17:00 hs (Inicio 17:15 hs)</span></li>
+          <li>⏱️ <strong>Duración:</strong> <span contenteditable="true">45 min a 1 hora</span></li>
+          <li>📍 <strong>Lugar:</strong> <span contenteditable="true">Coworking Arraial (en La Casa Hostel)</span></li>
+          <li>🏠 <strong>Dirección:</strong> <span contenteditable="true">[Ingresar dirección si se requiere]</span></li>
+          <li>🗣️ <strong>Idioma:</strong> <span contenteditable="true">Charla en español</span></li>
+          <li>☕ <strong>Inversión:</strong> <span contenteditable="true">R$ 30 (Incluye café + medialuna servido por el espacio)</span></li>
+          <li>📝 <strong>Requisito:</strong> <span contenteditable="true">Traer cuaderno y lapicera para ejercicio escrito</span></li>
+          <li>👥 <strong>Formato:</strong> <span contenteditable="true">Grupo reducido / espacio íntimo</span></li>
+        </ul>
+      </div>
+
+      <div class="field-group" style="margin-top: 14px;">
+        <div class="field-title">CONTACTO & REDES SOCIALES:</div>
+        <div class="editable-content" contenteditable="true">Instagram: <strong>@soymarbelismontero</strong></div>
+      </div>
+
+      <div class="field-group" style="margin-top: 14px;">
+        <div class="field-title">LLAMADO A LA ACCIÓN (CTA):</div>
+        <div class="editable-content" contenteditable="true">¡Cupos limitados! Reservá tu lugar por mensaje privado a @soymarbelismontero o comentando la publicación.</div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="editable-section">
+      <div class="section-label">💬 2. COPY PARA PUBLICACIÓN (INSTAGRAM / WHATSAPP)</div>
+      <div class="editable-content" contenteditable="true" style="white-space: pre-wrap;">Mentalidad de expansión: el factor invisible que multiplica tus resultados 🧠✨
+
+Te invitamos a una Charla de Programación Neurolingüística (PNL) en un ambiente íntimo y ameno.
+
+En este encuentro vamos a conversar sobre cómo funciona la mente al emprender y tomar decisiones, la metáfora de la mente como computadora con programas instalados de los 0 a 7 años, y realizaremos una dinámica escrita para identificar bloqueos internos.
+
+🎙 Imparte: Marbelis Montero
+Trainer en Programación Neurolingüística, mentora y formadora con más de 15 años de experiencia. Host y creadora de Realmente Podcast y fundadora de Realmente Club.
+
+🗓 Fecha: Viernes 2 de Octubre
+🕔 Hora: 17:00 hs (Tolerancia inicio 17:15 hs)
+📍 Lugar: Coworking Arraial (en La Casa Hostel)
+☕ Inversión: R$ 30 (Incluye café + medialuna servido por el espacio)
+🗣 Idioma: Charla en español
+📝 Requisito: Traer cuaderno y lapicera
+
+🔥 ¡CUPOS LIMITADOS!
+📩 Reservá tu lugar enviando un mensaje privado a @soymarbelismontero</div>
+    </div>
+
+  </div>
+
+  <div class="toast-msg" id="toast">¡Texto copiado al portapapeles con éxito!</div>
+
+  <script>
+    function copyAllText() {
+      const textToCopy = `MENTALIDAD DE EXPANSIÓN: EL FACTOR INVISIBLE QUE MULTIPLICA TUS RESULTADOS
+Charla de Programación Neurolingüística (PNL)
+
+PONENTE:
+Marbelis Montero
+Trainer en Programación Neurolingüística, mentora y formadora con más de 15 años de experiencia. Host y creadora de Realmente Podcast y fundadora de Realmente Club.
+
+INFORMACIÓN DEL EVENTO:
+- Fecha: Viernes 2 de Octubre
+- Horario: 17:00 hs (Inicio 17:15 hs)
+- Duración: 45 min a 1 hora
+- Lugar: Coworking Arraial (en La Casa Hostel)
+- Idioma: Charla en español
+- Inversión: R$ 30 (Incluye café + medialuna servido por el espacio)
+- Requisito: Traer cuaderno y lapicera
+- Contacto: Instagram @soymarbelismontero
+
+LLAMADO A LA ACCIÓN:
+¡Cupos limitados! Reservá tu lugar por mensaje privado a @soymarbelismontero o comentando la publicación.
+
+-----------------------------------
+COPY PARA REDES SOCIALES:
+
+Mentalidad de expansión: el factor invisible que multiplica tus resultados 🧠✨
+
+Te invitamos a una Charla de Programación Neurolingüística (PNL) en un ambiente íntimo y ameno.
+
+En este encuentro vamos a conversar sobre cómo funciona la mente al emprender y tomar decisiones, la metáfora de la mente como computadora con programas instalados de los 0 a 7 años, y realizaremos una dinámica escrita para identificar bloqueos internos.
+
+🎙 Imparte: Marbelis Montero
+Trainer en Programación Neurolingüística, mentora y formadora con más de 15 años de experiencia. Host y creadora de Realmente Podcast y fundadora de Realmente Club.
+
+🗓 Fecha: Viernes 2 de Octubre
+🕔 Hora: 17:00 hs (Tolerancia inicio 17:15 hs)
+📍 Lugar: Coworking Arraial (en La Casa Hostel)
+☕ Inversión: R$ 30 (Incluye café + medialuna servido por el espacio)
+🗣 Idioma: Charla en español
+📝 Requisito: Traer cuaderno y lapicera
+
+🔥 ¡CUPOS LIMITADOS!
+📩 Reservá tu lugar enviando un mensaje privado a @soymarbelismontero`;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
