@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EP66: Modo Disparadores de Ideas | RealMente con Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --text-white: #ffffff;
+      --text-turquoise: #00f2fe;
+      --text-lilac: #d8b4fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.28);
+      --glow-gold: rgba(253, 224, 71, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 35%, #240c42 0%, #0a0412 85%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 36px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR DISCRETA CON CONTADOR GIGANTE */
+    .top-bar {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      padding: 12px 28px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 50;
+    }
+
+    .ep-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-lilac);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .opcion-tag {
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--text-turquoise);
+      border: 1px solid var(--text-turquoise);
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+    }
+
+    .counter-pill {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 4px 22px;
+      border-radius: 30px;
+      letter-spacing: 2px;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .top-btns {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-top:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: var(--text-turquoise);
+      color: var(--text-turquoise);
+    }
+
+    /* CONTENEDOR CENTRAL DE LA DIAPOSITIVA */
+    .deck-container {
+      flex: 1;
+      width: 100%;
+      max-width: 1250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      padding: 30px 20px;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* INSIGNIA TEMÁTICA SUPERIOR (PEQUEÑA Y ELEGANTE) */
+    .topic-badge {
+      display: inline-block;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.1);
+      border: 1.5px solid var(--text-turquoise);
+      padding: 8px 26px;
+      border-radius: 40px;
+      margin-bottom: 30px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px var(--glow-turquoise);
+    }
+
+    .topic-badge.badge-gold {
+      color: var(--text-gold);
+      border-color: var(--text-gold);
+      background: rgba(253, 224, 71, 0.1);
+      box-shadow: 0 0 22px var(--glow-gold);
+    }
+
+    .topic-badge.badge-lilac {
+      color: var(--text-lilac);
+      border-color: var(--text-lilac);
+      background: rgba(216, 180, 254, 0.12);
+      box-shadow: 0 0 22px rgba(216, 180, 254, 0.25);
+    }
+
+    /* EL TÍTULO GIGANTE DE CADA DIAPOSITIVA */
+    .giant-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text-white);
+      max-width: 1150px;
+      text-wrap: balance;
+    }
+
+    .highlight-cyan {
+      color: var(--text-turquoise);
+      text-shadow: 0 0 30px var(--glow-turquoise);
+      font-weight: 900;
+    }
+
+    .highlight-lilac {
+      color: var(--text-lilac);
+      font-weight: 800;
+    }
+
+    .highlight-gold {
+      color: var(--text-gold);
+      font-weight: 900;
+      text-shadow: 0 0 25px var(--glow-gold);
+    }
+
+    .quote-style {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    /* NAVEGACIÓN INFERIOR ERGONÓMICA */
+    .bottom-nav {
+      width: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+      box-shadow: 0 0 25px var(--glow-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .hint-text {
+      font-size: 0.95rem;
+      color: rgba(216, 180, 254, 0.8);
+      font-weight: 500;
+    }
+
+    .hint-key {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 9px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <div class="ep-label">
+      RealMente #66 <span class="opcion-tag">DISPARADORES DE IDEAS</span>
+    </div>
+    <div class="counter-pill" id="counter">01 / 28</div>
+    <div class="top-btns">
+      <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR DE DIAPOSITIVAS GIGANTES -->
+  <main class="deck-container" onclick="handleDeckClick(event)">
+
+    <!-- 01: BIENVENIDA -->
+    <div class="slide active">
+      <div class="topic-badge">Podcast RealMente</div>
+      <h1 class="giant-title quote-style">
+        «Sean todos bienvenidos a un nuevo episodio de tu podcast <span class="highlight-cyan">RealMente</span>»
+      </h1>
+    </div>
+
+    <!-- 02: TÍTULO OFICIAL -->
+    <div class="slide">
+      <div class="topic-badge">Episodio #66</div>
+      <h1 class="giant-title">
+        «RealMente querer no basta:<br>
+        <span class="highlight-cyan">la diferencia entre desear y accionar</span>»
+      </h1>
+    </div>
+
+    <!-- 03: EL GANCHO -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Gran Pregunta</div>
+      <h1 class="giant-title">
+        ¿Cuántas veces has deseado algo con toda tu alma...<br>
+        <span class="highlight-gold">y te has quedado sin mover un solo dedo</span>?
+      </h1>
+    </div>
+
+    <!-- 04: COMUNIDAD -->
+    <div class="slide">
+      <div class="topic-badge">Comunidad</div>
+      <h1 class="giant-title">
+        Regálame un <span class="highlight-cyan">like</span>, suscríbete<br>
+        y compártelo con quien vive postergando sus sueños.
+      </h1>
+    </div>
+
+    <!-- 05: EL MITO SOCIAL -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">El Mito Social</div>
+      <h1 class="giant-title">
+        Nos vendieron que desearlo con fuerza<br>
+        y <span class="highlight-gold">«tener ganas»</span> es suficiente para transformar tu vida.
+      </h1>
+    </div>
+
+    <!-- 06: LA VERDAD BIOLÓGICA -->
+    <div class="slide">
+      <div class="topic-badge">La Verdad Biológica</div>
+      <h1 class="giant-title">
+        El deseo es solo un <span class="highlight-lilac">chispazo emocional</span>:<br>
+        la acción es una <span class="highlight-cyan">respuesta neurológica construida</span>.
+      </h1>
+    </div>
+
+    <!-- 07: LA BRECHA OCULTA -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Brecha Oculta</div>
+      <h1 class="giant-title">
+        Entre el anhelo mental y la ejecución real<br>
+        hay un abismo donde <span class="highlight-gold">muchos se quedan soñando despiertos</span>.
+      </h1>
+    </div>
+
+    <!-- 08: LA TRAMPA DE LA DOPAMINA -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Química Cerebral</div>
+      <h1 class="giant-title">
+        Fantasear con la meta te da <span class="highlight-gold">dopamina barata</span>:<br>
+        sacia tu mente pero <span class="highlight-cyan">deja tu cuerpo inmóvil</span>.
+      </h1>
+    </div>
+
+    <!-- 09: EL COSTO DEL AUTOENGAÑO -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">El Espejo Cotidiano</div>
+      <h1 class="giant-title">
+        Confundir <span class="highlight-gold">«estar ocupada pensando en la meta»</span><br>
+        con estar avanzando de verdad hacia ella.
+      </h1>
+    </div>
+
+    <!-- 10: INTRO TRAMPAS -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Patrones Inconscientes</div>
+      <h1 class="giant-title">
+        Las 3 trampas de la <span class="highlight-gold">mente soñadora</span><br>
+        que te atrapan en la ilusión
+      </h1>
+    </div>
+
+    <!-- 11: TRAMPA 1 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 01</div>
+      <h1 class="giant-title">
+        El Pensamiento Mágico:<br>
+        <span class="highlight-gold">Esperar a «sentirte motivada» para dar el paso</span>.
+      </h1>
+    </div>
+
+    <!-- 12: TRAMPA 2 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 02</div>
+      <h1 class="giant-title">
+        La Ambigüedad Paralizante:<br>
+        Deseos difusos que tu inconsciente <span class="highlight-gold">no sabe cómo ejecutar</span>.
+      </h1>
+    </div>
+
+    <!-- 13: TRAMPA 3 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Trampa 03</div>
+      <h1 class="giant-title">
+        La Fobia a la Fricción:<br>
+        Amar la foto del éxito pero <span class="highlight-gold">rechazar el peaje diario</span>.
+      </h1>
+    </div>
+
+    <!-- 14: EL LENGUAJE DEL INCONSCIENTE -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Lenguaje de PNL</div>
+      <h1 class="giant-title">
+        Tu mente inconsciente <span class="highlight-cyan">no entiende de abstracciones</span>:<br>
+        necesita instrucciones sensoriales precisas.
+      </h1>
+    </div>
+
+    <!-- 15: LA METÁFORA DEL MOTOR -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Metáfora de Marbelis</div>
+      <h1 class="giant-title">
+        Desear sin accionar es como pisar el acelerador a fondo<br>
+        <span class="highlight-gold">con la caja de velocidades en neutro</span>.
+      </h1>
+    </div>
+
+    <!-- 16: EL GIRO DE SABIDURÍA -->
+    <div class="slide">
+      <div class="topic-badge">El Giro de Sabiduría</div>
+      <h1 class="giant-title">
+        El motor ruge, quema gasolina y saca humo...<br>
+        pero para moverte <span class="highlight-cyan">necesitas engranar primera</span>.
+      </h1>
+    </div>
+
+    <!-- 17: MUTACIÓN DE IDENTIDAD -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Mutación de Identidad</div>
+      <h1 class="giant-title">
+        Deja de ser una <span class="highlight-gold">consumidora de futuro</span><br>
+        y conviértete en la <span class="highlight-cyan">arquitecta de tu presente</span>.
+      </h1>
+    </div>
+
+    <!-- 18: INTRO PROTOCOLO -->
+    <div class="slide">
+      <div class="topic-badge">PNL Aplicada</div>
+      <h1 class="giant-title">
+        Protocolo de Tracción:<br>
+        <span class="highlight-cyan">4 filtros para convertir deseos en acción real</span>
+      </h1>
+    </div>
+
+    <!-- 19: FILTRO 1 -->
+    <div class="slide">
+      <div class="topic-badge">Filtro 01</div>
+      <h1 class="giant-title">
+        Filtro 1: Especificidad Sensorial<br>
+        <span class="highlight-cyan">¿Qué ves, qué escuchas y qué tocas exactamente?</span>
+      </h1>
+    </div>
+
+    <!-- 20: FILTRO 2 -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Filtro 02</div>
+      <h1 class="giant-title">
+        Filtro 2: Bajo Tu Piel<br>
+        <span class="highlight-lilac">Que dependa 100% de ti y de tus manos</span>
+      </h1>
+    </div>
+
+    <!-- 21: FILTRO 3 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Filtro 03</div>
+      <h1 class="giant-title">
+        Filtro 3: El Microacuerdo de Hoy<br>
+        <span class="highlight-gold">La acción ridículamente simple para 24 horas</span>
+      </h1>
+    </div>
+
+    <!-- 22: FILTRO 4 -->
+    <div class="slide">
+      <div class="topic-badge">Filtro 04</div>
+      <h1 class="giant-title">
+        Filtro 4: El Peaje Voluntario<br>
+        <span class="highlight-cyan">Asumir con madurez el precio que requiere tu meta</span>
+      </h1>
+    </div>
+
+    <!-- 23: CONFRONTACIÓN AMOROSA -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Confrontación Amorosa</div>
+      <h1 class="giant-title">
+        Seamos sinceras: <span class="highlight-cyan">no te falta claridad</span>,<br>
+        te sobra comodidad y miedo a incomodarte un poquito.
+      </h1>
+    </div>
+
+    <!-- 24: PREGUNTA DE PODER -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Pregunta de Poder</div>
+      <h1 class="giant-title quote-style">
+        «¿Cuál es ese gran deseo que llevas meses acariciando,<br>
+        <span class="highlight-gold">y qué acción concreta estás evadiendo hoy para materializarlo?</span>»
+      </h1>
+    </div>
+
+    <!-- 25: COMENTARIOS -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Interacción</div>
+      <h1 class="giant-title">
+        Déjamelo en los comentarios:<br>
+        ¿Cuál es ese deseo que <span class="highlight-cyan">hoy decides bajar a tierra</span>?
+      </h1>
+    </div>
+
+    <!-- 26: REALMENTE CLUB -->
+    <div class="slide">
+      <div class="topic-badge">RealMente Club</div>
+      <h1 class="giant-title">
+        Te espero en <span class="highlight-cyan">RealMente Club</span>:<br>
+        Matriz de Deseo a Objetivo y sesión en vivo este sábado.
+      </h1>
+    </div>
+
+    <!-- 27: FRASE ANCLA OFICIAL -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Anclaje Oficial</div>
+      <h1 class="giant-title quote-style">
+        «Yo puedo, he podido y podré;<br>
+        <span class="highlight-cyan">y tú también has podido, puedes y podrás</span>»
+      </h1>
+    </div>
+
+    <!-- 28: DESPEDIDA -->
+    <div class="slide">
+      <div class="topic-badge">Cierre con Amor</div>
+      <h1 class="giant-title">
+        Inhala profundo... exhala... sonríe...<br>
+        <span class="highlight-cyan" style="font-size: clamp(3.4rem, 7vw, 6rem);">¡Bye, bye!</span>
+      </h1>
+    </div>
+
+  </main>
+
+  <!-- NAVEGACIÓN INFERIOR -->
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Anterior</button>
+
+    <div class="hint-text">
+      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> Pantalla Completa | Clic en pantalla avanza
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+
+      // Actualizar contador con padding de dos dígitos
+      const formattedCurrent = String(index + 1).padStart(2, '0');
+      const formattedTotal = String(totalSlides).padStart(2, '0');
+      counterEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
+
+      // Estado de botones
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function handleDeckClick(event) {
+      nextSlide();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error al activar pantalla completa: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Navegación por teclado
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlide = 0;
+        updateDeck(currentSlide);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        currentSlide = totalSlides - 1;
+        updateDeck(currentSlide);
+      }
+    });
+
+    // Inicializar
+    updateDeck(currentSlide);
+  </script>
+</body>
+</html>
