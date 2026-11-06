@@ -116,8 +116,8 @@ flowchart LR
    * Lámina 22: Pregunta de microacuerdo para HOY.
    * Lámina 23: Llamado a comentar en YouTube.
    * Lámina 24: Invitación oficial a **RealMente Club** (hoja de trabajo semanal y sesión en vivo de Zoom).
-   * Lámina 25: Frase ancla oficial: *«Yo puedo, he podido y podré; y tú también has podido, puedes y podrás»*.
-   * Lámina 26: Despedida somática: *Inhala profundo... exhala... sonríe... ¡Bye, bye!*
+   * Lámina 25: Frase de alto impacto para leer en reflexión (estilo RealMente Club).
+   * Lámina 26: Despedida y ancla de cierre: *«Cero excusas.» • ¡Bye, bye!*
 
 ---
 
