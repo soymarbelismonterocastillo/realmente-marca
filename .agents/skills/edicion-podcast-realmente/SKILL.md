@@ -27,7 +27,7 @@ Esta skill define el **estándar definitivo y calibrado** de edición, pulido y 
 2. **Tono de Voz, Intimidad y Cercanía:**
    * **De tú a tú, al oído de la oyente:** Cálido, humano, compasivo, pero con la firmeza y contención de una mentora adulta consciente.
    * **Identidad lingüística y anclas de Marbelis:**  
-     * Conectores y frases entrañables: *«amiga»*, *«freno de mano»*, *«el látigo»*, *«el verdugo»*, *«yo puedo, he podido y podré; y tú también has podido, puedes y podrás»*, *«voy a poder con esto»*, *«hacer clic»*, *«sacar a pasear a tu niña herida»*, *«dejar de quererte bajo contrato»*, *«casa sólida»*, *«las rodillas raspadas»*, *«¡Bye, bye!»*.
+     * Conectores y frases entrañables: *«amiga»*, *«freno de mano»*, *«el látigo»*, *«el verdugo»*, *«cero excusas»*, *«voy a poder con esto»*, *«hacer clic»*, *«sacar a pasear a tu niña herida»*, *«dejar de quererte bajo contrato»*, *«casa sólida»*, *«las rodillas raspadas»*, *«¡Bye, bye!»*.
    * **PNL cotidiana y biológica:** Desmontar trampas mentales, absolutismos y secuestros emocionales con ejemplos reales de la vida diaria y sesiones 1 a 1, sin academicismos fríos.
 
 3. **Separación Editorial: Podcast vs. Club:**
