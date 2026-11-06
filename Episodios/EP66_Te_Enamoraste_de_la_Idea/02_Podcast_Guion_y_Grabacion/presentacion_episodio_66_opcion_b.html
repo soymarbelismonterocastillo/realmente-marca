@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EP66 [VERSIÓN B]: Títulos y Disparadores Guía | Marbelis Montero</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0412;
+      --bg-card: #150924;
+      --text-white: #ffffff;
+      --text-turquoise: #00f2fe;
+      --text-lilac: #d8b4fe;
+      --text-gold: #fde047;
+      --glow-turquoise: rgba(0, 242, 254, 0.35);
+      --glow-gold: rgba(253, 224, 71, 0.3);
+      --glow-lilac: rgba(216, 180, 254, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 30%, #240c42 0%, #0a0412 85%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 36px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* BARRA SUPERIOR */
+    .top-bar {
+      width: 100%;
+      max-width: 1320px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      padding: 10px 28px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 50;
+    }
+
+    .ep-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-lilac);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .opcion-tag {
+      background: rgba(253, 224, 71, 0.18);
+      color: var(--text-gold);
+      border: 1.5px solid var(--text-gold);
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .counter-pill {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: #0a0412;
+      background: var(--text-turquoise);
+      padding: 5px 24px;
+      border-radius: 30px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 24px var(--glow-turquoise);
+    }
+
+    .top-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-top:hover {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+    }
+
+    /* CONTENEDOR 16:9 */
+    .deck-container {
+      flex: 1;
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      margin: 12px 0;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 65px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.97);
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+      background: var(--bg-card);
+      border-radius: 32px;
+      border: 2px solid rgba(216, 180, 254, 0.25);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    /* INSIGNIA TEMÁTICA (EL ANCLA DE SECCIÓN) */
+    .topic-badge {
+      display: inline-block;
+      font-size: clamp(1rem, 1.6vw, 1.35rem);
+      font-weight: 900;
+      color: var(--text-turquoise);
+      background: rgba(0, 242, 254, 0.12);
+      border: 2px solid var(--text-turquoise);
+      padding: 7px 26px;
+      border-radius: 40px;
+      margin-bottom: 30px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px var(--glow-turquoise);
+    }
+
+    .topic-badge.badge-gold {
+      color: var(--text-gold);
+      border-color: var(--text-gold);
+      background: rgba(253, 224, 71, 0.12);
+      box-shadow: 0 0 22px var(--glow-gold);
+    }
+
+    .topic-badge.badge-lilac {
+      color: var(--text-lilac);
+      border-color: var(--text-lilac);
+      background: rgba(216, 180, 254, 0.14);
+      box-shadow: 0 0 22px var(--glow-lilac);
+    }
+
+    /* EL TÍTULO GUÍA GIGANTE (SIN TEXTO CORRIDO) */
+    .giant-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 4.8vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.22;
+      color: var(--text-white);
+      max-width: 1160px;
+      text-wrap: balance;
+    }
+
+    .highlight-cyan {
+      color: var(--text-turquoise);
+      text-shadow: 0 0 28px var(--glow-turquoise);
+      font-weight: 900;
+    }
+
+    .highlight-lilac {
+      color: var(--text-lilac);
+      font-weight: 900;
+      text-shadow: 0 0 22px var(--glow-lilac);
+    }
+
+    .highlight-gold {
+      color: var(--text-gold);
+      font-weight: 900;
+      text-shadow: 0 0 26px var(--glow-gold);
+    }
+
+    .quote-style {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* NAVEGACIÓN INFERIOR */
+    .bottom-nav {
+      width: 100%;
+      max-width: 1320px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 13px 32px;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--text-turquoise);
+      color: #0a0412;
+      border-color: var(--text-turquoise);
+      box-shadow: 0 0 25px var(--glow-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.22;
+      cursor: not-allowed;
+    }
+
+    .hint-text {
+      font-size: 0.95rem;
+      color: rgba(216, 180, 254, 0.8);
+      font-weight: 600;
+    }
+
+    .hint-key {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3px 10px;
+      border-radius: 7px;
+      color: #fff;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <div class="ep-label">
+      RealMente #66 <span class="opcion-tag">VERSIÓN B: TÍTULOS GUÍA</span>
+    </div>
+    <div class="counter-pill" id="counter">01 / 20</div>
+    <div class="top-btns">
+      <button class="btn-top" onclick="toggleFullscreen()">⛶ Pantalla Completa (F)</button>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR DE DIAPOSITIVAS GIGANTES -->
+  <main class="deck-container" onclick="handleDeckClick(event)">
+
+    <!-- 01: BIENVENIDA -->
+    <div class="slide active">
+      <div class="topic-badge">Apertura</div>
+      <h1 class="giant-title quote-style">
+        Bienvenida al podcast <span class="highlight-cyan">RealMente</span>
+      </h1>
+    </div>
+
+    <!-- 02: TÍTULO OFICIAL -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Episodio #66</div>
+      <h1 class="giant-title">
+        «RealMente te enamoraste de la idea,<br>
+        <span class="highlight-cyan">no de la realidad</span>»
+      </h1>
+    </div>
+
+    <!-- 03: REFLEXIÓN INICIAL 1 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Reflexión Inicial</div>
+      <h1 class="giant-title">
+        ¿Cuántas <span class="highlight-gold">ideas brillantes</span><br>
+        has tenido en tu vida?
+      </h1>
+    </div>
+
+    <!-- 04: REFLEXIÓN INICIAL 2 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Imaginación</div>
+      <h1 class="giant-title">
+        Los lugares, viajes y vidas<br>
+        que <span class="highlight-lilac">has dibujado en tu mente</span>
+      </h1>
+    </div>
+
+    <!-- 05: EL ESPEJO DE CONSCIENCIA -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Pregunta Potente</div>
+      <h1 class="giant-title quote-style">
+        ¿Y qué de todo eso<br>
+        <span class="highlight-gold">has hecho realidad</span>?<br>
+        <span class="highlight-cyan">¿Qué has cumplido?</span>
+      </h1>
+    </div>
+
+    <!-- 06: COMUNIDAD -->
+    <div class="slide">
+      <div class="topic-badge">Comunidad</div>
+      <h1 class="giant-title">
+        <span class="highlight-cyan">Like</span>, suscribirse y compartir
+      </h1>
+    </div>
+
+    <!-- 07: EL CONCEPTO MAESTRO -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Concepto Maestro</div>
+      <h1 class="giant-title">
+        <span class="highlight-lilac">Realidad Mental</span><br>
+        vs.<br>
+        <span class="highlight-cyan">Realidad Real</span>
+      </h1>
+    </div>
+
+    <!-- 08: LA REALIDAD MENTAL -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">La Realidad Mental</div>
+      <h1 class="giant-title">
+        En tu mente <span class="highlight-lilac">todo cabe</span>,<br>
+        todo es lindo y <span class="highlight-cyan">es gratis</span>
+      </h1>
+    </div>
+
+    <!-- 09: LA REALIDAD REAL -->
+    <div class="slide">
+      <div class="topic-badge">La Realidad Real</div>
+      <h1 class="giant-title">
+        La realidad real exige:<br>
+        <span class="highlight-cyan">tiempo, energía y presencia</span>
+      </h1>
+    </div>
+
+    <!-- 10: LA TRÍADA -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Tríada de Marbelis</div>
+      <h1 class="giant-title">
+        Los 3 Niveles:<br>
+        <span class="highlight-lilac">Querer</span> • <span class="highlight-gold">Desear</span> • <span class="highlight-cyan">Objetivo</span>
+      </h1>
+    </div>
+
+    <!-- 11: NIVEL 1 -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Nivel 01</div>
+      <h1 class="giant-title">
+        El Querer:<br>
+        <span class="highlight-lilac">La niebla difusa</span> de las ideas flotantes
+      </h1>
+    </div>
+
+    <!-- 12: NIVEL 2 -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Nivel 02</div>
+      <h1 class="giant-title">
+        El Deseo:<br>
+        <span class="highlight-gold">La nube amplia</span> que dispersa tu energía
+      </h1>
+    </div>
+
+    <!-- 13: NIVEL 3 -->
+    <div class="slide">
+      <div class="topic-badge">Nivel 03</div>
+      <h1 class="giant-title">
+        Tener un Objetivo:<br>
+        <span class="highlight-cyan">El poder del papel</span><br>
+        (de lo invisible a lo tangible)
+      </h1>
+    </div>
+
+    <!-- 14: ANCLAR LA ENERGÍA -->
+    <div class="slide">
+      <div class="topic-badge">Anclaje Físico</div>
+      <h1 class="giant-title">
+        Escribir el objetivo:<br>
+        darle una <span class="highlight-cyan">coordenada real</span> a tu energía
+      </h1>
+    </div>
+
+    <!-- 15: EL CHOQUE -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">El Choque con la Materia</div>
+      <h1 class="giant-title">
+        Bajar al suelo:<br>
+        descubrir que <span class="highlight-gold">¡NO era lo que querías!</span>
+      </h1>
+    </div>
+
+    <!-- 16: LA REVELACIÓN -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">La Revelación</div>
+      <h1 class="giant-title">
+        Te enamoraste del <span class="highlight-gold">dibujo mental</span>,<br>
+        no de la <span class="highlight-cyan">vida real</span> que exige
+      </h1>
+    </div>
+
+    <!-- 17: AUTOCONOCIMIENTO -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Autoconocimiento</div>
+      <h1 class="giant-title">
+        Darte cuenta a tiempo <span class="highlight-lilac">no es fracasar</span>:<br>
+        <span class="highlight-cyan">es libertad y madurez</span>
+      </h1>
+    </div>
+
+    <!-- 18: PREGUNTA DE PODER -->
+    <div class="slide">
+      <div class="topic-badge badge-gold">Pregunta de Poder</div>
+      <h1 class="giant-title quote-style">
+        ¿Qué idea estás dispuesta a<br>
+        <span class="highlight-gold">escribir como objetivo hoy</span>?
+      </h1>
+    </div>
+
+    <!-- 19: REFLEXIÓN DE CIERRE -->
+    <div class="slide">
+      <div class="topic-badge badge-lilac">Reflexión Final</div>
+      <h1 class="giant-title quote-style">
+        «Bájalo al papel y descubre si esa vida<br>
+        <span class="highlight-cyan">le hace bien a tu paz</span>»
+      </h1>
+    </div>
+
+    <!-- 20: CIERRE OFICIAL -->
+    <div class="slide">
+      <div class="topic-badge">Cierre Oficial</div>
+      <h1 class="giant-title">
+        <span class="highlight-gold" style="font-size: clamp(3.6rem, 7.2vw, 6.2rem);">Cero excusas.</span><br>
+        <span class="highlight-cyan" style="font-size: clamp(2.8rem, 5.5vw, 4.8rem); font-family: 'Playfair Display', serif; font-style: italic;">¡Bye, bye!</span>
+      </h1>
+    </div>
+
+  </main>
+
+  <!-- NAVEGACIÓN INFERIOR -->
+  <footer class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Anterior</button>
+
+    <div class="hint-text">
+      Toca <span class="hint-key">Espacio</span> o <span class="hint-key">→</span> para avanzar | <span class="hint-key">F</span> Pantalla Completa | Clic en pantalla avanza
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Siguiente →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counterEl = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+
+      const formattedCurrent = String(index + 1).padStart(2, '0');
+      const formattedTotal = String(totalSlides).padStart(2, '0');
+      counterEl.textContent = `${formattedCurrent} / ${formattedTotal}`;
+
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck(currentSlide);
+      }
+    }
+
+    function handleDeckClick(event) {
+      nextSlide();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error al activar pantalla completa: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Navegación por teclado
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlide = 0;
+        updateDeck(currentSlide);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        currentSlide = totalSlides - 1;
+        updateDeck(currentSlide);
+      }
+    });
+
+    updateDeck(currentSlide);
+  </script>
+</body>
+</html>
